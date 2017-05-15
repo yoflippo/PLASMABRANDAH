@@ -9,7 +9,16 @@
 -- DESCRIPTION:
 --    4KB unified cache that uses the lower 4KB of the 8KB cache_ram.  
 --    Only lowest 2MB of DDR is cached.
----------------------------------------------------------------------
+
+-------------------------------------------  DIRECT MAPPED CACHE (MS)---------------------------------
+--        TAG                |         INDEX           |   BYTE ADDRESSING    |    DESCRIPTION
+--   address_next(20 : 12)   |   address_next(11: 2)   |   address_next(1:0)  |   4kb  Cache, 2MB Ram
+--   address_next(20 : 13)   |   address_next(12: 2)   |   address_next(1:0)  |   8kb  Cache, 2MB Ram
+--   address_next(20 : 14)   |   address_next(13: 2)   |   address_next(1:0)  |   16kb Cache, 2MB Ram
+--   address_next(21 : 12)   |   address_next(11: 2)   |   address_next(1:0)  |   4kb  Cache, 4MB Ram
+--   address_next(21 : 13)   |   address_next(12: 2)   |   address_next(1:0)  |   8kb  Cache, 4MB Ram
+--   address_next(21 : 14)   |   address_next(13: 2)   |   address_next(1:0)  |   16kb Cache, 4MB Ram
+------------------------------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
@@ -101,7 +110,7 @@ begin
 
 		if state = STATE_IDLE then    --check if next access in cached range
 			cache_address <= '0' & address_next(11 downto 2);
-			if address_next(30 downto 21) = "0010000000" then  --first 2MB of DDR
+			if address_next(30 downto 21) = "0010000000" then  --first 2MB of DDR, MS: first and only 1 is for activating DDR
 				cache_access <= '1';
 				if byte_we_next = "0000" then     --read cycle
 					cache_we <= '0';
