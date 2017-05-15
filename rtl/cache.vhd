@@ -109,7 +109,7 @@ begin
         end case; --state
 
         if state = STATE_IDLE then    --check if next access in cached range
-            cache_address <= '0' & address_next(11 downto 2);
+            cache_address <= address_next(12 downto 2); -- MS: INDEX changed for 8 kB  (before (11 downto 2)
             if address_next(30 downto 21) = "0010000000" then  --first 2MB of DDR, MS: first and only 1 is for activating DDR
                 cache_access <= '1';
                 if byte_we_next = "0000" then     --read cycle
@@ -125,7 +125,7 @@ begin
                 state_next <= STATE_IDLE;
             end if;
         else
-            cache_address <= '0' & cpu_address(11 downto 2);
+            cache_address <= address_next(12 downto 2); -- MS: INDEX changed for 8 kB
             cache_access <= '0';
             if state = STATE_MISSED then
                 cache_we <= '1';                  --update cache tag
@@ -136,7 +136,7 @@ begin
         end if;
 
         if byte_we_next = "0000" or byte_we_next = "1111" then  --read or 32-bit write
-            cache_tag_in <= address_next(20 downto 12);
+            cache_tag_in <= address_next(20 downto 13); -- MS: TAG still 2 MB
         else
             cache_tag_in <= ONES(8 downto 0);  --invalid tag
         end if;
