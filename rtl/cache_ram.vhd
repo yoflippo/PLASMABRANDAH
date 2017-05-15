@@ -7,13 +7,13 @@
 -- COPYRIGHT: Software placed into the public domain by the author.
 --    Software 'as is' without warranty.  Author liable for nothing.
 -- DESCRIPTION:
---    Implements Plasma Cache RAM as RAMB 
+--    Implements Plasma Cache RAM as RAMB
 --    The file is configurable up to 64KB, in blocks of 8 KB.
 --    The Cache Data RAM uses only the lower 4KB of block0
 --
 -- MEMORY MAP
 --    0000..1FFF : 8KB   8KB  block0
---    2000..3FFF : 8KB  16KB  block1 
+--    2000..3FFF : 8KB  16KB  block1
 --    4000..5FFF : 8KB  24KB  block2
 --    6000..7FFF : 8KB  32KB  block3
 --    8000..9FFF : 8KB  40KB  block4
@@ -30,67 +30,67 @@ library UNISIM;
 use UNISIM.vcomponents.all;
 
 entity cache_ram is
-	generic( 
-		block_count : integer := 1
-	); 
-	port(
-		clk               : in std_logic;
+    generic(
+        block_count : integer := 1
+    );
+    port(
+        clk               : in std_logic;
         enable            : in std_logic;
         write_byte_enable : in std_logic_vector(3 downto 0);
         address           : in std_logic_vector(31 downto 2);
         data_write        : in std_logic_vector(31 downto 0);
         data_read         : out std_logic_vector(31 downto 0)
-	);
+    );
 end; --entity ram
 
 architecture logic of cache_ram is
-	--type
-	type mem32_vector IS ARRAY (NATURAL RANGE<>) OF std_logic_vector(31 downto 0);
+    --type
+    type mem32_vector IS ARRAY (NATURAL RANGE<>) OF std_logic_vector(31 downto 0);
 
-	--Which 8KB block
-	alias block_sel: std_logic_vector(2 downto 0) is address(15 downto 13);
+    --Which 8KB block
+    alias block_sel: std_logic_vector(2 downto 0) is address(15 downto 13);
 
-	--Address within a 8KB block (without lower two bits)
-	alias block_addr : std_logic_vector(10 downto 0) is address(12 downto 2);
+    --Address within a 8KB block (without lower two bits)
+    alias block_addr : std_logic_vector(10 downto 0) is address(12 downto 2);
 
-	--Block enable with 1 bit per memory block
-	signal block_enable: std_logic_vector(7 downto 0);
+    --Block enable with 1 bit per memory block
+    signal block_enable: std_logic_vector(7 downto 0);
 
-	--Block Data Out
-	signal block_do: mem32_vector(7 downto 0);
+    --Block Data Out
+    signal block_do: mem32_vector(7 downto 0);
 
-	--Remember which block was selected
-	signal block_sel_buf: std_logic_vector(2 downto 0);
+    --Remember which block was selected
+    signal block_sel_buf: std_logic_vector(2 downto 0);
 
 begin
-	block_enable<= "00000001" when (enable='1') and (block_sel="000") else 
-                   "00000010" when (enable='1') and (block_sel="001") else 
-                   "00000100" when (enable='1') and (block_sel="010") else 
-                   "00001000" when (enable='1') and (block_sel="011") else 
-                   "00010000" when (enable='1') and (block_sel="100") else 
-                   "00100000" when (enable='1') and (block_sel="101") else 
-                   "01000000" when (enable='1') and (block_sel="110") else 
+    block_enable<= "00000001" when (enable='1') and (block_sel="000") else
+                   "00000010" when (enable='1') and (block_sel="001") else
+                   "00000100" when (enable='1') and (block_sel="010") else
+                   "00001000" when (enable='1') and (block_sel="011") else
+                   "00010000" when (enable='1') and (block_sel="100") else
+                   "00100000" when (enable='1') and (block_sel="101") else
+                   "01000000" when (enable='1') and (block_sel="110") else
                    "10000000" when (enable='1') and (block_sel="111") else
                    "00000000";
-  
-	proc_blocksel: process (clk, block_sel) is
-	begin-- TvE: register to buffer block select
-		if rising_edge(clk) then 
-			block_sel_buf <= block_sel;
-		end if;
-	end process;
 
-	proc_do: process (block_do, block_sel_buf) is
-	begin
-		data_read <= block_do(conv_integer(block_sel_buf));
-	end process;
-	
-	-- BLOCKS generation
-	block0: if (block_count > 0) generate
-	begin
+    proc_blocksel: process (clk, block_sel) is
+    begin-- TvE: register to buffer block select
+        if rising_edge(clk) then
+            block_sel_buf <= block_sel;
+        end if;
+    end process;
 
-		ram_byte3 : RAMB16_S9
-			generic map (
+    proc_do: process (block_do, block_sel_buf) is
+    begin
+        data_read <= block_do(conv_integer(block_sel_buf));
+    end process;
+
+    -- BLOCKS generation
+    block0: if (block_count > 0) generate
+    begin
+
+        ram_byte3 : RAMB16_S9
+            generic map (
 INIT_00 => X"000000000000000000000000000000000000000000000000000000000c080400",
 INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
 INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
@@ -157,10 +157,10 @@ INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
 INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
-      DO   => block_do(0)(31 downto 24), 
-      DOP  => open, 
+      DO   => block_do(0)(31 downto 24),
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(31 downto 24),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(0),
@@ -236,15 +236,15 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(0)(23 downto 16),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(23 downto 16),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(0),
       SSR  => ZERO(0),
       WE   => write_byte_enable(2));
-	
+
     ram_byte1 : RAMB16_S9
    generic map (
 INIT_00 => X"000000000000000000000000000000000000000000000000000000000e0a0602",
@@ -314,9 +314,9 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(0)(15 downto 8),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(15 downto 8),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(0),
@@ -392,19 +392,19 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(0)(7 downto 0),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(7 downto 0),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(0),
       SSR  => ZERO(0),
       WE   => write_byte_enable(0));
    end generate; --block0
-	
+
 
    block1: if (block_count > 1) generate
-	begin
+    begin
 
     ram_byte3 : RAMB16_S9
    generic map (
@@ -474,10 +474,10 @@ INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
 INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
-      DO   => block_do(1)(31 downto 24), 
-      DOP  => open, 
+      DO   => block_do(1)(31 downto 24),
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(31 downto 24),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(1),
@@ -553,15 +553,15 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(1)(23 downto 16),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(23 downto 16),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(1),
       SSR  => ZERO(0),
       WE   => write_byte_enable(2));
-	
+
     ram_byte1 : RAMB16_S9
    generic map (
 INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
@@ -631,9 +631,9 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(1)(15 downto 8),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(15 downto 8),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(1),
@@ -709,20 +709,20 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(1)(7 downto 0),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(7 downto 0),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(1),
       SSR  => ZERO(0),
       WE   => write_byte_enable(0));
-		
+
    end generate; --block1
-	
+
 
    block2: if (block_count > 2) generate
-	begin
+    begin
 
     ram_byte3 : RAMB16_S9
    generic map (
@@ -792,10 +792,10 @@ INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
 INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
-      DO   => block_do(2)(31 downto 24), 
-      DOP  => open, 
+      DO   => block_do(2)(31 downto 24),
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(31 downto 24),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(2),
@@ -871,15 +871,15 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(2)(23 downto 16),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(23 downto 16),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(2),
       SSR  => ZERO(0),
       WE   => write_byte_enable(2));
-	
+
     ram_byte1 : RAMB16_S9
    generic map (
 INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
@@ -949,9 +949,9 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(2)(15 downto 8),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(15 downto 8),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(2),
@@ -1027,20 +1027,20 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(2)(7 downto 0),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(7 downto 0),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(2),
       SSR  => ZERO(0),
       WE   => write_byte_enable(0));
-		
+
    end generate; --block2
 
 
    block3: if (block_count > 3) generate
-	begin
+    begin
 
     ram_byte3 : RAMB16_S9
    generic map (
@@ -1110,10 +1110,10 @@ INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
 INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
-      DO   => block_do(3)(31 downto 24), 
-      DOP  => open, 
+      DO   => block_do(3)(31 downto 24),
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(31 downto 24),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(3),
@@ -1189,15 +1189,15 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(3)(23 downto 16),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(23 downto 16),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(3),
       SSR  => ZERO(0),
       WE   => write_byte_enable(2));
-	
+
     ram_byte1 : RAMB16_S9
    generic map (
 INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
@@ -1267,9 +1267,9 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(3)(15 downto 8),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(15 downto 8),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(3),
@@ -1345,20 +1345,20 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(3)(7 downto 0),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(7 downto 0),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(3),
       SSR  => ZERO(0),
       WE   => write_byte_enable(0));
-		
+
    end generate; --block3
 
 
    block4: if (block_count > 4) generate
-	begin
+    begin
 
     ram_byte3 : RAMB16_S9
    generic map (
@@ -1428,10 +1428,10 @@ INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
 INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
-      DO   => block_do(4)(31 downto 24), 
-      DOP  => open, 
+      DO   => block_do(4)(31 downto 24),
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(31 downto 24),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(4),
@@ -1507,15 +1507,15 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(4)(23 downto 16),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(23 downto 16),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(4),
       SSR  => ZERO(0),
       WE   => write_byte_enable(2));
-	
+
     ram_byte1 : RAMB16_S9
    generic map (
 INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
@@ -1585,9 +1585,9 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(4)(15 downto 8),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(15 downto 8),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(4),
@@ -1663,20 +1663,20 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(4)(7 downto 0),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(7 downto 0),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(4),
       SSR  => ZERO(0),
       WE   => write_byte_enable(0));
-		
+
    end generate; --block4
 
 
    block5: if (block_count > 5) generate
-	begin
+    begin
 
     ram_byte3 : RAMB16_S9
    generic map (
@@ -1746,10 +1746,10 @@ INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
 INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
-      DO   => block_do(5)(31 downto 24), 
-      DOP  => open, 
+      DO   => block_do(5)(31 downto 24),
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(31 downto 24),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(5),
@@ -1825,15 +1825,15 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(5)(23 downto 16),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(23 downto 16),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(5),
       SSR  => ZERO(0),
       WE   => write_byte_enable(2));
-	
+
     ram_byte1 : RAMB16_S9
    generic map (
 INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
@@ -1903,9 +1903,9 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(5)(15 downto 8),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(15 downto 8),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(5),
@@ -1981,20 +1981,20 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(5)(7 downto 0),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(7 downto 0),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(5),
       SSR  => ZERO(0),
       WE   => write_byte_enable(0));
-		
+
    end generate; --block5
 
 
    block6: if (block_count > 6) generate
-	begin
+    begin
 
     ram_byte3 : RAMB16_S9
    generic map (
@@ -2064,10 +2064,10 @@ INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
 INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
-      DO   => block_do(6)(31 downto 24), 
-      DOP  => open, 
+      DO   => block_do(6)(31 downto 24),
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(31 downto 24),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(6),
@@ -2143,15 +2143,15 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(6)(23 downto 16),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(23 downto 16),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(6),
       SSR  => ZERO(0),
       WE   => write_byte_enable(2));
-	
+
     ram_byte1 : RAMB16_S9
    generic map (
 INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
@@ -2221,9 +2221,9 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(6)(15 downto 8),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(15 downto 8),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(6),
@@ -2299,20 +2299,20 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(6)(7 downto 0),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(7 downto 0),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(6),
       SSR  => ZERO(0),
       WE   => write_byte_enable(0));
-		
+
    end generate; --block6
 
 
    block7: if (block_count > 7) generate
-	begin
+    begin
 
     ram_byte3 : RAMB16_S9
    generic map (
@@ -2382,10 +2382,10 @@ INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
 INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
-      DO   => block_do(7)(31 downto 24), 
-      DOP  => open, 
+      DO   => block_do(7)(31 downto 24),
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(31 downto 24),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(7),
@@ -2461,15 +2461,15 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(7)(23 downto 16),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(23 downto 16),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(7),
       SSR  => ZERO(0),
       WE   => write_byte_enable(2));
-	
+
     ram_byte1 : RAMB16_S9
    generic map (
 INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
@@ -2539,9 +2539,9 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(7)(15 downto 8),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(15 downto 8),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(7),
@@ -2617,15 +2617,15 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
 )
     port map (
       DO   => block_do(7)(7 downto 0),
-      DOP  => open, 
+      DOP  => open,
       ADDR => block_addr,
-      CLK  => clk, 
+      CLK  => clk,
       DI   => data_write(7 downto 0),
       DIP  => ZERO(0 downto 0),
       EN   => block_enable(7),
       SSR  => ZERO(0),
       WE   => write_byte_enable(0));
-		
+
    end generate; --block7
 
 end; --architecture logic
