@@ -128,4 +128,14 @@
 <msg type="info" file="Xst" num="1901" delta="new" >Instance <arg fmt="%s" index="1">u1_plasma_top/u0_clk/DCM_BASE0</arg> in unit <arg fmt="%s" index="2">top_ml410</arg> of type <arg fmt="%s" index="3">DCM_BASE</arg> has been replaced by <arg fmt="%s" index="4">DCM_ADV</arg>
 </msg>
 
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_27</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">top_ml410</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_26</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">top_ml410</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="new" >Node &lt;<arg fmt="%s" index="1">u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_25</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">top_ml410</arg>&gt;.
+</msg>
+
 </messages>
+

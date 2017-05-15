@@ -5,7 +5,8 @@ Command Line: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/ngdbuild -intstyle
 ise -dd _ngo -nt timestamp -uc ml410.ucf -p xc4vfx60-ff1152-11 top_ml410.ngc
 top_ml410.ngd
 
-Reading NGO file "/home/pdp/pdp/pdp_ISE/top_ml410.ngc" ...
+Reading NGO file "/home/pdp/Dropbox/MARK
+CODE/PLASMABRANDAH/pdp_ISE/top_ml410.ngc" ...
 Gathering constraint information from source properties...
 Done.
 
@@ -46,10 +47,10 @@ NGDBUILD Design Results Summary:
   Number of errors:     0
   Number of warnings:   2
 
-Total memory usage is 446412 kilobytes
+Total memory usage is 446096 kilobytes
 
 Writing NGD file "top_ml410.ngd" ...
-Total REAL time to NGDBUILD completion:  10 sec
-Total CPU time to NGDBUILD completion:   5 sec
+Total REAL time to NGDBUILD completion:  8 sec
+Total CPU time to NGDBUILD completion:   6 sec
 
 Writing NGDBUILD log file "top_ml410.bld"...

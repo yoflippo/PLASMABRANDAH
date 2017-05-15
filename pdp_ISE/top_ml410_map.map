@@ -9,7 +9,7 @@ Target Device  : xc4vfx60
 Target Package : ff1152
 Target Speed   : -11
 Mapper Version : virtex4 -- $Revision: 1.55 $
-Mapped Date    : Mon May  1 02:58:58 2017
+Mapped Date    : Mon May 15 07:15:34 2017
 
 Mapping design into LUTs...
 WARNING:LIT:176 - Clock buffer is designated to drive clock loads. BUFG symbol
@@ -32,21 +32,6 @@ WARNING:LIT:175 - Clock buffer is designated to drive clock loads. BUFG symbol
    Pin CE of u1_plasma_top/u2_ddr/u2_ddr/data_write2_2
    Pin CE of u1_plasma_top/u2_ddr/u2_ddr/data_write2_3
 Running directed packing...
-WARNING:Pack:266 - The function generator
-   u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<2>1 failed to merge
-   with F5 multiplexer
-   u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<3>_f5.  There is
-   more than one F5MUX.  The design will exhibit suboptimal timing.
-WARNING:Pack:266 - The function generator
-   u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<2>1 failed to merge
-   with F5 multiplexer
-   u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<4>_f5.  There is
-   more than one F5MUX.  The design will exhibit suboptimal timing.
-WARNING:Pack:266 - The function generator
-   u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<2>1 failed to merge
-   with F5 multiplexer
-   u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<5>_f5.  There is
-   more than one F5MUX.  The design will exhibit suboptimal timing.
 Running delay-based LUT packing...
 Running related packing...
 Updating timing models...
@@ -84,24 +69,24 @@ Design Summary
 
 Design Summary:
 Number of errors:      0
-Number of warnings:   12
+Number of warnings:    9
 Logic Utilization:
-  Number of Slice Flip Flops:           774 out of  50,560    1%
+  Number of Slice Flip Flops:           776 out of  50,560    1%
     Number of Slice FFs used for
-    DCM autocalibration logic:          7 out of     774    1%
-  Number of 4 input LUTs:             3,781 out of  50,560    7%
+    DCM autocalibration logic:          7 out of     776    1%
+  Number of 4 input LUTs:             3,760 out of  50,560    7%
     Number of LUTs used for
-    DCM autocalibration logic:          4 out of   3,781    1%
+    DCM autocalibration logic:          4 out of   3,760    1%
       *See INFO below for an explanation of the DCM autocalibration logic
        added by Map
 Logic Distribution:
-  Number of occupied Slices:          2,022 out of  25,280    7%
-    Number of Slices containing only related logic:   2,022 out of   2,022 100%
-    Number of Slices containing unrelated logic:          0 out of   2,022   0%
+  Number of occupied Slices:          2,014 out of  25,280    7%
+    Number of Slices containing only related logic:   2,014 out of   2,014 100%
+    Number of Slices containing unrelated logic:          0 out of   2,014   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:       3,794 out of  50,560    7%
-    Number used as logic:             3,518
-    Number used as a route-thru:         13
+  Total Number of 4 input LUTs:       3,768 out of  50,560    7%
+    Number used as logic:             3,497
+    Number used as a route-thru:          8
     Number used for Dual Port RAMs:     256
       (Two LUTs used per Dual Port RAM)
     Number used as Shift registers:       7
@@ -116,11 +101,11 @@ Logic Distribution:
     Number used as RAMB16s:               9
   Number of DCM_ADVs:                     1 out of      12    8%
 
-Average Fanout of Non-Clock Nets:                4.25
+Average Fanout of Non-Clock Nets:                4.22
 
 Peak Memory Usage:  799 MB
-Total REAL time to MAP completion:  18 secs 
-Total CPU time to MAP completion:   8 secs 
+Total REAL time to MAP completion:  14 secs 
+Total CPU time to MAP completion:   11 secs 
 
 NOTES:
 
