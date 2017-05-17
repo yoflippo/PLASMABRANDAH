@@ -41,7 +41,7 @@ entity cache is
         cache_ram_data_w    : in  std_logic_vector(31 downto 0);
         cache_ram_data_r    : out std_logic_vector(31 downto 0);
 
-        cache_access        : out std_logic;   --access 16KB cache TvE:
+        cache_access        : out std_logic;   --TvE: access 16KB cache 
         cache_checking      : out std_logic;   --checking if cache hit
         cache_miss          : out std_logic    --cache miss
     );
@@ -59,27 +59,30 @@ architecture logic of cache is
     signal state_next       : state_type;
 
     signal cache_address    : std_logic_vector(10 downto 0);
-    signal cache_tag_in     : std_logic_vector(8 downto 0);
-    signal cache_tag_reg    : std_logic_vector(8 downto 0);
-    signal cache_tag_out    : std_logic_vector(8 downto 0);
+    signal cache_tag_in     : std_logic_vector(7 downto 0); -- TvE: Changed from 8 downto 0
+    signal cache_tag_reg    : std_logic_vector(7 downto 0); -- TvE: Changed from 8 downto 0
+    --signal cache_tag_out    : std_logic_vector(8 downto 0); -- TvE: not used, changed to tag_block_do
     signal cache_we         : std_logic;
 
     --TvE: Adjustments for 16 kB Cache (Tag doubling)-----------------------------------------
     type mem8_vector IS ARRAY (NATURAL RANGE<>) OF std_logic_vector(7 downto 0);
 
-    signal block_sel: std_logic; -- TvE: signal to select which block of tags is used
+    signal tag_block_sel: std_logic_vector(0 downto 0); -- TvE: signal to select which block of tags is used
 
-    signal block_to: mem8_vector(1 downto 0); -- TvE: Output of the tag block
+    signal tag_block_do: mem8_vector(1 downto 0); -- TvE: Output of the tag block
+
+    --Block enable with 1 bit per memory block
+    signal tag_block_enable: std_logic_vector(1 downto 0);
     ---------------------------------------------------------------------------------------
 begin
-
+   
     cache_proc: process(clk, reset, mem_busy, cache_address,
         state_reg, state, state_next,
         address_next, byte_we_next, cache_tag_in, --Stage1
-        cache_tag_reg, cache_tag_out,             --Stage2
+        cache_tag_reg, tag_block_do,             --Stage2 TvE: changed cache_tag_out to tag_block_do
         cpu_address) --Stage3
     begin
-
+    	
         case state_reg is
             when STATE_IDLE =>            --cache idle
                 cache_checking <= '0';
@@ -87,7 +90,8 @@ begin
                 state <= STATE_IDLE;
             when STATE_CHECKING =>        --current read in cached range, check if match
                 cache_checking <= '1';
-                if block_to(conv_integer(block_sel)) /= cache_tag_reg or block_to(conv_integer(block_sel)) = ONES(8 downto 0) then
+                if tag_block_do(conv_integer(tag_block_sel)) /= cache_tag_reg or 
+                   tag_block_do(conv_integer(tag_block_sel)) = ONES(7 downto 0) then --TvE: changed cache_tag_out to tag_block_do
                     cache_miss <= '1';
                     state <= STATE_MISSED;
                 else
@@ -118,7 +122,14 @@ begin
 
         if state = STATE_IDLE then    --check if next access in cached range
             cache_address <= address_next(12 downto 2); -- TvE change: to 12 concatenation with 0 removed
-            block_sel <= address_next(13);              -- TvE: Added selection bit for Tag block selection
+            tag_block_sel(0) <= address_next(13);              -- TvE: Added selection bit for Tag block selection
+            
+            if tag_block_sel(0) ='0' then
+            	tag_block_enable <= "01";
+            else
+            	tag_block_enable <= "10";
+            end if;
+
             if address_next(30 downto 22) = "001000000" then  --first 2MB of DDR -- TvE: changed from: (30 downto 21) = "0010000000" MS: first and only 1 is for activating DDR
                 cache_access <= '1';
                 if byte_we_next = "0000" then     --read cycle
@@ -135,8 +146,15 @@ begin
             end if;
         else
             cache_address <= cpu_address(12 downto 2);  -- TvE: changed: 0 concatenation with 11 downto 2 to 12 downto 2
-            block_sel <= cpu_address(3);                -- TvE: Added selection bit for Tag block selection  
-            cache_access <= '0';
+            tag_block_sel(0) <= cpu_address(13);                -- TvE: Added selection bit for Tag block selection
+
+            if tag_block_sel(0) ='0' then
+            	tag_block_enable <= "01";
+            else
+            	tag_block_enable <= "10";
+            end if;
+
+            	cache_access <= '0';
             if state = STATE_MISSED then
                 cache_we <= '1';                  --update cache tag
             else
@@ -146,14 +164,14 @@ begin
         end if;
 
         if byte_we_next = "0000" or byte_we_next = "1111" then  --read or 32-bit write
-            cache_tag_in <= '0' & address_next(21 downto 14);   -- TvE changed to get correct tag concatenated with 0
+            cache_tag_in <= address_next(21 downto 14);   -- TvE changed to get correct tag length
         else
-            cache_tag_in <= ONES(8 downto 0);  --invalid tag -- TvE: remained unchanged, changed in the port map of tags
+            cache_tag_in <= ONES(7 downto 0);  --invalid tag -- TvE: changed to get correct tag length
         end if;
 
         if reset = '1' then
             state_reg <= STATE_IDLE;
-            cache_tag_reg <= ZERO(8 downto 0);  -- TvE: remained unchanged, changed in the port map of tags
+            cache_tag_reg <= ZERO(7 downto 0);  -- TvE: changed to get correct tag length
         elsif rising_edge(clk) then
             state_reg <= state_next;
             if state = STATE_IDLE and state_reg /= STATE_MISSED then
@@ -237,29 +255,16 @@ begin
             INIT_3C => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
             INIT_3D => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
             INIT_3E => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            INIT_3F => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            -- The next set of INITP_xx are for the parity bits
-            -- Address 0 to 511
-            INITP_00 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            INITP_01 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            -- Address 512 to 1023
-            INITP_02 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            INITP_03 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            -- Address 1024 to 1535
-            INITP_04 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            INITP_05 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            -- Address 1536 to 2047
-            INITP_06 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            INITP_07 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
+            INIT_3F => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
         )
         port map (
-            DO   => block_to(0),
+            DO   => tag_block_do(0),				--TvE: changed cache_tag_out to tag_block_do
             DOP  => open,
             ADDR => cache_address,             --registered
             CLK  => clk,
             DI   => cache_tag_in(7 downto 0),  --registered
             DIP  => ZERO(0 downto 0),
-            EN   => '1',
+            EN   => tag_block_enable(0),		--TvE: Changed from '1'
             SSR  => ZERO(0),
             WE   => cache_we
         );
@@ -337,29 +342,16 @@ begin
             INIT_3C => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
             INIT_3D => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
             INIT_3E => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            INIT_3F => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            -- The next set of INITP_xx are for the parity bits
-            -- Address 0 to 511
-            INITP_00 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            INITP_01 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            -- Address 512 to 1023
-            INITP_02 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            INITP_03 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            -- Address 1024 to 1535
-            INITP_04 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            INITP_05 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            -- Address 1536 to 2047
-            INITP_06 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            INITP_07 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
+            INIT_3F => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
         )
         port map (
-            DO   => block_to(1),
+            DO   => tag_block_do(1),
             DOP  => open,
             ADDR => cache_address,             --registered
             CLK  => clk,
             DI   => cache_tag_in(7 downto 0),  --registered
             DIP  => ZERO(0 downto 0),
-            EN   => '1',
+            EN   => tag_block_enable(1), --TvE: Changed from '1'
             SSR  => ZERO(0),
             WE   => cache_we
         );
