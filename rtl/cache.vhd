@@ -67,19 +67,25 @@ architecture logic of cache is
     --TvE: Adjustments for 16 kB Cache (Tag doubling)-----------------------------------------
     type mem8_vector IS ARRAY (NATURAL RANGE<>) OF std_logic_vector(7 downto 0);
 
-    signal block_sel: std_logic; -- TvE: signal to select which block of tags is used
+    signal block_sel : std_logic_vector(1 downto 0); -- TvE: signal to select which block of tags is used
 
     signal block_to: mem8_vector(1 downto 0); -- TvE: Output of the tag block
-    ---------------------------------------------------------------------------------------
+    signal block_to_selected : std_logic_vector(8 downto 0);
+   
+    -- MS: alias alias_name : alias_type is object_name;
+   -- alias aBlock_to : std_logic_vector(8 downto 0) is ('0' & block_to(conv_integer(block_sel)));
+   --alias bBlock_to : std_logic_vector(7 downto 0) is block_to(conv_integer(block_sel));
+   
+ 
+   ---------------------------------------------------------------------------------------
 begin
 
     cache_proc: process(clk, reset, mem_busy, cache_address,
         state_reg, state, state_next,
-        address_next, byte_we_next, cache_tag_in, --Stage1
-        cache_tag_reg, cache_tag_out,             --Stage2
-        cpu_address) --Stage3
+        address_next, byte_we_next, cache_tag_in,   --Stage1
+        cache_tag_reg, cache_tag_out,                   --Stage2, MS: first: cache_tag_out
+        cpu_address)                                --Stage3
     begin
-
         case state_reg is
             when STATE_IDLE =>            --cache idle
                 cache_checking <= '0';
@@ -118,7 +124,7 @@ begin
 
         if state = STATE_IDLE then    --check if next access in cached range
             cache_address <= address_next(12 downto 2); -- TvE change: to 12 concatenation with 0 removed
-            block_sel <= address_next(13);              -- TvE: Added selection bit for Tag block selection
+            block_sel <= '0' & address_next(13);              -- TvE: Added selection bit for Tag block selection
             if address_next(30 downto 22) = "001000000" then  --first 2MB of DDR -- TvE: changed from: (30 downto 21) = "0010000000" MS: first and only 1 is for activating DDR
                 cache_access <= '1';
                 if byte_we_next = "0000" then     --read cycle
@@ -135,7 +141,7 @@ begin
             end if;
         else
             cache_address <= cpu_address(12 downto 2);  -- TvE: changed: 0 concatenation with 11 downto 2 to 12 downto 2
-            block_sel <= cpu_address(3);                -- TvE: Added selection bit for Tag block selection  
+            block_sel <= '0' & cpu_address(3);                -- TvE: Added selection bit for Tag block selection  
             cache_access <= '0';
             if state = STATE_MISSED then
                 cache_we <= '1';                  --update cache tag
