@@ -42,14 +42,17 @@
 #define putch putchar
 #include <termios.h>
 #include <unistd.h>
-
-#define NUMINSTRUCTIONS 65
-
-
 long long cycle_counter;
+
+// MS: Variables
 FILE *FILE_instr, *tmp ;
-long long tmpCnt = 0;
-static long long int executedInstruction[NUMINSTRUCTIONS] = {0};
+#define NUMINSTRUCTIONS_OPCODES 65 // MS: opcodes
+#define NUMINSTRUCTIONS_SSTRING 64 // MS: opcodes
+#define NUMINSTRUCTIONS_REGIMM 32 // MS: opcodes
+static long long int EI_opcode_string[NUMINSTRUCTIONS_OPCODES] = {0};
+static long long int EI_special_string[NUMINSTRUCTIONS_SSTRING] = {0};
+static long long int EI_regimm_string[NUMINSTRUCTIONS_REGIMM] = {0};
+// MS: Variables
 
 void Sleep(unsigned int value)
 { 
@@ -135,7 +138,7 @@ typedef struct {
 
 
 
-static char *opcode_string[NUMINSTRUCTIONS]={
+static char *opcode_string[NUMINSTRUCTIONS_OPCODES]={
    "SPECIAL","REGIMM","J","JAL","BEQ","BNE","BLEZ","BGTZ",
    "ADDI","ADDIU","SLTI","SLTIU","ANDI","ORI","XORI","LUI",
    "COP0","COP1","COP2","COP3","BEQL","BNEL","BLEZL","BGTZL",
@@ -649,8 +652,12 @@ void cycle(State *s, int show_mode)
    //printf("Address: %x, Opcode: %d\n",s->pc, opcode);
    op = (opcode >> 26) & 0x3f;
 
-   executedInstruction[op]++; // MS: counter
-   
+	// MS: counter executed instructions
+   EI_opcode_string[op]++; 		
+   EI_regimm_string[rt]++; 		
+   EI_special_string[func]++;
+   	// MS: counter executed instructions
+
    rs = (opcode >> 21) & 0x1f;
    rt = (opcode >> 16) & 0x1f;
    rd = (opcode >> 11) & 0x1f;
@@ -887,11 +894,6 @@ void show_state(State *s)
       cycle(s, 10);
    }
    s->pc = j;
-
-
-        /*tmp = fopen("2.txt", "w"); // MS: 
-        fprintf(FILE_instr, "%lli", tmpCnt++); // MS: 
-        fclose(tmp);*/
 }
 
 void do_debug(State *s)
@@ -954,21 +956,23 @@ void do_debug(State *s)
             cycle(s, 2); // MS: added new state to cycle            
          }
 
-   //  tmp = fopen("2.txt", "w"); // MS: 
-    //     fprintf(FILE_instr, "%lli", tmpCnt++); // MS: 
-     //    fclose(tmp);
-
- 
-
-
-        // MS: write continuously
-         FILE_instr = fopen("instruc.txt", "w"); // MS: 
-         for (int i = 0; i < NUMINSTRUCTIONS; ++i)
-         {
-            // print the instruction and the number of times it is executed
-            fprintf(FILE_instr, "%s,%lli\n", opcode_string[i],executedInstruction[i]); // MS: 
-         }
-         fclose(FILE_instr); // MS
+		// MS: =============================================================
+		// print the instruction and the number of times it is executed
+		FILE_instr = fopen("ExecutedInstructions.txt", "w");
+		for (int i = 0; i < NUMINSTRUCTIONS_OPCODES; ++i)
+		{
+			fprintf(FILE_instr, "%s,%lli\n", opcode_string[i],EI_opcode_string[i]);
+		}
+		for (int i = 0; i < NUMINSTRUCTIONS_REGIMM; ++i)
+		{
+			fprintf(FILE_instr, "%s,%lli\n", regimm_string[i],EI_regimm_string[i]);
+		}
+		for (int i = 0; i < NUMINSTRUCTIONS_SSTRING; ++i)
+		{
+			fprintf(FILE_instr, "%s,%lli\n", special_string[i],EI_special_string[i]);
+		}
+		fclose(FILE_instr);
+		// MS: =============================================================
 
          show_state(s);
          break;
@@ -1088,20 +1092,8 @@ int main(int argc,char *argv[])
       s->pc = 0x10000000;
    if(index == 0xffffffff)
       s->pc = 0x10000000 + FLASH_SIZE;
-
    do_debug(s);
-
    free(s->mem);
-
-           // MS: write continuously
-         FILE_instr = fopen("instruc2.txt", "w"); // MS: 
-         for (int i = 0; i < NUMINSTRUCTIONS; ++i)
-         {
-            // print the instruction and the number of times it is executed
-            fprintf(FILE_instr, "%s,%lli\n", opcode_string[i],executedInstruction[i]); // MS: 
-         }
-         fclose(FILE_instr); // MS
-
    return(0);
 }
 

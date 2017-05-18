@@ -11,6 +11,19 @@
 --   This file served as the starting point for the VHDL code.
 --   Assumes running on a little endian PC.
 --------------------------------------------------------------------*/
+
+// MS =======================================================================
+
+// 1- COMPILE THIS FILE (<file>): gcc <file> -o mlite.exe
+// 2- GO TO FOLDER OF CHOICE
+// 3- make test_sim
+// 4- enter 5 press ENTER
+// 5- patience untill you see a strange symbol
+// 6- press ENTER, presto chango a file with name instruc.txt has been created
+
+// MS =======================================================================
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -32,9 +45,17 @@
 #define putch putchar
 #include <termios.h>
 #include <unistd.h>
-
-
 long long cycle_counter;
+
+// MS: Variables
+FILE *FILE_instr;
+#define NUMINSTRUCTIONS_OPCODES 65 
+#define NUMINSTRUCTIONS_SSTRING 64 
+#define NUMINSTRUCTIONS_REGIMM 32   
+volatile long EI_opcode_string[NUMINSTRUCTIONS_OPCODES]  = {0};
+volatile long EI_special_string[NUMINSTRUCTIONS_SSTRING] = {0};
+volatile long EI_regimm_string[NUMINSTRUCTIONS_REGIMM]   = {0};
+// MS: Variables
 
 void Sleep(unsigned int value)
 { 
@@ -118,14 +139,16 @@ typedef struct {
    MmuEntry mmuEntry[MMU_ENTRIES];
 } State;
 
-static char *opcode_string[]={
+
+
+static char *opcode_string[NUMINSTRUCTIONS_OPCODES]={
    "SPECIAL","REGIMM","J","JAL","BEQ","BNE","BLEZ","BGTZ",
    "ADDI","ADDIU","SLTI","SLTIU","ANDI","ORI","XORI","LUI",
    "COP0","COP1","COP2","COP3","BEQL","BNEL","BLEZL","BGTZL",
    "?","?","?","?","?","?","?","?",
    "LB","LH","LWL","LW","LBU","LHU","LWR","?",
    "SB","SH","SWL","SW","?","?","SWR","CACHE",
-   "LL","LWC1","LWC2","LWC3","?","LDC1","LDC2","LDC3"
+   "LL","LWC1","LWC2","LWC3","?","LDC1","LDC2","LDC3",
    "SC","SWC1","SWC2","SWC3","?","SDC1","SDC2","SDC3","???"
 };
 
@@ -146,6 +169,13 @@ static char *regimm_string[]={
    "BLTZAL","BEQZAL","BLTZALL","BGEZALL","?","?","?","?",
    "?","?","?","?","?","?","?","?"
 };
+
+
+static void registerInstructions()
+{
+
+
+}
 
 static unsigned int HWMemory[8];
 
@@ -624,6 +654,7 @@ void cycle(State *s, int show_mode)
    opcode = mem_read(s, 4, s->pc);
    //printf("Address: %x, Opcode: %d\n",s->pc, opcode);
    op = (opcode >> 26) & 0x3f;
+
    rs = (opcode >> 21) & 0x1f;
    rt = (opcode >> 16) & 0x1f;
    rd = (opcode >> 11) & 0x1f;
@@ -634,25 +665,45 @@ void cycle(State *s, int show_mode)
    target = (opcode << 6) >> 4;
    ptr = (short)imm + r[rs];
    r[0] = 0;
-   if(show_mode) 
+
+   // MS: counter executed instructions
+   EI_opcode_string[op]++;       
+   EI_regimm_string[rt]++;       
+   EI_special_string[func]++;
+   // MS: counter executed instructions
+
+   if(show_mode == 1) 
    {
       printf("%8.8x %8.8x ", s->pc, opcode);
-      if(op == 0) 
+      if(op == 0) {
          printf("%8s ", special_string[func]);
-      else if(op == 1) 
+
+      }
+      else if(op == 1) {
          printf("%8s ", regimm_string[rt]);
+
+      }
       else {
       //printf("op: %d\n",op);
          printf("%8s ", opcode_string[op]);
+
+      
       //printf("op: %d\n",op);
          
-         }
+      }
       printf("$%2.2d $%2.2d $%2.2d $%2.2d ", rs, rt, rd, re);
       printf("%4.4x", imm);
       if(show_mode == 1)
          printf(" r[%2.2d]=%8.8x r[%2.2d]=%8.8x", rs, r[rs], rt, r[rt]);
       printf("\n");
    }
+   /*// MS: a new version that prints every instruction to text file 
+   if(show_mode == 2) {
+      fprintf(FILE_instr, "%s\n", special_string[func]); // MS: 
+      fprintf(FILE_instr, "%s\n", regimm_string[rt]); // MS: 
+      fprintf(FILE_instr, "%s\n", opcode_string[op]); // MS: 
+   }*/
+
    if(show_mode > 5) 
       return;
    epc = s->pc + 4;
@@ -857,6 +908,7 @@ void do_debug(State *s)
    s->pc_next = s->pc + 4;
    s->skip = 0;
    s->wakeup = 0;
+
    show_state(s);
    ch = ' ';
    for(;;) 
@@ -882,8 +934,9 @@ void do_debug(State *s)
       case '3': case 's':
          printf("Count> ");
          scanf("%d", &j);
-         for(i = 0; i < j; ++i) 
-            cycle(s, 1);
+         for(i = 0; i < j; ++i) {
+            cycle(s, 2);
+         }
          show_state(s);
          break;
       case '4': case 'b':
@@ -893,7 +946,7 @@ void do_debug(State *s)
          break;
       case '5': case 'g':
          s->wakeup = 0;
-         cycle(s, 0);
+         cycle(s, 2); // MS: added new state to cycle
          while(s->wakeup == 0) 
          {
             if(s->pc == j) 
@@ -904,8 +957,27 @@ void do_debug(State *s)
                 fclose(f);
                 break;
             }
-            cycle(s, 0);
+            cycle(s, 2); // MS: added new state to cycle            
          }
+
+      // MS: =============================================================
+      // print the instruction and the number of times it is executed
+      FILE_instr = fopen("ExecutedInstructions.txt", "w");
+      for (int i = 0; i < NUMINSTRUCTIONS_OPCODES; ++i)
+      {
+         fprintf(FILE_instr, "%s,%li\n", opcode_string[i],EI_opcode_string[i]);
+      }
+      for (int i = 0; i < NUMINSTRUCTIONS_REGIMM; ++i)
+      {
+         fprintf(FILE_instr, "%s,%li\n", regimm_string[i],EI_regimm_string[i]);
+      } 
+      for (int i = 0; i < NUMINSTRUCTIONS_SSTRING; ++i)
+      {
+         fprintf(FILE_instr, "%s,%li\n", special_string[i],EI_special_string[i]);
+      }
+      fclose(FILE_instr);
+      // MS: =============================================================
+
          show_state(s);
          break;
       case 'G':
@@ -954,6 +1026,7 @@ int main(int argc,char *argv[])
 {
    State state, *s=&state;
    FILE *in;
+
    int bytes, index;
    printf("Plasma emulator\n");
    memset(s, 0, sizeof(State));
@@ -979,6 +1052,8 @@ int main(int argc,char *argv[])
    }
    bytes = fread(s->mem, 1, MEM_SIZE, in);
    fclose(in);
+
+
    //memcpy(s->mem + 1024*1024, s->mem, 1024*1024);  //internal 8KB SRAM
    printf("Read %d bytes.\n", bytes);
    cache_init();
@@ -1023,6 +1098,18 @@ int main(int argc,char *argv[])
       s->pc = 0x10000000 + FLASH_SIZE;
    do_debug(s);
    free(s->mem);
+
+         // MS: If this part of the code is not present
+         // the code will not work!! No clue as to
+              // MS: write continuously
+         FILE_instr = fopen("instruc2.txt", "w"); // MS: 
+         for (int i = 0; i < NUMINSTRUCTIONS_OPCODES; ++i)
+         {
+            // print the instruction and the number of times it is executed
+            fprintf(FILE_instr, "%s,%li\n", opcode_string[i],EI_opcode_string[i]); // MS: 
+         }
+         fclose(FILE_instr); // MS
+
    return(0);
 }
 
