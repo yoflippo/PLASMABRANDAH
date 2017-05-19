@@ -1,0 +1,39 @@
+Release 14.7 - ngc2edif P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+Reading design top_ml410.ngc ...
+WARNING:NetListWriters:298 - No output is written to top_ml410.xncf, ignored.
+Processing design ...
+   Preping design's networks ...
+   Preping design's macros ...
+WARNING:NetListWriters:306 - Signal bus u1_plasma_top/u1_plasma/address_next<31
+   : 2> on block top_ml410 is not reconstructed, because there are some missing
+   bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   u1_plasma_top/u1_plasma/opt_cache2.u_cache/state<2 : 0> on block top_ml410 is
+   not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   u1_plasma_top/u1_plasma/u1_cpu/pc_plus4<29 : 5> on block top_ml410 is not
+   reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg<31 : 2> on block
+   top_ml410 is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   u1_plasma_top/u1_plasma/u1_cpu/u3_control/c_source_mux0001<2 : 0> on block
+   top_ml410 is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   u1_plasma_top/u1_plasma/u1_cpu/u6_alu/bb_mux0000<30 : 1> on block top_ml410
+   is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   u1_plasma_top/u1_plasma/u3_uart/Madd_delay_write_reg_addsub0000_cy<6 : 3> on
+   block top_ml410 is not reconstructed, because there are some missing bus
+   signals.
+WARNING:NetListWriters:306 - Signal bus
+   u1_plasma_top/u1_plasma/u3_uart/Mcount_read_value_reg_cy<3 : 1> on block
+   top_ml410 is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   u1_plasma_top/u2_ddr/u1_ddr_init/Madd_wait_cnt_addsub0000_cy<5 : 3> on block
+   top_ml410 is not reconstructed, because there are some missing bus signals.
+  finished :Prep
+Writing EDIF netlist file top_ml410.edif ...
+ngc2edif: Total memory usage is 113940 kilobytes
+
