@@ -101,7 +101,7 @@ begin
   process           -- The reset on FPGA board is active low
   begin
     sys_rst_n <= '0';
-    wait for 200 ns;
+    wait for 1000 ns;
     sys_rst_n <= '1';
     wait;
   end process;

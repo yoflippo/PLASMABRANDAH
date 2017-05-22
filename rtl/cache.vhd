@@ -79,7 +79,7 @@ begin
     cache_proc: process(clk, reset, mem_busy, cache_address,
         state_reg, state, state_next,
         address_next, byte_we_next, cache_tag_in, --Stage1
-        cache_tag_reg, tag_block_do,             --Stage2 TvE: changed cache_tag_out to tag_block_do
+        cache_tag_reg,              --Stage2 TvE: changed cache_tag_out to tag_block_do
         cpu_address) --Stage3
     begin
     	
@@ -287,7 +287,7 @@ begin
             CLK  => clk,
             DI   => cache_tag_in(7 downto 0),  --registered
             DIP  => cache_tag_in(8 downto 8),
-            EN   => tag_block_enable(0),		--TvE: Changed from '1'
+            EN   => '1',		--TvE: Changed from '1'
             SSR  => ZERO(0),
             WE   => cache_we(0)
         );
@@ -387,7 +387,7 @@ begin
             CLK  => clk,
             DI   => cache_tag_in(7 downto 0),  --registered
             DIP  => cache_tag_in(8 downto 8),
-            EN   => tag_block_enable(1), --TvE: Changed from '1'
+            EN   => '1', --TvE: Changed from '1'
             SSR  => ZERO(0),
             WE   => cache_we(1)
         );
