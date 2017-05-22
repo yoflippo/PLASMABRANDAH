@@ -287,7 +287,7 @@ begin
             CLK  => clk,
             DI   => cache_tag_in(7 downto 0),  --registered
             DIP  => cache_tag_in(8 downto 8),
-            EN   => tag_block_enable(0),		--TvE: Changed from '1'
+            EN   => '1',		--TvE: Changed from '1'
             SSR  => ZERO(0),
             WE   => cache_we(0)
         );
@@ -387,7 +387,7 @@ begin
             CLK  => clk,
             DI   => cache_tag_in(7 downto 0),  --registered
             DIP  => cache_tag_in(8 downto 8),
-            EN   => tag_block_enable(1), --TvE: Changed from '1'
+            EN   => '1', --tag_block_enable(1), --TvE: Changed from '1'
             SSR  => ZERO(0),
             WE   => cache_we(1)
         );

@@ -41,13 +41,16 @@ log -r /*
 add wave -group plasma_top sim:/sim_tb_top/u1_plasma_top/*
 add wave -group ddr sim:/sim_tb_top/u1_plasma_top/u2_ddr/*
 
-add wave sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/*
 
-add wave sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/*
+add wave -group OPT_CACHE2 sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/*
+add wave -group OPT_CACHE2 -divider CACHE_DATA sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/*
 
-add wave sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/block0/ram_byte3/*
+add wave -group OPT_CACHE2_RAM -divider BLOCK0 sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/block0/*
+add wave -group OPT_CACHE2_RAM sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/block1/*
 
-add wave sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_tag/*
+add wave -group OPT_CACHE2_TAG sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_tag/*
+add wave -group OPT_CACHE2_TAG sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_tag1/*
+add wave -group OPT_CACHE2_TAG sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_tag2/*
 
 config wave -signalnamewidth 3
 
