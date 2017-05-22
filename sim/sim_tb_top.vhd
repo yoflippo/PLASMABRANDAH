@@ -19,7 +19,7 @@ architecture arch of sim_tb_top is
 	--   "UNUSED";
    "output.txt";
    
-  constant sdramfile : string := "ddr_content/custom.srec";
+  constant sdramfile : string := "ddr_content/multiply.srec";
   
   component plasma_top
        generic(log_file     : string := "UNUSED";
@@ -101,7 +101,7 @@ begin
   process           -- The reset on FPGA board is active low
   begin
     sys_rst_n <= '0';
-    wait for 200 ns;
+    wait for 1000 ns;
     sys_rst_n <= '1';
     wait;
   end process;
