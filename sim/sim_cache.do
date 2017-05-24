@@ -21,8 +21,12 @@ onerror {resume}
 #Log all the objects in design. These will appear in .wlf file#
 log -r /*
 #View sim_tb_top signals in waveform#
-
-add wave -r sim:/sim_tb_cache/cache_1/*
+add wave -position insertpoint  \
+sim:/sim_tb_cache/status
+add wave -r -group Cache_BB sim:/sim_tb_cache/cache_BB/*
+add wave -position insertpoint  \
+sim:/sim_tb_cache/status
+add wave -r -group Cache_16kB sim:/sim_tb_cache/cache_16k/*
 
 config wave -signalnamewidth 2
 

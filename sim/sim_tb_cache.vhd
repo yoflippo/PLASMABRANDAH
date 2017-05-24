@@ -36,6 +36,27 @@ architecture arch of sim_tb_cache is
       );
   end component; --cache
 
+  component cache_16kB is
+    port(
+        clk                 : in  std_logic;
+        reset               : in  std_logic;
+        address_next        : in  std_logic_vector(31 downto 2);
+        byte_we_next        : in  std_logic_vector(3 downto 0);
+        cpu_address         : in  std_logic_vector(31 downto 2);
+        mem_busy            : in  std_logic;
+
+        cache_ram_enable    : in  std_logic;
+        cache_ram_byte_we   : in  std_logic_vector(3 downto 0);
+        cache_ram_address   : in  std_logic_vector(31 downto 2);
+        cache_ram_data_w    : in  std_logic_vector(31 downto 0);
+        cache_ram_data_r    : out std_logic_vector(31 downto 0);
+
+        cache_access        : out std_logic;   --TvE: access 16KB cache 
+        cache_checking      : out std_logic;   --checking if cache hit
+        cache_miss          : out std_logic    --cache miss
+    );
+end component; --cache
+
   signal sys_clk      		    : 	std_logic := '0';
   signal sys_rst_n    		    : 	std_logic := '0';
 
@@ -166,7 +187,7 @@ begin
   --***************************************************************************
   -- Cache instantiation
   --*************************************************************************** 
-    cache_1: cache
+    cache_BB: cache
         port map(
             clk                 => sys_clk,
             reset               => sys_rst_n,
@@ -184,5 +205,25 @@ begin
             cache_access        => cache_access,			--: out std_logic;   --access 4KB cache
             cache_checking      => cache_checking,		--: out std_logic;   --checking if cache hit
             cache_miss          => cache_miss			--: out std_logic    --cache miss
+        );
+
+      cache_16k: cache_16kB
+        port map(
+            clk                 => sys_clk,
+            reset               => sys_rst_n,
+            address_next        => address_next,      --: in  std_logic_vector(31 downto 2);  -- TvE: Asynchronous
+            byte_we_next        => byte_we_next,      --: in  std_logic_vector(3 downto 0); -- TvE: Asynchronous
+            cpu_address         => cpu_address,     --: in  std_logic_vector(31 downto 2);  -- TvE: Synchronous
+            mem_busy            => mem_busy,        --: in  std_logic;
+
+            cache_ram_enable    => cache_ram_enable,    --: in  std_logic;
+            cache_ram_byte_we   => cache_ram_byte_we, --: in  std_logic_vector(3 downto 0);
+            cache_ram_address   => cache_ram_address, --: in  std_logic_vector(31 downto 2);
+            cache_ram_data_w    => cache_ram_data_w,    --: in  std_logic_vector(31 downto 0);
+            cache_ram_data_r    => cache_ram_data_r,    --: out std_logic_vector(31 downto 0);
+
+            cache_access        => cache_access,      --: out std_logic;   --access 4KB cache
+            cache_checking      => cache_checking,    --: out std_logic;   --checking if cache hit
+            cache_miss          => cache_miss     --: out std_logic    --cache miss
         );
 end;

@@ -71,8 +71,6 @@ architecture logic of cache_16kB is
 
     signal tag_block_do: mem8_vector(1 downto 0); -- TvE: Output of the tag block
 
-    --Block enable with 1 bit per memory block
-    signal tag_block_enable: std_logic_vector(1 downto 0);
     ---------------------------------------------------------------------------------------
 begin
    
@@ -123,26 +121,17 @@ begin
         if state = STATE_IDLE then    --check if next access in cached range
             cache_address <= address_next(12 downto 2); -- TvE change: to 12 concatenation with 0 removed
             tag_block_sel(0) <= address_next(13);              -- TvE: Added selection bit for Tag block selection
-            
-            if tag_block_sel(0) ='0' then
-            	tag_block_enable <= "01";
-            else
-            	tag_block_enable <= "10";
-            end if;
-
-            if address_next(30 downto 22) = "001000000" then  --first 2MB of DDR -- TvE: changed from: (30 downto 21) = "0010000000" MS: first and only 1 is for activating DDR
+            if address_next(30 downto 21) = "0010000000" then  --first 2MB of DDR -- TvE: changed from: (30 downto 21) = "0010000000" MS: first and only 1 is for activating DDR
                 cache_access <= '1';
                 if byte_we_next = "0000" then     --read cycle
                     cache_we <= "00";
                     state_next <= STATE_CHECKING;  --need to check if match
                 else
-
                     if tag_block_sel(0) = '0' then
                         cache_we <= "01";       --update cache tag TvE: in right tag block
                     else
                         cache_we <= "10";
                     end if;
-
                     state_next <= STATE_WAITING;
                 end if;
             else
@@ -153,14 +142,7 @@ begin
         else
             cache_address <= cpu_address(12 downto 2);  -- TvE: changed: 0 concatenation with 11 downto 2 to 12 downto 2
             tag_block_sel(0) <= cpu_address(13);                -- TvE: Added selection bit for Tag block selection
-
-            if tag_block_sel(0) ='0' then
-            	tag_block_enable <= "01";
-            else
-            	tag_block_enable <= "10";
-            end if;
-
-            	cache_access <= '0';
+           	cache_access <= '0';
             if state = STATE_MISSED then
                     if tag_block_sel(0) = '0' then
                         cache_we <= "01";       --update cache tag TvE: in right tag block
