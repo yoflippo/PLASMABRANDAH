@@ -10,6 +10,7 @@ vcom -quiet  -93  -work work   ../simlib/micron/ddr_sdram/mt46v16m16.vhd
 vcom -quiet  -93  -work work   ../rtl/mlite_pack.vhd
 vcom -quiet  -93  -work work   ../rtl/cache_ram.vhd
 vcom -quiet  -93  -work work   ../rtl/cache.vhd
+vcom -quiet  -93  -work work   ../rtl/cache_16kB.vhd
 vcom -quiet  -93  -work work   ../rtl/clk_gen.vhd
 vcom -quiet  -93  -work work   sim_tb_cache.vhd
 
@@ -21,7 +22,9 @@ onerror {resume}
 log -r /*
 #View sim_tb_top signals in waveform#
 
-config wave -signalnamewidth 3
+add wave -r sim:/sim_tb_cache/cache_1/*
+
+config wave -signalnamewidth 2
 
 #Change radix to Hexadecimal#
 radix hex
@@ -34,5 +37,5 @@ radix hex
 set NumericStdNoWarnings 1
 set StdArithNoWarnings 1
 
-run 1000us
+run 1us
 stop
