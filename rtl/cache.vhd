@@ -59,13 +59,13 @@ architecture logic of cache is
     signal state_next       : state_type;
 
     signal cache_address    : std_logic_vector(10 downto 0);
-    signal cache_tag_in     : std_logic_vector(8 downto 0); -- TvE: Changed from 8 downto 0
-    signal cache_tag_reg    : std_logic_vector(8 downto 0); -- TvE: Changed from 8 downto 0
+    signal cache_tag_in     : std_logic_vector(7 downto 0); -- TvE: Changed from 8 downto 0
+    signal cache_tag_reg    : std_logic_vector(7 downto 0); -- TvE: Changed from 8 downto 0
     --signal cache_tag_out    : std_logic_vector(8 downto 0); -- TvE: not used, changed to tag_block_do
     signal cache_we         : std_logic_vector(1 downto 0);
 
     --TvE: Adjustments for 16 kB Cache (Tag doubling)-----------------------------------------
-    type mem8_vector IS ARRAY (NATURAL RANGE<>) OF std_logic_vector(8 downto 0);
+    type mem8_vector IS ARRAY (NATURAL RANGE<>) OF std_logic_vector(7 downto 0);
 
     signal tag_block_sel: std_logic_vector(0 downto 0); -- TvE: signal to select which block of tags is used
     signal tag_block_sel_reg: std_logic_vector(0 downto 0); -- TvE: signal to select which block of tags is used
@@ -90,7 +90,7 @@ begin
             when STATE_CHECKING =>        --current read in cached range, check if match
                 cache_checking <= '1';
                 if tag_block_do(conv_integer(tag_block_sel_reg)) /= cache_tag_reg or 
-                   tag_block_do(conv_integer(tag_block_sel_reg)) = ONES(8 downto 0) then --TvE: changed cache_tag_out to tag_block_do
+                   tag_block_do(conv_integer(tag_block_sel_reg)) = ONES(7 downto 0) then --TvE: changed cache_tag_out to tag_block_do
                     cache_miss <= '1';
                     state <= STATE_MISSED;
                 else
@@ -157,14 +157,14 @@ begin
         end if;
 
         if byte_we_next = "0000" or byte_we_next = "1111" then  --read or 32-bit write
-            cache_tag_in <= address_next(21 downto 13);   -- TvE changed to get correct tag length
+            cache_tag_in <= address_next(21 downto 14);   -- TvE changed to get correct tag length
         else
-            cache_tag_in <= ONES(8 downto 0);  --invalid tag -- 
+            cache_tag_in <= ONES(7 downto 0);  --invalid tag -- 
         end if;
 
         if reset = '1' then
             state_reg <= STATE_IDLE;
-            cache_tag_reg <= ZERO(8 downto 0);  -- TvE: changed to get correct tag length
+            cache_tag_reg <= ZERO(7 downto 0);  -- TvE: changed to get correct tag length
         elsif rising_edge(clk) then
             state_reg <= state_next;
             tag_block_sel_reg <= tag_block_sel; --TvE: registered tag block select since the evaluation of state_reg is also registered 
@@ -267,11 +267,11 @@ begin
         )
         port map (
             DO   => tag_block_do(0)(7 downto 0),                --TvE: changed cache_tag_out to tag_block_do
-            DOP  => tag_block_do(0)(8 downto 8),
+            DOP  => open,
             ADDR => cache_address,             --registered
             CLK  => clk,
             DI   => cache_tag_in(7 downto 0),  --registered
-            DIP  => cache_tag_in(8 downto 8),
+            DIP  => ZERO(0 downto 0),
             EN   => '1',        --TvE: Changed from '1'
             SSR  => ZERO(0),
             WE   => cache_we(0)
@@ -367,11 +367,11 @@ begin
         )
         port map (
             DO   => tag_block_do(1)(7 downto 0),
-            DOP  => tag_block_do(1)(8 downto 8),
+            DOP  => open,
             ADDR => cache_address,             --registered
             CLK  => clk,
             DI   => cache_tag_in(7 downto 0),  --registered
-            DIP  => cache_tag_in(8 downto 8),
+            DIP  => ZERO(0 downto 0),
             EN   => '1', --TvE: Changed from '1'
             SSR  => ZERO(0),
             WE   => cache_we(1)

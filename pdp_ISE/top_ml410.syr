@@ -4,15 +4,15 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 Reading design: top_ml410.prj
@@ -110,50 +110,6 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-WARNING:HDLParsers:3607 - Unit work/top_ml410 is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/top_ml410.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/top_ml410.vhd".
-WARNING:HDLParsers:3607 - Unit work/top_ml410/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/top_ml410.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/top_ml410.vhd".
-WARNING:HDLParsers:3607 - Unit work/plasma_top is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma_top.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma_top.vhd".
-WARNING:HDLParsers:3607 - Unit work/plasma_top/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma_top.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma_top.vhd".
-WARNING:HDLParsers:3607 - Unit work/clk_gen is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/clk_gen.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/clk_gen.vhd".
-WARNING:HDLParsers:3607 - Unit work/clk_gen/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/clk_gen.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/clk_gen.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_ctrl_top is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_ctrl_top/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
-WARNING:HDLParsers:3607 - Unit work/plasma is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma.vhd".
-WARNING:HDLParsers:3607 - Unit work/plasma/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma.vhd".
-WARNING:HDLParsers:3607 - Unit work/boot_ram is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/boot_ram.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/boot_ram.vhd".
-WARNING:HDLParsers:3607 - Unit work/boot_ram/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/boot_ram.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/boot_ram.vhd".
-WARNING:HDLParsers:3607 - Unit work/cache is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd".
-WARNING:HDLParsers:3607 - Unit work/cache/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_ctrl is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_ctrl/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_init is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_init.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_init.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_init/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_init.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_init.vhd".
-WARNING:HDLParsers:3607 - Unit work/mlite_cpu is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd".
-WARNING:HDLParsers:3607 - Unit work/mlite_cpu/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd".
-WARNING:HDLParsers:3607 - Unit work/uart is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/uart.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/uart.vhd".
-WARNING:HDLParsers:3607 - Unit work/uart/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/uart.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/uart.vhd".
-WARNING:HDLParsers:3607 - Unit work/alu is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/alu.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/alu.vhd".
-WARNING:HDLParsers:3607 - Unit work/alu/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/alu.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/alu.vhd".
-WARNING:HDLParsers:3607 - Unit work/bus_mux is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/bus_mux.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd".
-WARNING:HDLParsers:3607 - Unit work/bus_mux/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/bus_mux.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd".
-WARNING:HDLParsers:3607 - Unit work/cache_ram is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache_ram.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd".
-WARNING:HDLParsers:3607 - Unit work/cache_ram/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache_ram.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd".
-WARNING:HDLParsers:3607 - Unit work/control is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/control.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd".
-WARNING:HDLParsers:3607 - Unit work/control/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/control.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd".
-WARNING:HDLParsers:3607 - Unit work/mem_ctrl is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd".
-WARNING:HDLParsers:3607 - Unit work/mem_ctrl/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd".
-WARNING:HDLParsers:3607 - Unit work/mult is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mult.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mult.vhd".
-WARNING:HDLParsers:3607 - Unit work/mult/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mult.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mult.vhd".
-WARNING:HDLParsers:3607 - Unit work/pc_next is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pc_next.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd".
-WARNING:HDLParsers:3607 - Unit work/pc_next/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pc_next.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd".
-WARNING:HDLParsers:3607 - Unit work/pipeline is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pipeline.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pipeline.vhd".
-WARNING:HDLParsers:3607 - Unit work/pipeline/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pipeline.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pipeline.vhd".
-WARNING:HDLParsers:3607 - Unit work/reg_bank is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/reg_bank.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd".
-WARNING:HDLParsers:3607 - Unit work/reg_bank/ram_block is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/reg_bank.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd".
-WARNING:HDLParsers:3607 - Unit work/shifter is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/shifter.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/shifter.vhd".
-WARNING:HDLParsers:3607 - Unit work/shifter/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/shifter.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/shifter.vhd".
-WARNING:HDLParsers:3607 - Unit work/mlite_pack is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_pack.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_pack.vhd".
-WARNING:HDLParsers:3607 - Unit work/mlite_pack is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_pack.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_pack.vhd".
 Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_pack.vhd" in Library work.
 Architecture mlite_pack of Entity mlite_pack is up to date.
 Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd" in Library work.
@@ -2046,12 +2002,12 @@ WARNING:Xst:647 - Input <cpu_address<31:14>> is never used. This port will be pr
 WARNING:Xst:647 - Input <address_next<31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Using one-hot encoding for signal <state>.
     Using one-hot encoding for signal <state_reg>.
-    Found 9-bit comparator not equal for signal <cache_miss$cmp_ne0000> created at line 92.
-    Found 9-bit register for signal <cache_tag_reg>.
+    Found 8-bit comparator not equal for signal <cache_miss$cmp_ne0000> created at line 92.
+    Found 8-bit register for signal <cache_tag_reg>.
     Found 4-bit register for signal <state_reg>.
     Found 1-bit register for signal <tag_block_sel_reg<0>>.
     Summary:
-	inferred  10 D-type flip-flop(s).
+	inferred   9 D-type flip-flop(s).
 	inferred   1 Comparator(s).
 Unit <cache> synthesized.
 
@@ -2152,14 +2108,14 @@ Macro Statistics
  4-bit register                                        : 4
  40-bit register                                       : 1
  6-bit register                                        : 2
- 8-bit register                                        : 4
- 9-bit register                                        : 2
+ 8-bit register                                        : 5
+ 9-bit register                                        : 1
 # Comparators                                          : 6
  13-bit comparator not equal                           : 1
  32-bit comparator equal                               : 1
  6-bit comparator not equal                            : 2
  8-bit comparator equal                                : 1
- 9-bit comparator not equal                            : 1
+ 8-bit comparator not equal                            : 1
 # Multiplexers                                         : 42
  1-bit 4-to-1 multiplexer                              : 34
  1-bit 8-to-1 multiplexer                              : 1
@@ -2218,14 +2174,14 @@ Macro Statistics
  4-bit up counter                                      : 1
  7-bit updown counter                                  : 1
  8-bit up counter                                      : 1
-# Registers                                            : 708
- Flip-Flops                                            : 708
+# Registers                                            : 707
+ Flip-Flops                                            : 707
 # Comparators                                          : 6
  13-bit comparator not equal                           : 1
  32-bit comparator equal                               : 1
  6-bit comparator not equal                            : 2
  8-bit comparator equal                                : 1
- 9-bit comparator not equal                            : 1
+ 8-bit comparator not equal                            : 1
 # Multiplexers                                         : 42
  1-bit 4-to-1 multiplexer                              : 34
  1-bit 8-to-1 multiplexer                              : 1
@@ -2303,7 +2259,7 @@ FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_1 has been replic
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_15 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_26 has been replicated 2 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_27 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_28 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_28 has been replicated 2 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_29 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_30 has been replicated 2 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/a_busD_0 has been replicated 1 time(s)
@@ -2353,21 +2309,21 @@ Design Statistics
 # IOs                              : 77
 
 Cell Usage :
-# BELS                             : 3953
+# BELS                             : 4028
 #      GND                         : 1
-#      INV                         : 23
+#      INV                         : 22
 #      LUT1                        : 8
-#      LUT2                        : 172
-#      LUT2_D                      : 60
-#      LUT2_L                      : 9
+#      LUT2                        : 179
+#      LUT2_D                      : 46
+#      LUT2_L                      : 11
 #      LUT3                        : 737
-#      LUT3_D                      : 110
-#      LUT3_L                      : 53
-#      LUT4                        : 2010
-#      LUT4_D                      : 176
-#      LUT4_L                      : 181
-#      MUXCY                       : 44
-#      MUXF5                       : 350
+#      LUT3_D                      : 116
+#      LUT3_L                      : 54
+#      LUT4                        : 2065
+#      LUT4_D                      : 182
+#      LUT4_L                      : 187
+#      MUXCY                       : 39
+#      MUXF5                       : 362
 #      VCC                         : 1
 #      XORCY                       : 18
 # FlipFlops/Latches                : 774
@@ -2398,10 +2354,10 @@ Device utilization summary:
 
 Selected Device : 4vfx60ff1152-11 
 
- Number of Slices:                     2104  out of  25280     8%  
+ Number of Slices:                     2140  out of  25280     8%  
  Number of Slice Flip Flops:            771  out of  50560     1%  
- Number of 4 input LUTs:               3795  out of  50560     7%  
-    Number used as logic:              3539
+ Number of 4 input LUTs:               3863  out of  50560     7%  
+    Number used as logic:              3607
     Number used as RAMs:                256
  Number of IOs:                          77
  Number of bonded IOBs:                  75  out of    576    13%  
@@ -2441,8 +2397,8 @@ Asynchronous Control Signals Information:
 -----------------------------------------------------------------------------------+----------------------------------------------------------+-------+
 Control Signal                                                                     | Buffer(FF name)                                          | Load  |
 -----------------------------------------------------------------------------------+----------------------------------------------------------+-------+
-u1_plasma_top/u1_plasma/u1_cpu/reset(u1_plasma_top/u1_plasma/u1_cpu/reset_or0000:O)| NONE(u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_reg_10)| 396   |
-u1_plasma_top/reset_cpu(u1_plasma_top/reset_cpu1:O)                                | NONE(u1_plasma_top/u1_plasma/counter_hi_reg_32)          | 176   |
+u1_plasma_top/u1_plasma/u1_cpu/reset(u1_plasma_top/u1_plasma/u1_cpu/reset_or0000:O)| NONE(u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_reg_10)| 397   |
+u1_plasma_top/reset_cpu(u1_plasma_top/reset_cpu1:O)                                | NONE(u1_plasma_top/u1_plasma/counter_hi_reg_32)          | 175   |
 u1_plasma_top/reset(u1_plasma_top/reset1:O)                                        | NONE(u1_plasma_top/u2_ddr/u1_ddr_init/init_step_0)       | 107   |
 u1_plasma_top/reset_in(u1_plasma_top/reset_in1_INV_0:O)                            | NONE(u1_plasma_top/u0_clk/clk_bufg_in)                   | 1     |
 -----------------------------------------------------------------------------------+----------------------------------------------------------+-------+
@@ -2451,9 +2407,9 @@ Timing Summary:
 ---------------
 Speed Grade: -11
 
-   Minimum period: 12.828ns (Maximum Frequency: 77.957MHz)
-   Minimum input arrival time before clock: 10.852ns
-   Maximum output required time after clock: 11.467ns
+   Minimum period: 12.177ns (Maximum Frequency: 82.122MHz)
+   Minimum input arrival time before clock: 10.987ns
+   Maximum output required time after clock: 11.925ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -2485,46 +2441,53 @@ Delay:               2.491ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Clock period: 12.828ns (frequency: 77.957MHz)
-  Total number of paths / destination ports: 108805587 / 2719
+  Clock period: 12.177ns (frequency: 82.122MHz)
+  Total number of paths / destination ports: 119304727 / 2717
 -------------------------------------------------------------------------
-Delay:               12.828ns (Levels of Logic = 22)
-  Source:            u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 (FF)
+Delay:               12.177ns (Levels of Logic = 29)
+  Source:            u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_3 (FF)
   Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1 (RAM)
   Source Clock:      u1_plasma_top/u0_clk/clk_bufg_in rising
   Destination Clock: u1_plasma_top/u0_clk/clk_bufg_in rising
 
-  Data Path: u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1
+  Data Path: u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_3 to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCE:C->Q             5   0.307   0.658  u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 (u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1)
-     LUT4_D:I0->O          6   0.166   0.537  u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>19 (u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>19)
-     LUT4:I2->O           35   0.166   0.956  u1_plasma_top/u2_ddr/u1_ddr_init/initiating1 (u1_plasma_top/u2_ddr/initiating)
-     LUT3:I2->O            1   0.166   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mmux_address_row_mux0000_2_f5_3_F (N1591)
-     MUXF5:I0->O           1   0.325   0.505  u1_plasma_top/u2_ddr/u2_ddr/Mmux_address_row_mux0000_2_f5_3 (u1_plasma_top/u2_ddr/u2_ddr/address_row_mux0000<1>)
-     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<0> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<0>)
-     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<0> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<0>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<1> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<1>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<3> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<3>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<4> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<4>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<5> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<5>)
-     MUXCY:CI->O           7   0.315   0.554  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6>)
-     LUT4:I2->O            1   0.166   0.452  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<2>62_1 (u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<2>62)
-     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u2_ddr/u2_ddr/pause_and000039_SW0_F (N1595)
-     MUXF5:I0->O           9   0.325   0.547  u1_plasma_top/u2_ddr/u2_ddr/pause_and000039_SW0 (N1100)
-     LUT4_D:I3->O         14   0.166   0.620  u1_plasma_top/u1_plasma/cpu_pause (u1_plasma_top/u1_plasma/cpu_pause)
-     LUT4:I3->O           49   0.166   1.004  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<0>17 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/N01)
-     LUT4:I3->O            1   0.166   0.505  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<28>16_SW0 (N484)
-     LUT4:I2->O            4   0.166   0.605  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<28>16 (u1_plasma_top/u1_plasma/address_next<30>)
-     LUT4:I1->O            1   0.166   0.452  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000152_SW1_SW0_SW0_SW0_SW0_SW0_SW0_SW0 (N1430)
-     LUT4_D:I3->O          8   0.166   0.526  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000203 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000)
-     LUT4:I3->O            4   0.166   0.325  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<0>1 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<0>)
+     FDCE:C->Q            19   0.307   0.803  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_3 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_3)
+     LUT4:I1->O            3   0.166   0.518  u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000_SW0_SW0 (N678)
+     LUT4_D:I2->O          4   0.166   0.517  u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000_1 (u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000)
+     LUT4_D:I2->O          4   0.166   0.517  u1_plasma_top/u1_plasma/u1_cpu/u3_control/rs_index<3> (u1_plasma_top/u1_plasma/u1_cpu/rs_index<3>)
+     LUT4:I2->O           13   0.166   0.458  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/addr_read1<3>1_1 (u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/addr_read1<3>1)
+     RAM16X1D:DPRA3->DPO    2   0.165   0.653  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_loop[3].reg_bit1b (u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/data_out1B<3>)
+     LUT4:I0->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<3>_F (N2455)
+     MUXF5:I0->O           2   0.325   0.520  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<3> (u1_plasma_top/u1_plasma/u1_cpu/reg_source<3>)
+     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_lut<1> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_lut<1>)
+     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<1> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<1>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<2> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<2>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<3> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<3>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<4> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<4>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<5> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<5>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<6> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<6>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<7> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<7>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<8> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<8>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<9> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<9>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<10> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<10>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<11> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<11>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<12> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<12>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<13> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<13>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<14> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<14>)
+     MUXCY:CI->O          19   0.315   0.715  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<15> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<15>)
+     LUT4:I2->O           11   0.166   0.435  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<12>34 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N48)
+     MUXF5:S->O            1   0.449   0.452  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<25>51_SW0 (N797)
+     LUT4:I3->O            4   0.166   0.464  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000019 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000019)
+     LUT4:I3->O            1   0.166   0.452  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000152_SW0_SW0_SW0_SW2 (N1332)
+     LUT4_D:I3->O          1   0.166   0.505  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000203_SW7 (N1011)
+     LUT4:I2->O            4   0.166   0.325  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<0>2 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<0>)
      RAMB16:WEA0               0.650          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1
     ----------------------------------------
-    Total                     12.828ns (4.582ns logic, 8.246ns route)
-                                       (35.7% logic, 64.3% route)
+    Total                     12.177ns (4.843ns logic, 7.334ns route)
+                                       (39.8% logic, 60.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'sys_clk_pin'
@@ -2549,34 +2512,34 @@ Offset:              4.186ns (Levels of Logic = 3)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Total number of paths / destination ports: 2554 / 399
+  Total number of paths / destination ports: 5119 / 396
 -------------------------------------------------------------------------
-Offset:              10.852ns (Levels of Logic = 13)
+Offset:              10.987ns (Levels of Logic = 13)
   Source:            sys_rst_pin (PAD)
-  Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1 (RAM)
+  Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block1.ram_byte0 (RAM)
   Destination Clock: u1_plasma_top/u0_clk/clk_bufg_in rising
 
-  Data Path: sys_rst_pin to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1
+  Data Path: sys_rst_pin to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block1.ram_byte0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O            10   0.867   0.704  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
-     LUT4_L:I1->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N148)
-     LUT4:I3->O          414   0.166   2.245  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
-     LUT4:I3->O            2   0.166   0.608  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW0 (N687)
-     LUT4_L:I1->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/cpu_pause_SW0_SW1 (N1438)
-     LUT4:I3->O            2   0.166   0.520  u1_plasma_top/u1_plasma/cpu_pause_SW2 (N1396)
-     LUT4_D:I2->O          5   0.166   0.525  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11_1 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11)
-     LUT4:I2->O            1   0.166   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<22>39_SW0_SW0 (N815)
-     LUT4_L:I3->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<22>39_SW0 (N490)
-     LUT4:I3->O            2   0.166   0.467  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<22>39 (u1_plasma_top/u1_plasma/address_next<24>)
-     LUT4:I3->O            7   0.166   0.554  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000108 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000108)
-     LUT4_D:I2->O          8   0.166   0.526  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000203 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000)
-     LUT4:I3->O            4   0.166   0.325  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<0>1 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<0>)
-     RAMB16:WEA0               0.650          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1
+     LUT4_L:I1->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N151)
+     LUT4:I3->O          422   0.166   2.272  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
+     LUT4:I3->O            3   0.166   0.518  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW1 (N1162)
+     LUT4_D:I2->O          1   0.166   0.452  u1_plasma_top/u1_plasma/cpu_pause_SW0_SW0 (N1471)
+     LUT4:I3->O            1   0.166   0.505  u1_plasma_top/u1_plasma/cpu_pause_SW6 (N1461)
+     LUT4:I2->O            1   0.166   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<20>1 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<20>1)
+     LUT4:I3->O            1   0.166   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<20>16_SW0 (N490)
+     LUT4:I3->O            2   0.166   0.520  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<20>16 (u1_plasma_top/u1_plasma/address_next<22>)
+     LUT4_L:I2->LO         1   0.166   0.280  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000098_SW0_SW0_SW0 (N1257)
+     LUT4:I1->O           15   0.166   0.653  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000116 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000116)
+     LUT4_D:I3->O         15   0.166   0.653  u1_plasma_top/u1_plasma/Mmux_cache_ram_data_w1011 (u1_plasma_top/u1_plasma/N0)
+     LUT3:I2->O            2   0.166   0.328  u1_plasma_top/u1_plasma/Mmux_cache_ram_data_w221 (u1_plasma_top/u1_plasma/cache_ram_data_w<19>)
+     RAMB16:DIA3               0.200          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block1.ram_byte2
     ----------------------------------------
-    Total                     10.852ns (3.509ns logic, 7.343ns route)
-                                       (32.3% logic, 67.7% route)
+    Total                     10.987ns (3.059ns logic, 7.928ns route)
+                                       (27.8% logic, 72.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'sys_clk_pin'
@@ -2600,50 +2563,49 @@ Offset:              4.839ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Total number of paths / destination ports: 65302 / 49
+  Total number of paths / destination ports: 65376 / 49
 -------------------------------------------------------------------------
-Offset:              11.467ns (Levels of Logic = 16)
-  Source:            u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 (FF)
-  Destination:       fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<12> (PAD)
+Offset:              11.925ns (Levels of Logic = 15)
+  Source:            u1_plasma_top/u2_ddr/u1_ddr_init/init_step_9 (FF)
+  Destination:       fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<7> (PAD)
   Source Clock:      u1_plasma_top/u0_clk/clk_bufg_in rising
 
-  Data Path: u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 to fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<12>
+  Data Path: u1_plasma_top/u2_ddr/u1_ddr_init/init_step_9 to fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<7>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCE:C->Q             5   0.307   0.658  u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 (u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1)
-     LUT4_D:I0->O          6   0.166   0.537  u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>19 (u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>19)
-     LUT4:I2->O           35   0.166   0.956  u1_plasma_top/u2_ddr/u1_ddr_init/initiating1 (u1_plasma_top/u2_ddr/initiating)
-     LUT3:I2->O            1   0.166   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mmux_address_row_mux0000_2_f5_3_F (N1591)
-     MUXF5:I0->O           1   0.325   0.505  u1_plasma_top/u2_ddr/u2_ddr/Mmux_address_row_mux0000_2_f5_3 (u1_plasma_top/u2_ddr/u2_ddr/address_row_mux0000<1>)
-     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<0> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<0>)
-     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<0> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<0>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<1> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<1>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2>)
+     FDCE:C->Q             4   0.307   0.650  u1_plasma_top/u2_ddr/u1_ddr_init/init_step_9 (u1_plasma_top/u2_ddr/u1_ddr_init/init_step_9)
+     LUT4_D:I0->O          6   0.166   0.484  u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>14 (u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>14)
+     LUT4:I3->O           14   0.166   0.620  u1_plasma_top/u2_ddr/u1_ddr_init/initiating1_1 (u1_plasma_top/u2_ddr/u1_ddr_init/initiating1)
+     LUT4:I3->O           11   0.166   0.435  u1_plasma_top/u2_ddr/address_ddr<10>1 (fpga_0_DDR_SDRAM_32Mx64_DDR_BankAddr_pin_0_OBUF)
+     MUXF5:S->O            1   0.449   0.505  u1_plasma_top/u2_ddr/u2_ddr/Mmux_address_row_mux0000_2_f5_7 (u1_plasma_top/u2_ddr/u2_ddr/address_row_mux0000<5>)
+     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<2> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<2>)
+     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2>)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<3> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<3>)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<4> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<4>)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<5> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<5>)
-     MUXCY:CI->O           7   0.315   0.642  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6>)
-     LUT4:I1->O           24   0.166   0.848  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<0>50 (fpga_0_DDR_SDRAM_32Mx64_DDR_WEn_pin_OBUF)
-     LUT3_D:I2->O         16   0.166   0.796  u1_plasma_top/u2_ddr/u2_ddr/address_row_0_and000021 (N22)
-     LUT4:I1->O            1   0.166   0.313  u1_plasma_top/u2_ddr/u2_ddr/SD_A<12>1 (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_12_OBUF)
-     OBUF:I->O                 3.601          fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_12_OBUF (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<12>)
+     MUXCY:CI->O           7   0.315   0.501  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6>)
+     LUT4:I3->O           21   0.166   0.896  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<1>79 (fpga_0_DDR_SDRAM_32Mx64_DDR_CASn_pin_OBUF)
+     LUT3:I0->O           17   0.166   0.643  u1_plasma_top/u2_ddr/u2_ddr/address_row_0_and000021 (N22)
+     LUT3:I2->O            1   0.166   0.452  u1_plasma_top/u2_ddr/u2_ddr/SD_A<7>_SW1 (N1881)
+     LUT4:I3->O            1   0.166   0.313  u1_plasma_top/u2_ddr/u2_ddr/SD_A<7> (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_7_OBUF)
+     OBUF:I->O                 3.601          fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_7_OBUF (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<7>)
     ----------------------------------------
-    Total                     11.467ns (6.212ns logic, 5.255ns route)
-                                       (54.2% logic, 45.8% route)
+    Total                     11.925ns (6.426ns logic, 5.499ns route)
+                                       (53.9% logic, 46.1% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 288.00 secs
-Total CPU time to Xst completion: 100.06 secs
+Total REAL time to Xst completion: 221.00 secs
+Total CPU time to Xst completion: 102.56 secs
  
 --> 
 
 
-Total memory usage is 665224 kilobytes
+Total memory usage is 666992 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   66 (   0 filtered)
+Number of warnings :   22 (   0 filtered)
 Number of infos    :   23 (   0 filtered)
 
