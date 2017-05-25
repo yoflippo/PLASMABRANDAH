@@ -40,16 +40,9 @@ log -r /*
 #add wave -group sim_top sim:/sim_tb_top/*
 add wave -group plasma_top sim:/sim_tb_top/u1_plasma_top/*
 add wave -group ddr sim:/sim_tb_top/u1_plasma_top/u2_ddr/*
+add wave -group Cache sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/*
 
-add wave sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/*
-
-add wave sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/*
-
-add wave sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/block0/ram_byte3/*
-
-add wave sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_tag/*
-
-config wave -signalnamewidth 3
+config wave -signalnamewidth 1
 
 #Change radix to Hexadecimal#
 radix hex
