@@ -68,6 +68,7 @@ architecture logic of cache_16kB is
     type mem8_vector IS ARRAY (NATURAL RANGE<>) OF std_logic_vector(8 downto 0);
 
     signal tag_block_sel: std_logic_vector(0 downto 0); -- TvE: signal to select which block of tags is used
+    signal tag_block_sel_reg: std_logic_vector(0 downto 0); -- TvE: signal to select which block of tags is used
 
     signal tag_block_do: mem8_vector(1 downto 0); -- TvE: Output of the tag block
 
@@ -88,8 +89,8 @@ begin
                 state <= STATE_IDLE;
             when STATE_CHECKING =>        --current read in cached range, check if match
                 cache_checking <= '1';
-                if tag_block_do(conv_integer(tag_block_sel)) /= cache_tag_reg or 
-                   tag_block_do(conv_integer(tag_block_sel)) = ONES(8 downto 0) then --TvE: changed cache_tag_out to tag_block_do
+                if tag_block_do(conv_integer(tag_block_sel_reg)) /= cache_tag_reg or 
+                   tag_block_do(conv_integer(tag_block_sel_reg)) = ONES(8 downto 0) then --TvE: changed cache_tag_out to tag_block_do
                     cache_miss <= '1';
                     state <= STATE_MISSED;
                 else
@@ -166,6 +167,8 @@ begin
             cache_tag_reg <= ZERO(8 downto 0);  -- TvE: changed to get correct tag length
         elsif rising_edge(clk) then
             state_reg <= state_next;
+            tag_block_sel_reg <= tag_block_sel; --TvE: registered tag block select since the evaluation of state_reg is also registered 
+                                                -- THIS WAS THE PROBLEM!    
             if state = STATE_IDLE and state_reg /= STATE_MISSED then
                 cache_tag_reg <= cache_tag_in;
             end if;

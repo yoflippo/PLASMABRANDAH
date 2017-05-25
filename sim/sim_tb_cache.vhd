@@ -141,11 +141,11 @@ begin
     when "110" =>              -- Check if overwritten data is in cache
       byte_we_next <= "0000"; 
       address_next(25 downto 2) <= X"05BF80";
+      status <= "111";
+    when "111" => 
+      byte_we_next <= "0000"; 
+      address_next(25 downto 2) <= X"000080";
       status <= "000";
-    --when "111" => 
-     -- byte_we_next <= "0000"; 
-      --address_next(25 downto 2) <= X"000080";
-      --status <= "000";
     when others =>
       status <= "000";
     end case;
