@@ -2,7 +2,7 @@
 -- TITLE: Cache Controller
 -- AUTHOR: Steve Rhoads (rhoadss@yahoo.com)
 -- DATE CREATED: 12/22/08
--- FILENAME: cache.vhd
+-- FILENAME: cache_16kB.vhd
 -- PROJECT: Plasma CPU core
 -- COPYRIGHT: Software placed into the public domain by the author.
 --    Software 'as is' without warranty.  Author liable for nothing.
@@ -26,7 +26,7 @@ library UNISIM;
 use UNISIM.vcomponents.all;
 use work.mlite_pack.all;
 
-entity cache is
+entity cache_16kB is
     port(
         clk                 : in  std_logic;
         reset               : in  std_logic;
@@ -47,7 +47,7 @@ entity cache is
     );
 end; --cache
 
-architecture logic of cache is
+architecture logic of cache_16kB is
     subtype state_type is std_logic_vector(1 downto 0);
     constant STATE_IDLE     : state_type := "00";
     constant STATE_CHECKING : state_type := "01";
@@ -71,18 +71,16 @@ architecture logic of cache is
 
     signal tag_block_do: mem8_vector(1 downto 0); -- TvE: Output of the tag block
 
-    --Block enable with 1 bit per memory block
-    signal tag_block_enable: std_logic_vector(1 downto 0);
     ---------------------------------------------------------------------------------------
 begin
    
     cache_proc: process(clk, reset, mem_busy, cache_address,
         state_reg, state, state_next,
         address_next, byte_we_next, cache_tag_in, --Stage1
-        cache_tag_reg,              --Stage2 TvE: changed cache_tag_out to tag_block_do
+        cache_tag_reg, tag_block_do,           --Stage2 TvE: changed cache_tag_out to tag_block_do
         cpu_address) --Stage3
     begin
-    	
+        
         case state_reg is
             when STATE_IDLE =>            --cache idle
                 cache_checking <= '0';
@@ -123,26 +121,17 @@ begin
         if state = STATE_IDLE then    --check if next access in cached range
             cache_address <= address_next(12 downto 2); -- TvE change: to 12 concatenation with 0 removed
             tag_block_sel(0) <= address_next(13);              -- TvE: Added selection bit for Tag block selection
-            
-            if tag_block_sel(0) ='0' then
-            	tag_block_enable <= "01";
-            else
-            	tag_block_enable <= "10";
-            end if;
-
-            if address_next(30 downto 22) = "001000000" then  --first 2MB of DDR -- TvE: changed from: (30 downto 21) = "0010000000" MS: first and only 1 is for activating DDR
+            if address_next(30 downto 21) = "0010000000" then  --first 2MB of DDR -- TvE: changed from: (30 downto 21) = "0010000000" MS: first and only 1 is for activating DDR
                 cache_access <= '1';
                 if byte_we_next = "0000" then     --read cycle
                     cache_we <= "00";
                     state_next <= STATE_CHECKING;  --need to check if match
                 else
-
                     if tag_block_sel(0) = '0' then
                         cache_we <= "01";       --update cache tag TvE: in right tag block
                     else
                         cache_we <= "10";
                     end if;
-
                     state_next <= STATE_WAITING;
                 end if;
             else
@@ -153,14 +142,7 @@ begin
         else
             cache_address <= cpu_address(12 downto 2);  -- TvE: changed: 0 concatenation with 11 downto 2 to 12 downto 2
             tag_block_sel(0) <= cpu_address(13);                -- TvE: Added selection bit for Tag block selection
-
-            if tag_block_sel(0) ='0' then
-            	tag_block_enable <= "01";
-            else
-            	tag_block_enable <= "10";
-            end if;
-
-            	cache_access <= '0';
+            cache_access <= '0';
             if state = STATE_MISSED then
                     if tag_block_sel(0) = '0' then
                         cache_we <= "01";       --update cache tag TvE: in right tag block
@@ -281,13 +263,13 @@ begin
             INITP_07 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
         )
         port map (
-            DO   => tag_block_do(0)(7 downto 0),				--TvE: changed cache_tag_out to tag_block_do
+            DO   => tag_block_do(0)(7 downto 0),                --TvE: changed cache_tag_out to tag_block_do
             DOP  => tag_block_do(0)(8 downto 8),
             ADDR => cache_address,             --registered
             CLK  => clk,
             DI   => cache_tag_in(7 downto 0),  --registered
             DIP  => cache_tag_in(8 downto 8),
-            EN   => '1',		--TvE: Changed from '1'
+            EN   => '1',        --TvE: Changed from '1'
             SSR  => ZERO(0),
             WE   => cache_we(0)
         );
