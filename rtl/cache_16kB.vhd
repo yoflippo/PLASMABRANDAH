@@ -77,7 +77,7 @@ begin
     cache_proc: process(clk, reset, mem_busy, cache_address,
         state_reg, state, state_next,
         address_next, byte_we_next, cache_tag_in, --Stage1
-        cache_tag_reg,              --Stage2 TvE: changed cache_tag_out to tag_block_do
+        cache_tag_reg, tag_block_do,           --Stage2 TvE: changed cache_tag_out to tag_block_do
         cpu_address) --Stage3
     begin
     	

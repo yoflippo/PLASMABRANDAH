@@ -23,12 +23,14 @@ log -r /*
 #View sim_tb_top signals in waveform#
 add wave -position insertpoint  \
 sim:/sim_tb_cache/status
-add wave -r -group Cache_BB sim:/sim_tb_cache/cache_BB/*
+add wave -r -group Cache_BB_all sim:/sim_tb_cache/cache_BB/*
 add wave -position insertpoint  \
 sim:/sim_tb_cache/status
-add wave -r -group Cache_16kB sim:/sim_tb_cache/cache_16k/*
+add wave -r -group Cache_16kB_all sim:/sim_tb_cache/cache_16k/*
+add wave -group Cache_BB sim:/sim_tb_cache/cache_BB/*
+add wave -group Cache_16kB sim:/sim_tb_cache/cache_16k/*
 
-config wave -signalnamewidth 2
+config wave -signalnamewidth 1
 
 #Change radix to Hexadecimal#
 radix hex
