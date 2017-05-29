@@ -4,14 +4,14 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
+Total REAL time to Xst completion: 0.00 secs
 Total CPU time to Xst completion: 0.07 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 1.00 secs
+Total REAL time to Xst completion: 0.00 secs
 Total CPU time to Xst completion: 0.07 secs
  
 --> 
@@ -2309,19 +2309,19 @@ Design Statistics
 # IOs                              : 77
 
 Cell Usage :
-# BELS                             : 4028
+# BELS                             : 4027
 #      GND                         : 1
 #      INV                         : 22
 #      LUT1                        : 8
 #      LUT2                        : 179
-#      LUT2_D                      : 46
+#      LUT2_D                      : 45
 #      LUT2_L                      : 11
-#      LUT3                        : 737
-#      LUT3_D                      : 116
-#      LUT3_L                      : 54
-#      LUT4                        : 2065
-#      LUT4_D                      : 182
-#      LUT4_L                      : 187
+#      LUT3                        : 739
+#      LUT3_D                      : 115
+#      LUT3_L                      : 53
+#      LUT4                        : 2064
+#      LUT4_D                      : 181
+#      LUT4_L                      : 189
 #      MUXCY                       : 39
 #      MUXF5                       : 362
 #      VCC                         : 1
@@ -2356,8 +2356,8 @@ Selected Device : 4vfx60ff1152-11
 
  Number of Slices:                     2140  out of  25280     8%  
  Number of Slice Flip Flops:            771  out of  50560     1%  
- Number of 4 input LUTs:               3863  out of  50560     7%  
-    Number used as logic:              3607
+ Number of 4 input LUTs:               3862  out of  50560     7%  
+    Number used as logic:              3606
     Number used as RAMs:                256
  Number of IOs:                          77
  Number of bonded IOBs:                  75  out of    576    13%  
@@ -2442,7 +2442,7 @@ Delay:               2.491ns (Levels of Logic = 2)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
   Clock period: 12.177ns (frequency: 82.122MHz)
-  Total number of paths / destination ports: 119304727 / 2717
+  Total number of paths / destination ports: 119164297 / 2717
 -------------------------------------------------------------------------
 Delay:               12.177ns (Levels of Logic = 29)
   Source:            u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_3 (FF)
@@ -2512,7 +2512,7 @@ Offset:              4.186ns (Levels of Logic = 3)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Total number of paths / destination ports: 5119 / 396
+  Total number of paths / destination ports: 5107 / 393
 -------------------------------------------------------------------------
 Offset:              10.987ns (Levels of Logic = 13)
   Source:            sys_rst_pin (PAD)
@@ -2597,13 +2597,13 @@ Offset:              11.925ns (Levels of Logic = 15)
 =========================================================================
 
 
-Total REAL time to Xst completion: 221.00 secs
-Total CPU time to Xst completion: 102.56 secs
+Total REAL time to Xst completion: 104.00 secs
+Total CPU time to Xst completion: 100.06 secs
  
 --> 
 
 
-Total memory usage is 666992 kilobytes
+Total memory usage is 667012 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   22 (   0 filtered)

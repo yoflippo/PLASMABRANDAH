@@ -157,7 +157,7 @@ begin
         end if;
 
         if byte_we_next = "0000" or byte_we_next = "1111" then  --read or 32-bit write
-            cache_tag_in <= address_next(21 downto 14);   -- TvE changed to get correct tag length
+            cache_tag_in <= '0' & address_next(20 downto 14);   -- TvE changed to get correct tag length for 2 MB
         else
             cache_tag_in <= ONES(7 downto 0);  --invalid tag -- 
         end if;
