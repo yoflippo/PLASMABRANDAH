@@ -4,49 +4,49 @@ Starting SSD16...
 CORRECT!
 
 ----------------------------------------------------------
-SSD took 745.625170 million clock cycles
+SSD took 860.871532 million clock cycles
 ----------------------------------------------------------
 Starting JPEG compression
 CORRECT!
 
 ----------------------------------------------------------
-CJPEG took 27.842611 million clock cycles
+CJPEG took 29.316406 million clock cycles
 ----------------------------------------------------------
 Executing benchmark SSEARCH...
 CORRECT!
 
 ----------------------------------------------------------
-SSEARCH took 448.906619 million clock cycles
+SSEARCH took 475.458147 million clock cycles
 ----------------------------------------------------------
 Starting PI!
 CORRECT!
 
 ----------------------------------------------------------
-PI took 843.899086 million clock cycles
+PI took 845.294532 million clock cycles
 ----------------------------------------------------------
 Starting SUSAN smoothing
 CORRECT!
 
 ----------------------------------------------------------
-SUSAN took 912.359250 million clock cycles
+SUSAN took 916.969617 million clock cycles
 ----------------------------------------------------------
 Multiplying 65536-bit number with 65536-bit number 1 times...
 CORRECT!
 
 ----------------------------------------------------------
-MULTIPLY took 145.348008 million clock cycles
+MULTIPLY took 155.283095 million clock cycles
 ----------------------------------------------------------
 Dividing a 196608-bit number by a 32768-bit number 1 times...
 CORRECT!
 
 ----------------------------------------------------------
-DIVIDE took 255.882408 million clock cycles
+DIVIDE took 274.860369 million clock cycles
 ----------------------------------------------------------
 Starting FIR!
 CORRECT!
 
 ----------------------------------------------------------
-FIR took 185.996077 million clock cycles
+FIR took 187.537571 million clock cycles
 ----------------------------------------------------------
 Generating p, q, d... done; pq is 3072 bits
 Precomputing CRT constants
@@ -54,21 +54,21 @@ Signing random messages 1 times...
 CORRECT!
 
 ----------------------------------------------------------
-RSA took 570.101676 million clock cycles
+RSA took 577.505073 million clock cycles
 ----------------------------------------------------------
 
 ==========================================================
   Million clock cycles:
 ----------------------------------------------------------
-   ssd           745.625170
-   cjpeg          27.842611
-   ssearch       448.906619
-   pi            843.899086
-   susan         912.359250
-   multiply      145.348008
-   divide        255.882408
-   fir           185.996077
-   rsa           570.101676
+   ssd           860.871532
+   cjpeg          29.316406
+   ssearch       475.458147
+   pi            845.294532
+   susan         916.969617
+   multiply      155.283095
+   divide        274.860369
+   fir           187.537571
+   rsa           577.505073
 
 ----------------------------------------------------------
-   Total:       4135.960905
+   Total:       4323.096342

@@ -9,29 +9,29 @@ Target Device  : xc4vfx60
 Target Package : ff1152
 Target Speed   : -11
 Mapper Version : virtex4 -- $Revision: 1.55 $
-Mapped Date    : Mon May 29 09:25:30 2017
+Mapped Date    : Mon May 29 14:42:29 2017
 
 Design Summary
 --------------
 Number of errors:      0
-Number of warnings:    9
+Number of warnings:   12
 Logic Utilization:
-  Number of Slice Flip Flops:           778 out of  50,560    1%
+  Number of Slice Flip Flops:           777 out of  50,560    1%
     Number of Slice FFs used for
-    DCM autocalibration logic:          7 out of     778    1%
-  Number of 4 input LUTs:             3,861 out of  50,560    7%
+    DCM autocalibration logic:          7 out of     777    1%
+  Number of 4 input LUTs:             3,791 out of  50,560    7%
     Number of LUTs used for
-    DCM autocalibration logic:          4 out of   3,861    1%
+    DCM autocalibration logic:          4 out of   3,791    1%
       *See INFO below for an explanation of the DCM autocalibration logic
        added by Map
 Logic Distribution:
-  Number of occupied Slices:          2,070 out of  25,280    8%
-    Number of Slices containing only related logic:   2,070 out of   2,070 100%
-    Number of Slices containing unrelated logic:          0 out of   2,070   0%
+  Number of occupied Slices:          2,026 out of  25,280    8%
+    Number of Slices containing only related logic:   2,026 out of   2,026 100%
+    Number of Slices containing unrelated logic:          0 out of   2,026   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:       3,870 out of  50,560    7%
-    Number used as logic:             3,598
-    Number used as a route-thru:          9
+  Total Number of 4 input LUTs:       3,804 out of  50,560    7%
+    Number used as logic:             3,528
+    Number used as a route-thru:         13
     Number used for Dual Port RAMs:     256
       (Two LUTs used per Dual Port RAM)
     Number used as Shift registers:       7
@@ -42,14 +42,14 @@ Logic Distribution:
     IOB Flip Flops:                       3
   Number of BUFG/BUFGCTRLs:               3 out of      32    9%
     Number used as BUFGs:                 3
-  Number of FIFO16/RAMB16s:              14 out of     232    6%
-    Number used as RAMB16s:              14
+  Number of FIFO16/RAMB16s:              10 out of     232    4%
+    Number used as RAMB16s:              10
   Number of DCM_ADVs:                     1 out of      12    8%
 
-Average Fanout of Non-Clock Nets:                4.23
+Average Fanout of Non-Clock Nets:                4.24
 
-Peak Memory Usage:  800 MB
-Total REAL time to MAP completion:  15 secs 
+Peak Memory Usage:  799 MB
+Total REAL time to MAP completion:  17 secs 
 Total CPU time to MAP completion:   12 secs 
 
 NOTES:
@@ -122,6 +122,21 @@ WARNING:LIT:175 - Clock buffer is designated to drive clock loads. BUFG symbol
    Pin CE of u1_plasma_top/u2_ddr/u2_ddr/data_write2_10
    Pin CE of u1_plasma_top/u2_ddr/u2_ddr/data_write2_2
    Pin CE of u1_plasma_top/u2_ddr/u2_ddr/data_write2_3
+WARNING:Pack:266 - The function generator
+   u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<2>1 failed to merge
+   with F5 multiplexer
+   u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<3>_f5.  There is
+   more than one F5MUX.  The design will exhibit suboptimal timing.
+WARNING:Pack:266 - The function generator
+   u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<2>1 failed to merge
+   with F5 multiplexer
+   u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<4>_f5.  There is
+   more than one F5MUX.  The design will exhibit suboptimal timing.
+WARNING:Pack:266 - The function generator
+   u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<2>1 failed to merge
+   with F5 multiplexer
+   u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<5>_f5.  There is
+   more than one F5MUX.  The design will exhibit suboptimal timing.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    DCM_AUTOCALIBRATION_u1_plasma_top/u0_clk/DCM_BASE0/u1_plasma_top/u0_clk/DCM_B
    ASE0/CLKOUT is sourced by a combinatorial pin. This is not good design

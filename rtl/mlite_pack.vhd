@@ -401,7 +401,7 @@ package mlite_pack is
 
     component cache_ram
         generic(
-            block_count : integer := 2
+            block_count : integer := 1
         );
         port(
             clk               : in std_logic;
