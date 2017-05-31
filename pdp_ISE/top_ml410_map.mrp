@@ -9,7 +9,7 @@ Target Device  : xc4vfx60
 Target Package : ff1152
 Target Speed   : -11
 Mapper Version : virtex4 -- $Revision: 1.55 $
-Mapped Date    : Mon May 15 07:15:34 2017
+Mapped Date    : Wed May 31 20:04:25 2017
 
 Design Summary
 --------------
@@ -49,8 +49,8 @@ Logic Distribution:
 Average Fanout of Non-Clock Nets:                4.22
 
 Peak Memory Usage:  799 MB
-Total REAL time to MAP completion:  14 secs 
-Total CPU time to MAP completion:   11 secs 
+Total REAL time to MAP completion:  12 secs 
+Total CPU time to MAP completion:   10 secs 
 
 NOTES:
 

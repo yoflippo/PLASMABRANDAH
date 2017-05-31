@@ -110,58 +110,94 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/mlite_pack.vhd" in Library work.
+WARNING:HDLParsers:3607 - Unit work/top_ml410 is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/top_ml410.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/top_ml410.vhd".
+WARNING:HDLParsers:3607 - Unit work/top_ml410/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/top_ml410.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/top_ml410.vhd".
+WARNING:HDLParsers:3607 - Unit work/plasma_top is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/plasma_top.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/plasma_top.vhd".
+WARNING:HDLParsers:3607 - Unit work/plasma_top/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/plasma_top.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/plasma_top.vhd".
+WARNING:HDLParsers:3607 - Unit work/clk_gen is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/clk_gen.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/clk_gen.vhd".
+WARNING:HDLParsers:3607 - Unit work/clk_gen/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/clk_gen.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/clk_gen.vhd".
+WARNING:HDLParsers:3607 - Unit work/ddr_ctrl_top is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
+WARNING:HDLParsers:3607 - Unit work/ddr_ctrl_top/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
+WARNING:HDLParsers:3607 - Unit work/plasma is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/plasma.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/plasma.vhd".
+WARNING:HDLParsers:3607 - Unit work/plasma/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/plasma.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/plasma.vhd".
+WARNING:HDLParsers:3607 - Unit work/boot_ram is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/boot_ram.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/boot_ram.vhd".
+WARNING:HDLParsers:3607 - Unit work/boot_ram/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/boot_ram.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/boot_ram.vhd".
+WARNING:HDLParsers:3607 - Unit work/cache is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/cache.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/cache.vhd".
+WARNING:HDLParsers:3607 - Unit work/cache/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/cache.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/cache.vhd".
+WARNING:HDLParsers:3607 - Unit work/ddr_ctrl is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/ddr_ctrl.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
+WARNING:HDLParsers:3607 - Unit work/ddr_ctrl/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/ddr_ctrl.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
+WARNING:HDLParsers:3607 - Unit work/ddr_init is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/ddr_init.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_init.vhd".
+WARNING:HDLParsers:3607 - Unit work/ddr_init/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/ddr_init.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_init.vhd".
+WARNING:HDLParsers:3607 - Unit work/mlite_cpu is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/mlite_cpu.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mlite_cpu.vhd".
+WARNING:HDLParsers:3607 - Unit work/mlite_cpu/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/mlite_cpu.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mlite_cpu.vhd".
+WARNING:HDLParsers:3607 - Unit work/uart is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/uart.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/uart.vhd".
+WARNING:HDLParsers:3607 - Unit work/uart/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/uart.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/uart.vhd".
+WARNING:HDLParsers:3607 - Unit work/alu is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/alu.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/alu.vhd".
+WARNING:HDLParsers:3607 - Unit work/alu/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/alu.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/alu.vhd".
+WARNING:HDLParsers:3607 - Unit work/bus_mux is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/bus_mux.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/bus_mux.vhd".
+WARNING:HDLParsers:3607 - Unit work/bus_mux/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/bus_mux.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/bus_mux.vhd".
+WARNING:HDLParsers:3607 - Unit work/cache_ram is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/cache_ram.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/cache_ram.vhd".
+WARNING:HDLParsers:3607 - Unit work/cache_ram/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/cache_ram.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/cache_ram.vhd".
+WARNING:HDLParsers:3607 - Unit work/control is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/control.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/control.vhd".
+WARNING:HDLParsers:3607 - Unit work/control/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/control.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/control.vhd".
+WARNING:HDLParsers:3607 - Unit work/mem_ctrl is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/mem_ctrl.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mem_ctrl.vhd".
+WARNING:HDLParsers:3607 - Unit work/mem_ctrl/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/mem_ctrl.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mem_ctrl.vhd".
+WARNING:HDLParsers:3607 - Unit work/mult is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/mult.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mult.vhd".
+WARNING:HDLParsers:3607 - Unit work/mult/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/mult.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mult.vhd".
+WARNING:HDLParsers:3607 - Unit work/pc_next is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/pc_next.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/pc_next.vhd".
+WARNING:HDLParsers:3607 - Unit work/pc_next/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/pc_next.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/pc_next.vhd".
+WARNING:HDLParsers:3607 - Unit work/pipeline is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/pipeline.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/pipeline.vhd".
+WARNING:HDLParsers:3607 - Unit work/pipeline/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/pipeline.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/pipeline.vhd".
+WARNING:HDLParsers:3607 - Unit work/reg_bank is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/reg_bank.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/reg_bank.vhd".
+WARNING:HDLParsers:3607 - Unit work/reg_bank/ram_block is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/reg_bank.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/reg_bank.vhd".
+WARNING:HDLParsers:3607 - Unit work/shifter is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/shifter.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/shifter.vhd".
+WARNING:HDLParsers:3607 - Unit work/shifter/logic is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/shifter.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/shifter.vhd".
+WARNING:HDLParsers:3607 - Unit work/mlite_pack is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/mlite_pack.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mlite_pack.vhd".
+WARNING:HDLParsers:3607 - Unit work/mlite_pack is now defined in a different file.  It was defined in "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/mlite_pack.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mlite_pack.vhd".
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mlite_pack.vhd" in Library work.
 Architecture mlite_pack of Entity mlite_pack is up to date.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/cache_ram.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/cache_ram.vhd" in Library work.
 Architecture logic of Entity cache_ram is up to date.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/pc_next.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/pc_next.vhd" in Library work.
 Architecture logic of Entity pc_next is up to date.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/mem_ctrl.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mem_ctrl.vhd" in Library work.
 Architecture logic of Entity mem_ctrl is up to date.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/control.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/control.vhd" in Library work.
 Architecture logic of Entity control is up to date.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/reg_bank.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/reg_bank.vhd" in Library work.
 Architecture ram_block of Entity reg_bank is up to date.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/bus_mux.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/bus_mux.vhd" in Library work.
 Architecture logic of Entity bus_mux is up to date.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/alu.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/alu.vhd" in Library work.
 Architecture logic of Entity alu is up to date.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/shifter.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/shifter.vhd" in Library work.
 Architecture logic of Entity shifter is up to date.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/mult.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mult.vhd" in Library work.
 Architecture logic of Entity mult is up to date.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/pipeline.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/pipeline.vhd" in Library work.
 Architecture logic of Entity pipeline is up to date.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/ddr_init.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_init.vhd" in Library work.
 Architecture logic of Entity ddr_init is up to date.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/ddr_ctrl.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_ctrl.vhd" in Library work.
 Architecture logic of Entity ddr_ctrl is up to date.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/mlite_cpu.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mlite_cpu.vhd" in Library work.
 Architecture logic of Entity mlite_cpu is up to date.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/cache.vhd" in Library work.
-Entity <cache> compiled.
-Entity <cache> (Architecture <logic>) compiled.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/boot_ram.vhd" in Library work.
-Entity <boot_ram> compiled.
-Entity <boot_ram> (Architecture <logic>) compiled.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/uart.vhd" in Library work.
-Entity <uart> compiled.
-Entity <uart> (Architecture <logic>) compiled.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/clk_gen.vhd" in Library work.
-Entity <clk_gen> compiled.
-Entity <clk_gen> (Architecture <logic>) compiled.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/plasma.vhd" in Library work.
-Entity <plasma> compiled.
-Entity <plasma> (Architecture <logic>) compiled.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd" in Library work.
-Entity <ddr_ctrl_top> compiled.
-Entity <ddr_ctrl_top> (Architecture <logic>) compiled.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/plasma_top.vhd" in Library work.
-Entity <plasma_top> compiled.
-Entity <plasma_top> (Architecture <logic>) compiled.
-Compiling vhdl file "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/top_ml410.vhd" in Library work.
-Entity <top_ml410> compiled.
-Entity <top_ml410> (Architecture <logic>) compiled.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/cache.vhd" in Library work.
+Architecture logic of Entity cache is up to date.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/boot_ram.vhd" in Library work.
+Architecture logic of Entity boot_ram is up to date.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/uart.vhd" in Library work.
+Architecture logic of Entity uart is up to date.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/clk_gen.vhd" in Library work.
+Architecture logic of Entity clk_gen is up to date.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/plasma.vhd" in Library work.
+Architecture logic of Entity plasma is up to date.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd" in Library work.
+Architecture logic of Entity ddr_ctrl_top is up to date.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/plasma_top.vhd" in Library work.
+Architecture logic of Entity plasma_top is up to date.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/top_ml410.vhd" in Library work.
+Architecture logic of Entity top_ml410 is up to date.
 
 =========================================================================
 *                     Design Hierarchy Analysis                         *
@@ -418,7 +454,7 @@ Analyzing Entity <reg_bank> in library <work> (Architecture <ram_block>).
 Entity <reg_bank> analyzed. Unit <reg_bank> generated.
 
 Analyzing Entity <bus_mux> in library <work> (Architecture <logic>).
-INFO:Xst:1561 - "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/bus_mux.vhd" line 84: Mux is complete : default of case is discarded
+INFO:Xst:1561 - "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/bus_mux.vhd" line 84: Mux is complete : default of case is discarded
 Entity <bus_mux> analyzed. Unit <bus_mux> generated.
 
 Analyzing generic Entity <alu> in library <work> (Architecture <logic>).
@@ -437,7 +473,7 @@ Analyzing Entity <pipeline> in library <work> (Architecture <logic>).
 Entity <pipeline> analyzed. Unit <pipeline> generated.
 
 Analyzing Entity <cache> in library <work> (Architecture <logic>).
-INFO:Xst:1561 - "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/cache.vhd" line 103: Mux is complete : default of case is discarded
+INFO:Xst:1561 - "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/cache.vhd" line 103: Mux is complete : default of case is discarded
     Set user-defined property "INIT =  000000FFF" for instance <cache_tag> in unit <cache>.
     Set user-defined property "INITP_00 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag> in unit <cache>.
     Set user-defined property "INITP_01 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag> in unit <cache>.
@@ -1141,7 +1177,7 @@ Entity <ddr_init> analyzed. Unit <ddr_init> generated.
 Analyzing generic Entity <ddr_ctrl> in library <work> (Architecture <logic>).
 	DDR_DLL = "DISABLE"
 	memory_size = 32
-WARNING:Xst:795 - "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/ddr_ctrl.vhd" line 328: Size of operands are different : result is <false>.
+WARNING:Xst:795 - "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_ctrl.vhd" line 328: Size of operands are different : result is <false>.
 Entity <ddr_ctrl> analyzed. Unit <ddr_ctrl> generated.
 
 
@@ -1152,7 +1188,7 @@ Entity <ddr_ctrl> analyzed. Unit <ddr_ctrl> generated.
 Performing bidirectional port resolution...
 
 Synthesizing Unit <uart>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/uart.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/uart.vhd".
     Found 4-bit down counter for signal <bits_read_reg>.
     Found 4-bit down counter for signal <bits_write_reg>.
     Found 8-bit register for signal <data_read_reg>.
@@ -1170,7 +1206,7 @@ Unit <uart> synthesized.
 
 
 Synthesizing Unit <pc_next>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/pc_next.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/pc_next.vhd".
     Found 1-bit xor2 for signal <pc_inc$xor0000> created at line 559.
     Found 1-bit xor2 for signal <pc_inc$xor0001> created at line 559.
     Found 1-bit xor2 for signal <pc_inc$xor0002> created at line 559.
@@ -1207,7 +1243,7 @@ Unit <pc_next> synthesized.
 
 
 Synthesizing Unit <mem_ctrl>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/mem_ctrl.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mem_ctrl.vhd".
     Found 30-bit register for signal <address_reg>.
     Found 4-bit register for signal <byte_we_reg>.
     Found 1-bit 4-to-1 multiplexer for signal <data_read_var_7$mux0000> created at line 94.
@@ -1222,7 +1258,7 @@ Unit <mem_ctrl> synthesized.
 
 
 Synthesizing Unit <control>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/control.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/control.vhd".
     Found 16x4-bit ROM for signal <mem_source_out$mux0000>.
     Found 32x2-bit ROM for signal <b_source_out$mux0000>.
     Summary:
@@ -1231,7 +1267,7 @@ Unit <control> synthesized.
 
 
 Synthesizing Unit <bus_mux>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/bus_mux.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/bus_mux.vhd".
     Found 32-bit 4-to-1 multiplexer for signal <b_out>.
     Found 1-bit 8-to-1 multiplexer for signal <take_branch>.
     Found 32-bit 4-to-1 multiplexer for signal <a_out>.
@@ -1243,7 +1279,7 @@ Unit <bus_mux> synthesized.
 
 
 Synthesizing Unit <alu>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/alu.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/alu.vhd".
     Found 32-bit xor2 for signal <c_alu$xor0000> created at line 40.
     Found 1-bit xor2 for signal <less_than$xor0000> created at line 36.
     Found 1-bit xor3 for signal <result_11$xor0000> created at line 528.
@@ -1285,7 +1321,7 @@ Unit <alu> synthesized.
 
 
 Synthesizing Unit <shifter>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/shifter.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/shifter.vhd".
     Found 32-bit 4-to-1 multiplexer for signal <c_shift>.
     Summary:
 	inferred  32 Multiplexer(s).
@@ -1293,7 +1329,7 @@ Unit <shifter> synthesized.
 
 
 Synthesizing Unit <mult>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/mult.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mult.vhd".
     Found 1-bit xor2 for signal <a_neg$xor0000> created at line 545.
     Found 1-bit xor2 for signal <a_neg$xor0001> created at line 545.
     Found 1-bit xor2 for signal <a_neg$xor0002> created at line 545.
@@ -1471,7 +1507,7 @@ Unit <mult> synthesized.
 
 
 Synthesizing Unit <pipeline>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/pipeline.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/pipeline.vhd".
     Found 2-bit register for signal <shift_funcD>.
     Found 32-bit register for signal <a_busD>.
     Found 4-bit register for signal <alu_funcD>.
@@ -1490,7 +1526,7 @@ Unit <pipeline> synthesized.
 
 
 Synthesizing Unit <ddr_init>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/ddr_init.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_init.vhd".
     Using one-hot encoding for signal <init_step>.
 INFO:Xst:2117 - HDL ADVISOR - Mux Selector <init_step> of Case statement line 65 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
    	- add an 'INIT' attribute on signal <init_step> (optimization is then done without any risk)
@@ -1524,7 +1560,7 @@ Unit <ddr_init> synthesized.
 
 
 Synthesizing Unit <ddr_ctrl>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
 WARNING:Xst:647 - Input <address<26:25>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found finite state machine <FSM_0> for signal <state_prev>.
     -----------------------------------------------------------------------
@@ -1570,7 +1606,7 @@ Unit <ddr_ctrl> synthesized.
 
 
 Synthesizing Unit <clk_gen>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/clk_gen.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/clk_gen.vhd".
     Found 1-bit register for signal <clk_bufg_in>.
     Summary:
 	inferred   1 D-type flip-flop(s).
@@ -1578,13 +1614,13 @@ Unit <clk_gen> synthesized.
 
 
 Synthesizing Unit <ddr_ctrl_top>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
 WARNING:Xst:646 - Signal <address_ddr<27>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 Unit <ddr_ctrl_top> synthesized.
 
 
 Synthesizing Unit <boot_ram>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/boot_ram.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/boot_ram.vhd".
 WARNING:Xst:647 - Input <address<31:16>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:646 - Signal <block_enable<7:1>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1781 - Signal <block_do<7:1>> is used but never assigned. Tied to default value.
@@ -1597,7 +1633,7 @@ Unit <boot_ram> synthesized.
 
 
 Synthesizing Unit <reg_bank>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/reg_bank.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/reg_bank.vhd".
 WARNING:Xst:646 - Signal <no_connect> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found 1-bit register for signal <intr_enable_reg>.
     Summary:
@@ -1606,7 +1642,7 @@ Unit <reg_bank> synthesized.
 
 
 Synthesizing Unit <cache_ram>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/cache_ram.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/cache_ram.vhd".
 WARNING:Xst:647 - Input <address<31:16>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:646 - Signal <block_enable<7:1>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1781 - Signal <block_do<7:1>> is used but never assigned. Tied to default value.
@@ -1619,7 +1655,7 @@ Unit <cache_ram> synthesized.
 
 
 Synthesizing Unit <mlite_cpu>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/mlite_cpu.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mlite_cpu.vhd".
     Found 1-bit register for signal <intr_signal>.
     Found 4-bit up counter for signal <reset_reg>.
     Summary:
@@ -1629,7 +1665,7 @@ Unit <mlite_cpu> synthesized.
 
 
 Synthesizing Unit <cache>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/cache.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/cache.vhd".
 WARNING:Xst:647 - Input <cpu_address> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <address_next<31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Using one-hot encoding for signal <state>.
@@ -1644,7 +1680,7 @@ Unit <cache> synthesized.
 
 
 Synthesizing Unit <plasma>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/plasma.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/plasma.vhd".
 WARNING:Xst:646 - Signal <cpu_address<1:0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found 32-bit 4-to-1 multiplexer for signal <cache_ram_data_w>.
     Found 8-bit register for signal <counter_hi_reg>.
@@ -1697,13 +1733,13 @@ Unit <plasma> synthesized.
 
 
 Synthesizing Unit <plasma_top>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/plasma_top.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/plasma_top.vhd".
 WARNING:Xst:646 - Signal <gpio0_out<31:8>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 Unit <plasma_top> synthesized.
 
 
 Synthesizing Unit <top_ml410>.
-    Related source file is "/home/pdp/Dropbox/MARK CODE/PLASMABRANDAH/rtl/top_ml410.vhd".
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/top_ml410.vhd".
 WARNING:Xst:647 - Input <fpga_0_RS232_Uart_1_ctsN_pin> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <fpga_0_DDR_CLK_FB> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 Unit <top_ml410> synthesized.
@@ -2220,15 +2256,15 @@ Offset:              11.652ns (Levels of Logic = 14)
 =========================================================================
 
 
-Total REAL time to Xst completion: 103.00 secs
-Total CPU time to Xst completion: 86.10 secs
+Total REAL time to Xst completion: 90.00 secs
+Total CPU time to Xst completion: 82.98 secs
  
 --> 
 
 
-Total memory usage is 661356 kilobytes
+Total memory usage is 661360 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   22 (   0 filtered)
+Number of warnings :   66 (   0 filtered)
 Number of infos    :   17 (   0 filtered)
 
