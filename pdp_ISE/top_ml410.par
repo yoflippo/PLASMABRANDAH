@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-ubuntu::  Mon May 29 09:25:48 2017
+ubuntu::  Wed May 31 20:56:54 2017
 
 par -w -intstyle ise -ol high -t 1 top_ml410_map.ncd top_ml410.ncd
 top_ml410.pcf 
@@ -180,40 +180,40 @@ Router effort level (-rl):    High
 
 INFO:Timing:3386 - Intersecting Constraints found and resolved.  For more information, see the TSI report.  Please
    consult the Xilinx Command Line Tools User Guide for information on generating a TSI report.
-Starting initial Timing Analysis.  REAL time: 14 secs 
-Finished initial Timing Analysis.  REAL time: 15 secs 
+Starting initial Timing Analysis.  REAL time: 13 secs 
+Finished initial Timing Analysis.  REAL time: 14 secs 
 
 WARNING:Par:288 - The signal fpga_0_RS232_Uart_1_ctsN_pin_IBUF has no load.  PAR will not attempt to route this signal.
 WARNING:Par:288 - The signal fpga_0_DDR_CLK_FB_IBUF has no load.  PAR will not attempt to route this signal.
 
 Starting Placer
-Total REAL time at the beginning of Placer: 15 secs 
-Total CPU  time at the beginning of Placer: 13 secs 
+Total REAL time at the beginning of Placer: 14 secs 
+Total CPU  time at the beginning of Placer: 11 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:eeb4c609) REAL time: 17 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:eeb4c609) REAL time: 15 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:eeb4c609) REAL time: 17 secs 
+Phase 2.7  Design Feasibility Check (Checksum:eeb4c609) REAL time: 15 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:9d5b0579) REAL time: 17 secs 
+Phase 3.31  Local Placement Optimization (Checksum:9d5b0579) REAL time: 15 secs 
 
 Phase 4.2  Initial Clock and IO Placement
 
-Phase 4.2  Initial Clock and IO Placement (Checksum:eaf57eab) REAL time: 18 secs 
+Phase 4.2  Initial Clock and IO Placement (Checksum:eaf57eab) REAL time: 17 secs 
 
 Phase 5.36  Local Placement Optimization
-Phase 5.36  Local Placement Optimization (Checksum:eaf57eab) REAL time: 18 secs 
+Phase 5.36  Local Placement Optimization (Checksum:eaf57eab) REAL time: 17 secs 
 
 Phase 6.30  Global Clock Region Assignment
-Phase 6.30  Global Clock Region Assignment (Checksum:eaf57eab) REAL time: 18 secs 
+Phase 6.30  Global Clock Region Assignment (Checksum:eaf57eab) REAL time: 17 secs 
 
 Phase 7.3  Local Placement Optimization
-Phase 7.3  Local Placement Optimization (Checksum:eaf57eab) REAL time: 18 secs 
+Phase 7.3  Local Placement Optimization (Checksum:eaf57eab) REAL time: 17 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:eaf57eab) REAL time: 18 secs 
+Phase 8.5  Local Placement Optimization (Checksum:eaf57eab) REAL time: 17 secs 
 
 Phase 9.8  Global Placement
 ...............................................................
@@ -222,22 +222,22 @@ Phase 9.8  Global Placement
 ............................................................................
 .............................................................................
 ...............................................................................................................................
-Phase 9.8  Global Placement (Checksum:2a498831) REAL time: 42 secs 
+Phase 9.8  Global Placement (Checksum:2a498831) REAL time: 39 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:2a498831) REAL time: 42 secs 
+Phase 10.5  Local Placement Optimization (Checksum:2a498831) REAL time: 39 secs 
 
 Phase 11.18  Placement Optimization
-Phase 11.18  Placement Optimization (Checksum:4a5d3fdf) REAL time: 1 mins 2 secs 
+Phase 11.18  Placement Optimization (Checksum:4a5d3fdf) REAL time: 53 secs 
 
 Phase 12.5  Local Placement Optimization
-Phase 12.5  Local Placement Optimization (Checksum:4a5d3fdf) REAL time: 1 mins 2 secs 
+Phase 12.5  Local Placement Optimization (Checksum:4a5d3fdf) REAL time: 54 secs 
 
 Phase 13.34  Placement Validation
-Phase 13.34  Placement Validation (Checksum:4a5d3fdf) REAL time: 1 mins 3 secs 
+Phase 13.34  Placement Validation (Checksum:4a5d3fdf) REAL time: 54 secs 
 
-Total REAL time to Placer completion: 1 mins 3 secs 
-Total CPU  time to Placer completion: 1 mins 
+Total REAL time to Placer completion: 54 secs 
+Total CPU  time to Placer completion: 50 secs 
 Writing design to file top_ml410.ncd
 
 
@@ -245,29 +245,29 @@ Writing design to file top_ml410.ncd
 Starting Router
 
 
-Phase  1  : 16996 unrouted;      REAL time: 1 mins 7 secs 
+Phase  1  : 16996 unrouted;      REAL time: 57 secs 
 
-Phase  2  : 16087 unrouted;      REAL time: 1 mins 7 secs 
+Phase  2  : 16087 unrouted;      REAL time: 57 secs 
 
-Phase  3  : 7014 unrouted;      REAL time: 1 mins 11 secs 
+Phase  3  : 7014 unrouted;      REAL time: 1 mins 1 secs 
 
-Phase  4  : 7014 unrouted; (Setup:0, Hold:98, Component Switching Limit:0)     REAL time: 1 mins 16 secs 
+Phase  4  : 7014 unrouted; (Setup:0, Hold:98, Component Switching Limit:0)     REAL time: 1 mins 5 secs 
 
 Updating file: top_ml410.ncd with current fully routed design.
 
-Phase  5  : 0 unrouted; (Setup:0, Hold:92, Component Switching Limit:0)     REAL time: 1 mins 25 secs 
+Phase  5  : 0 unrouted; (Setup:0, Hold:92, Component Switching Limit:0)     REAL time: 1 mins 14 secs 
 
-Phase  6  : 0 unrouted; (Setup:0, Hold:92, Component Switching Limit:0)     REAL time: 1 mins 25 secs 
+Phase  6  : 0 unrouted; (Setup:0, Hold:92, Component Switching Limit:0)     REAL time: 1 mins 14 secs 
 
-Phase  7  : 0 unrouted; (Setup:0, Hold:92, Component Switching Limit:0)     REAL time: 1 mins 25 secs 
+Phase  7  : 0 unrouted; (Setup:0, Hold:92, Component Switching Limit:0)     REAL time: 1 mins 14 secs 
 
-Phase  8  : 0 unrouted; (Setup:0, Hold:92, Component Switching Limit:0)     REAL time: 1 mins 25 secs 
+Phase  8  : 0 unrouted; (Setup:0, Hold:92, Component Switching Limit:0)     REAL time: 1 mins 14 secs 
 
-Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 1 mins 26 secs 
+Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 1 mins 15 secs 
 
-Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 1 mins 28 secs 
-Total REAL time to Router completion: 1 mins 28 secs 
-Total CPU time to Router completion: 1 mins 24 secs 
+Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 1 mins 17 secs 
+Total REAL time to Router completion: 1 mins 17 secs 
+Total CPU time to Router completion: 1 mins 11 secs 
 
 Partition Implementation Status
 -------------------------------
@@ -397,8 +397,8 @@ All signals are completely routed.
 
 WARNING:Par:283 - There are 2 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
 
-Total REAL time to PAR completion: 1 mins 40 secs 
-Total CPU time to PAR completion: 1 mins 36 secs 
+Total REAL time to PAR completion: 1 mins 27 secs 
+Total CPU time to PAR completion: 1 mins 20 secs 
 
 Peak Memory Usage:  892 MB
 

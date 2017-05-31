@@ -4,19 +4,19 @@ Starting SSD16...
 CORRECT!
 
 ----------------------------------------------------------
-SSD took 745.625170 million clock cycles
+SSD took 745.625121 million clock cycles
 ----------------------------------------------------------
 Starting JPEG compression
 CORRECT!
 
 ----------------------------------------------------------
-CJPEG took 27.842611 million clock cycles
+CJPEG took 27.842593 million clock cycles
 ----------------------------------------------------------
 Executing benchmark SSEARCH...
 CORRECT!
 
 ----------------------------------------------------------
-SSEARCH took 448.906619 million clock cycles
+SSEARCH took 448.906471 million clock cycles
 ----------------------------------------------------------
 Starting PI!
 CORRECT!
@@ -54,21 +54,21 @@ Signing random messages 1 times...
 CORRECT!
 
 ----------------------------------------------------------
-RSA took 570.101676 million clock cycles
+RSA took 570.101571 million clock cycles
 ----------------------------------------------------------
 
 ==========================================================
   Million clock cycles:
 ----------------------------------------------------------
-   ssd           745.625170
-   cjpeg          27.842611
-   ssearch       448.906619
+   ssd           745.625121
+   cjpeg          27.842593
+   ssearch       448.906471
    pi            843.899086
    susan         912.359250
    multiply      145.348008
    divide        255.882408
    fir           185.996077
-   rsa           570.101676
+   rsa           570.101571
 
 ----------------------------------------------------------
-   Total:       4135.960905
+   Total:       4135.960585
