@@ -23,5 +23,5 @@ INFO:iMPACT - '2': Checking done pin....done.
 INFO:UART write: Writing has completed succesfully.
 ============================================= Reading benchmark results ...
 INFO:UART read: Waiting for completion..
-ERROR:UART read: Timeout (300 s) occured while reading from UART
+INFO:UART read: Reading has completed succesfully.
 
