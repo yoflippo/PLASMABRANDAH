@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:24:36 MDT 2013
+# Start of session at: Wed May 31 12:02:36 2017
+# Process ID: 15072
+# Log file: /home/pdp/APLASMA/2MB_4KB/pdp_ISE/planAhead_run_1/planAhead.log
+# Journal file: /home/pdp/APLASMA/2MB_4KB/pdp_ISE/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source /home/pdp/APLASMA/2MB_4KB/pdp_ISE/pa.fromNcd.tcl

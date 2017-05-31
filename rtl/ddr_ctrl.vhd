@@ -24,7 +24,7 @@
 --    BANK = address(13 downto 12)
 --    COL = address(11 downto 2)
 --
---    Requires CAS latency=2; burst size=2.
+--    Requires CAS latency=2; burst size=2.  
 --    Requires clk changes on rising_edge(clk_2x).
 --    Requires active, address, byte_we, data_w stable throughout transfer.
 --    DLL mode requires 77MHz.  Non-DLL mode runs at 25 MHz.
@@ -55,7 +55,7 @@ use work.mlite_pack.all;
 
 entity ddr_ctrl is
    generic( DDR_DLL     : string := "DISABLE";
-            memory_size : integer := 32 --memory size in MB: 32,64, 128
+            memory_size : integer := 32 --memory size in MB: 32,64, 128  
           );
 
    port(
@@ -128,11 +128,11 @@ architecture logic of ddr_ctrl is
    signal data_read    : std_logic_vector(31 downto 0);
 
 begin
-   ddr_proc: process(clk, clk_p, clk_2x, reset_in,
+   ddr_proc: process(clk, clk_p, clk_2x, reset_in, 
                      address, byte_we, data_w, active, no_start, no_stop,
                      SD_DQ, SD_UDQS, SD_LDQS,
-                     state_prev, refresh_cnt,
-                     byte_we_reg2, data_write2,
+                     state_prev, refresh_cnt,  
+                     byte_we_reg2, data_write2, 
                      cycle_count, cycle_count2, write_prev,
                      write_active, cke_reg, bank_open,
                      data_read)
@@ -142,17 +142,17 @@ begin
    variable bank_from_addr : std_logic_vector( 1 downto 0);
    variable row_from_addr  : std_logic_vector(12 downto 0);
    variable col_from_addr  : std_logic_vector(12 downto 0);
-
+   
    variable bank_index     : integer;
    variable state_current  : ddr_state_type;
 
    begin
-
+   
       command := COMMAND_NOP;
-      case memory_size is
+      case memory_size is 
          when 128 =>
             row_from_addr  := address(26 downto 14);
-            bank_from_addr := address(13 downto 12);
+            bank_from_addr := address(13 downto 12);   
             col_from_addr  := "00" & address(11 downto  2) & "0";
          when 64 =>
             row_from_addr  := address(25 downto 13);
@@ -167,9 +167,9 @@ begin
       end case;
 
       bank_index := conv_integer(bank_from_addr);
-
+      
       state_current := state_prev;
-
+      
       --DDR state machine to determine state_current and command
       case state_prev is
          when STATE_POWER_ON =>
@@ -189,7 +189,7 @@ begin
                state_current := STATE_ROW_ACTIVATE;
                command := COMMAND_ACTIVE;
             end if;
-
+            
          when STATE_ROW_ACTIVATE =>
             state_current := STATE_ROW_ACTIVE;
 
@@ -238,7 +238,7 @@ begin
          when others =>
             state_current := STATE_IDLE;
       end case; --state_prev
-
+      
       --rising_edge(clk) domain registers
       if reset_in = '1' then
          state_prev   <= STATE_POWER_ON;
@@ -269,17 +269,17 @@ begin
             bank_open(bank_index) <= '1';
             address_row(bank_index) := row_from_addr; --address(25 downto 13);
          end if;
-
+         
          if command = COMMAND_PRECHARGE then
             bank_open <= "0000";
          end if;
-
+         
          if command = COMMAND_AUTO_REFRESH then
             refresh_cnt <= ZERO(7 downto 0);
          else
             refresh_cnt <= refresh_cnt + 1;
          end if;
-
+         
          state_prev <= state_current;
 
       end if; --rising_edge(clk)
@@ -294,11 +294,11 @@ begin
          elsif cycle_count /= "111" then
             cycle_count <= cycle_count + 1;
          end if;
-
-         clk_p <= clk;  --earlier version of not clk
-
+         
+         clk_p <= clk;  --earlier version of not clk         
+         
          --Read data (DLL disabled)
-         if DDR_DLL = "DISABLE" then
+		 if DDR_DLL = "DISABLE" then            
            if cycle_count = "100" then
               data_read(31 downto 16) <= SD_DQ; --data
            elsif cycle_count = "101" then
@@ -325,7 +325,7 @@ begin
          end if;
 
          --Read data (DLL enabled)
-         if DDR_DLL = "ENABLE" then
+		 if DDR_DLL = "ENABLE" then            
            if cycle_count = "100" then
               data_read(31 downto 16) <= SD_DQ; --data
            elsif cycle_count = "101" then
@@ -333,18 +333,18 @@ begin
            end if;
          end if;
       end if;
-
+      
       data_r <= data_read;
 
       --Write data
       if write_active = '1' then
-         SD_UDQS <= clk_p;                   --upper_data_strobe
+         SD_UDQS <= clk_p;                   --upper_data_strobe 
          SD_LDQS <= clk_p;                   --low_data_strobe
          SD_DQ <= data_write2(47 downto 32); --data
          SD_UDM <= not byte_we_reg2(5);      --upper_byte_enable
          SD_LDM <= not byte_we_reg2(4);      --low_byte_enable
       else
-         SD_UDQS <= 'Z';               --upper_data_strobe
+         SD_UDQS <= 'Z';               --upper_data_strobe 
          SD_LDQS <= 'Z';               --low_data_strobe
          SD_DQ <= "ZZZZZZZZZZZZZZZZ";  --data
          SD_UDM <= 'Z';
@@ -378,6 +378,6 @@ begin
       end if;
 
    end process; --ddr_proc
-
+   
 end; --architecture logic
 

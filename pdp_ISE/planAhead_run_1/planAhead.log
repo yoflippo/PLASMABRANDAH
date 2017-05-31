@@ -1,0 +1,105 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:24:36 MDT 2013
+# Start of session at: Wed May 31 12:02:36 2017
+# Process ID: 15072
+# Log file: /home/pdp/APLASMA/2MB_4KB/pdp_ISE/planAhead_run_1/planAhead.log
+# Journal file: /home/pdp/APLASMA/2MB_4KB/pdp_ISE/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+INFO: [Common 17-78] Attempting to get a license: PlanAhead
+INFO: [Common 17-290] Got license for PlanAhead
+INFO: [Device 21-36] Loading parts and site information from /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/arch.xml
+Parsing RTL primitives file [/opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [/opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+start_gui
+INFO: [Common 17-81] Feature available: PartialReconfiguration
+source /home/pdp/APLASMA/2MB_4KB/pdp_ISE/pa.fromNcd.tcl
+# create_project -name pdp_ISE -dir "/home/pdp/APLASMA/2MB_4KB/pdp_ISE/planAhead_run_1" -part xc4vfx60ff1152-11
+# set srcset [get_property srcset [current_run -impl]]
+# set_property design_mode GateLvl $srcset
+# set_property edif_top_file "/home/pdp/APLASMA/2MB_4KB/pdp_ISE/plasma.ngc" [ get_property srcset [ current_run ] ]
+# add_files -norecurse { {/home/pdp/APLASMA/2MB_4KB/pdp_ISE} }
+# set_property target_constrs_file "plasma.ucf" [current_fileset -constrset]
+Adding file '/home/pdp/APLASMA/2MB_4KB/pdp_ISE/plasma.ucf' to fileset 'constrs_1'
+# add_files [list {plasma.ucf}] -fileset [get_property constrset [current_run]]
+# link_design
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+Design is defaulting to project part: xc4vfx60ff1152-11
+Release 14.7 - ngc2edif P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Release 14.7 - ngc2edif P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+Reading design plasma.ngc ...
+WARNING:NetListWriters:298 - No output is written to plasma.xncf, ignored.
+Processing design ...
+   Preping design's networks ...
+   Preping design's macros ...
+WARNING:NetListWriters:306 - Signal bus u1_cpu/pc_plus4<29 : 5> on block plasma
+   is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus u1_cpu/u3_control/c_source_mux0001<2 :
+   0> on block plasma is not reconstructed, because there are some missing bus
+   signals.
+WARNING:NetListWriters:306 - Signal bus u1_cpu/u6_alu/bb_mux0000<30 : 1> on
+   block plasma is not reconstructed, because there are some missing bus
+   signals.
+WARNING:NetListWriters:306 - Signal bus
+   u3_uart/Madd_delay_write_reg_addsub0000_cy<6 : 3> on block plasma is not
+   reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus u3_uart/Mcount_read_value_reg_cy<3 : 1>
+   on block plasma is not reconstructed, because there are some missing bus
+   signals.
+  finished :Prep
+Writing EDIF netlist file plasma.edif ...
+ngc2edif: Total memory usage is 112368 kilobytes
+
+Parsing EDIF File [./planAhead_run_1/pdp_ISE.data/cache/plasma_ngc_3816ef39.edif]
+Finished Parsing EDIF File [./planAhead_run_1/pdp_ISE.data/cache/plasma_ngc_3816ef39.edif]
+INFO: [Designutils 20-910] Reading macro library /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/./parts/xilinx/virtex4/hd_int_macros.edn
+Parsing EDIF File [/opt/Xilinx/14.7/ISE_DS/PlanAhead/data/./parts/xilinx/virtex4/hd_int_macros.edn]
+Finished Parsing EDIF File [/opt/Xilinx/14.7/ISE_DS/PlanAhead/data/./parts/xilinx/virtex4/hd_int_macros.edn]
+WARNING: [Netlist 29-43] Netlist 'plasma' is not ideal for floorplanning, since the cellview 'plasma' defined in file 'plasma.ngc' contains large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
+INFO: [Device 21-21] Reading bus macro file /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/./parts/xilinx/virtex4/pr_bus_macros.xml
+Loading clock regions from /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/virtex4/virtex4fx/xc4vfx60/ClockRegion.xml
+Loading clock buffers from /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/virtex4/virtex4fx/xc4vfx60/ClockBuffers.xml
+Loading package from /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/virtex4/virtex4fx/xc4vfx60/ff1152/Package.xml
+Loading io standards from /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/./parts/xilinx/virtex4/IOStandards.xml
+INFO: [Device 21-19] Loading pkg sso from /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/virtex4/virtex4fx/xc4vfx60/ff1152/SSORules.xml
+Loading list of drcs for the architecture : /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/./parts/xilinx/virtex4/drc.xml
+INFO: [Timing 38-77] Reading timing library /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/virtex4/virtex4fx/virtex4fx-11.lib.
+INFO: [Timing 38-34] Done reading timing library /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/virtex4/virtex4fx/virtex4fx-11.lib.
+Parsing UCF File [/home/pdp/APLASMA/2MB_4KB/pdp_ISE/plasma.ucf]
+Finished Parsing UCF File [/home/pdp/APLASMA/2MB_4KB/pdp_ISE/plasma.ucf]
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Phase 0 | Netlist Checksum: 75c8a41e
+link_design: Time (s): cpu = 00:00:14 ; elapsed = 00:00:11 . Memory (MB): peak = 2845.668 ; gain = 136.887
+# read_xdl -file "/home/pdp/APLASMA/2MB_4KB/pdp_ISE/plasma.ncd"
+Release 14.7 - xdl P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+WARNING:XDL:213 - The resulting xdl output will not have LUT equation strings or RAM INIT strings.
+Loading device for application Rf_Device from file '4vfx60.nph' in environment /opt/Xilinx/14.7/ISE_DS/ISE/.
+   "plasma" is an NCD, version 3.2, device xc4vfx60, package ff1152, speed -11
+This design is using the default stepping level (major silicon revision) for this device (0). Unless your design is targeted at devices of this stepping level, it is recommended that you explicitly specify the stepping level of the parts you will be using.
+This will allow the tools to take advantage of any available performance and functional enhancements for this device. The latest stepping level for this device is '1'. Additional information on "stepping level" is available at support.xilinx.com.
+Successfully converted design '/home/pdp/APLASMA/2MB_4KB/pdp_ISE/plasma.ncd' to '/home/pdp/APLASMA/2MB_4KB/pdp_ISE/plasma.xdl'.
+INFO: [Designutils 20-669] Parsing Placement File : /home/pdp/APLASMA/2MB_4KB/pdp_ISE/plasma.ncd
+INFO: [Designutils 20-658] Finished Parsing Placement File : /home/pdp/APLASMA/2MB_4KB/pdp_ISE/plasma.ncd
+INFO: [Designutils 20-671] Placed 4523 instances
+read_xdl: Time (s): cpu = 00:00:13 ; elapsed = 00:00:11 . Memory (MB): peak = 2854.613 ; gain = 8.945
+# if {[catch {read_twx -name results_1 -file "/home/pdp/APLASMA/2MB_4KB/pdp_ISE/plasma.twx"} eInfo]} {
+#    puts "WARNING: there was a problem importing \"/home/pdp/APLASMA/2MB_4KB/pdp_ISE/plasma.twx\": $eInfo"
+# }
+exit
+ERROR: [#UNDEF] *** Exception: ui.h.b: Found deleted key in HTclEventBroker. Verify if the classes listed here call cleanup()
+HTclEvent: DEBUG_PORT_CONFIG_CHANGE   Classes: ui.views.aR 
+HTclEvent: SIGNAL_MODIFY   Classes: ui.views.aR 
+HTclEvent: SIGNAL_BUS_MODIFY   Classes: ui.views.aR 
+HTclEvent: DEBUG_CORE_CONFIG_CHANGE   Classes: ui.views.aR 
+ (See /home/pdp/APLASMA/2MB_4KB/pdp_ISE/planAhead_pid15072.debug)
+ERROR: [Common 17-39] 'stop_gui' failed due to earlier errors.
+INFO: [Common 17-206] Exiting PlanAhead at Wed May 31 12:04:25 2017...
+INFO: [Common 17-83] Releasing license: PlanAhead

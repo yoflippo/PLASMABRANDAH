@@ -1,0 +1,25 @@
+Release 14.7 - ngc2edif P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+Reading design plasma.ngc ...
+WARNING:NetListWriters:298 - No output is written to plasma.xncf, ignored.
+Processing design ...
+   Preping design's networks ...
+   Preping design's macros ...
+WARNING:NetListWriters:306 - Signal bus u1_cpu/pc_plus4<29 : 5> on block plasma
+   is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus u1_cpu/u3_control/c_source_mux0001<2 :
+   0> on block plasma is not reconstructed, because there are some missing bus
+   signals.
+WARNING:NetListWriters:306 - Signal bus u1_cpu/u6_alu/bb_mux0000<30 : 1> on
+   block plasma is not reconstructed, because there are some missing bus
+   signals.
+WARNING:NetListWriters:306 - Signal bus
+   u3_uart/Madd_delay_write_reg_addsub0000_cy<6 : 3> on block plasma is not
+   reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus u3_uart/Mcount_read_value_reg_cy<3 : 1>
+   on block plasma is not reconstructed, because there are some missing bus
+   signals.
+  finished :Prep
+Writing EDIF netlist file plasma.edif ...
+ngc2edif: Total memory usage is 112368 kilobytes
+
