@@ -4,14 +4,14 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
+Total REAL time to Xst completion: 0.00 secs
 Total CPU time to Xst completion: 0.07 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 1.00 secs
+Total REAL time to Xst completion: 0.00 secs
 Total CPU time to Xst completion: 0.07 secs
  
 --> 
@@ -110,50 +110,49 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_pack.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/mlite_pack.vhd" in Library work.
 Architecture mlite_pack of Entity mlite_pack is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/cache_ram.vhd" in Library work.
 Architecture logic of Entity cache_ram is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/pc_next.vhd" in Library work.
 Architecture logic of Entity pc_next is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/mem_ctrl.vhd" in Library work.
 Architecture logic of Entity mem_ctrl is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/control.vhd" in Library work.
 Architecture logic of Entity control is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/reg_bank.vhd" in Library work.
 Architecture ram_block of Entity reg_bank is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/bus_mux.vhd" in Library work.
 Architecture logic of Entity bus_mux is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/alu.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/alu.vhd" in Library work.
 Architecture logic of Entity alu is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/shifter.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/shifter.vhd" in Library work.
 Architecture logic of Entity shifter is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/mult.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/mult.vhd" in Library work.
 Architecture logic of Entity mult is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/pipeline.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/pipeline.vhd" in Library work.
 Architecture logic of Entity pipeline is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_init.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/ddr_init.vhd" in Library work.
 Architecture logic of Entity ddr_init is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/ddr_ctrl.vhd" in Library work.
 Architecture logic of Entity ddr_ctrl is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/mlite_cpu.vhd" in Library work.
 Architecture logic of Entity mlite_cpu is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd" in Library work.
-Entity <cache> compiled.
-Entity <cache> (Architecture <logic>) compiled.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/boot_ram.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/cache.vhd" in Library work.
+Architecture logic of Entity cache is up to date.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/boot_ram.vhd" in Library work.
 Architecture logic of Entity boot_ram is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/uart.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/uart.vhd" in Library work.
 Architecture logic of Entity uart is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/clk_gen.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/clk_gen.vhd" in Library work.
 Architecture logic of Entity clk_gen is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/plasma.vhd" in Library work.
 Architecture logic of Entity plasma is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd" in Library work.
 Architecture logic of Entity ddr_ctrl_top is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma_top.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/plasma_top.vhd" in Library work.
 Architecture logic of Entity plasma_top is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/top_ml410.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/top_ml410.vhd" in Library work.
 Architecture logic of Entity top_ml410 is up to date.
 
 =========================================================================
@@ -411,7 +410,7 @@ Analyzing Entity <reg_bank> in library <work> (Architecture <ram_block>).
 Entity <reg_bank> analyzed. Unit <reg_bank> generated.
 
 Analyzing Entity <bus_mux> in library <work> (Architecture <logic>).
-INFO:Xst:1561 - "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd" line 84: Mux is complete : default of case is discarded
+INFO:Xst:1561 - "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/bus_mux.vhd" line 84: Mux is complete : default of case is discarded
 Entity <bus_mux> analyzed. Unit <bus_mux> generated.
 
 Analyzing generic Entity <alu> in library <work> (Architecture <logic>).
@@ -430,7 +429,7 @@ Analyzing Entity <pipeline> in library <work> (Architecture <logic>).
 Entity <pipeline> analyzed. Unit <pipeline> generated.
 
 Analyzing Entity <cache> in library <work> (Architecture <logic>).
-INFO:Xst:1561 - "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd" line 114: Mux is complete : default of case is discarded
+INFO:Xst:1561 - "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/cache.vhd" line 114: Mux is complete : default of case is discarded
     Set user-defined property "INIT =  000000FFF" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INITP_00 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INITP_01 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
@@ -1509,7 +1508,7 @@ Entity <ddr_init> analyzed. Unit <ddr_init> generated.
 Analyzing generic Entity <ddr_ctrl> in library <work> (Architecture <logic>).
 	DDR_DLL = "DISABLE"
 	memory_size = 32
-WARNING:Xst:795 - "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd" line 328: Size of operands are different : result is <false>.
+WARNING:Xst:795 - "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/ddr_ctrl.vhd" line 328: Size of operands are different : result is <false>.
 Entity <ddr_ctrl> analyzed. Unit <ddr_ctrl> generated.
 
 
@@ -1520,7 +1519,7 @@ Entity <ddr_ctrl> analyzed. Unit <ddr_ctrl> generated.
 Performing bidirectional port resolution...
 
 Synthesizing Unit <uart>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/uart.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/uart.vhd".
     Found 4-bit down counter for signal <bits_read_reg>.
     Found 4-bit down counter for signal <bits_write_reg>.
     Found 8-bit register for signal <data_read_reg>.
@@ -1538,7 +1537,7 @@ Unit <uart> synthesized.
 
 
 Synthesizing Unit <pc_next>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/pc_next.vhd".
     Found 1-bit xor2 for signal <pc_inc$xor0000> created at line 559.
     Found 1-bit xor2 for signal <pc_inc$xor0001> created at line 559.
     Found 1-bit xor2 for signal <pc_inc$xor0002> created at line 559.
@@ -1575,7 +1574,7 @@ Unit <pc_next> synthesized.
 
 
 Synthesizing Unit <mem_ctrl>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/mem_ctrl.vhd".
     Found 30-bit register for signal <address_reg>.
     Found 4-bit register for signal <byte_we_reg>.
     Found 1-bit 4-to-1 multiplexer for signal <data_read_var_7$mux0000> created at line 94.
@@ -1590,7 +1589,7 @@ Unit <mem_ctrl> synthesized.
 
 
 Synthesizing Unit <control>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/control.vhd".
     Found 16x4-bit ROM for signal <mem_source_out$mux0000>.
     Found 32x2-bit ROM for signal <b_source_out$mux0000>.
     Summary:
@@ -1599,7 +1598,7 @@ Unit <control> synthesized.
 
 
 Synthesizing Unit <bus_mux>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/bus_mux.vhd".
     Found 32-bit 4-to-1 multiplexer for signal <b_out>.
     Found 1-bit 8-to-1 multiplexer for signal <take_branch>.
     Found 32-bit 4-to-1 multiplexer for signal <a_out>.
@@ -1611,7 +1610,7 @@ Unit <bus_mux> synthesized.
 
 
 Synthesizing Unit <alu>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/alu.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/alu.vhd".
     Found 32-bit xor2 for signal <c_alu$xor0000> created at line 40.
     Found 1-bit xor2 for signal <less_than$xor0000> created at line 36.
     Found 1-bit xor3 for signal <result_11$xor0000> created at line 528.
@@ -1653,7 +1652,7 @@ Unit <alu> synthesized.
 
 
 Synthesizing Unit <shifter>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/shifter.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/shifter.vhd".
     Found 32-bit 4-to-1 multiplexer for signal <c_shift>.
     Summary:
 	inferred  32 Multiplexer(s).
@@ -1661,7 +1660,7 @@ Unit <shifter> synthesized.
 
 
 Synthesizing Unit <mult>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/mult.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/mult.vhd".
     Found 1-bit xor2 for signal <a_neg$xor0000> created at line 545.
     Found 1-bit xor2 for signal <a_neg$xor0001> created at line 545.
     Found 1-bit xor2 for signal <a_neg$xor0002> created at line 545.
@@ -1839,7 +1838,7 @@ Unit <mult> synthesized.
 
 
 Synthesizing Unit <pipeline>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/pipeline.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/pipeline.vhd".
     Found 2-bit register for signal <shift_funcD>.
     Found 32-bit register for signal <a_busD>.
     Found 4-bit register for signal <alu_funcD>.
@@ -1858,7 +1857,7 @@ Unit <pipeline> synthesized.
 
 
 Synthesizing Unit <ddr_init>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_init.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/ddr_init.vhd".
     Using one-hot encoding for signal <init_step>.
 INFO:Xst:2117 - HDL ADVISOR - Mux Selector <init_step> of Case statement line 65 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
    	- add an 'INIT' attribute on signal <init_step> (optimization is then done without any risk)
@@ -1892,7 +1891,7 @@ Unit <ddr_init> synthesized.
 
 
 Synthesizing Unit <ddr_ctrl>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
 WARNING:Xst:647 - Input <address<26:25>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found finite state machine <FSM_0> for signal <state_prev>.
     -----------------------------------------------------------------------
@@ -1938,7 +1937,7 @@ Unit <ddr_ctrl> synthesized.
 
 
 Synthesizing Unit <clk_gen>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/clk_gen.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/clk_gen.vhd".
     Found 1-bit register for signal <clk_bufg_in>.
     Summary:
 	inferred   1 D-type flip-flop(s).
@@ -1946,13 +1945,13 @@ Unit <clk_gen> synthesized.
 
 
 Synthesizing Unit <ddr_ctrl_top>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
 WARNING:Xst:646 - Signal <address_ddr<27>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 Unit <ddr_ctrl_top> synthesized.
 
 
 Synthesizing Unit <boot_ram>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/boot_ram.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/boot_ram.vhd".
 WARNING:Xst:647 - Input <address<31:16>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:646 - Signal <block_enable<7:1>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1781 - Signal <block_do<7:1>> is used but never assigned. Tied to default value.
@@ -1965,7 +1964,7 @@ Unit <boot_ram> synthesized.
 
 
 Synthesizing Unit <reg_bank>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/reg_bank.vhd".
 WARNING:Xst:646 - Signal <no_connect> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found 1-bit register for signal <intr_enable_reg>.
     Summary:
@@ -1974,7 +1973,7 @@ Unit <reg_bank> synthesized.
 
 
 Synthesizing Unit <cache_ram>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/cache_ram.vhd".
 WARNING:Xst:647 - Input <address<31:16>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:646 - Signal <block_enable<7:2>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1781 - Signal <block_do<7:2>> is used but never assigned. Tied to default value.
@@ -1987,7 +1986,7 @@ Unit <cache_ram> synthesized.
 
 
 Synthesizing Unit <mlite_cpu>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/mlite_cpu.vhd".
     Found 1-bit register for signal <intr_signal>.
     Found 4-bit up counter for signal <reset_reg>.
     Summary:
@@ -1997,7 +1996,7 @@ Unit <mlite_cpu> synthesized.
 
 
 Synthesizing Unit <cache>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/cache.vhd".
 WARNING:Xst:647 - Input <cpu_address<31:14>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <address_next<31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Using one-hot encoding for signal <state>.
@@ -2013,7 +2012,7 @@ Unit <cache> synthesized.
 
 
 Synthesizing Unit <plasma>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/plasma.vhd".
 WARNING:Xst:646 - Signal <cpu_address<1:0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found 32-bit 4-to-1 multiplexer for signal <cache_ram_data_w>.
     Found 8-bit register for signal <counter_hi_reg>.
@@ -2066,13 +2065,13 @@ Unit <plasma> synthesized.
 
 
 Synthesizing Unit <plasma_top>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma_top.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/plasma_top.vhd".
 WARNING:Xst:646 - Signal <gpio0_out<31:8>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 Unit <plasma_top> synthesized.
 
 
 Synthesizing Unit <top_ml410>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/top_ml410.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/top_ml410.vhd".
 WARNING:Xst:647 - Input <fpga_0_RS232_Uart_1_ctsN_pin> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <fpga_0_DDR_CLK_FB> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 Unit <top_ml410> synthesized.
@@ -2597,13 +2596,13 @@ Offset:              11.925ns (Levels of Logic = 15)
 =========================================================================
 
 
-Total REAL time to Xst completion: 221.00 secs
-Total CPU time to Xst completion: 102.56 secs
+Total REAL time to Xst completion: 310.00 secs
+Total CPU time to Xst completion: 128.66 secs
  
 --> 
 
 
-Total memory usage is 666992 kilobytes
+Total memory usage is 667044 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   22 (   0 filtered)
