@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:24:36 MDT 2013
+# Start of session at: Wed May 31 02:21:18 2017
+# Process ID: 5221
+# Log file: /home/pdp/New_Repository/PLASMABRANDAH/pdp_ISE/planAhead_run_2/planAhead.log
+# Journal file: /home/pdp/New_Repository/PLASMABRANDAH/pdp_ISE/planAhead_run_2/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source /home/pdp/New_Repository/PLASMABRANDAH/pdp_ISE/pa.fromNcd.tcl
