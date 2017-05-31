@@ -9,7 +9,7 @@ Target Device  : xc4vfx60
 Target Package : ff1152
 Target Speed   : -11
 Mapper Version : virtex4 -- $Revision: 1.55 $
-Mapped Date    : Mon May 29 14:42:29 2017
+Mapped Date    : Wed May 31 16:19:38 2017
 
 Mapping design into LUTs...
 WARNING:LIT:176 - Clock buffer is designated to drive clock loads. BUFG symbol
@@ -119,8 +119,8 @@ Logic Distribution:
 Average Fanout of Non-Clock Nets:                4.24
 
 Peak Memory Usage:  799 MB
-Total REAL time to MAP completion:  17 secs 
-Total CPU time to MAP completion:   12 secs 
+Total REAL time to MAP completion:  12 secs 
+Total CPU time to MAP completion:   10 secs 
 
 NOTES:
 
