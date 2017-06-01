@@ -74,26 +74,24 @@ architecture logic of mult is
 begin
 
     -- Result
-    c_mult <= lower_reg when mult_func = MULT_READ_LO and negate_reg = '0' else
-             bv_negate(lower_reg) when mult_func = MULT_READ_LO
-                and negate_reg = '1' else
-             upper_reg when mult_func = MULT_READ_HI and negate_reg = '0' else
-             bv_negate(upper_reg) when mult_func = MULT_READ_HI
-                and negate_reg = '1' else
-             ZERO;
-    pause_out <= '1' when (count_reg /= "000000") and
-             (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else '0';
+    c_mult <=   lower_reg               when mult_func = MULT_READ_LO and negate_reg = '0' else
+                bv_negate(lower_reg)    when mult_func = MULT_READ_LO and negate_reg = '1' else
+                upper_reg               when mult_func = MULT_READ_HI and negate_reg = '0' else
+                bv_negate(upper_reg)    when mult_func = MULT_READ_HI and negate_reg = '1' else ZERO;
+    pause_out <= '1' when (count_reg /= "000000") and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else '0';
 
     -- ABS and remainder signals
-    a_neg <= bv_negate(a);
-    b_neg <= bv_negate(b);
-    sum <= bv_adder(upper_reg, aa_reg, mode_reg);
+    a_neg   <= bv_negate(a);
+    b_neg   <= bv_negate(b);
+    sum     <= bv_adder(upper_reg, aa_reg, mode_reg);
 
     --multiplication/division unit
     mult_proc: process(clk, reset_in, a, b, mult_func,
       a_neg, b_neg, sum, sign_reg, mode_reg, negate_reg,
       count_reg, aa_reg, bb_reg, upper_reg, lower_reg)
+      
       variable count : std_logic_vector(2 downto 0);
+      
     begin
         count := "001";
         if reset_in = '1' then
@@ -116,7 +114,7 @@ begin
                     negate_reg <= '0';
                 when MULT_MULT =>
                     mode_reg <= MODE_MULT;
-                    aa_reg <= a;
+                    aa_reg <= a;        -- MS : copy value port a to signal aa_reg
                     bb_reg <= b;
                     upper_reg <= ZERO;
                     count_reg <= "100000";
@@ -150,8 +148,8 @@ begin
                     negate_reg <= '0';
                 when MULT_SIGNED_DIVIDE =>
                     mode_reg <= MODE_DIV;
-                    if b(31) = '0' then
-                        aa_reg(31) <= b(0);
+                    if b(31) = '0' then         -- MS: check MSB bit for signedness
+                        aa_reg(31) <= b(0);     -- MS: if UNsigned
                         bb_reg <= b;
                     else
                         aa_reg(31) <= b_neg(0);
@@ -162,19 +160,19 @@ begin
                     else
                         upper_reg <= a_neg;
                     end if;
-                    aa_reg(30 downto 0) <= ZERO(30 downto 0);
+                    aa_reg(30 downto 0) <= ZERO(30 downto 0); -- MS: always make aa_reg zero (except 31)
                     count_reg <= "100000";
                     negate_reg <= a(31) xor b(31);
                 when others =>
-                    if count_reg /= "000000" then
+                    if count_reg /= "000000" then -- MS: countdown from 31 to 0
                         if mode_reg = MODE_MULT then
                             -- Multiplication
                             if bb_reg(0) = '1' then
-                                upper_reg <= (sign_reg xor sum(32)) & sum(31 downto 1);
-                                lower_reg <= sum(0) & lower_reg(31 downto 1);
-                                sign2_reg <= sign2_reg or sign_reg;
-                                sign_reg <= '0';
-                                bb_reg <= '0' & bb_reg(31 downto 1);
+                                upper_reg   <= (sign_reg xor sum(32)) & sum(31 downto 1);
+                                lower_reg   <= sum(0) & lower_reg(31 downto 1);
+                                sign2_reg   <= sign2_reg or sign_reg;
+                                sign_reg    <= '0';
+                                bb_reg      <= '0' & bb_reg(31 downto 1);
                                 -- The following six lines are optional for speedup
                                 --elsif bb_reg(3 downto 0) = "0000" and sign2_reg = '0' and
                                 --      count_reg(5 downto 2) /= "0000" then
@@ -183,24 +181,24 @@ begin
                                 --   count := "100";
                                 --   bb_reg <= "0000" & bb_reg(31 downto 4);
                             else
-                                upper_reg <= sign2_reg & upper_reg(31 downto 1);
-                                lower_reg <= upper_reg(0) & lower_reg(31 downto 1);
-                                bb_reg <= '0' & bb_reg(31 downto 1);
+                                upper_reg   <= sign2_reg & upper_reg(31 downto 1);
+                                lower_reg   <= upper_reg(0) & lower_reg(31 downto 1);
+                                bb_reg      <= '0' & bb_reg(31 downto 1);
                             end if;
                         else
                             -- Division
                             if sum(32) = '0' and aa_reg /= ZERO and
                                bb_reg(31 downto 1) = ZERO(31 downto 1) then
-                                upper_reg <= sum(31 downto 0);
-                                lower_reg(0) <= '1';
+                                upper_reg       <= sum(31 downto 0);
+                                lower_reg(0)    <= '1';
                             else
-                                lower_reg(0) <= '0';
+                                lower_reg(0)    <= '0';
                             end if;
-                            aa_reg <= bb_reg(1) & aa_reg(31 downto 1);
-                            lower_reg(31 downto 1) <= lower_reg(30 downto 0);
-                            bb_reg <= '0' & bb_reg(31 downto 1);
+                            aa_reg                  <= bb_reg(1) & aa_reg(31 downto 1);
+                            lower_reg(31 downto 1)  <= lower_reg(30 downto 0);
+                            bb_reg                  <= '0' & bb_reg(31 downto 1);
                         end if;
-                    count_reg <= count_reg - count;
+                    count_reg <= count_reg - count; -- MS: decrease the count_reg with one
                     end if; --count
 
             end case;

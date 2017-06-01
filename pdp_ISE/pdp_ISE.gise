@@ -146,6 +146,8 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="_xmsgs/map.xmsgs"/>
       <outfile xil_pn:name="top_ml410.pcf"/>
       <outfile xil_pn:name="top_ml410_map.map"/>
@@ -175,9 +177,10 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputRemoved"/>
       <outfile xil_pn:name="_xmsgs/bitgen.xmsgs"/>
       <outfile xil_pn:name="top_ml410.bgn"/>
-      <outfile xil_pn:name="top_ml410.bit"/>
       <outfile xil_pn:name="top_ml410.drc"/>
       <outfile xil_pn:name="top_ml410.ut"/>
       <outfile xil_pn:name="usage_statistics_webtalk.html"/>
@@ -186,8 +189,9 @@
     </transform>
     <transform xil_pn:end_ts="1494227666" xil_pn:in_ck="-3652723345403445747" xil_pn:name="TRAN_analyzeDesignUsingChipscope" xil_pn:prop_ck="7002601320454460802" xil_pn:start_ts="1494227666">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="NotReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="InputAdded"/>
       <status xil_pn:value="InputChanged"/>
       <status xil_pn:value="InputRemoved"/>
