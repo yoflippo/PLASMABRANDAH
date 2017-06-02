@@ -17,7 +17,7 @@
 </TR>
 <TR ALIGN=LEFT>
 <TD BGCOLOR='#FFFF99'><B>Project ID (random number)</B></TD>
-<TD><xtag-property name="RandomID">adde8bd8226e4fe0b8e9427382839db9</xtag-property>.<xtag-property name="ProjectID">E4CA81BA1E1C4DC59DDB01FCD5BCAFCE</xtag-property>.<xtag-property name="ProjectIteration">2</xtag-property></TD>
+<TD><xtag-property name="RandomID">74901088d27b421fb775fae9b40d63d9</xtag-property>.<xtag-property name="ProjectID">E4CA81BA1E1C4DC59DDB01FCD5BCAFCE</xtag-property>.<xtag-property name="ProjectIteration">5</xtag-property></TD>
 <TD BGCOLOR='#FFFF99'><B>Target Package:</B></TD>
 <TD><xtag-property name="TargetPackage">ff1152</xtag-property></TD>
 </TR>
@@ -29,7 +29,7 @@
 </TR>
 <TR ALIGN=LEFT>
 <TD BGCOLOR='#FFFF99'><B>Date Generated</B></TD>
-<TD><xtag-property name="Date Generated">2017-05-31T11:01:43</xtag-property></TD>
+<TD><xtag-property name="Date Generated">2017-06-02T10:20:25</xtag-property></TD>
 <TD BGCOLOR='#FFFF99'><B>Tool Flow</B></TD>
 <TD><xtag-property name="ToolFlow">ISE</xtag-property></TD>
 </TR>
@@ -45,9 +45,15 @@
 </TR>
 <TR ALIGN=LEFT>
 <TD BGCOLOR='#FFFF99'><B><xtag-env-param-name>CPU Name</xtag-env-param-name></B></TD>
-<TD><xtag-property name="<xtag-env-param-name>CPU Name</xtag-env-param-name>"><xtag-env-param-value>Intel(R) Core(TM) i5-4300U CPU @ 1.90GHz</xtag-env-param-value></xtag-property></TD>
+<TD><xtag-property name="<xtag-env-param-name>CPU Name</xtag-env-param-name>"><xtag-env-param-value>Intel(R) Core(TM) i7 CPU         920  @ 2.67GHz</xtag-env-param-value></xtag-property></TD>
 <TD BGCOLOR='#FFFF99'><B><xtag-env-param-name>CPU Speed</xtag-env-param-name></B></TD>
-<TD><xtag-property name="<xtag-env-param-name>CPU Speed</xtag-env-param-name>"><xtag-env-param-value>2494.224 MHz</xtag-env-param-value></xtag-property></TD>
+<TD><xtag-property name="<xtag-env-param-name>CPU Speed</xtag-env-param-name>"><xtag-env-param-value>2673.304 MHz</xtag-env-param-value></xtag-property></TD>
+</TR>
+<TR ALIGN=LEFT>
+<TD BGCOLOR='#FFFF99'><B><xtag-env-param-name>CPU Name</xtag-env-param-name></B></TD>
+<TD><xtag-property name="<xtag-env-param-name>CPU Name</xtag-env-param-name>"><xtag-env-param-value>Intel(R) Core(TM) i7 CPU         920  @ 2.67GHz</xtag-env-param-value></xtag-property></TD>
+<TD BGCOLOR='#FFFF99'><B><xtag-env-param-name>CPU Speed</xtag-env-param-name></B></TD>
+<TD><xtag-property name="<xtag-env-param-name>CPU Speed</xtag-env-param-name>"><xtag-env-param-value>2673.304 MHz</xtag-env-param-value></xtag-property></TD>
 </TR>
 </xtag-section></TABLE>
 &nbsp;<BR><TABLE BORDER CELLSPACING=0 WIDTH='100%'>
@@ -876,6 +882,12 @@
 <LI><xtag-cmdline>par -w -intstyle ise -ol high -t 1 &lt;fname&gt;.ncd &lt;fname&gt;.ncd &lt;fname&gt;.pcf</xtag-cmdline></LI>
 <LI><xtag-cmdline>trce -intstyle ise -v 3 -tsi &lt;fname&gt;.tsi -s 11 -n 3 -fastpaths -xml &lt;fname&gt;.twx &lt;fname&gt;.ncd -o &lt;fname&gt;.twr &lt;fname&gt;.pcf -ucf &lt;fname&gt;.ucf</xtag-cmdline></LI>
 <LI><xtag-cmdline>bitgen -intstyle ise -f &lt;fname&gt;.ut &lt;fname&gt;.ncd</xtag-cmdline></LI>
+<LI><xtag-cmdline>xst -intstyle ise -ifn &lt;ise_file&gt;</xtag-cmdline></LI>
+<LI><xtag-cmdline>ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc &lt;fname&gt;.ucf -uc &lt;fname&gt;.ucf -p xc4vfx60-ff1152-11 &lt;fname&gt;.ngc &lt;fname&gt;.ngd</xtag-cmdline></LI>
+<LI><xtag-cmdline>map -intstyle ise -p xc4vfx60-ff1152-11 -global_opt off -cm area -ir off -pr off -c 100 -o &lt;fname&gt;.ncd &lt;fname&gt;.ngd &lt;fname&gt;.pcf</xtag-cmdline></LI>
+<LI><xtag-cmdline>par -w -intstyle ise -ol high -t 1 &lt;fname&gt;.ncd &lt;fname&gt;.ncd &lt;fname&gt;.pcf</xtag-cmdline></LI>
+<LI><xtag-cmdline>trce -intstyle ise -v 3 -tsi &lt;fname&gt;.tsi -s 11 -n 3 -fastpaths -xml &lt;fname&gt;.twx &lt;fname&gt;.ncd -o &lt;fname&gt;.twr &lt;fname&gt;.pcf -ucf &lt;fname&gt;.ucf -ucf &lt;fname&gt;.ucf</xtag-cmdline></LI>
+<LI><xtag-cmdline>bitgen -intstyle ise -f &lt;fname&gt;.ut &lt;fname&gt;.ncd</xtag-cmdline></LI>
 </xtag-section></UL></TD></TR>
 </TABLE>
 &nbsp;<BR><TABLE BORDER CELLSPACING=0 WIDTH='100%'><xtag-section name="RunStatistics"><TR ALIGN=CENTER BGCOLOR='#99CCFF'><TD COLSPAN=8><B>Software Quality</B></TD></TR><TR ALIGN=LEFT><TD COLSPAN=8><B>Run Statistics</B></TD></TR><TR ALIGN=CENTER BGCOLOR='#FFFF99'><TD><B>Program Name</B></TD><TD><B>Runs Started</B></TD><TD><B>Runs Finished</B></TD><TD><B>Errors</B></TD><TD><B>Fatal Errors</B></TD><TD><B>Internal Errors</B></TD><TD><B>Exceptions</B></TD><TD><B>Core Dumps</B></TD></TR>
@@ -920,29 +932,31 @@
 </TR><TR><TD><xtag-design-property-name>PROP_intProjectCreationTimestamp</xtag-design-property-name>=<xtag-design-property-value>2014-04-16T15:18:54</xtag-design-property-value></TD>
 <TD><xtag-design-property-name>PROP_intWbtProjectID</xtag-design-property-name>=<xtag-design-property-value>E4CA81BA1E1C4DC59DDB01FCD5BCAFCE</xtag-design-property-value></TD>
 
-</TR><TR><TD><xtag-process-property-name>PROP_intWbtProjectIteration</xtag-process-property-name>=<xtag-process-property-value>2</xtag-process-property-value></TD>
+</TR><TR><TD><xtag-process-property-name>PROP_intWbtProjectIteration</xtag-process-property-name>=<xtag-process-property-value>5</xtag-process-property-value></TD>
 <TD><xtag-design-property-name>PROP_intWorkingDirLocWRTProjDir</xtag-design-property-name>=<xtag-design-property-value>Same</xtag-design-property-value></TD>
 
 </TR><TR><TD><xtag-design-property-name>PROP_intWorkingDirUsed</xtag-design-property-name>=<xtag-design-property-value>No</xtag-design-property-value></TD>
-<TD><xtag-process-property-name>PROP_selectedSimRootSourceNode_behav</xtag-process-property-name>=<xtag-process-property-value>work.top_ml410</xtag-process-property-value></TD>
+<TD><xtag-process-property-name>PROP_lockPinsUcfFile</xtag-process-property-name>=<xtag-process-property-value>changed</xtag-process-property-value></TD>
 
-</TR><TR><TD><xtag-process-property-name>PROP_xilxBitgStart_IntDone</xtag-process-property-name>=<xtag-process-property-value>true</xtag-process-property-value></TD>
-<TD><xtag-design-property-name>PROP_AutoTop</xtag-design-property-name>=<xtag-design-property-value>true</xtag-design-property-value></TD>
+</TR><TR><TD><xtag-process-property-name>PROP_selectedSimRootSourceNode_behav</xtag-process-property-name>=<xtag-process-property-value>work.top_ml410</xtag-process-property-value></TD>
+<TD><xtag-process-property-name>PROP_xilxBitgStart_IntDone</xtag-process-property-name>=<xtag-process-property-value>true</xtag-process-property-value></TD>
 
-</TR><TR><TD><xtag-design-property-name>PROP_DevFamily</xtag-design-property-name>=<xtag-design-property-value>Virtex4</xtag-design-property-value></TD>
-<TD><xtag-process-property-name>PROP_xilxPostTrceGenTSIFile</xtag-process-property-name>=<xtag-process-property-value>true</xtag-process-property-value></TD>
+</TR><TR><TD><xtag-design-property-name>PROP_AutoTop</xtag-design-property-name>=<xtag-design-property-value>false</xtag-design-property-value></TD>
+<TD><xtag-design-property-name>PROP_DevFamily</xtag-design-property-name>=<xtag-design-property-value>Virtex4</xtag-design-property-value></TD>
 
-</TR><TR><TD><xtag-design-property-name>PROP_DevDevice</xtag-design-property-name>=<xtag-design-property-value>xc4vfx60</xtag-design-property-value></TD>
-<TD><xtag-design-property-name>PROP_DevFamilyPMName</xtag-design-property-name>=<xtag-design-property-value>virtex4</xtag-design-property-value></TD>
+</TR><TR><TD><xtag-process-property-name>PROP_xilxPostTrceGenTSIFile</xtag-process-property-name>=<xtag-process-property-value>true</xtag-process-property-value></TD>
+<TD><xtag-design-property-name>PROP_DevDevice</xtag-design-property-name>=<xtag-design-property-value>xc4vfx60</xtag-design-property-value></TD>
 
-</TR><TR><TD><xtag-design-property-name>PROP_DevPackage</xtag-design-property-name>=<xtag-design-property-value>ff1152</xtag-design-property-value></TD>
-<TD><xtag-design-property-name>PROP_Synthesis_Tool</xtag-design-property-name>=<xtag-design-property-value>XST (VHDL/Verilog)</xtag-design-property-value></TD>
+</TR><TR><TD><xtag-design-property-name>PROP_DevFamilyPMName</xtag-design-property-name>=<xtag-design-property-value>virtex4</xtag-design-property-value></TD>
+<TD><xtag-design-property-name>PROP_DevPackage</xtag-design-property-name>=<xtag-design-property-value>ff1152</xtag-design-property-value></TD>
 
-</TR><TR><TD><xtag-design-property-name>PROP_DevSpeed</xtag-design-property-name>=<xtag-design-property-value>-11</xtag-design-property-value></TD>
-<TD><xtag-design-property-name>PROP_PreferredLanguage</xtag-design-property-name>=<xtag-design-property-value>VHDL</xtag-design-property-value></TD>
+</TR><TR><TD><xtag-design-property-name>PROP_Synthesis_Tool</xtag-design-property-name>=<xtag-design-property-value>XST (VHDL/Verilog)</xtag-design-property-value></TD>
+<TD><xtag-design-property-name>PROP_DevSpeed</xtag-design-property-name>=<xtag-design-property-value>-11</xtag-design-property-value></TD>
 
-</TR><TR><TD><xtag-source-property-name>FILE_UCF</xtag-source-property-name>=<xtag-source-property-value>1</xtag-source-property-value></TD>
-<TD><xtag-source-property-name>FILE_VHDL</xtag-source-property-name>=<xtag-source-property-value>22</xtag-source-property-value></TD>
+</TR><TR><TD><xtag-design-property-name>PROP_PreferredLanguage</xtag-design-property-name>=<xtag-design-property-value>VHDL</xtag-design-property-value></TD>
+<TD><xtag-source-property-name>FILE_UCF</xtag-source-property-name>=<xtag-source-property-value>2</xtag-source-property-value></TD>
+
+</TR><TR><TD><xtag-source-property-name>FILE_VHDL</xtag-source-property-name>=<xtag-source-property-value>22</xtag-source-property-value></TD>
 </TR></xtag-section></TABLE>
 &nbsp;<BR><TABLE BORDER CELLSPACING=0 WIDTH='100%'>
 <xtag-section name="UnisimStatistics">

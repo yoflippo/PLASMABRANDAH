@@ -5,7 +5,7 @@
     The structure and the elements are likely to change over the next few releases.
     This means code written to parse this file will need to be revisited each subsequent release.-->
 
-  <application stringID="par" timeStamp="Thu May 25 15:43:16 2017">
+  <application stringID="par" timeStamp="Fri Jun  2 10:17:53 2017">
     <section stringID="User_Env">
       <table stringID="User_EnvVar">
         <column stringID="variable"/>
@@ -55,6 +55,10 @@
           <item stringID="arch" value="Intel(R) Core(TM) i7 CPU         920  @ 2.67GHz"/>
           <item stringID="speed" value="2673.304 MHz"/>
         </row>
+        <row stringID="row" value="1">
+          <item stringID="arch" value="Intel(R) Core(TM) i7 CPU         920  @ 2.67GHz"/>
+          <item stringID="speed" value="2673.304 MHz"/>
+        </row>
       </table>
     </section>
     <task stringID="PAR_OPTION_SUMMARY">
@@ -72,17 +76,17 @@
           <item AVAILABLE="77" dataType="int" label="Number of LOCed IOBs" stringID="PAR_LOC_IOB" value="77"/>
         </item>
         <item AVAILABLE="576" dataType="int" label="Number of OLOGICs" stringID="PAR_OLOGIC" value="23"/>
-        <item AVAILABLE="25280" dataType="int" stringID="PAR_SLICES" value="2072"></item>
+        <item AVAILABLE="25280" dataType="int" stringID="PAR_SLICES" value="2022"></item>
       </section>
     </task>
     <task stringID="PAR_PAR">
       <section stringID="PAR_DESIGN_SUMMARY">
-        <item stringID="PAR_REAL_TIME_COMPLETION_ROUTER" value="3 mins 11 secs "/>
-        <item stringID="PAR_CPU_TIME_COMPLETION_ROUTER" value="1 mins 31 secs "/>
+        <item stringID="PAR_REAL_TIME_COMPLETION_ROUTER" value="1 mins 28 secs "/>
+        <item stringID="PAR_CPU_TIME_COMPLETION_ROUTER" value="1 mins 23 secs "/>
         <item dataType="int" stringID="PAR_UNROUTES" value="0"/>
         <item dataType="float" stringID="PAR_TIMING_SCORE" value="0.000000"/>
-        <item stringID="PAR_REAL_TIME_COMPLETION_PAR" value="3 mins 34 secs "/>
-        <item stringID="PAR_CPU_TIME_COMPLETION_PAR" value="1 mins 42 secs "/>
+        <item stringID="PAR_REAL_TIME_COMPLETION_PAR" value="1 mins 39 secs "/>
+        <item stringID="PAR_CPU_TIME_COMPLETION_PAR" value="1 mins 34 secs "/>
       </section>
     </task>
     <task stringID="PAR_par">
@@ -101,7 +105,7 @@
             <item label="Routed" stringID="ROUTED" value="ROUTED"/>
             <item label="Resource" stringID="RESOURCE" value="BUFGCTRL_X0Y30"/>
             <item label="Locked" stringID="LOCKED" value="No"/>
-            <item dataType="float" label="Fanout" stringID="FANOUT" value="63.000000"/>
+            <item dataType="float" label="Fanout" stringID="FANOUT" value="64.000000"/>
             <item dataType="float" label="Net Skew(ns)" stringID="NET_SKEW" value="0.523000"/>
             <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="2.940000"/>
           </row>
@@ -110,17 +114,17 @@
             <item label="Routed" stringID="ROUTED" value="ROUTED"/>
             <item label="Resource" stringID="RESOURCE" value="BUFGCTRL_X0Y0"/>
             <item label="Locked" stringID="LOCKED" value="No"/>
-            <item dataType="float" label="Fanout" stringID="FANOUT" value="712.000000"/>
-            <item dataType="float" label="Net Skew(ns)" stringID="NET_SKEW" value="0.770000"/>
-            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="3.067000"/>
+            <item dataType="float" label="Fanout" stringID="FANOUT" value="704.000000"/>
+            <item dataType="float" label="Net Skew(ns)" stringID="NET_SKEW" value="0.722000"/>
+            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="3.030000"/>
           </row>
           <row stringID="row" value="3">
             <item label="Clock Net" stringID="CLOCK_NET" value="DCM_AUTOCALIBRATION_u1_plasma_top/u0_clk/DCM_BASE0/u1_plasma_top/u0_clk/DCM_BASE0/CLKOUT"/>
             <item label="Routed" stringID="ROUTED" value="ROUTED"/>
             <item label="Resource" stringID="RESOURCE" value="Local"/>
             <item dataType="float" label="Fanout" stringID="FANOUT" value="6.000000"/>
-            <item dataType="float" label="Net Skew(ns)" stringID="NET_SKEW" value="0.012000"/>
-            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="0.639000"/>
+            <item dataType="float" label="Net Skew(ns)" stringID="NET_SKEW" value="0.027000"/>
+            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="0.446000"/>
           </row>
           <row stringID="row" value="4">
             <item label="Clock Net" stringID="CLOCK_NET" value="DCM_AUTOCALIBRATION_u1_plasma_top/u0_clk/DCM_BASE0/u1_plasma_top/u0_clk/DCM_BASE0/cd/CLK&lt;1>"/>
@@ -128,7 +132,7 @@
             <item label="Resource" stringID="RESOURCE" value="Local"/>
             <item dataType="float" label="Fanout" stringID="FANOUT" value="2.000000"/>
             <item dataType="float" label="Net Skew(ns)" stringID="NET_SKEW" value="0.000000"/>
-            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="0.591000"/>
+            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="0.606000"/>
           </row>
           <row stringID="row" value="5">
             <item label="Clock Net" stringID="CLOCK_NET" value="DCM_AUTOCALIBRATION_u1_plasma_top/u0_clk/DCM_BASE0/u1_plasma_top/u0_clk/DCM_BASE0/FASTCLK"/>
@@ -136,7 +140,7 @@
             <item label="Resource" stringID="RESOURCE" value="Local"/>
             <item dataType="float" label="Fanout" stringID="FANOUT" value="3.000000"/>
             <item dataType="float" label="Net Skew(ns)" stringID="NET_SKEW" value="0.000000"/>
-            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="0.433000"/>
+            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="0.662000"/>
           </row>
           <row stringID="row" value="6">
             <item label="Clock Net" stringID="CLOCK_NET" value="DCM_AUTOCALIBRATION_u1_plasma_top/u0_clk/DCM_BASE0/u1_plasma_top/u0_clk/DCM_BASE0/cd/CLK&lt;2>"/>
@@ -144,7 +148,7 @@
             <item label="Resource" stringID="RESOURCE" value="Local"/>
             <item dataType="float" label="Fanout" stringID="FANOUT" value="2.000000"/>
             <item dataType="float" label="Net Skew(ns)" stringID="NET_SKEW" value="0.000000"/>
-            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="0.423000"/>
+            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="0.611000"/>
           </row>
           <row stringID="row" value="7">
             <item label="Clock Net" stringID="CLOCK_NET" value="DCM_AUTOCALIBRATION_u1_plasma_top/u0_clk/DCM_BASE0/u1_plasma_top/u0_clk/DCM_BASE0/cd/CLK&lt;3>"/>
@@ -152,7 +156,7 @@
             <item label="Resource" stringID="RESOURCE" value="Local"/>
             <item dataType="float" label="Fanout" stringID="FANOUT" value="2.000000"/>
             <item dataType="float" label="Net Skew(ns)" stringID="NET_SKEW" value="0.000000"/>
-            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="0.590000"/>
+            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="0.775000"/>
           </row>
           <row stringID="row" value="8">
             <item label="Clock Net" stringID="CLOCK_NET" value="DCM_AUTOCALIBRATION_u1_plasma_top/u0_clk/DCM_BASE0/u1_plasma_top/u0_clk/DCM_BASE0/cd/CLK&lt;4>"/>
@@ -160,7 +164,7 @@
             <item label="Resource" stringID="RESOURCE" value="Local"/>
             <item dataType="float" label="Fanout" stringID="FANOUT" value="2.000000"/>
             <item dataType="float" label="Net Skew(ns)" stringID="NET_SKEW" value="0.000000"/>
-            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="0.638000"/>
+            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="0.618000"/>
           </row>
           <row stringID="row" value="9">
             <item label="Clock Net" stringID="CLOCK_NET" value="DCM_AUTOCALIBRATION_u1_plasma_top/u0_clk/DCM_BASE0/u1_plasma_top/u0_clk/DCM_BASE0/cd/CLK&lt;5>"/>
@@ -168,7 +172,7 @@
             <item label="Resource" stringID="RESOURCE" value="Local"/>
             <item dataType="float" label="Fanout" stringID="FANOUT" value="2.000000"/>
             <item dataType="float" label="Net Skew(ns)" stringID="NET_SKEW" value="0.000000"/>
-            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="0.582000"/>
+            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="0.769000"/>
           </row>
           <row stringID="row" value="10">
             <item label="Clock Net" stringID="CLOCK_NET" value="DCM_AUTOCALIBRATION_u1_plasma_top/u0_clk/DCM_BASE0/u1_plasma_top/u0_clk/DCM_BASE0/cd/CLK&lt;6>"/>
@@ -176,7 +180,7 @@
             <item label="Resource" stringID="RESOURCE" value="Local"/>
             <item dataType="float" label="Fanout" stringID="FANOUT" value="2.000000"/>
             <item dataType="float" label="Net Skew(ns)" stringID="NET_SKEW" value="0.000000"/>
-            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="0.431000"/>
+            <item dataType="float" label="Max Delay(ns)" stringID="MAX_DELAY" value="0.620000"/>
           </row>
         </table>
       </section>
