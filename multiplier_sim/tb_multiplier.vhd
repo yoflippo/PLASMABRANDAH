@@ -50,6 +50,18 @@ architecture sim of multiplier_tb is
    signal c_mult           : std_logic_vector(31 downto 0) := (others => '0');
    signal pause_out        : std_logic;
 
+   component mult is
+      port(
+         clk       : in std_logic;
+         reset_in  : in std_logic;
+         a, b      : in std_logic_vector(31 downto 0);
+         mult_func : in mult_function_type;
+         c_mult    : out std_logic_vector(31 downto 0);
+         pause_out : out std_logic
+      );
+   end component; 
+
+
 
 begin
 
@@ -86,6 +98,7 @@ begin
    -- Target model(s)
    ---------------------------------------------------------------------------------------------------------------------
 
+
    ---------------------------------------------------------------------------------------------------------------------
    -- Stimulation
    ---------------------------------------------------------------------------------------------------------------------
@@ -105,7 +118,14 @@ begin
 
       a         <= X"00000303";
       b         <= X"00000002";
-      mult_func <= MULT_MULT; 
+      mult_func <= MULT_MULT; 		-- MS: choose type of multiplication
+ 	  wait until rising_edge(Clk);
+      mult_func <=  MULT_NOTHING;	-- MS: start multiplier
+      wait for cCLOCK_PERIOD * 11;
+      mult_func <= MULT_READ_LO;
+
+
+ 	  wait until rising_edge(pause_out);
 
       wait for cCLOCK_PERIOD * 10;
 
@@ -114,7 +134,7 @@ begin
       mult_func <= MULT_MULT; 
 
       wait for cCLOCK_PERIOD * 10;
-       wait until rising_edge(pause_out);
+      
 
       if (vSimResult) then
          echo("-----------------------------------------------------------------");

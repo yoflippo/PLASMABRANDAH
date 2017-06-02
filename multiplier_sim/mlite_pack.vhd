@@ -576,6 +576,61 @@ begin
     return result;
 end; --function
 
+-- a record for simulating the internals of mul
+type MULTBUS_OUT is
+record
+	-- MS: ports
+	a, b     :  std_logic_vector(31 downto 0);
+	mult_func :  mult_function_type;
+	c_mult    :  std_logic_vector(31 downto 0);
+	pause_out :  std_logic;
+
+
+	MODE_MULT : std_logic ; -- MS: originally a constant set at 1
+	MODE_DIV  : std_logic ; -- MS: originally a constant set at 0
+
+    -- MS: signals of multiplier
+	mode_reg    : std_logic;
+	negate_reg  : std_logic;
+	sign_reg    : std_logic;
+	sign2_reg   : std_logic;
+	count_reg   : std_logic_vector(5 downto 0);
+	aa_reg      : std_logic_vector(31 downto 0);
+	bb_reg      : std_logic_vector(31 downto 0);
+	upper_reg   : std_logic_vector(31 downto 0);
+	lower_reg   : std_logic_vector(31 downto 0);
+	a_neg       : std_logic_vector(31 downto 0);
+	b_neg       : std_logic_vector(31 downto 0);
+	sum         : std_logic_vector(32 downto 0);
+end record;
+
+type MULTBUS_IN is
+record
+	-- MS: ports
+	a, b     :  std_logic_vector(31 downto 0);
+	mult_func :  mult_function_type;
+	c_mult    :  std_logic_vector(31 downto 0);
+	pause_out :  std_logic;
+
+
+	MODE_MULT : std_logic ; -- MS: originally a constant set at 1
+	MODE_DIV  : std_logic ; -- MS: originally a constant set at 0
+
+    -- MS: signals of multiplier
+	mode_reg    : std_logic;
+	negate_reg  : std_logic;
+	sign_reg    : std_logic;
+	sign2_reg   : std_logic;
+	count_reg   : std_logic_vector(5 downto 0);
+	aa_reg      : std_logic_vector(31 downto 0);
+	bb_reg      : std_logic_vector(31 downto 0);
+	upper_reg   : std_logic_vector(31 downto 0);
+	lower_reg   : std_logic_vector(31 downto 0);
+	a_neg       : std_logic_vector(31 downto 0);
+	b_neg       : std_logic_vector(31 downto 0);
+	sum  		: std_logic_vector(32 downto 0);
+end record;
+
 end; --package body
 
 
