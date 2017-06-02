@@ -513,9 +513,11 @@ package body mlite_pack is
 function bv_adder(a     : in std_logic_vector;
                   b     : in std_logic_vector;
                   do_add: in std_logic) return std_logic_vector is
+
     variable carry_in : std_logic;
     variable bb       : std_logic_vector(a'length-1 downto 0);
     variable result   : std_logic_vector(a'length downto 0);
+    
 begin
     if do_add = '1' then
         bb := b;
@@ -526,8 +528,8 @@ begin
     end if;
     for index in 0 to a'length-1 loop
         result(index) := a(index) xor bb(index) xor carry_in;
-        carry_in := (carry_in and (a(index) or bb(index))) or
-                  (a(index) and bb(index));
+        carry_in := (carry_in and (a(index) or  bb(index))) or
+                  				  (a(index) and bb(index));
     end loop;
     result(a'length) := carry_in xnor do_add;
     return result;

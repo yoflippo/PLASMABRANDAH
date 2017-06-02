@@ -78,6 +78,7 @@ begin
                 bv_negate(lower_reg)    when mult_func = MULT_READ_LO and negate_reg = '1' else
                 upper_reg               when mult_func = MULT_READ_HI and negate_reg = '0' else
                 bv_negate(upper_reg)    when mult_func = MULT_READ_HI and negate_reg = '1' else ZERO;
+    -- MS: the multiplier only sends the pause_out signal if the results is read prematurely
     pause_out <= '1' when (count_reg /= "000000") and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else '0';
 
     -- ABS and remainder signals
