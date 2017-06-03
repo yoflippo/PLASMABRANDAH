@@ -11,7 +11,7 @@ vsim -voptargs=+acc work.multiplier_tb
 add  wave -position insertpoint -group TB  sim:/multiplier_tb/*
 add  wave -group UUT sim:/multiplier_tb/UUT/*
 
-config wave -signalnamewidth 3
+config wave -signalnamewidth 1
 
 #Change radix to Hexadecimal#
 radix hex

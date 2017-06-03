@@ -9,60 +9,41 @@ z2
 cModel Technology
 d/home/pdp/APLASMA/GIT/PLASMABRANDAH/multiplier_sim
 Eadder
-w1496417416
-Z0 DPx4 work 10 mlite_pack 0 22 1iOGlaf[Vd66Xd2RA3IIS1
-DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
-DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
-Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z2 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
-Z3 d/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim
-8/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/adder.vhd
-F/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/adder.vhd
+Z0 w1496485117
+Z1 DPx4 work 10 mlite_pack 0 22 f7^I5MfFQYoTXigoH7>Pi0
+Z2 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z3 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z4 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z5 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z6 d/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim
+Z7 8/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/adder.vhd
+Z8 F/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/adder.vhd
 l0
-L41
-V4Q4UBfQNM`=3J@gc[3_[Z3
-!s100 ecjT:JWZ6@@nTNN:^AV@43
-Z4 OL;C;10.5c_4;63
+L9
+V6=o=V[_fTkbWOO93V<Xm:2
+!s100 f_UQoEe9DUYYDbL]_C2VA2
+Z9 OL;C;10.5c_4;63
 32
-!s110 1496417456
+Z10 !s110 1496485223
 !i10b 1
-!s108 1496417456.000000
-!s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/adder.vhd|
-!s107 /home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/adder.vhd|
+Z11 !s108 1496485223.000000
+Z12 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/adder.vhd|
+Z13 !s107 /home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/adder.vhd|
 !i113 0
-Z5 o-work work -2002 -explicit
-Z6 tExplicit 1 CvgOpt 0
-Pmlite_pack
+Z14 o-work work -2002 -explicit
+Z15 tExplicit 1 CvgOpt 0
+Alogic
 R1
 R2
-Z7 w1496417390
 R3
-Z8 8/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/mlite_pack.vhd
-Z9 F/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/mlite_pack.vhd
-l0
-L15
-V1iOGlaf[Vd66Xd2RA3IIS1
-!s100 ZgXzBZ2aIj?1GM8lD7ERf1
 R4
-32
-b1
-Z10 !s110 1496417450
-!i10b 1
-Z11 !s108 1496417450.000000
-Z12 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/mlite_pack.vhd|
-Z13 !s107 /home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/mlite_pack.vhd|
-!i113 0
 R5
-R6
-Bbody
-R0
-R1
-R2
-l0
-L511
-V_Nid6YTYzFWAZ8LeiYFe`1
-!s100 BDbOFnDYAEHZL8;oB33;R0
-R4
+DEx4 work 5 adder 0 22 6=o=V[_fTkbWOO93V<Xm:2
+l39
+L18
+VlL>OJKoBg8JfBfN9cGhF93
+!s100 ^o82@ZD=>RJCOD<EzbcjO1
+R9
 32
 R10
 !i10b 1
@@ -70,47 +51,132 @@ R11
 R12
 R13
 !i113 0
+R14
+R15
+Eadder_tb
+Z16 w1496485211
+R1
+Z17 DPx4 work 11 txtutil_pkg 0 22 REM?;772S1l7;DoLLaF>L0
+Z18 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+R4
 R5
 R6
-Ptxtutil_pkg
-Z14 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z19 8/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/tb_adder.vhd
+Z20 F/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/tb_adder.vhd
+l0
+L22
+VlPCCDDizR[k=YC:>N^2Tn2
+!s100 ^6eJnlb_6>lbQ63SZ6WS^2
+R9
+32
+Z21 !s110 1496485218
+!i10b 1
+Z22 !s108 1496485217.000000
+Z23 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/tb_adder.vhd|
+Z24 !s107 /home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/tb_adder.vhd|
+!i113 0
+R14
+R15
+Asim
 R1
-R2
-Z15 w1496408616
-R3
-Z16 8/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/TxtUtil_pkg.vhd
-Z17 F/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/TxtUtil_pkg.vhd
+R17
+R18
+R4
+R5
+DEx4 work 8 adder_tb 0 22 lPCCDDizR[k=YC:>N^2Tn2
+l51
+L25
+V2m2l1^bN?Q01N4KGJJN;M2
+!s100 FBB=[WBk0O3TWh;QOYfci2
+R9
+32
+R21
+!i10b 1
+R22
+R23
+R24
+!i113 0
+R14
+R15
+Pmlite_pack
+R4
+R5
+Z25 w1496485109
+R6
+Z26 8/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/mlite_pack.vhd
+Z27 F/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/mlite_pack.vhd
+l0
+L15
+Vf7^I5MfFQYoTXigoH7>Pi0
+!s100 e5AmdN1OJ<R=6N0LZFick3
+R9
+32
+b1
+Z28 !s110 1496485135
+!i10b 1
+Z29 !s108 1496485135.000000
+Z30 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/mlite_pack.vhd|
+Z31 !s107 /home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/mlite_pack.vhd|
+!i113 0
+R14
+R15
+Bbody
+R1
+R4
+R5
+l0
+L518
+VY]CE>n0@a<@:U]OPMVZBm2
+!s100 6I3_2<2E7YE2Y@b:YQ[Lb0
+R9
+32
+R28
+!i10b 1
+R29
+R30
+R31
+!i113 0
+R14
+R15
+Ptxtutil_pkg
+R18
+R4
+R5
+Z32 w1496408616
+R6
+Z33 8/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/TxtUtil_pkg.vhd
+Z34 F/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/TxtUtil_pkg.vhd
 l0
 L16
 VREM?;772S1l7;DoLLaF>L0
 !s100 ELbjK]M90M7B>Men_DO;^3
-R4
+R9
 32
 b1
-Z18 !s110 1496417308
+Z35 !s110 1496483125
 !i10b 1
-Z19 !s108 1496417308.000000
-Z20 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/TxtUtil_pkg.vhd|
-Z21 !s107 /home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/TxtUtil_pkg.vhd|
+Z36 !s108 1496483124.000000
+Z37 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/TxtUtil_pkg.vhd|
+Z38 !s107 /home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/TxtUtil_pkg.vhd|
 !i113 0
-R5
-R6
-Bbody
-DPx4 work 11 txtutil_pkg 0 22 REM?;772S1l7;DoLLaF>L0
 R14
-R1
-R2
+R15
+Bbody
+R17
+R18
+R4
+R5
 l0
 L56
 V7IeY7L4jGh6NJ6oG>0LU]3
 !s100 e7^G?FP83;]c6XzPga4^k2
-R4
+R9
 32
-R18
+R35
 !i10b 1
-R19
-R20
-R21
+R36
+R37
+R38
 !i113 0
-R5
-R6
+R14
+R15

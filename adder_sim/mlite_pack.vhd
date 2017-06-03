@@ -99,9 +99,16 @@ package mlite_pack is
     constant MEM_READ8S  : mem_source_type := "1110";
     constant MEM_WRITE8  : mem_source_type := "1101";
 
-    function bv_adder(a     : in std_logic_vector;
-                     b     : in std_logic_vector;
-                     do_add: in std_logic) return std_logic_vector;
+    function bv_adder(  a     : in std_logic_vector;
+                        b     : in std_logic_vector;
+                        do_add: in std_logic) 
+    return std_logic_vector;
+
+    function bv_real_adder(   a     : in std_logic_vector;
+                            b     : in std_logic_vector;
+                            do_add: in std_logic) 
+    return std_logic_vector;
+
     function bv_negate(a : in std_logic_vector) return std_logic_vector;
     function bv_increment(a : in std_logic_vector(31 downto 2)
                          ) return std_logic_vector;
@@ -536,7 +543,7 @@ begin
 end; --function
 
 
-function bv_adder_ci(   a     : in std_logic_vector;
+function bv_real_adder(   a     : in std_logic_vector;
                         b     : in std_logic_vector;
                         do_add: in std_logic) 
 return std_logic_vector is
