@@ -1,15 +1,18 @@
 vlib work
 vlib grlib
 
+vcom -quiet  -93  -work work   adder.vhd
 vcom -quiet  -93  -work work   mlite_pack.vhd
-vcom -quiet  -93  -work work   mult.vhd
+vcom -quiet  -93  -work work   tb_adder.vhd
 vcom -quiet  -93  -work work   TxtUtil_pkg.vhd
-vcom -quiet  -93  -work work   tb_multiplier.vhd
 
-vsim -voptargs=+acc work.multiplier_tb
+vsim -voptargs=+acc work.adder_tb
 
-add  wave -position insertpoint -group TB  sim:/multiplier_tb/*
-add  wave -group UUT sim:/multiplier_tb/UUT/*
+add wave -group UUT -position insertpoint sim:/adder_tb/UUT/*
+add wave -group TB -position insertpoint sim:/adder_tb/*
+
+--add  wave -position insertpoint -group TB  sim:/multiplier_tb/*
+--add  wave -group UUT sim:/multiplier_tb/UUT/*
 
 config wave -signalnamewidth 1
 

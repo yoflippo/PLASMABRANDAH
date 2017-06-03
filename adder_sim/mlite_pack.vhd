@@ -106,7 +106,7 @@ package mlite_pack is
 
     function bv_real_adder(   a     : in std_logic_vector;
                             b     : in std_logic_vector;
-                            do_add: in std_logic) 
+                            ci: in std_logic) 
     return std_logic_vector;
 
     function bv_negate(a : in std_logic_vector) return std_logic_vector;
@@ -545,7 +545,7 @@ end; --function
 
 function bv_real_adder(   a     : in std_logic_vector;
                         b     : in std_logic_vector;
-                        do_add: in std_logic) 
+                        ci: in std_logic) 
 return std_logic_vector is
 
     variable carry_in : std_logic;
@@ -553,12 +553,12 @@ return std_logic_vector is
     variable result   : std_logic_vector(a'length downto 0);
     
 begin
-    if do_add = '1' then
+    if ci = '1' then
         bb := b;
-        carry_in := '0';
+        carry_in := '1';
     else
         bb := b; -- MS : only add
-        carry_in := '1';
+        carry_in := '0';
     end if;
 
     for index in 0 to a'length-1 loop
@@ -566,7 +566,7 @@ begin
         carry_in := (carry_in and (a(index) or  bb(index))) or
                                   (a(index) and bb(index));
     end loop;
-    result(a'length) := carry_in xnor do_add;
+    result(a'length) := carry_in xnor ci;
     return result;
 end; --function
 

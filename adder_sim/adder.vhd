@@ -58,6 +58,7 @@ begin
 
     result(32 downto 16)    <= partresult1(8 downto 0) & adder3_1(7 downto 0)
     when carry_1 = '1' else    partresult2(8 downto 0) & adder3_0(7 downto 0);
+    c <=result;
             --pCarrySelect :process (a, b, do_add)
             --begin
             -- -- first half of two - level carry-select adder k/4-adder
