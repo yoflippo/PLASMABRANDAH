@@ -104,16 +104,19 @@ package mlite_pack is
                         do_add: in std_logic) 
     return std_logic_vector;
 
-    function bv_real_adder(   a     : in std_logic_vector;
-                            b     : in std_logic_vector;
-                            ci: in std_logic) 
+    function bv_real_adder( a       : in std_logic_vector;
+                            b       : in std_logic_vector;
+                            do_add  : in std_logic;
+                            ci      : in std_logic)
     return std_logic_vector;
 
-    function bv_negate(a : in std_logic_vector) return std_logic_vector;
-    function bv_increment(a : in std_logic_vector(31 downto 2)
-                         ) return std_logic_vector;
-    function bv_inc(a : in std_logic_vector
-                  ) return std_logic_vector;
+    function bv_negate(     a : in std_logic_vector) return std_logic_vector;
+    
+    function bv_increment(  a : in std_logic_vector(31 downto 2))
+    return std_logic_vector;
+    
+    function bv_inc(a : in std_logic_vector) 
+    return std_logic_vector;
 
     -- For Altera
     COMPONENT lpm_ram_dp
@@ -543,30 +546,30 @@ begin
 end; --function
 
 
-function bv_real_adder(   a     : in std_logic_vector;
-                        b     : in std_logic_vector;
-                        ci: in std_logic) 
-return std_logic_vector is
+    function bv_real_adder( a       : in std_logic_vector;
+                            b       : in std_logic_vector;
+                            do_add  : in std_logic;
+                            ci      : in std_logic)
+    return std_logic_vector is
 
     variable carry_in : std_logic;
     variable bb       : std_logic_vector(a'length-1 downto 0);
     variable result   : std_logic_vector(a'length downto 0);
     
 begin
-    if ci = '1' then
+    if do_add = '1' then
         bb := b;
-        carry_in := '1';
+        carry_in := ci;
     else
-        bb := b; -- MS : only add
-        carry_in := '0';
+        bb := not b;
+        carry_in := ci;
     end if;
-
     for index in 0 to a'length-1 loop
         result(index) := a(index) xor bb(index) xor carry_in;
         carry_in := (carry_in and (a(index) or  bb(index))) or
                                   (a(index) and bb(index));
     end loop;
-    result(a'length) := carry_in xnor ci;
+    result(a'length) := carry_in xnor do_add;
     return result;
 end; --function
 

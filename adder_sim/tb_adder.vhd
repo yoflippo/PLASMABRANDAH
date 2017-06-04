@@ -44,7 +44,7 @@ architecture sim of adder_tb is
    signal c               : std_logic_vector(32 downto 0);
    signal do_add          : std_logic;
    signal result_bv_adder : std_logic_vector(32 downto 0);
-   
+
 begin
    ---------------------------------------------------------------------------------------------------------------------
    -- Clock generation
@@ -80,36 +80,59 @@ begin
       variable vSimResult : boolean := true;
    begin
       Rst <= '0';
-
       wait until rising_edge(Clk);
       Rst <= '1';
+      a               <= X"00000000";
+      b               <= X"00000000";
+      do_add          <= '0'; 
+      result_bv_adder <= bv_adder(a, b, do_add);   
       wait until rising_edge(Clk);
+      result_bv_adder <= bv_adder(a, b, do_add);
       wait for cCLOCK_PERIOD * 10;
       wait until rising_edge(Clk);
       Rst <= '0';
 
+      -- first test subtracting 
       wait until rising_edge(Clk);
+      a               <= X"00000303";
+      b               <= X"00000002";
+      do_add          <= '0';
+      wait until rising_edge(Clk);
+      result_bv_adder <= bv_adder(a, b, do_add);
+      wait until rising_edge(Clk);
+      assert (c = result_bv_adder) report "Test0 Failed!!" severity ERROR;
+      
+      -- second test subtracting 
+      wait until rising_edge(Clk);
+      a               <= X"06660303";
+      b               <= X"00000666";
+      do_add          <= '0';
+      wait until rising_edge(Clk);
+      result_bv_adder <= bv_adder(a, b, do_add);
+      wait until rising_edge(Clk);
+      assert (c = result_bv_adder) report "Test1 Failed!!" severity ERROR;
 
+      -- first test adding
+      wait until rising_edge(Clk);
       a               <= X"00000303";
       b               <= X"00000002";
       do_add          <= '1';
-
+      wait until rising_edge(Clk);
       result_bv_adder <= bv_adder(a, b, do_add);
+      wait until rising_edge(Clk);
+      assert (c = result_bv_adder) report "Test2 Failed!!" severity ERROR;
 
-      -- mult_func <= MULT_MULT; -- MS: choose type of multiplication
-      --wait until rising_edge(Clk);
-      -- mult_func <= MULT_NOTHING; -- MS: start multiplier
-      -- wait for cCLOCK_PERIOD * 11;
-      -- mult_func <= MULT_READ_LO;
-      --wait until rising_edge(pause_out);
+      -- first test adding
+      wait until rising_edge(Clk);
+      a               <= X"06660303";
+      b               <= X"00000666";
+      do_add          <= '1';
+      wait until rising_edge(Clk);
+      result_bv_adder <= bv_adder(a, b, do_add);
+      wait until rising_edge(Clk);
+      assert (c = result_bv_adder) report "Test3 Failed!!" severity ERROR;
 
-      -- wait for cCLOCK_PERIOD * 10;
 
-      -- a <= X"00000333";
-      -- b <= X"00000002";
-      -- mult_func <= MULT_MULT;
-
-      -- wait for cCLOCK_PERIOD * 10;
       if (vSimResult) then
          echo("-----------------------------------------------------------------");
          echo("");
