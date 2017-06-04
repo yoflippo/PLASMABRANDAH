@@ -18,7 +18,7 @@ end; --entity adder
 architecture logic of adder is
 
     constant ci        : std_logic := '0';
-
+    signal bb           : std_logic_vector(31 downto 0);
     signal byte1_a     : std_logic_vector(7 downto 0);
     signal byte2_a     : std_logic_vector(7 downto 0);
     signal byte3_a     : std_logic_vector(7 downto 0);
@@ -47,6 +47,7 @@ architecture logic of adder is
 
 begin
 
+    bb <= (not b)+'1' when do_add = '0' else b;
     -- MS: assign signals to part of parameters a & b for the function
     -- bv_adder to work
     loop_assign : for i in 0 to 7  generate
@@ -54,10 +55,10 @@ begin
         byte2_a(i) <= a(i+8); 
         byte3_a(i) <= a(i+16);
         byte4_a(i) <= a(i+24);
-        byte1_b(i) <= b(i);   
-        byte2_b(i) <= b(i+8); 
-        byte3_b(i) <= b(i+16);
-        byte4_b(i) <= b(i+24);
+        byte1_b(i) <= bb(i);   
+        byte2_b(i) <= bb(i+8); 
+        byte3_b(i) <= bb(i+16);
+        byte4_b(i) <= bb(i+24);
     end generate;
         
 
@@ -83,8 +84,13 @@ begin
     partresult1  <= adder4_1 when adder3_1(8) = '1' else adder4_0;
     partresult2  <= adder4_1 when adder3_0(8) = '1' else adder4_0;
 
-    result(32 downto 16)    <= partresult1(8 downto 0) & adder3_1(7 downto 0)
-    when carry_1 = '1' else    partresult2(8 downto 0) & adder3_0(7 downto 0);
-    c <=result;
-
+    result(31 downto 16)    <= partresult1(7 downto 0) & adder3_1(7 downto 0)
+    when carry_1 = '1' else    partresult2(7 downto 0) & adder3_0(7 downto 0);
+    
+    result(32)  <=  '1'             when do_add = '0' AND b > a else
+                    '0'             when do_add = '0' else 
+                    partresult1(8)  when carry_1 = '1' else
+                    partresult2(8);
+            
+    c <= result;
 end; --architecture logic

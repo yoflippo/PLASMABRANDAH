@@ -557,19 +557,18 @@ end; --function
     variable result   : std_logic_vector(a'length downto 0);
     
 begin
-    if do_add = '1' then
-        bb := b;
-        carry_in := ci;
-    else
-        bb := not b;
-        carry_in := ci;
-    end if;
+    bb := b;
+    carry_in := ci;
     for index in 0 to a'length-1 loop
         result(index) := a(index) xor bb(index) xor carry_in;
         carry_in := (carry_in and (a(index) or  bb(index))) or
                                   (a(index) and bb(index));
     end loop;
-    result(a'length) := carry_in xnor do_add;
+    if do_add = '1' then
+        result(a'length) := carry_in xnor do_add;
+    else
+        result(a'length) := carry_in;
+    end if;     
     return result;
 end; --function
 

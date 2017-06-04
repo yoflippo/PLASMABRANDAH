@@ -84,7 +84,7 @@ begin
       Rst <= '1';
       a               <= X"00000000";
       b               <= X"00000000";
-      do_add          <= '0'; 
+      do_add          <= '1'; 
       result_bv_adder <= bv_adder(a, b, do_add);   
       wait until rising_edge(Clk);
       result_bv_adder <= bv_adder(a, b, do_add);
@@ -100,7 +100,7 @@ begin
       wait until rising_edge(Clk);
       result_bv_adder <= bv_adder(a, b, do_add);
       wait until rising_edge(Clk);
-      assert (c = result_bv_adder) report "Test0 Failed!!" severity ERROR;
+      assert (c = result_bv_adder) report "Test1 subtraction Failed!!" severity ERROR;
       
       -- second test subtracting 
       wait until rising_edge(Clk);
@@ -110,7 +110,28 @@ begin
       wait until rising_edge(Clk);
       result_bv_adder <= bv_adder(a, b, do_add);
       wait until rising_edge(Clk);
-      assert (c = result_bv_adder) report "Test1 Failed!!" severity ERROR;
+      assert (c = result_bv_adder) report "Test2 subtraction Failed!!" severity ERROR;
+
+      -- third test subtracting 
+      wait until rising_edge(Clk);
+      a               <= X"00000100";
+      b               <= X"00000666";
+      do_add          <= '0';
+      wait until rising_edge(Clk);
+      result_bv_adder <= bv_adder(a, b, do_add);
+      wait until rising_edge(Clk);
+      assert (c = result_bv_adder) report "Test3 subtraction Failed!!" severity ERROR;
+
+      -- 4th test subtracting 
+      wait until rising_edge(Clk);
+      a               <= X"00000000";
+      b               <= X"FFFFFFFF";
+      do_add          <= '0';
+      wait until rising_edge(Clk);
+      result_bv_adder <= bv_adder(a, b, do_add);
+      wait until rising_edge(Clk);
+      assert (c = result_bv_adder) report "Test4 subtraction Failed!!" severity ERROR;
+
 
       -- first test adding
       wait until rising_edge(Clk);
@@ -131,6 +152,17 @@ begin
       result_bv_adder <= bv_adder(a, b, do_add);
       wait until rising_edge(Clk);
       assert (c = result_bv_adder) report "Test3 Failed!!" severity ERROR;
+
+      -- first test adding
+      wait until rising_edge(Clk);
+      a               <= X"FFFFFFFF";
+      b               <= X"FFFFFFFF";
+      do_add          <= '1';
+      wait until rising_edge(Clk);
+      result_bv_adder <= bv_adder(a, b, do_add);
+      wait until rising_edge(Clk);
+      assert (c = result_bv_adder) report "Test3 Failed!!" severity ERROR;
+
 
 
       if (vSimResult) then
