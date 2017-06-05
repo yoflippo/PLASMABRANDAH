@@ -99,14 +99,34 @@ package mlite_pack is
     constant MEM_READ8S  : mem_source_type := "1110";
     constant MEM_WRITE8  : mem_source_type := "1101";
 
-    function bv_adder(a     : in std_logic_vector;
-                     b     : in std_logic_vector;
-                     do_add: in std_logic) return std_logic_vector;
-    function bv_negate(a : in std_logic_vector) return std_logic_vector;
-    function bv_increment(a : in std_logic_vector(31 downto 2)
-                         ) return std_logic_vector;
-    function bv_inc(a : in std_logic_vector
-                  ) return std_logic_vector;
+    function bv_adder(  a     : in std_logic_vector;
+                        b     : in std_logic_vector;
+                        do_add: in std_logic) 
+    return std_logic_vector;
+
+    function bv_real_adder( a       : in std_logic_vector;
+                            b       : in std_logic_vector;
+                            do_add  : in std_logic;
+                            ci      : in std_logic)
+    return std_logic_vector;
+
+    function bv_negate(     a : in std_logic_vector) return std_logic_vector;
+    
+    function bv_increment(  a : in std_logic_vector(31 downto 2))
+    return std_logic_vector;
+    
+    function bv_inc(a : in std_logic_vector) 
+    return std_logic_vector;
+
+-- MS: in order for custom component to be used they have to be
+--     added to the package
+COMPONENT adder 
+    Port (
+        a, b   : In std_logic_vector(31 Downto 0);
+        do_add : In std_logic;
+        c      : Out std_logic_vector(32 Downto 0)
+    );
+End COMPONENT; --entity adder
 
     -- For Altera
     COMPONENT lpm_ram_dp
@@ -532,6 +552,33 @@ begin
                   				  (a(index) and bb(index));
     end loop;
     result(a'length) := carry_in xnor do_add;
+    return result;
+end; --function
+
+
+    function bv_real_adder( a       : in std_logic_vector;
+                            b       : in std_logic_vector;
+                            do_add  : in std_logic;
+                            ci      : in std_logic)
+    return std_logic_vector is
+
+    variable carry_in : std_logic;
+    variable bb       : std_logic_vector(a'length-1 downto 0);
+    variable result   : std_logic_vector(a'length downto 0);
+    
+begin
+    bb := b;
+    carry_in := ci;
+    for index in 0 to a'length-1 loop
+        result(index) := a(index) xor bb(index) xor carry_in;
+        carry_in := (carry_in and (a(index) or  bb(index))) or
+                                  (a(index) and bb(index));
+    end loop;
+    if do_add = '1' then
+        result(a'length) := carry_in xnor do_add;
+    else
+        result(a'length) := carry_in;
+    end if;     
     return result;
 end; --function
 

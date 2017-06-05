@@ -70,8 +70,24 @@ architecture logic of mult is
     signal a_neg       : std_logic_vector(31 downto 0);
     signal b_neg       : std_logic_vector(31 downto 0);
     signal sum         : std_logic_vector(32 downto 0);
+    signal sum_cust_add: std_logic_vector(32 downto 0);
+
+    component adder Port (
+        a, b   : In std_logic_vector(31 Downto 0);
+        do_add : In std_logic;
+        c      : Out std_logic_vector(32 Downto 0)
+    );
+    end component;
+
 
 begin
+
+    custom_cs_adder :  adder PORT MAP(
+        a       => upper_reg,
+        b       => aa_reg,
+        do_add  => mode_reg,
+        c       => sum
+    );
 
     -- Result
     c_mult <=   lower_reg               when mult_func = MULT_READ_LO and negate_reg = '0' else
@@ -84,7 +100,7 @@ begin
     -- ABS and remainder signals
     a_neg   <= bv_negate(a);
     b_neg   <= bv_negate(b);
-    sum     <= bv_adder(upper_reg, aa_reg, mode_reg);
+    -- MS: disabled: sum     <= bv_adder(upper_reg, aa_reg, mode_reg);
 
     --multiplication/division unit
     mult_proc: process(clk, reset_in, a, b, mult_func,
