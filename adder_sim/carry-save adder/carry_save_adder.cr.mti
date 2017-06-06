@@ -1,0 +1,81 @@
+{{/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/carry-save adder/tb_adder.vhd}} {0 {vcom -work work -2002 -explicit -vopt {/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/carry-save adder/tb_adder.vhd}
+QuestaSim-64 vcom 10.5c_4 Compiler 2016.11 Nov 30 2016
+Start time: 11:41:25 on Jun 06,2017
+vcom -reportprogress 300 -work work -2002 -explicit -vopt /home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/carry-save adder/tb_adder.vhd 
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package TxtUtil_pkg
+-- Loading package mlite_pack
+-- Compiling entity adder_tb
+-- Compiling architecture sim of adder_tb
+** Error: (vcom-11) Could not find work.adder.
+** Error (suppressible): /home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/carry-save adder/tb_adder.vhd(64): (vcom-1195) Cannot find expanded name "work.adder".
+** Error: /home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/carry-save adder/tb_adder.vhd(64): Unknown expanded name.
+** Error: /home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/carry-save adder/tb_adder.vhd(131): VHDL Compiler exiting
+End time: 11:41:25 on Jun 06,2017, Elapsed time: 0:00:00
+Errors: 4, Warnings: 0
+
+} {13.0 14.0 15.0 17.0} {}} {{/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/carry-save adder/mlite_pack.vhd}} {1 {vcom -work work -2002 -explicit -vopt {/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/carry-save adder/mlite_pack.vhd}
+QuestaSim-64 vcom 10.5c_4 Compiler 2016.11 Nov 30 2016
+Start time: 11:41:24 on Jun 06,2017
+vcom -reportprogress 300 -work work -2002 -explicit -vopt /home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/carry-save adder/mlite_pack.vhd 
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling package mlite_pack
+-- Compiling package body mlite_pack
+-- Loading package mlite_pack
+End time: 11:41:24 on Jun 06,2017, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+
+} {} {}} {/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/carry-save adder/mlite_pack.vhd} {1 {vcom -work work -2002 -explicit -vopt -stats=none {/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/carry-save adder/mlite_pack.vhd}
+QuestaSim-64 vcom 10.5c_4 Compiler 2016.11 Nov 30 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling package mlite_pack
+-- Compiling package body mlite_pack
+-- Loading package mlite_pack
+
+} {} {}} {/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/carry-save adder/TxtUtil_pkg.vhd} {1 {vcom -work work -2002 -explicit -vopt -stats=none {/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/carry-save adder/TxtUtil_pkg.vhd}
+QuestaSim-64 vcom 10.5c_4 Compiler 2016.11 Nov 30 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling package TxtUtil_pkg
+-- Compiling package body TxtUtil_pkg
+-- Loading package TxtUtil_pkg
+
+} {} {}} {{/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/carry-save adder/TxtUtil_pkg.vhd}} {1 {vcom -work work -2002 -explicit -vopt {/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/carry-save adder/TxtUtil_pkg.vhd}
+QuestaSim-64 vcom 10.5c_4 Compiler 2016.11 Nov 30 2016
+Start time: 11:41:25 on Jun 06,2017
+vcom -reportprogress 300 -work work -2002 -explicit -vopt /home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/carry-save adder/TxtUtil_pkg.vhd 
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling package TxtUtil_pkg
+-- Compiling package body TxtUtil_pkg
+-- Loading package TxtUtil_pkg
+End time: 11:41:25 on Jun 06,2017, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+
+} {} {}} {{/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/carry-save adder/adder.vhd}} {1 {vcom -work work -2002 -explicit -vopt {/home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/carry-save adder/adder.vhd}
+QuestaSim-64 vcom 10.5c_4 Compiler 2016.11 Nov 30 2016
+Start time: 11:41:24 on Jun 06,2017
+vcom -reportprogress 300 -work work -2002 -explicit -vopt /home/pdp/APLASMA/GIT/PLASMABRANDAH/adder_sim/carry-save adder/adder.vhd 
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package mlite_pack
+-- Compiling entity csa_adder
+-- Compiling architecture logic of csa_adder
+End time: 11:41:25 on Jun 06,2017, Elapsed time: 0:00:01
+Errors: 0, Warnings: 0
+
+} {} {}}
