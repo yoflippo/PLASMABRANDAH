@@ -4,15 +4,15 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.11 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.11 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 Reading design: top_ml410.prj
@@ -110,50 +110,49 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_pack.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/mlite_pack.vhd" in Library work.
 Architecture mlite_pack of Entity mlite_pack is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache_ram.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/cache_ram.vhd" in Library work.
 Architecture logic of Entity cache_ram is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pc_next.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/pc_next.vhd" in Library work.
 Architecture logic of Entity pc_next is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/mem_ctrl.vhd" in Library work.
 Architecture logic of Entity mem_ctrl is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/control.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/control.vhd" in Library work.
 Architecture logic of Entity control is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/reg_bank.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/reg_bank.vhd" in Library work.
 Architecture ram_block of Entity reg_bank is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/bus_mux.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/bus_mux.vhd" in Library work.
 Architecture logic of Entity bus_mux is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/alu.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/alu.vhd" in Library work.
 Architecture logic of Entity alu is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/shifter.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/shifter.vhd" in Library work.
 Architecture logic of Entity shifter is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mult.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/mult.vhd" in Library work.
 Architecture logic of Entity mult is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pipeline.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/pipeline.vhd" in Library work.
 Architecture logic of Entity pipeline is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_init.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/ddr_init.vhd" in Library work.
 Architecture logic of Entity ddr_init is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/ddr_ctrl.vhd" in Library work.
 Architecture logic of Entity ddr_ctrl is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/mlite_cpu.vhd" in Library work.
 Architecture logic of Entity mlite_cpu is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd" in Library work.
-Entity <cache> compiled.
-Entity <cache> (Architecture <logic>) compiled.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/boot_ram.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/cache.vhd" in Library work.
+Architecture logic of Entity cache is up to date.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/boot_ram.vhd" in Library work.
 Architecture logic of Entity boot_ram is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/uart.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/uart.vhd" in Library work.
 Architecture logic of Entity uart is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/clk_gen.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/clk_gen.vhd" in Library work.
 Architecture logic of Entity clk_gen is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/plasma.vhd" in Library work.
 Architecture logic of Entity plasma is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd" in Library work.
 Architecture logic of Entity ddr_ctrl_top is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma_top.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/plasma_top.vhd" in Library work.
 Architecture logic of Entity plasma_top is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/top_ml410.vhd" in Library work.
+Compiling vhdl file "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/top_ml410.vhd" in Library work.
 Architecture logic of Entity top_ml410 is up to date.
 
 =========================================================================
@@ -220,7 +219,7 @@ Analyzing hierarchy for entity <mult> in library <work> (architecture <logic>) w
 Analyzing hierarchy for entity <pipeline> in library <work> (architecture <logic>).
 
 Analyzing hierarchy for entity <cache_ram> in library <work> (architecture <logic>) with generics.
-	block_count = 1
+	block_count = 2
 
 
 =========================================================================
@@ -411,7 +410,7 @@ Analyzing Entity <reg_bank> in library <work> (Architecture <ram_block>).
 Entity <reg_bank> analyzed. Unit <reg_bank> generated.
 
 Analyzing Entity <bus_mux> in library <work> (Architecture <logic>).
-INFO:Xst:1561 - "/home/pdp/New_Repository/PLASMABRANDAH/rtl/bus_mux.vhd" line 84: Mux is complete : default of case is discarded
+INFO:Xst:1561 - "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/bus_mux.vhd" line 84: Mux is complete : default of case is discarded
 Entity <bus_mux> analyzed. Unit <bus_mux> generated.
 
 Analyzing generic Entity <alu> in library <work> (Architecture <logic>).
@@ -430,16 +429,16 @@ Analyzing Entity <pipeline> in library <work> (Architecture <logic>).
 Entity <pipeline> analyzed. Unit <pipeline> generated.
 
 Analyzing Entity <cache> in library <work> (Architecture <logic>).
-INFO:Xst:1561 - "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd" line 115: Mux is complete : default of case is discarded
+INFO:Xst:1561 - "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/cache.vhd" line 114: Mux is complete : default of case is discarded
     Set user-defined property "INIT =  000000FFF" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "INITP_03 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "INITP_04 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "INITP_05 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "INITP_06 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "INITP_07 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "INITP_00 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "INITP_01 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "INITP_02 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "INITP_03 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "INITP_04 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "INITP_05 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "INITP_06 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "INITP_07 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INIT_00 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INIT_01 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INIT_02 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
@@ -507,14 +506,14 @@ INFO:Xst:1561 - "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd" line 115:
     Set user-defined property "SRVAL =  000000000" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INIT =  000000FFF" for instance <cache_tag2> in unit <cache>.
-    Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag2> in unit <cache>.
-    Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag2> in unit <cache>.
-    Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag2> in unit <cache>.
-    Set user-defined property "INITP_03 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag2> in unit <cache>.
-    Set user-defined property "INITP_04 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag2> in unit <cache>.
-    Set user-defined property "INITP_05 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag2> in unit <cache>.
-    Set user-defined property "INITP_06 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag2> in unit <cache>.
-    Set user-defined property "INITP_07 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INITP_00 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INITP_01 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INITP_02 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INITP_03 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INITP_04 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INITP_05 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INITP_06 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INITP_07 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
     Set user-defined property "INIT_00 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
     Set user-defined property "INIT_01 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
     Set user-defined property "INIT_02 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
@@ -584,7 +583,7 @@ INFO:Xst:1561 - "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd" line 115:
 Entity <cache> analyzed. Unit <cache> generated.
 
 Analyzing generic Entity <cache_ram> in library <work> (Architecture <logic>).
-	block_count = 1
+	block_count = 2
     Set user-defined property "INIT =  000000000" for instance <block0.ram_byte3> in unit <cache_ram>.
     Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte3> in unit <cache_ram>.
     Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte3> in unit <cache_ram>.
@@ -885,6 +884,306 @@ Analyzing generic Entity <cache_ram> in library <work> (Architecture <logic>).
     Set user-defined property "INIT_3F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte0> in unit <cache_ram>.
     Set user-defined property "SRVAL =  000000000" for instance <block0.ram_byte0> in unit <cache_ram>.
     Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <block0.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT =  000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INITP_03 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INITP_04 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INITP_05 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INITP_06 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INITP_07 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_03 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_04 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_05 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_06 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_07 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_08 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_09 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_0A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_0B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_0C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_0D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_0E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_0F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_10 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_11 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_12 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_13 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_14 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_15 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_16 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_17 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_18 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_19 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_1A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_1B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_1C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_1D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_1E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_1F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_20 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_21 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_22 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_23 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_24 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_25 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_26 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_27 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_28 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_29 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_2A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_2B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_2C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_2D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_2E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_2F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_30 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_31 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_32 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_33 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_34 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_35 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_36 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_37 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_38 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_39 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_3A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_3B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_3C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_3D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_3E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_3F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "SRVAL =  000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT =  000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INITP_03 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INITP_04 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INITP_05 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INITP_06 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INITP_07 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_03 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_04 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_05 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_06 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_07 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_08 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_09 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_0A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_0B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_0C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_0D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_0E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_0F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_10 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_11 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_12 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_13 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_14 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_15 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_16 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_17 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_18 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_19 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_1A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_1B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_1C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_1D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_1E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_1F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_20 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_21 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_22 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_23 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_24 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_25 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_26 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_27 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_28 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_29 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_2A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_2B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_2C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_2D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_2E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_2F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_30 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_31 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_32 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_33 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_34 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_35 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_36 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_37 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_38 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_39 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_3A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_3B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_3C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_3D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_3E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_3F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "SRVAL =  000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT =  000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INITP_03 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INITP_04 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INITP_05 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INITP_06 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INITP_07 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_03 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_04 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_05 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_06 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_07 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_08 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_09 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_0A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_0B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_0C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_0D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_0E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_0F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_10 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_11 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_12 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_13 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_14 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_15 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_16 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_17 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_18 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_19 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_1A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_1B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_1C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_1D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_1E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_1F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_20 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_21 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_22 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_23 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_24 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_25 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_26 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_27 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_28 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_29 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_2A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_2B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_2C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_2D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_2E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_2F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_30 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_31 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_32 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_33 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_34 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_35 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_36 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_37 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_38 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_39 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_3A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_3B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_3C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_3D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_3E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_3F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "SRVAL =  000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT =  000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INITP_03 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INITP_04 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INITP_05 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INITP_06 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INITP_07 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_03 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_04 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_05 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_06 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_07 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_08 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_09 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_0A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_0B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_0C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_0D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_0E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_0F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_10 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_11 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_12 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_13 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_14 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_15 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_16 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_17 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_18 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_19 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_1A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_1B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_1C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_1D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_1E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_1F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_20 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_21 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_22 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_23 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_24 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_25 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_26 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_27 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_28 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_29 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_2A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_2B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_2C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_2D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_2E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_2F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_30 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_31 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_32 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_33 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_34 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_35 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_36 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_37 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_38 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_39 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_3A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_3B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_3C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_3D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_3E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_3F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "SRVAL =  000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <block1.ram_byte0> in unit <cache_ram>.
 Entity <cache_ram> analyzed. Unit <cache_ram> generated.
 
 Analyzing generic Entity <boot_ram> in library <work> (Architecture <logic>).
@@ -1209,7 +1508,7 @@ Entity <ddr_init> analyzed. Unit <ddr_init> generated.
 Analyzing generic Entity <ddr_ctrl> in library <work> (Architecture <logic>).
 	DDR_DLL = "DISABLE"
 	memory_size = 32
-WARNING:Xst:795 - "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd" line 328: Size of operands are different : result is <false>.
+WARNING:Xst:795 - "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/ddr_ctrl.vhd" line 328: Size of operands are different : result is <false>.
 Entity <ddr_ctrl> analyzed. Unit <ddr_ctrl> generated.
 
 
@@ -1220,7 +1519,7 @@ Entity <ddr_ctrl> analyzed. Unit <ddr_ctrl> generated.
 Performing bidirectional port resolution...
 
 Synthesizing Unit <uart>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/uart.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/uart.vhd".
     Found 4-bit down counter for signal <bits_read_reg>.
     Found 4-bit down counter for signal <bits_write_reg>.
     Found 8-bit register for signal <data_read_reg>.
@@ -1238,7 +1537,7 @@ Unit <uart> synthesized.
 
 
 Synthesizing Unit <pc_next>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pc_next.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/pc_next.vhd".
     Found 1-bit xor2 for signal <pc_inc$xor0000> created at line 559.
     Found 1-bit xor2 for signal <pc_inc$xor0001> created at line 559.
     Found 1-bit xor2 for signal <pc_inc$xor0002> created at line 559.
@@ -1275,7 +1574,7 @@ Unit <pc_next> synthesized.
 
 
 Synthesizing Unit <mem_ctrl>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/mem_ctrl.vhd".
     Found 30-bit register for signal <address_reg>.
     Found 4-bit register for signal <byte_we_reg>.
     Found 1-bit 4-to-1 multiplexer for signal <data_read_var_7$mux0000> created at line 94.
@@ -1290,7 +1589,7 @@ Unit <mem_ctrl> synthesized.
 
 
 Synthesizing Unit <control>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/control.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/control.vhd".
     Found 16x4-bit ROM for signal <mem_source_out$mux0000>.
     Found 32x2-bit ROM for signal <b_source_out$mux0000>.
     Summary:
@@ -1299,7 +1598,7 @@ Unit <control> synthesized.
 
 
 Synthesizing Unit <bus_mux>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/bus_mux.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/bus_mux.vhd".
     Found 32-bit 4-to-1 multiplexer for signal <b_out>.
     Found 1-bit 8-to-1 multiplexer for signal <take_branch>.
     Found 32-bit 4-to-1 multiplexer for signal <a_out>.
@@ -1311,7 +1610,7 @@ Unit <bus_mux> synthesized.
 
 
 Synthesizing Unit <alu>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/alu.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/alu.vhd".
     Found 32-bit xor2 for signal <c_alu$xor0000> created at line 40.
     Found 1-bit xor2 for signal <less_than$xor0000> created at line 36.
     Found 1-bit xor3 for signal <result_11$xor0000> created at line 528.
@@ -1353,7 +1652,7 @@ Unit <alu> synthesized.
 
 
 Synthesizing Unit <shifter>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/shifter.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/shifter.vhd".
     Found 32-bit 4-to-1 multiplexer for signal <c_shift>.
     Summary:
 	inferred  32 Multiplexer(s).
@@ -1361,7 +1660,7 @@ Unit <shifter> synthesized.
 
 
 Synthesizing Unit <mult>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mult.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/mult.vhd".
     Found 1-bit xor2 for signal <a_neg$xor0000> created at line 545.
     Found 1-bit xor2 for signal <a_neg$xor0001> created at line 545.
     Found 1-bit xor2 for signal <a_neg$xor0002> created at line 545.
@@ -1539,7 +1838,7 @@ Unit <mult> synthesized.
 
 
 Synthesizing Unit <pipeline>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pipeline.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/pipeline.vhd".
     Found 2-bit register for signal <shift_funcD>.
     Found 32-bit register for signal <a_busD>.
     Found 4-bit register for signal <alu_funcD>.
@@ -1558,7 +1857,7 @@ Unit <pipeline> synthesized.
 
 
 Synthesizing Unit <ddr_init>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_init.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/ddr_init.vhd".
     Using one-hot encoding for signal <init_step>.
 INFO:Xst:2117 - HDL ADVISOR - Mux Selector <init_step> of Case statement line 65 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
    	- add an 'INIT' attribute on signal <init_step> (optimization is then done without any risk)
@@ -1592,7 +1891,7 @@ Unit <ddr_init> synthesized.
 
 
 Synthesizing Unit <ddr_ctrl>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
 WARNING:Xst:647 - Input <address<26:25>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found finite state machine <FSM_0> for signal <state_prev>.
     -----------------------------------------------------------------------
@@ -1638,7 +1937,7 @@ Unit <ddr_ctrl> synthesized.
 
 
 Synthesizing Unit <clk_gen>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/clk_gen.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/clk_gen.vhd".
     Found 1-bit register for signal <clk_bufg_in>.
     Summary:
 	inferred   1 D-type flip-flop(s).
@@ -1646,13 +1945,13 @@ Unit <clk_gen> synthesized.
 
 
 Synthesizing Unit <ddr_ctrl_top>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
 WARNING:Xst:646 - Signal <address_ddr<27>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 Unit <ddr_ctrl_top> synthesized.
 
 
 Synthesizing Unit <boot_ram>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/boot_ram.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/boot_ram.vhd".
 WARNING:Xst:647 - Input <address<31:16>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:646 - Signal <block_enable<7:1>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1781 - Signal <block_do<7:1>> is used but never assigned. Tied to default value.
@@ -1665,7 +1964,7 @@ Unit <boot_ram> synthesized.
 
 
 Synthesizing Unit <reg_bank>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/reg_bank.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/reg_bank.vhd".
 WARNING:Xst:646 - Signal <no_connect> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found 1-bit register for signal <intr_enable_reg>.
     Summary:
@@ -1674,10 +1973,10 @@ Unit <reg_bank> synthesized.
 
 
 Synthesizing Unit <cache_ram>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache_ram.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/cache_ram.vhd".
 WARNING:Xst:647 - Input <address<31:16>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:646 - Signal <block_enable<7:1>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1781 - Signal <block_do<7:1>> is used but never assigned. Tied to default value.
+WARNING:Xst:646 - Signal <block_enable<7:2>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1781 - Signal <block_do<7:2>> is used but never assigned. Tied to default value.
     Found 32-bit 8-to-1 multiplexer for signal <data_read>.
     Found 3-bit register for signal <block_sel_buf>.
     Summary:
@@ -1687,7 +1986,7 @@ Unit <cache_ram> synthesized.
 
 
 Synthesizing Unit <mlite_cpu>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/mlite_cpu.vhd".
     Found 1-bit register for signal <intr_signal>.
     Found 4-bit up counter for signal <reset_reg>.
     Summary:
@@ -1697,22 +1996,23 @@ Unit <mlite_cpu> synthesized.
 
 
 Synthesizing Unit <cache>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/cache.vhd".
 WARNING:Xst:647 - Input <cpu_address<31:14>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <address_next<31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Using one-hot encoding for signal <state>.
     Using one-hot encoding for signal <state_reg>.
-    Found 8-bit comparator not equal for signal <cache_miss$cmp_ne0000> created at line 93.
+    Found 8-bit comparator not equal for signal <cache_miss$cmp_ne0000> created at line 92.
     Found 8-bit register for signal <cache_tag_reg>.
     Found 4-bit register for signal <state_reg>.
+    Found 1-bit register for signal <tag_block_sel_reg<0>>.
     Summary:
-	inferred   8 D-type flip-flop(s).
+	inferred   9 D-type flip-flop(s).
 	inferred   1 Comparator(s).
 Unit <cache> synthesized.
 
 
 Synthesizing Unit <plasma>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/plasma.vhd".
 WARNING:Xst:646 - Signal <cpu_address<1:0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found 32-bit 4-to-1 multiplexer for signal <cache_ram_data_w>.
     Found 8-bit register for signal <counter_hi_reg>.
@@ -1765,13 +2065,13 @@ Unit <plasma> synthesized.
 
 
 Synthesizing Unit <plasma_top>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma_top.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/plasma_top.vhd".
 WARNING:Xst:646 - Signal <gpio0_out<31:8>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 Unit <plasma_top> synthesized.
 
 
 Synthesizing Unit <top_ml410>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/top_ml410.vhd".
+    Related source file is "/home/pdp/APLASMA/GITHOMEPC/PLASMABRANDAH/rtl/top_ml410.vhd".
 WARNING:Xst:647 - Input <fpga_0_RS232_Uart_1_ctsN_pin> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <fpga_0_DDR_CLK_FB> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 Unit <top_ml410> synthesized.
@@ -1795,8 +2095,8 @@ Macro Statistics
  4-bit up counter                                      : 1
  7-bit updown counter                                  : 1
  8-bit up counter                                      : 1
-# Registers                                            : 219
- 1-bit register                                        : 185
+# Registers                                            : 220
+ 1-bit register                                        : 186
  10-bit register                                       : 1
  12-bit register                                       : 1
  13-bit register                                       : 4
@@ -1873,8 +2173,8 @@ Macro Statistics
  4-bit up counter                                      : 1
  7-bit updown counter                                  : 1
  8-bit up counter                                      : 1
-# Registers                                            : 706
- Flip-Flops                                            : 706
+# Registers                                            : 707
+ Flip-Flops                                            : 707
 # Comparators                                          : 6
  13-bit comparator not equal                           : 1
  32-bit comparator equal                               : 1
@@ -1905,10 +2205,13 @@ INFO:Xst:1901 - Instance block0.ram_byte3 in unit cache_ram of type RAMB16_S9 ha
 INFO:Xst:1901 - Instance block0.ram_byte2 in unit cache_ram of type RAMB16_S9 has been replaced by RAMB16
 INFO:Xst:1901 - Instance block0.ram_byte1 in unit cache_ram of type RAMB16_S9 has been replaced by RAMB16
 INFO:Xst:1901 - Instance block0.ram_byte0 in unit cache_ram of type RAMB16_S9 has been replaced by RAMB16
+INFO:Xst:1901 - Instance block1.ram_byte3 in unit cache_ram of type RAMB16_S9 has been replaced by RAMB16
+INFO:Xst:1901 - Instance block1.ram_byte2 in unit cache_ram of type RAMB16_S9 has been replaced by RAMB16
+INFO:Xst:1901 - Instance block1.ram_byte1 in unit cache_ram of type RAMB16_S9 has been replaced by RAMB16
+INFO:Xst:1901 - Instance block1.ram_byte0 in unit cache_ram of type RAMB16_S9 has been replaced by RAMB16
 INFO:Xst:1901 - Instance cache_tag1 in unit cache of type RAMB16_S9 has been replaced by RAMB16
 INFO:Xst:1901 - Instance cache_tag2 in unit cache of type RAMB16_S9 has been replaced by RAMB16
 INFO:Xst:1901 - Instance u1_plasma_top/u0_clk/DCM_BASE0 in unit top_ml410 of type DCM_BASE has been replaced by DCM_ADV
-WARNING:Xst:2170 - Unit cache : the following signal(s) form a combinatorial loop: _varindex0000<0>, cache_miss, cache_miss_or0000, cache_miss_cmp_ne0000, state<0>, tag_block_enable<1>.
 
 Optimizing unit <top_ml410> ...
 
@@ -1951,18 +2254,22 @@ Mapping all equations...
 Building and optimizing final netlist ...
 INFO:Xst:2261 - The FF/Latch <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block_sel_buf_0> in Unit <top_ml410> is equivalent to the following FF/Latch, which will be removed : <u1_plasma_top/u1_plasma/u2_boot_ram/block_sel_buf_0> 
 Found area constraint ratio of 100 (+ 5) on block top_ml410, actual ratio is 8.
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_11 has been replicated 4 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_28 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_29 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_30 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_1 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_26 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_15 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_26 has been replicated 2 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_27 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_28 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_28 has been replicated 2 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_29 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_30 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u2_ddr/u1_ddr_init/init_step_10 has been replicated 2 time(s)
-FlipFlop u1_plasma_top/u2_ddr/u1_ddr_init/init_step_5 has been replicated 2 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_30 has been replicated 2 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/a_busD_0 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/a_busD_1 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_0 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_1 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_2 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_3 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u2_ddr/u1_ddr_init/init_step_3 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u2_ddr/u1_ddr_init/wait_cnt_1 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u2_ddr/u1_ddr_init/wait_cnt_7 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u2_ddr/u2_ddr/clk_p has been replicated 3 time(s) to handle iob=true attribute.
 
 Final Macro Processing ...
@@ -1971,8 +2278,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 771
- Flip-Flops                                            : 771
+# Registers                                            : 774
+ Flip-Flops                                            : 774
 
 =========================================================================
 
@@ -2001,35 +2308,35 @@ Design Statistics
 # IOs                              : 77
 
 Cell Usage :
-# BELS                             : 3803
+# BELS                             : 4028
 #      GND                         : 1
-#      INV                         : 24
+#      INV                         : 22
 #      LUT1                        : 8
-#      LUT2                        : 175
-#      LUT2_D                      : 47
-#      LUT2_L                      : 8
-#      LUT3                        : 721
-#      LUT3_D                      : 87
-#      LUT3_L                      : 34
-#      LUT4                        : 2057
-#      LUT4_D                      : 131
-#      LUT4_L                      : 138
+#      LUT2                        : 179
+#      LUT2_D                      : 46
+#      LUT2_L                      : 11
+#      LUT3                        : 737
+#      LUT3_D                      : 116
+#      LUT3_L                      : 54
+#      LUT4                        : 2065
+#      LUT4_D                      : 182
+#      LUT4_L                      : 187
 #      MUXCY                       : 39
-#      MUXF5                       : 314
+#      MUXF5                       : 362
 #      VCC                         : 1
 #      XORCY                       : 18
-# FlipFlops/Latches                : 771
+# FlipFlops/Latches                : 774
 #      FD                          : 5
-#      FDC                         : 241
+#      FDC                         : 243
 #      FDC_1                       : 39
 #      FDCE                        : 369
 #      FDCE_1                      : 18
-#      FDE                         : 88
+#      FDE                         : 89
 #      FDP                         : 2
 #      FDPE                        : 9
-# RAMS                             : 138
+# RAMS                             : 142
 #      RAM16X1D                    : 128
-#      RAMB16                      : 10
+#      RAMB16                      : 14
 # Clock Buffers                    : 3
 #      BUFG                        : 3
 # IO Buffers                       : 75
@@ -2046,16 +2353,16 @@ Device utilization summary:
 
 Selected Device : 4vfx60ff1152-11 
 
- Number of Slices:                     2047  out of  25280     8%  
- Number of Slice Flip Flops:            768  out of  50560     1%  
- Number of 4 input LUTs:               3686  out of  50560     7%  
-    Number used as logic:              3430
+ Number of Slices:                     2140  out of  25280     8%  
+ Number of Slice Flip Flops:            771  out of  50560     1%  
+ Number of 4 input LUTs:               3863  out of  50560     7%  
+    Number used as logic:              3607
     Number used as RAMs:                256
  Number of IOs:                          77
  Number of bonded IOBs:                  75  out of    576    13%  
     IOB Flip Flops:                       3
- Number of FIFO16/RAMB16s:               10  out of    232     4%  
-    Number used as RAMB16s:              10
+ Number of FIFO16/RAMB16s:               14  out of    232     6%  
+    Number used as RAMB16s:              14
  Number of GCLKs:                         3  out of     32     9%  
  Number of DCM_ADVs:                      1  out of     12     8%  
 
@@ -2081,7 +2388,7 @@ Clock Information:
 Clock Signal                       | Clock buffer(FF name)               | Load  |
 -----------------------------------+-------------------------------------+-------+
 sys_clk_pin                        | u1_plasma_top/u0_clk/DCM_BASE0:CLKFX| 97    |
-u1_plasma_top/u0_clk/clk_bufg_in   | BUFG                                | 812   |
+u1_plasma_top/u0_clk/clk_bufg_in   | BUFG                                | 819   |
 -----------------------------------+-------------------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -2089,9 +2396,9 @@ Asynchronous Control Signals Information:
 -----------------------------------------------------------------------------------+----------------------------------------------------------+-------+
 Control Signal                                                                     | Buffer(FF name)                                          | Load  |
 -----------------------------------------------------------------------------------+----------------------------------------------------------+-------+
-u1_plasma_top/u1_plasma/u1_cpu/reset(u1_plasma_top/u1_plasma/u1_cpu/reset_or0000:O)| NONE(u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_reg_10)| 394   |
+u1_plasma_top/u1_plasma/u1_cpu/reset(u1_plasma_top/u1_plasma/u1_cpu/reset_or0000:O)| NONE(u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_reg_10)| 397   |
 u1_plasma_top/reset_cpu(u1_plasma_top/reset_cpu1:O)                                | NONE(u1_plasma_top/u1_plasma/counter_hi_reg_32)          | 175   |
-u1_plasma_top/reset(u1_plasma_top/reset1:O)                                        | NONE(u1_plasma_top/u2_ddr/u1_ddr_init/init_step_0)       | 108   |
+u1_plasma_top/reset(u1_plasma_top/reset1:O)                                        | NONE(u1_plasma_top/u2_ddr/u1_ddr_init/init_step_0)       | 107   |
 u1_plasma_top/reset_in(u1_plasma_top/reset_in1_INV_0:O)                            | NONE(u1_plasma_top/u0_clk/clk_bufg_in)                   | 1     |
 -----------------------------------------------------------------------------------+----------------------------------------------------------+-------+
 
@@ -2099,9 +2406,9 @@ Timing Summary:
 ---------------
 Speed Grade: -11
 
-   Minimum period: 16.389ns (Maximum Frequency: 61.017MHz)
-   Minimum input arrival time before clock: 11.313ns
-   Maximum output required time after clock: 11.474ns
+   Minimum period: 12.177ns (Maximum Frequency: 82.122MHz)
+   Minimum input arrival time before clock: 10.987ns
+   Maximum output required time after clock: 11.925ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -2133,57 +2440,59 @@ Delay:               2.491ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Clock period: 16.389ns (frequency: 61.017MHz)
-  Total number of paths / destination ports: 205890381 / 2619
+  Clock period: 12.177ns (frequency: 82.122MHz)
+  Total number of paths / destination ports: 119304727 / 2717
 -------------------------------------------------------------------------
-Delay:               16.389ns (Levels of Logic = 27)
-  Source:            u1_plasma_top/u2_ddr/u1_ddr_init/init_step_7 (FF)
-  Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block0.ram_byte0 (RAM)
+Delay:               12.177ns (Levels of Logic = 29)
+  Source:            u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_3 (FF)
+  Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1 (RAM)
   Source Clock:      u1_plasma_top/u0_clk/clk_bufg_in rising
   Destination Clock: u1_plasma_top/u0_clk/clk_bufg_in rising
 
-  Data Path: u1_plasma_top/u2_ddr/u1_ddr_init/init_step_7 to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block0.ram_byte0
+  Data Path: u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_3 to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCE:C->Q             4   0.307   0.650  u1_plasma_top/u2_ddr/u1_ddr_init/init_step_7 (u1_plasma_top/u2_ddr/u1_ddr_init/init_step_7)
-     LUT4:I0->O            2   0.166   0.467  u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>19_1 (u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>191)
-     LUT4:I3->O           13   0.166   0.597  u1_plasma_top/u2_ddr/u1_ddr_init/initiating1_1 (u1_plasma_top/u2_ddr/u1_ddr_init/initiating1)
-     LUT4:I3->O           16   0.166   0.655  u1_plasma_top/u2_ddr/address_ddr<10>1 (fpga_0_DDR_SDRAM_32Mx64_DDR_BankAddr_pin_0_OBUF)
-     LUT3:I2->O            1   0.166   0.505  u1_plasma_top/u2_ddr/u2_ddr/Mmux_address_row_mux0000_2_f5_3 (u1_plasma_top/u2_ddr/u2_ddr/address_row_mux0000<1>)
-     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<0> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<0>)
-     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<0> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<0>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<1> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<1>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<3> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<3>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<4> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<4>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<5> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<5>)
-     MUXCY:CI->O           8   0.315   0.526  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6>)
-     LUT4:I3->O           15   0.166   0.653  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<0>50 (fpga_0_DDR_SDRAM_32Mx64_DDR_WEn_pin_OBUF)
-     LUT4:I3->O           12   0.166   0.644  u1_plasma_top/u2_ddr/u2_ddr/pause_and000039 (u1_plasma_top/pause)
-     LUT4_D:I2->LO         1   0.166   0.192  u1_plasma_top/u1_plasma/cpu_pause19 (N2075)
-     LUT3:I1->O           15   0.166   0.653  u1_plasma_top/u1_plasma/u1_cpu/pause_non_ctrl1 (u1_plasma_top/u1_plasma/u1_cpu/pause_non_ctrl)
-     LUT3_D:I2->O          2   0.166   0.467  u1_plasma_top/u1_plasma/u1_cpu/pause_any11_1 (u1_plasma_top/u1_plasma/u1_cpu/pause_any11)
-     LUT4_D:I3->O          1   0.166   0.638  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<11>10 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<11>10)
-     LUT4:I0->O            1   0.166   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<11>4 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<11>4)
-     LUT4:I3->O            5   0.166   0.472  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<11>16 (u1_plasma_top/u1_plasma/address_next<13>)
-     LUT3:I2->O           11   0.166   0.715  u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_block_sel_0_mux00001 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_block_enable<1>)
-     LUT3:I0->O            2   0.166   0.467  u1_plasma_top/u1_plasma/opt_cache2.u_cache/_varindex0000<0>1 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/_varindex0000<0>)
-     LUT4:I3->O            1   0.166   0.452  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss_or000010 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss_or000010)
-     LUT4:I3->O            1   0.166   0.593  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss_or000067 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss_or000067)
-     LUT3_D:I0->LO         1   0.166   0.192  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss_or0000196 (N2088)
-     LUT3:I1->O           42   0.166   0.980  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss1 (u1_plasma_top/no_ddr_stop)
-     LUT4:I3->O            4   0.166   0.325  u1_plasma_top/u1_plasma/cache_ram_byte_we<2>1 (u1_plasma_top/u1_plasma/cache_ram_byte_we<2>)
-     RAMB16:WEA0               0.650          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block0.ram_byte2
+     FDCE:C->Q            19   0.307   0.803  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_3 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_3)
+     LUT4:I1->O            3   0.166   0.518  u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000_SW0_SW0 (N678)
+     LUT4_D:I2->O          4   0.166   0.517  u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000_1 (u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000)
+     LUT4_D:I2->O          4   0.166   0.517  u1_plasma_top/u1_plasma/u1_cpu/u3_control/rs_index<3> (u1_plasma_top/u1_plasma/u1_cpu/rs_index<3>)
+     LUT4:I2->O           13   0.166   0.458  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/addr_read1<3>1_1 (u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/addr_read1<3>1)
+     RAM16X1D:DPRA3->DPO    2   0.165   0.653  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_loop[3].reg_bit1b (u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/data_out1B<3>)
+     LUT4:I0->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<3>_F (N2455)
+     MUXF5:I0->O           2   0.325   0.520  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<3> (u1_plasma_top/u1_plasma/u1_cpu/reg_source<3>)
+     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_lut<1> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_lut<1>)
+     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<1> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<1>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<2> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<2>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<3> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<3>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<4> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<4>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<5> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<5>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<6> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<6>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<7> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<7>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<8> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<8>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<9> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<9>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<10> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<10>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<11> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<11>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<12> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<12>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<13> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<13>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<14> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<14>)
+     MUXCY:CI->O          19   0.315   0.715  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<15> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<15>)
+     LUT4:I2->O           11   0.166   0.435  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<12>34 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N48)
+     MUXF5:S->O            1   0.449   0.452  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<25>51_SW0 (N797)
+     LUT4:I3->O            4   0.166   0.464  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000019 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000019)
+     LUT4:I3->O            1   0.166   0.452  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000152_SW0_SW0_SW0_SW2 (N1332)
+     LUT4_D:I3->O          1   0.166   0.505  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000203_SW7 (N1011)
+     LUT4:I2->O            4   0.166   0.325  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<0>2 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<0>)
+     RAMB16:WEA0               0.650          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1
     ----------------------------------------
-    Total                     16.389ns (5.094ns logic, 11.295ns route)
-                                       (31.1% logic, 68.9% route)
+    Total                     12.177ns (4.843ns logic, 7.334ns route)
+                                       (39.8% logic, 60.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'sys_clk_pin'
   Total number of paths / destination ports: 68 / 68
 -------------------------------------------------------------------------
-Offset:              4.173ns (Levels of Logic = 3)
+Offset:              4.186ns (Levels of Logic = 3)
   Source:            sys_rst_pin (PAD)
   Destination:       u1_plasma_top/u2_ddr/u2_ddr/data_read_29 (FF)
   Destination Clock: sys_clk_pin rising 0.8X
@@ -2192,43 +2501,44 @@ Offset:              4.173ns (Levels of Logic = 3)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             9   0.867   0.600  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
-     LUT2:I0->O          110   0.166   1.397  u1_plasma_top/reset1 (u1_plasma_top/reset)
+     IBUF:I->O            10   0.867   0.616  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
+     LUT2:I0->O          109   0.166   1.394  u1_plasma_top/reset1 (u1_plasma_top/reset)
      LUT4:I0->O           16   0.166   0.516  u1_plasma_top/u2_ddr/u2_ddr/data_read_29_and00001 (u1_plasma_top/u2_ddr/u2_ddr/data_read_29_and0000)
      FDE:CE                    0.461          u1_plasma_top/u2_ddr/u2_ddr/data_read_29
     ----------------------------------------
-    Total                      4.173ns (1.660ns logic, 2.513ns route)
-                                       (39.8% logic, 60.2% route)
+    Total                      4.186ns (1.660ns logic, 2.526ns route)
+                                       (39.7% logic, 60.3% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Total number of paths / destination ports: 2711 / 310
+  Total number of paths / destination ports: 5119 / 396
 -------------------------------------------------------------------------
-Offset:              11.313ns (Levels of Logic = 12)
+Offset:              10.987ns (Levels of Logic = 13)
   Source:            sys_rst_pin (PAD)
-  Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block0.ram_byte0 (RAM)
+  Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block1.ram_byte0 (RAM)
   Destination Clock: u1_plasma_top/u0_clk/clk_bufg_in rising
 
-  Data Path: sys_rst_pin to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block0.ram_byte0
+  Data Path: sys_rst_pin to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block1.ram_byte0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             9   0.867   0.688  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
-     LUT4_L:I1->LO         1   0.166   0.192  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N148)
-     LUT4:I2->O          415   0.166   2.301  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
-     LUT2:I0->O            1   0.166   0.593  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<11>1 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<11>1)
-     LUT4:I1->O            5   0.166   0.472  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<11>16 (u1_plasma_top/u1_plasma/address_next<13>)
-     LUT3:I2->O           11   0.166   0.715  u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_block_sel_0_mux00001 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_block_enable<1>)
-     LUT3:I0->O            2   0.166   0.467  u1_plasma_top/u1_plasma/opt_cache2.u_cache/_varindex0000<0>1 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/_varindex0000<0>)
-     LUT4:I3->O            1   0.166   0.452  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss_or000010 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss_or000010)
-     LUT4:I3->O            1   0.166   0.593  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss_or000067 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss_or000067)
-     LUT3_D:I0->LO         1   0.166   0.192  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss_or0000196 (N2088)
-     LUT3:I1->O           42   0.166   0.980  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss1 (u1_plasma_top/no_ddr_stop)
-     LUT4:I3->O            4   0.166   0.325  u1_plasma_top/u1_plasma/cache_ram_byte_we<2>1 (u1_plasma_top/u1_plasma/cache_ram_byte_we<2>)
-     RAMB16:WEA0               0.650          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block0.ram_byte2
+     IBUF:I->O            10   0.867   0.704  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
+     LUT4_L:I1->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N151)
+     LUT4:I3->O          422   0.166   2.272  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
+     LUT4:I3->O            3   0.166   0.518  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW1 (N1162)
+     LUT4_D:I2->O          1   0.166   0.452  u1_plasma_top/u1_plasma/cpu_pause_SW0_SW0 (N1471)
+     LUT4:I3->O            1   0.166   0.505  u1_plasma_top/u1_plasma/cpu_pause_SW6 (N1461)
+     LUT4:I2->O            1   0.166   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<20>1 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<20>1)
+     LUT4:I3->O            1   0.166   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<20>16_SW0 (N490)
+     LUT4:I3->O            2   0.166   0.520  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<20>16 (u1_plasma_top/u1_plasma/address_next<22>)
+     LUT4_L:I2->LO         1   0.166   0.280  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000098_SW0_SW0_SW0 (N1257)
+     LUT4:I1->O           15   0.166   0.653  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000116 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000116)
+     LUT4_D:I3->O         15   0.166   0.653  u1_plasma_top/u1_plasma/Mmux_cache_ram_data_w1011 (u1_plasma_top/u1_plasma/N0)
+     LUT3:I2->O            2   0.166   0.328  u1_plasma_top/u1_plasma/Mmux_cache_ram_data_w221 (u1_plasma_top/u1_plasma/cache_ram_data_w<19>)
+     RAMB16:DIA3               0.200          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block1.ram_byte2
     ----------------------------------------
-    Total                     11.313ns (3.343ns logic, 7.970ns route)
-                                       (29.6% logic, 70.4% route)
+    Total                     10.987ns (3.059ns logic, 7.928ns route)
+                                       (27.8% logic, 72.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'sys_clk_pin'
@@ -2252,50 +2562,49 @@ Offset:              4.839ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Total number of paths / destination ports: 64168 / 49
+  Total number of paths / destination ports: 65376 / 49
 -------------------------------------------------------------------------
-Offset:              11.474ns (Levels of Logic = 16)
-  Source:            u1_plasma_top/u2_ddr/u1_ddr_init/init_step_7 (FF)
-  Destination:       fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<12> (PAD)
+Offset:              11.925ns (Levels of Logic = 15)
+  Source:            u1_plasma_top/u2_ddr/u1_ddr_init/init_step_9 (FF)
+  Destination:       fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<7> (PAD)
   Source Clock:      u1_plasma_top/u0_clk/clk_bufg_in rising
 
-  Data Path: u1_plasma_top/u2_ddr/u1_ddr_init/init_step_7 to fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<12>
+  Data Path: u1_plasma_top/u2_ddr/u1_ddr_init/init_step_9 to fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<7>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCE:C->Q             4   0.307   0.650  u1_plasma_top/u2_ddr/u1_ddr_init/init_step_7 (u1_plasma_top/u2_ddr/u1_ddr_init/init_step_7)
-     LUT4:I0->O            2   0.166   0.467  u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>19_1 (u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>191)
-     LUT4:I3->O           13   0.166   0.597  u1_plasma_top/u2_ddr/u1_ddr_init/initiating1_1 (u1_plasma_top/u2_ddr/u1_ddr_init/initiating1)
-     LUT4:I3->O           16   0.166   0.655  u1_plasma_top/u2_ddr/address_ddr<10>1 (fpga_0_DDR_SDRAM_32Mx64_DDR_BankAddr_pin_0_OBUF)
-     LUT3:I2->O            1   0.166   0.505  u1_plasma_top/u2_ddr/u2_ddr/Mmux_address_row_mux0000_2_f5_3 (u1_plasma_top/u2_ddr/u2_ddr/address_row_mux0000<1>)
-     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<0> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<0>)
-     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<0> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<0>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<1> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<1>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2>)
+     FDCE:C->Q             4   0.307   0.650  u1_plasma_top/u2_ddr/u1_ddr_init/init_step_9 (u1_plasma_top/u2_ddr/u1_ddr_init/init_step_9)
+     LUT4_D:I0->O          6   0.166   0.484  u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>14 (u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>14)
+     LUT4:I3->O           14   0.166   0.620  u1_plasma_top/u2_ddr/u1_ddr_init/initiating1_1 (u1_plasma_top/u2_ddr/u1_ddr_init/initiating1)
+     LUT4:I3->O           11   0.166   0.435  u1_plasma_top/u2_ddr/address_ddr<10>1 (fpga_0_DDR_SDRAM_32Mx64_DDR_BankAddr_pin_0_OBUF)
+     MUXF5:S->O            1   0.449   0.505  u1_plasma_top/u2_ddr/u2_ddr/Mmux_address_row_mux0000_2_f5_7 (u1_plasma_top/u2_ddr/u2_ddr/address_row_mux0000<5>)
+     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<2> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<2>)
+     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2>)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<3> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<3>)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<4> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<4>)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<5> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<5>)
-     MUXCY:CI->O           8   0.315   0.526  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6>)
-     LUT4:I3->O           23   0.166   0.924  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<1>79 (fpga_0_DDR_SDRAM_32Mx64_DDR_CASn_pin_OBUF)
-     LUT3:I0->O           17   0.166   0.784  u1_plasma_top/u2_ddr/u2_ddr/address_row_0_and000021 (N22)
-     LUT4:I1->O            1   0.166   0.313  u1_plasma_top/u2_ddr/u2_ddr/SD_A<9>1 (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_9_OBUF)
-     OBUF:I->O                 3.601          fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_9_OBUF (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<9>)
+     MUXCY:CI->O           7   0.315   0.501  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6>)
+     LUT4:I3->O           21   0.166   0.896  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<1>79 (fpga_0_DDR_SDRAM_32Mx64_DDR_CASn_pin_OBUF)
+     LUT3:I0->O           17   0.166   0.643  u1_plasma_top/u2_ddr/u2_ddr/address_row_0_and000021 (N22)
+     LUT3:I2->O            1   0.166   0.452  u1_plasma_top/u2_ddr/u2_ddr/SD_A<7>_SW1 (N1881)
+     LUT4:I3->O            1   0.166   0.313  u1_plasma_top/u2_ddr/u2_ddr/SD_A<7> (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_7_OBUF)
+     OBUF:I->O                 3.601          fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_7_OBUF (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<7>)
     ----------------------------------------
-    Total                     11.474ns (6.053ns logic, 5.421ns route)
-                                       (52.8% logic, 47.2% route)
+    Total                     11.925ns (6.426ns logic, 5.499ns route)
+                                       (53.9% logic, 46.1% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 207.00 secs
-Total CPU time to Xst completion: 109.34 secs
+Total REAL time to Xst completion: 310.00 secs
+Total CPU time to Xst completion: 128.66 secs
  
 --> 
 
 
-Total memory usage is 661672 kilobytes
+Total memory usage is 667044 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   23 (   0 filtered)
-Number of infos    :   19 (   0 filtered)
+Number of warnings :   22 (   0 filtered)
+Number of infos    :   23 (   0 filtered)
 

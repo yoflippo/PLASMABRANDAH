@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-ubuntu::  Wed May 17 02:31:35 2017
+ubuntu::  Wed May 31 17:50:12 2017
 
 par -w -intstyle ise -ol high -t 1 top_ml410_map.ncd top_ml410.ncd
 top_ml410.pcf 
@@ -16,140 +16,140 @@ parts you will be using. This will allow the tools to take advantage of any avai
 enhancements for this device. The latest stepping level for this device is '1'. Additional information on "stepping
 level" is available at support.xilinx.com.
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_29_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1542)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1573)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_10_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1543)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1574)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_11_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1544)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1575)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_12_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1545)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1576)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_13_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1546)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1577)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_0_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1547)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1578)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_14_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1548)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1579)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_1_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1549)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1580)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_20_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1550)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1581)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_15_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1551)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1582)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_2_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1552)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1583)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_21_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1553)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1584)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_16_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1554)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1585)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_17_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1555)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1586)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_3_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1556)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1587)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_22_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1557)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1588)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_4_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1558)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1589)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_23_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1559)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1590)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_18_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1560)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1591)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_5_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1561)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1592)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_19_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1562)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1593)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_24_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1563)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1594)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_6_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1564)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1595)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_30_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1565)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1596)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_25_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1566)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1597)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_7_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1567)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1598)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_26_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1568)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1599)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_31_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1569)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1600)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_8_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1570)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1601)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_27_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1571)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1602)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_9_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1572)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1603)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_28_pins<3>" TIG = TS_clk;>
-   [top_ml410.pcf(1573)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1604)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_29_and00001_pins<4>" TIG = TS_clk;>
-   [top_ml410.pcf(1574)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1605)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 WARNING:ConstraintSystem:67 - Constraint <PIN "u1_plasma_top/u2_ddr/u2_ddr/data_read_10_and00001_pins<4>" TIG = TS_clk;>
-   [top_ml410.pcf(1575)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
-   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1473)].
+   [top_ml410.pcf(1606)] modifies the effective value of constraint <TS_clk = PERIOD TIMEGRP "clk"
+   TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE         0.31 ns HIGH 50%;> [top_ml410.pcf(1504)].
 
 
 Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000 Celsius)
@@ -167,8 +167,8 @@ Device Utilization Summary:
       Number of LOCed IOBs                  77 out of 77    100%
 
    Number of OLOGICs                        23 out of 576     3%
-   Number of RAMB16s                        10 out of 232     4%
-   Number of Slices                       1974 out of 25280   7%
+   Number of RAMB16s                        14 out of 232     6%
+   Number of Slices                       2072 out of 25280   8%
       Number of SLICEMs                    135 out of 12640   1%
 
 
@@ -180,64 +180,64 @@ Router effort level (-rl):    High
 
 INFO:Timing:3386 - Intersecting Constraints found and resolved.  For more information, see the TSI report.  Please
    consult the Xilinx Command Line Tools User Guide for information on generating a TSI report.
-Starting initial Timing Analysis.  REAL time: 29 secs 
-Finished initial Timing Analysis.  REAL time: 31 secs 
+Starting initial Timing Analysis.  REAL time: 34 secs 
+Finished initial Timing Analysis.  REAL time: 36 secs 
 
 WARNING:Par:288 - The signal fpga_0_RS232_Uart_1_ctsN_pin_IBUF has no load.  PAR will not attempt to route this signal.
 WARNING:Par:288 - The signal fpga_0_DDR_CLK_FB_IBUF has no load.  PAR will not attempt to route this signal.
 
 Starting Placer
-Total REAL time at the beginning of Placer: 31 secs 
-Total CPU  time at the beginning of Placer: 16 secs 
+Total REAL time at the beginning of Placer: 37 secs 
+Total CPU  time at the beginning of Placer: 13 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:eeb17e63) REAL time: 34 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:eeb4d73a) REAL time: 39 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:eeb17e63) REAL time: 34 secs 
+Phase 2.7  Design Feasibility Check (Checksum:eeb4d73a) REAL time: 40 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:9d57bdd3) REAL time: 34 secs 
+Phase 3.31  Local Placement Optimization (Checksum:9d5b16aa) REAL time: 40 secs 
 
 Phase 4.2  Initial Clock and IO Placement
 
-Phase 4.2  Initial Clock and IO Placement (Checksum:eaf23705) REAL time: 37 secs 
+Phase 4.2  Initial Clock and IO Placement (Checksum:eaf58fdc) REAL time: 43 secs 
 
 Phase 5.36  Local Placement Optimization
-Phase 5.36  Local Placement Optimization (Checksum:eaf23705) REAL time: 37 secs 
+Phase 5.36  Local Placement Optimization (Checksum:eaf58fdc) REAL time: 43 secs 
 
 Phase 6.30  Global Clock Region Assignment
-Phase 6.30  Global Clock Region Assignment (Checksum:eaf23705) REAL time: 37 secs 
+Phase 6.30  Global Clock Region Assignment (Checksum:eaf58fdc) REAL time: 43 secs 
 
 Phase 7.3  Local Placement Optimization
-Phase 7.3  Local Placement Optimization (Checksum:eaf23705) REAL time: 37 secs 
+Phase 7.3  Local Placement Optimization (Checksum:eaf58fdc) REAL time: 43 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:eaf23705) REAL time: 38 secs 
+Phase 8.5  Local Placement Optimization (Checksum:eaf58fdc) REAL time: 43 secs 
 
 Phase 9.8  Global Placement
-.................................................................
-....................................................................................
-.....................................................................................................................................
-..........................................................................................................................................................
+.......................................
+...................................................................................
+..............................................................................
+........................................................................................................................
 ..................................................................
-...................................................................
-Phase 9.8  Global Placement (Checksum:18517c8e) REAL time: 1 mins 39 secs 
+...........................................................................................
+Phase 9.8  Global Placement (Checksum:cda85a53) REAL time: 1 mins 49 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:18517c8e) REAL time: 1 mins 39 secs 
+Phase 10.5  Local Placement Optimization (Checksum:cda85a53) REAL time: 1 mins 50 secs 
 
 Phase 11.18  Placement Optimization
-Phase 11.18  Placement Optimization (Checksum:f0d0dda7) REAL time: 2 mins 53 secs 
+Phase 11.18  Placement Optimization (Checksum:e4f84d6d) REAL time: 2 mins 56 secs 
 
 Phase 12.5  Local Placement Optimization
-Phase 12.5  Local Placement Optimization (Checksum:f0d0dda7) REAL time: 2 mins 54 secs 
+Phase 12.5  Local Placement Optimization (Checksum:e4f84d6d) REAL time: 2 mins 56 secs 
 
 Phase 13.34  Placement Validation
-Phase 13.34  Placement Validation (Checksum:f0d0dda7) REAL time: 2 mins 54 secs 
+Phase 13.34  Placement Validation (Checksum:e4f84d6d) REAL time: 2 mins 57 secs 
 
-Total REAL time to Placer completion: 2 mins 56 secs 
-Total CPU  time to Placer completion: 1 mins 33 secs 
+Total REAL time to Placer completion: 2 mins 58 secs 
+Total CPU  time to Placer completion: 1 mins 15 secs 
 Writing design to file top_ml410.ncd
 
 
@@ -245,29 +245,29 @@ Writing design to file top_ml410.ncd
 Starting Router
 
 
-Phase  1  : 16175 unrouted;      REAL time: 3 mins 2 secs 
+Phase  1  : 17001 unrouted;      REAL time: 3 mins 4 secs 
 
-Phase  2  : 15295 unrouted;      REAL time: 3 mins 2 secs 
+Phase  2  : 16091 unrouted;      REAL time: 3 mins 5 secs 
 
-Phase  3  : 6786 unrouted;      REAL time: 3 mins 11 secs 
+Phase  3  : 6877 unrouted;      REAL time: 3 mins 14 secs 
 
-Phase  4  : 6786 unrouted; (Setup:0, Hold:808, Component Switching Limit:0)     REAL time: 3 mins 24 secs 
+Phase  4  : 6868 unrouted; (Setup:0, Hold:500, Component Switching Limit:0)     REAL time: 3 mins 30 secs 
 
 Updating file: top_ml410.ncd with current fully routed design.
 
-Phase  5  : 0 unrouted; (Setup:0, Hold:634, Component Switching Limit:0)     REAL time: 3 mins 51 secs 
+Phase  5  : 0 unrouted; (Setup:0, Hold:311, Component Switching Limit:0)     REAL time: 3 mins 52 secs 
 
-Phase  6  : 0 unrouted; (Setup:0, Hold:634, Component Switching Limit:0)     REAL time: 3 mins 51 secs 
+Phase  6  : 0 unrouted; (Setup:0, Hold:311, Component Switching Limit:0)     REAL time: 3 mins 52 secs 
 
-Phase  7  : 0 unrouted; (Setup:0, Hold:634, Component Switching Limit:0)     REAL time: 3 mins 51 secs 
+Phase  7  : 0 unrouted; (Setup:0, Hold:311, Component Switching Limit:0)     REAL time: 3 mins 52 secs 
 
-Phase  8  : 0 unrouted; (Setup:0, Hold:634, Component Switching Limit:0)     REAL time: 3 mins 51 secs 
+Phase  8  : 0 unrouted; (Setup:0, Hold:311, Component Switching Limit:0)     REAL time: 3 mins 52 secs 
 
-Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 mins 53 secs 
+Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 mins 54 secs 
 
-Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 mins 1 secs 
-Total REAL time to Router completion: 4 mins 1 secs 
-Total CPU time to Router completion: 2 mins 7 secs 
+Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 mins 58 secs 
+Total REAL time to Router completion: 3 mins 58 secs 
+Total CPU time to Router completion: 1 mins 41 secs 
 
 Partition Implementation Status
 -------------------------------
@@ -286,57 +286,57 @@ Generating Clock Report
 |        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
 +---------------------+--------------+------+------+------------+-------------+
 |u1_plasma_top/clk_2x |              |      |      |            |             |
-|                     |BUFGCTRL_X0Y30| No   |   64 |  0.523     |  2.940      |
+|                     |BUFGCTRL_X0Y30| No   |   63 |  0.523     |  2.940      |
 +---------------------+--------------+------+------+------------+-------------+
-|   u1_plasma_top/clk | BUFGCTRL_X0Y0| No   |  695 |  0.666     |  2.976      |
-+---------------------+--------------+------+------+------------+-------------+
-|DCM_AUTOCALIBRATION_ |              |      |      |            |             |
-|u1_plasma_top/u0_clk |              |      |      |            |             |
-|/DCM_BASE0/u1_plasma |              |      |      |            |             |
-|_top/u0_clk/DCM_BASE |              |      |      |            |             |
-|            0/CLKOUT |         Local|      |    6 |  0.152     |  0.804      |
+|   u1_plasma_top/clk | BUFGCTRL_X0Y0| No   |  712 |  0.770     |  3.067      |
 +---------------------+--------------+------+------+------------+-------------+
 |DCM_AUTOCALIBRATION_ |              |      |      |            |             |
 |u1_plasma_top/u0_clk |              |      |      |            |             |
 |/DCM_BASE0/u1_plasma |              |      |      |            |             |
 |_top/u0_clk/DCM_BASE |              |      |      |            |             |
-|         0/cd/CLK<1> |         Local|      |    2 |  0.000     |  0.782      |
+|            0/CLKOUT |         Local|      |    6 |  0.012     |  0.639      |
 +---------------------+--------------+------+------+------------+-------------+
 |DCM_AUTOCALIBRATION_ |              |      |      |            |             |
 |u1_plasma_top/u0_clk |              |      |      |            |             |
 |/DCM_BASE0/u1_plasma |              |      |      |            |             |
 |_top/u0_clk/DCM_BASE |              |      |      |            |             |
-|           0/FASTCLK |         Local|      |    3 |  0.000     |  0.798      |
+|         0/cd/CLK<1> |         Local|      |    2 |  0.000     |  0.591      |
 +---------------------+--------------+------+------+------------+-------------+
 |DCM_AUTOCALIBRATION_ |              |      |      |            |             |
 |u1_plasma_top/u0_clk |              |      |      |            |             |
 |/DCM_BASE0/u1_plasma |              |      |      |            |             |
 |_top/u0_clk/DCM_BASE |              |      |      |            |             |
-|         0/cd/CLK<2> |         Local|      |    2 |  0.000     |  0.751      |
+|           0/FASTCLK |         Local|      |    3 |  0.000     |  0.433      |
 +---------------------+--------------+------+------+------------+-------------+
 |DCM_AUTOCALIBRATION_ |              |      |      |            |             |
 |u1_plasma_top/u0_clk |              |      |      |            |             |
 |/DCM_BASE0/u1_plasma |              |      |      |            |             |
 |_top/u0_clk/DCM_BASE |              |      |      |            |             |
-|         0/cd/CLK<3> |         Local|      |    2 |  0.000     |  0.817      |
+|         0/cd/CLK<2> |         Local|      |    2 |  0.000     |  0.423      |
 +---------------------+--------------+------+------+------------+-------------+
 |DCM_AUTOCALIBRATION_ |              |      |      |            |             |
 |u1_plasma_top/u0_clk |              |      |      |            |             |
 |/DCM_BASE0/u1_plasma |              |      |      |            |             |
 |_top/u0_clk/DCM_BASE |              |      |      |            |             |
-|         0/cd/CLK<4> |         Local|      |    2 |  0.000     |  0.834      |
+|         0/cd/CLK<3> |         Local|      |    2 |  0.000     |  0.590      |
 +---------------------+--------------+------+------+------------+-------------+
 |DCM_AUTOCALIBRATION_ |              |      |      |            |             |
 |u1_plasma_top/u0_clk |              |      |      |            |             |
 |/DCM_BASE0/u1_plasma |              |      |      |            |             |
 |_top/u0_clk/DCM_BASE |              |      |      |            |             |
-|         0/cd/CLK<5> |         Local|      |    2 |  0.000     |  0.773      |
+|         0/cd/CLK<4> |         Local|      |    2 |  0.000     |  0.638      |
 +---------------------+--------------+------+------+------------+-------------+
 |DCM_AUTOCALIBRATION_ |              |      |      |            |             |
 |u1_plasma_top/u0_clk |              |      |      |            |             |
 |/DCM_BASE0/u1_plasma |              |      |      |            |             |
 |_top/u0_clk/DCM_BASE |              |      |      |            |             |
-|         0/cd/CLK<6> |         Local|      |    2 |  0.000     |  0.612      |
+|         0/cd/CLK<5> |         Local|      |    2 |  0.000     |  0.582      |
++---------------------+--------------+------+------+------------+-------------+
+|DCM_AUTOCALIBRATION_ |              |      |      |            |             |
+|u1_plasma_top/u0_clk |              |      |      |            |             |
+|/DCM_BASE0/u1_plasma |              |      |      |            |             |
+|_top/u0_clk/DCM_BASE |              |      |      |            |             |
+|         0/cd/CLK<6> |         Local|      |    2 |  0.000     |  0.431      |
 +---------------------+--------------+------+------+------------+-------------+
 
 * Net Skew is the difference between the minimum and maximum routing
@@ -358,17 +358,17 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  TS_clk = PERIOD TIMEGRP "clk" TS_u1_plasm | SETUP       |     0.600ns|    24.062ns|       0|           0
+  TS_clk = PERIOD TIMEGRP "clk" TS_u1_plasm | SETUP       |     0.270ns|    24.993ns|       0|           0
   a_top_u0_clk_clk_2x_bufg_in * 2 PHASE     | HOLD        |     0.410ns|            |       0|           0
        0.31 ns HIGH 50%                     |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  TS_board_clk = PERIOD TIMEGRP "board_clk" | MINPERIOD   |     3.334ns|     6.666ns|       0|           0
-   10 ns HIGH 50%                           |             |            |            |        |            
-----------------------------------------------------------------------------------------------------------
-  TS_u1_plasma_top_u0_clk_clk_2x_bufg_in =  | SETUP       |     3.731ns|     5.669ns|       0|           0
-  PERIOD TIMEGRP         "u1_plasma_top_u0_ | HOLD        |     1.155ns|            |       0|           0
+  TS_u1_plasma_top_u0_clk_clk_2x_bufg_in =  | SETUP       |     3.309ns|     5.670ns|       0|           0
+  PERIOD TIMEGRP         "u1_plasma_top_u0_ | HOLD        |     1.361ns|            |       0|           0
   clk_clk_2x_bufg_in" TS_board_clk / 0.7916 |             |            |            |        |            
   66667 HIGH         50%                    |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  TS_board_clk = PERIOD TIMEGRP "board_clk" | MINPERIOD   |     3.334ns|     6.666ns|       0|           0
+   10 ns HIGH 50%                           |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
 
 
@@ -382,10 +382,10 @@ Derived Constraints for TS_board_clk
 |           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
 |                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
-|TS_board_clk                   |     10.000ns|      6.666ns|      9.525ns|            0|            0|            0|   4278737828|
-| TS_u1_plasma_top_u0_clk_clk_2x|     12.632ns|      5.669ns|     12.031ns|            0|            0|          117|   4278737711|
+|TS_board_clk                   |     10.000ns|      6.666ns|      9.893ns|            0|            0|            0|    119405567|
+| TS_u1_plasma_top_u0_clk_clk_2x|     12.632ns|      5.670ns|     12.497ns|            0|            0|          117|    119405450|
 | _bufg_in                      |             |             |             |             |             |             |             |
-|  TS_clk                       |     25.263ns|     24.062ns|          N/A|            0|            0|   4278737711|            0|
+|  TS_clk                       |     25.263ns|     24.993ns|          N/A|            0|            0|    119405450|            0|
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
 
 All constraints were met.
@@ -397,10 +397,10 @@ All signals are completely routed.
 
 WARNING:Par:283 - There are 2 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
 
-Total REAL time to PAR completion: 4 mins 36 secs 
-Total CPU time to PAR completion: 2 mins 26 secs 
+Total REAL time to PAR completion: 4 mins 23 secs 
+Total CPU time to PAR completion: 1 mins 52 secs 
 
-Peak Memory Usage:  891 MB
+Peak Memory Usage:  899 MB
 
 Placement: Completed - No errors found.
 Routing: Completed - No errors found.

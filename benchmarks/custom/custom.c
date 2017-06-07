@@ -7,7 +7,7 @@ int main()
 {
    	long a, b, c;
 	int i;
-	for (i=0; i<10000; i++)
+	for (i=0; i<100; i++)
 	{
 		a+=1000*i;
 		b+=500*i;

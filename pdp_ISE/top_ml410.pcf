@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Wed May 17 02:31:20 2017
+// Written by: Map P.20131013 on Wed May 31 17:49:43 2017
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -101,6 +101,26 @@ PIN
         u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block0.ram_byte3_pins<11>
         = BEL
         "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block0.ram_byte3"
+        PINNAME CLKA;
+PIN
+        u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block1.ram_byte0_pins<11>
+        = BEL
+        "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block1.ram_byte0"
+        PINNAME CLKA;
+PIN
+        u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block1.ram_byte1_pins<11>
+        = BEL
+        "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block1.ram_byte1"
+        PINNAME CLKA;
+PIN
+        u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block1.ram_byte2_pins<11>
+        = BEL
+        "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block1.ram_byte2"
+        PINNAME CLKA;
+PIN
+        u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block1.ram_byte3_pins<11>
+        = BEL
+        "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block1.ram_byte3"
         PINNAME CLKA;
 PIN u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1_pins<11> = BEL
         "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1" PINNAME CLKA;
@@ -252,6 +272,7 @@ TIMEGRP clk = BEL "u1_plasma_top/u0_clk/clk_bufg_in" BEL
         "u1_plasma_top/u2_ddr/u1_ddr_init/wait_cnt_2" BEL
         "u1_plasma_top/u2_ddr/u1_ddr_init/wait_cnt_1" BEL
         "u1_plasma_top/u2_ddr/u1_ddr_init/wait_cnt_0" BEL
+        "u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_block_sel_reg_0" BEL
         "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag_reg_0" BEL
         "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag_reg_1" BEL
         "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag_reg_2" BEL
@@ -1326,23 +1347,25 @@ TIMEGRP clk = BEL "u1_plasma_top/u0_clk/clk_bufg_in" BEL
         "u1_plasma_top/u1_plasma/gpio0_reg_2" BEL
         "u1_plasma_top/u1_plasma/gpio0_reg_1" BEL
         "u1_plasma_top/u1_plasma/gpio0_reg_0" BEL
+        "u1_plasma_top/u2_ddr/u1_ddr_init/init_step_3_1" BEL
+        "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_28_1" BEL
         "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_27_1" BEL
-        "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_29_1" BEL
-        "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_11_1" BEL
-        "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_29_1" BEL
-        "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_30_1" BEL
-        "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_28_1" BEL
+        "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_1_1" BEL
+        "u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_0_1" BEL
+        "u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_1_1" BEL
+        "u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_2_1" BEL
+        "u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_3_1" BEL
         "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_26_1" BEL
         "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_30_1" BEL
-        "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_1_1" BEL
-        "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_11_2" BEL
-        "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_11_3" BEL
-        "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_11_4" BEL
-        "u1_plasma_top/u2_ddr/u1_ddr_init/init_step_5_1" BEL
-        "u1_plasma_top/u2_ddr/u1_ddr_init/init_step_5_2" BEL
-        "u1_plasma_top/u2_ddr/u1_ddr_init/init_step_10_1" BEL
-        "u1_plasma_top/u2_ddr/u1_ddr_init/init_step_10_2" BEL
-        "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_28_1" BEL
+        "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_29_1" BEL
+        "u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/a_busD_1_1" BEL
+        "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_28_2" BEL
+        "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_15_1" BEL
+        "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_26_2" BEL
+        "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_30_2" BEL
+        "u1_plasma_top/u2_ddr/u1_ddr_init/wait_cnt_1_1" BEL
+        "u1_plasma_top/u2_ddr/u1_ddr_init/wait_cnt_7_1" BEL
+        "u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/a_busD_0_1" BEL
         "u1_plasma_top/u2_ddr/u2_ddr/clk_p_1" BEL
         "u1_plasma_top/u2_ddr/u2_ddr/clk_p_2" BEL
         "u1_plasma_top/u2_ddr/u2_ddr/clk_p_3" PIN
@@ -1353,6 +1376,14 @@ TIMEGRP clk = BEL "u1_plasma_top/u0_clk/clk_bufg_in" BEL
         "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block0.ram_byte2_pins<11>"
         PIN
         "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block0.ram_byte3_pins<11>"
+        PIN
+        "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block1.ram_byte0_pins<11>"
+        PIN
+        "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block1.ram_byte1_pins<11>"
+        PIN
+        "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block1.ram_byte2_pins<11>"
+        PIN
+        "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block1.ram_byte3_pins<11>"
         PIN "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1_pins<11>"
         PIN "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag2_pins<11>"
         PIN "u1_plasma_top/u1_plasma/u2_boot_ram/block0.ram_byte0_pins<11>"
