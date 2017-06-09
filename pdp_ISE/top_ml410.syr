@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total CPU time to Xst completion: 0.08 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total CPU time to Xst completion: 0.08 secs
  
 --> 
 Reading design: top_ml410.prj
@@ -110,52 +110,10 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-WARNING:HDLParsers:3607 - Unit work/top_ml410 is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/top_ml410.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/top_ml410.vhd".
-WARNING:HDLParsers:3607 - Unit work/top_ml410/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/top_ml410.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/top_ml410.vhd".
-WARNING:HDLParsers:3607 - Unit work/plasma_top is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma_top.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/plasma_top.vhd".
-WARNING:HDLParsers:3607 - Unit work/plasma_top/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma_top.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/plasma_top.vhd".
-WARNING:HDLParsers:3607 - Unit work/clk_gen is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/clk_gen.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/clk_gen.vhd".
-WARNING:HDLParsers:3607 - Unit work/clk_gen/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/clk_gen.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/clk_gen.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_ctrl_top is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_ctrl_top/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
-WARNING:HDLParsers:3607 - Unit work/plasma is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/plasma.vhd".
-WARNING:HDLParsers:3607 - Unit work/plasma/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/plasma.vhd".
-WARNING:HDLParsers:3607 - Unit work/boot_ram is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/boot_ram.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/boot_ram.vhd".
-WARNING:HDLParsers:3607 - Unit work/boot_ram/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/boot_ram.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/boot_ram.vhd".
-WARNING:HDLParsers:3607 - Unit work/cache is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/cache.vhd".
-WARNING:HDLParsers:3607 - Unit work/cache/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/cache.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_ctrl is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_ctrl/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_init is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_init.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_init.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_init/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_init.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_init.vhd".
-WARNING:HDLParsers:3607 - Unit work/mlite_cpu is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mlite_cpu.vhd".
-WARNING:HDLParsers:3607 - Unit work/mlite_cpu/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mlite_cpu.vhd".
-WARNING:HDLParsers:3607 - Unit work/uart is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/uart.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/uart.vhd".
-WARNING:HDLParsers:3607 - Unit work/uart/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/uart.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/uart.vhd".
-WARNING:HDLParsers:3607 - Unit work/alu is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/alu.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/alu.vhd".
-WARNING:HDLParsers:3607 - Unit work/alu/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/alu.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/alu.vhd".
-WARNING:HDLParsers:3607 - Unit work/bus_mux is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/bus_mux.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/bus_mux.vhd".
-WARNING:HDLParsers:3607 - Unit work/bus_mux/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/bus_mux.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/bus_mux.vhd".
-WARNING:HDLParsers:3607 - Unit work/cache_ram is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache_ram.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/cache_ram.vhd".
-WARNING:HDLParsers:3607 - Unit work/cache_ram/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache_ram.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/cache_ram.vhd".
-WARNING:HDLParsers:3607 - Unit work/control is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/control.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/control.vhd".
-WARNING:HDLParsers:3607 - Unit work/control/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/control.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/control.vhd".
-WARNING:HDLParsers:3607 - Unit work/mem_ctrl is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mem_ctrl.vhd".
-WARNING:HDLParsers:3607 - Unit work/mem_ctrl/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mem_ctrl.vhd".
-WARNING:HDLParsers:3607 - Unit work/mult is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mult.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mult.vhd".
-WARNING:HDLParsers:3607 - Unit work/mult/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mult.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mult.vhd".
-WARNING:HDLParsers:3607 - Unit work/pc_next is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pc_next.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/pc_next.vhd".
-WARNING:HDLParsers:3607 - Unit work/pc_next/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pc_next.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/pc_next.vhd".
-WARNING:HDLParsers:3607 - Unit work/pipeline is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pipeline.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/pipeline.vhd".
-WARNING:HDLParsers:3607 - Unit work/pipeline/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pipeline.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/pipeline.vhd".
-WARNING:HDLParsers:3607 - Unit work/reg_bank is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/reg_bank.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/reg_bank.vhd".
-WARNING:HDLParsers:3607 - Unit work/reg_bank/ram_block is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/reg_bank.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/reg_bank.vhd".
-WARNING:HDLParsers:3607 - Unit work/shifter is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/shifter.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/shifter.vhd".
-WARNING:HDLParsers:3607 - Unit work/shifter/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/shifter.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/shifter.vhd".
-WARNING:HDLParsers:3607 - Unit work/mlite_pack is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_pack.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mlite_pack.vhd".
-WARNING:HDLParsers:3607 - Unit work/mlite_pack is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_pack.vhd", and is now defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mlite_pack.vhd".
 Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mlite_pack.vhd" in Library work.
 Architecture mlite_pack of Entity mlite_pack is up to date.
+Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/adder.vhd" in Library work.
+Architecture logic of Entity adder is up to date.
 Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/cache_ram.vhd" in Library work.
 Architecture logic of Entity cache_ram is up to date.
 Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/pc_next.vhd" in Library work.
@@ -169,7 +127,8 @@ Architecture ram_block of Entity reg_bank is up to date.
 Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/bus_mux.vhd" in Library work.
 Architecture logic of Entity bus_mux is up to date.
 Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/alu.vhd" in Library work.
-Architecture logic of Entity alu is up to date.
+Entity <alu> compiled.
+Entity <alu> (Architecture <logic>) compiled.
 Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/shifter.vhd" in Library work.
 Architecture logic of Entity shifter is up to date.
 Compiling vhdl file "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mult.vhd" in Library work.
@@ -264,6 +223,8 @@ Analyzing hierarchy for entity <pipeline> in library <work> (architecture <logic
 
 Analyzing hierarchy for entity <cache_ram> in library <work> (architecture <logic>) with generics.
 	block_count = 1
+
+Analyzing hierarchy for entity <adder> in library <work> (architecture <logic>).
 
 
 =========================================================================
@@ -460,6 +421,9 @@ Entity <bus_mux> analyzed. Unit <bus_mux> generated.
 Analyzing generic Entity <alu> in library <work> (Architecture <logic>).
 	alu_type = "DEFAULT"
 Entity <alu> analyzed. Unit <alu> generated.
+
+Analyzing Entity <adder> in library <work> (Architecture <logic>).
+Entity <adder> analyzed. Unit <adder> generated.
 
 Analyzing generic Entity <shifter> in library <work> (Architecture <logic>).
 	shifter_type = "DEFAULT"
@@ -1207,36 +1171,36 @@ Unit <uart> synthesized.
 
 Synthesizing Unit <pc_next>.
     Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/pc_next.vhd".
-    Found 1-bit xor2 for signal <pc_inc$xor0000> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0001> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0002> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0003> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0004> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0005> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0006> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0007> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0008> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0009> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0010> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0011> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0012> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0013> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0014> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0015> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0016> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0017> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0018> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0019> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0020> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0021> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0022> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0023> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0024> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0025> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0026> created at line 559.
+    Found 1-bit xor2 for signal <pc_inc$xor0000> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0001> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0002> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0003> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0004> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0005> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0006> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0007> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0008> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0009> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0010> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0011> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0012> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0013> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0014> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0015> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0016> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0017> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0018> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0019> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0020> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0021> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0022> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0023> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0024> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0025> created at line 608.
+    Found 1-bit xor2 for signal <pc_inc$xor0026> created at line 608.
     Found 30-bit register for signal <pc_reg>.
-    Found 1-bit xor2 for signal <result_12$xor0000> created at line 559.
-    Found 1-bit xor2 for signal <result_22$xor0000> created at line 559.
+    Found 1-bit xor2 for signal <result_12$xor0000> created at line 608.
+    Found 1-bit xor2 for signal <result_22$xor0000> created at line 608.
     Summary:
 	inferred  30 D-type flip-flop(s).
 Unit <pc_next> synthesized.
@@ -1278,232 +1242,12 @@ Synthesizing Unit <bus_mux>.
 Unit <bus_mux> synthesized.
 
 
-Synthesizing Unit <alu>.
-    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/alu.vhd".
-    Found 32-bit xor2 for signal <c_alu$xor0000> created at line 40.
-    Found 1-bit xor2 for signal <less_than$xor0000> created at line 36.
-    Found 1-bit xor3 for signal <result_11$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result_14$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result_17$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result_2$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result_20$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result_23$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result_26$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result_29$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result_5$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result_8$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0001> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0002> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0003> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0004> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0005> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0006> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0007> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0008> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0009> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0010> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0011> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0012> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0013> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0014> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0015> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0016> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0017> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0018> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0019> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0020> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0021> created at line 528.
-    Found 1-bit xor2 for signal <sum$xor0022>.
-    Summary:
-	inferred  32 Xor(s).
-Unit <alu> synthesized.
-
-
 Synthesizing Unit <shifter>.
     Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/shifter.vhd".
     Found 32-bit 4-to-1 multiplexer for signal <c_shift>.
     Summary:
 	inferred  32 Multiplexer(s).
 Unit <shifter> synthesized.
-
-
-Synthesizing Unit <mult>.
-    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mult.vhd".
-    Found 1-bit xor2 for signal <a_neg$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0001> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0002> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0003> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0004> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0005> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0006> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0007> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0008> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0009> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0010> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0011> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0012> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0013> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0014> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0015> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0016> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0017> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0018> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0019> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0020> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0021> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0022> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0023> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0024> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0025> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0026> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0027> created at line 545.
-    Found 32-bit register for signal <aa_reg>.
-    Found 1-bit xor2 for signal <b_neg$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0001> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0002> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0003> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0004> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0005> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0006> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0007> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0008> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0009> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0010> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0011> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0012> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0013> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0014> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0015> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0016> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0017> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0018> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0019> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0020> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0021> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0022> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0023> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0024> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0025> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0026> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0027> created at line 545.
-    Found 32-bit register for signal <bb_reg>.
-    Found 1-bit xor2 for signal <c_mult$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0001> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0002> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0003> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0004> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0005> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0006> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0007> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0008> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0009> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0010> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0011> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0012> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0013> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0014> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0015> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0016> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0017> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0018> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0019> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0020> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0021> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0022> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0023> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0024> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0025> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0026> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0027> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0028> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0029> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0030> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0031> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0032> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0033> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0034> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0035> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0036> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0037> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0038> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0039> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0040> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0041> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0042> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0043> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0044> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0045> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0046> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0047> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0048> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0049> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0050> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0051> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0052> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0053> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0054> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0055> created at line 545.
-    Found 6-bit register for signal <count_reg>.
-    Found 6-bit subtractor for signal <count_reg$addsub0000> created at line 203.
-    Found 32-bit register for signal <lower_reg>.
-    Found 1-bit register for signal <mode_reg>.
-    Found 1-bit register for signal <negate_reg>.
-    Found 1-bit xor2 for signal <result0_10$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result0_20$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result0_30$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result1_10$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result1_20$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result1_30$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result2_10$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result2_20$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result2_30$xor0000> created at line 545.
-    Found 1-bit xor3 for signal <result3_11$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result3_14$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result3_17$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result3_2$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result3_20$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result3_23$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result3_26$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result3_29$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result3_5$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result3_8$xor0000> created at line 528.
-    Found 1-bit xor2 for signal <result_10$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result_20$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result_30$xor0000> created at line 545.
-    Found 1-bit register for signal <sign2_reg>.
-    Found 1-bit register for signal <sign_reg>.
-    Found 1-bit xor2 for signal <sign_reg$xor0000> created at line 136.
-    Found 1-bit xor3 for signal <sum$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0001> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0002> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0003> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0004> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0005> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0006> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0007> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0008> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0009> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0010> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0011> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0012> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0013> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0014> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0015> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0016> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0017> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0018> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0019> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0020> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0021> created at line 528.
-    Found 1-bit xor2 for signal <sum$xor0022>.
-    Found 32-bit register for signal <upper_reg>.
-    Found 1-bit xor2 for signal <upper_reg$xor0000> created at line 173.
-    Summary:
-	inferred 138 D-type flip-flop(s).
-	inferred   1 Adder/Subtractor(s).
-	inferred  32 Xor(s).
-Unit <mult> synthesized.
 
 
 Synthesizing Unit <pipeline>.
@@ -1523,6 +1267,92 @@ Synthesizing Unit <pipeline>.
 	inferred 116 D-type flip-flop(s).
 	inferred   2 Comparator(s).
 Unit <pipeline> synthesized.
+
+
+Synthesizing Unit <adder>.
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/adder.vhd".
+WARNING:Xst:1780 - Signal <carry_2> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit xor3 for signal <adder1$xor0000> created at line 573.
+    Found 1-bit xor3 for signal <adder1$xor0001> created at line 573.
+    Found 1-bit xor3 for signal <adder1$xor0002> created at line 573.
+    Found 1-bit xor3 for signal <adder1$xor0003> created at line 573.
+    Found 1-bit xor3 for signal <adder1$xor0004> created at line 573.
+    Found 1-bit xor2 for signal <adder1$xor0005> created at line 573.
+    Found 1-bit xor2 for signal <adder2_0$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <adder2_0$xor0001> created at line 573.
+    Found 1-bit xor2 for signal <adder2_0$xor0002> created at line 573.
+    Found 1-bit xor2 for signal <adder2_0$xor0003> created at line 573.
+    Found 1-bit xor2 for signal <adder2_0$xor0004> created at line 573.
+    Found 1-bit xor2 for signal <adder2_0$xor0005> created at line 573.
+    Found 1-bit xor2 for signal <adder2_1$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <adder2_1$xor0001> created at line 573.
+    Found 1-bit xor2 for signal <adder2_1$xor0002> created at line 573.
+    Found 1-bit xor2 for signal <adder2_1$xor0003> created at line 573.
+    Found 1-bit xor2 for signal <adder2_1$xor0004> created at line 573.
+    Found 1-bit xor2 for signal <adder2_1$xor0005> created at line 573.
+    Found 1-bit xor2 for signal <adder2_1$xor0006> created at line 573.
+    Found 1-bit xor2 for signal <adder2_1$xor0007> created at line 573.
+    Found 1-bit xor2 for signal <adder2_1$xor0008> created at line 573.
+    Found 1-bit xor2 for signal <adder2_1$xor0009> created at line 573.
+    Found 1-bit xor2 for signal <adder3_0$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <adder3_0$xor0001> created at line 573.
+    Found 1-bit xor2 for signal <adder3_0$xor0002> created at line 573.
+    Found 1-bit xor2 for signal <adder3_0$xor0003> created at line 573.
+    Found 1-bit xor2 for signal <adder3_0$xor0004> created at line 573.
+    Found 1-bit xor2 for signal <adder3_0$xor0005> created at line 573.
+    Found 1-bit xor2 for signal <adder3_1$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <adder3_1$xor0001> created at line 573.
+    Found 1-bit xor2 for signal <adder3_1$xor0002> created at line 573.
+    Found 1-bit xor2 for signal <adder3_1$xor0003> created at line 573.
+    Found 1-bit xor2 for signal <adder3_1$xor0004> created at line 573.
+    Found 1-bit xor2 for signal <adder3_1$xor0005> created at line 573.
+    Found 1-bit xor2 for signal <adder3_1$xor0006> created at line 573.
+    Found 1-bit xor2 for signal <adder3_1$xor0007> created at line 573.
+    Found 1-bit xor2 for signal <adder3_1$xor0008> created at line 573.
+    Found 1-bit xor2 for signal <adder3_1$xor0009> created at line 573.
+    Found 1-bit xor2 for signal <adder4_0$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <adder4_0$xor0001> created at line 573.
+    Found 1-bit xor2 for signal <adder4_0$xor0002> created at line 573.
+    Found 1-bit xor2 for signal <adder4_0$xor0003> created at line 573.
+    Found 1-bit xor2 for signal <adder4_0$xor0004> created at line 573.
+    Found 1-bit xor2 for signal <adder4_0$xor0005> created at line 573.
+    Found 1-bit xor2 for signal <adder4_1$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <adder4_1$xor0001> created at line 573.
+    Found 1-bit xor2 for signal <adder4_1$xor0002> created at line 573.
+    Found 1-bit xor2 for signal <adder4_1$xor0003> created at line 573.
+    Found 1-bit xor2 for signal <adder4_1$xor0004> created at line 573.
+    Found 1-bit xor2 for signal <adder4_1$xor0005> created at line 573.
+    Found 1-bit xor2 for signal <adder4_1$xor0006> created at line 573.
+    Found 1-bit xor2 for signal <adder4_1$xor0007> created at line 573.
+    Found 1-bit xor2 for signal <adder4_1$xor0008> created at line 573.
+    Found 1-bit xor2 for signal <adder4_1$xor0009> created at line 573.
+    Found 32-bit adder for signal <bb$addsub0000> created at line 49.
+    Found 1-bit xor3 for signal <result0_3$xor0000> created at line 573.
+    Found 1-bit xor3 for signal <result0_6$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <result1_3$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <result1_3$xor0001> created at line 573.
+    Found 1-bit xor2 for signal <result1_6$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <result1_6$xor0001> created at line 573.
+    Found 1-bit xor2 for signal <result2_3$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <result2_6$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <result3_3$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <result3_6$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <result3_6$xor0001> created at line 573.
+    Found 1-bit xor2 for signal <result4_3$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <result4_3$xor0001> created at line 573.
+    Found 1-bit xor2 for signal <result4_6$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <result5_3$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <result5_3$xor0001> created at line 573.
+    Found 1-bit xor2 for signal <result5_6$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <result5_6$xor0001> created at line 573.
+    Found 1-bit xor2 for signal <result6_3$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <result6_6$xor0000> created at line 573.
+    Found 32-bit comparator greater for signal <result_32$cmp_gt0000> created at line 90.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred   1 Comparator(s).
+	inferred   7 Xor(s).
+Unit <adder> synthesized.
 
 
 Synthesizing Unit <ddr_init>.
@@ -1641,6 +1471,158 @@ WARNING:Xst:646 - Signal <no_connect> is assigned but never used. This unconnect
 Unit <reg_bank> synthesized.
 
 
+Synthesizing Unit <alu>.
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/alu.vhd".
+    Found 32-bit xor2 for signal <c_alu$xor0000> created at line 57.
+    Found 1-bit xor2 for signal <less_than$xor0000> created at line 53.
+Unit <alu> synthesized.
+
+
+Synthesizing Unit <mult>.
+    Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mult.vhd".
+WARNING:Xst:1780 - Signal <sum_cust_add> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit xor2 for signal <a_neg$xor0000> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0001> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0002> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0003> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0004> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0005> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0006> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0007> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0008> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0009> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0010> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0011> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0012> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0013> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0014> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0015> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0016> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0017> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0018> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0019> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0020> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0021> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0022> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0023> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0024> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0025> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0026> created at line 594.
+    Found 1-bit xor2 for signal <a_neg$xor0027> created at line 594.
+    Found 32-bit register for signal <aa_reg>.
+    Found 1-bit xor2 for signal <b_neg$xor0000> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0001> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0002> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0003> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0004> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0005> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0006> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0007> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0008> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0009> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0010> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0011> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0012> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0013> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0014> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0015> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0016> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0017> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0018> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0019> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0020> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0021> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0022> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0023> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0024> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0025> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0026> created at line 594.
+    Found 1-bit xor2 for signal <b_neg$xor0027> created at line 594.
+    Found 32-bit register for signal <bb_reg>.
+    Found 1-bit xor2 for signal <c_mult$xor0000> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0001> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0002> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0003> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0004> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0005> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0006> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0007> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0008> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0009> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0010> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0011> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0012> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0013> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0014> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0015> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0016> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0017> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0018> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0019> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0020> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0021> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0022> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0023> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0024> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0025> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0026> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0027> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0028> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0029> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0030> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0031> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0032> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0033> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0034> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0035> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0036> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0037> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0038> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0039> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0040> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0041> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0042> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0043> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0044> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0045> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0046> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0047> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0048> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0049> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0050> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0051> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0052> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0053> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0054> created at line 594.
+    Found 1-bit xor2 for signal <c_mult$xor0055> created at line 594.
+    Found 6-bit register for signal <count_reg>.
+    Found 6-bit subtractor for signal <count_reg$addsub0000> created at line 220.
+    Found 32-bit register for signal <lower_reg>.
+    Found 1-bit register for signal <mode_reg>.
+    Found 1-bit register for signal <negate_reg>.
+    Found 1-bit xor2 for signal <result0_10$xor0000> created at line 594.
+    Found 1-bit xor2 for signal <result0_20$xor0000> created at line 594.
+    Found 1-bit xor2 for signal <result0_30$xor0000> created at line 594.
+    Found 1-bit xor2 for signal <result1_10$xor0000> created at line 594.
+    Found 1-bit xor2 for signal <result1_20$xor0000> created at line 594.
+    Found 1-bit xor2 for signal <result1_30$xor0000> created at line 594.
+    Found 1-bit xor2 for signal <result2_10$xor0000> created at line 594.
+    Found 1-bit xor2 for signal <result2_20$xor0000> created at line 594.
+    Found 1-bit xor2 for signal <result2_30$xor0000> created at line 594.
+    Found 1-bit xor2 for signal <result_10$xor0000> created at line 594.
+    Found 1-bit xor2 for signal <result_20$xor0000> created at line 594.
+    Found 1-bit xor2 for signal <result_30$xor0000> created at line 594.
+    Found 1-bit register for signal <sign2_reg>.
+    Found 1-bit register for signal <sign_reg>.
+    Found 1-bit xor2 for signal <sign_reg$xor0000> created at line 153.
+    Found 32-bit register for signal <upper_reg>.
+    Found 1-bit xor2 for signal <upper_reg$xor0000> created at line 190.
+    Summary:
+	inferred 138 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+Unit <mult> synthesized.
+
+
 Synthesizing Unit <cache_ram>.
     Related source file is "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/cache_ram.vhd".
 WARNING:Xst:647 - Input <address<31:16>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
@@ -1685,47 +1667,47 @@ WARNING:Xst:646 - Signal <cpu_address<1:0>> is assigned but never used. This unc
     Found 32-bit 4-to-1 multiplexer for signal <cache_ram_data_w>.
     Found 8-bit register for signal <counter_hi_reg>.
     Found 40-bit register for signal <counter_reg>.
-    Found 1-bit xor2 for signal <counter_reg$xor0000> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0001> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0002> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0003> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0004> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0005> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0006> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0007> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0008> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0009> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0010> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0011> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0012> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0013> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0014> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0015> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0016> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0017> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0018> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0019> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0020> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0021> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0022> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0023> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0024> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0025> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0026> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0027> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0028> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0029> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0030> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0031> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0032> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0033> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0034> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0035> created at line 573.
+    Found 1-bit xor2 for signal <counter_reg$xor0000> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0001> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0002> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0003> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0004> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0005> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0006> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0007> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0008> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0009> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0010> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0011> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0012> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0013> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0014> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0015> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0016> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0017> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0018> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0019> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0020> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0021> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0022> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0023> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0024> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0025> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0026> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0027> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0028> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0029> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0030> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0031> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0032> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0033> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0034> created at line 622.
+    Found 1-bit xor2 for signal <counter_reg$xor0035> created at line 622.
     Found 32-bit register for signal <gpio0_reg>.
     Found 8-bit register for signal <irq_mask_reg>.
-    Found 1-bit xor2 for signal <result_10$xor0000> created at line 573.
-    Found 1-bit xor2 for signal <result_20$xor0000> created at line 573.
-    Found 1-bit xor2 for signal <result_30$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <result_10$xor0000> created at line 622.
+    Found 1-bit xor2 for signal <result_20$xor0000> created at line 622.
+    Found 1-bit xor2 for signal <result_30$xor0000> created at line 622.
     Summary:
 	inferred  88 D-type flip-flop(s).
 	inferred  32 Multiplexer(s).
@@ -1752,8 +1734,9 @@ Macro Statistics
 # ROMs                                                 : 2
  16x4-bit ROM                                          : 1
  32x2-bit ROM                                          : 1
-# Adders/Subtractors                                   : 3
+# Adders/Subtractors                                   : 5
  10-bit adder                                          : 1
+ 32-bit adder                                          : 2
  6-bit subtractor                                      : 1
  8-bit adder                                           : 1
 # Counters                                             : 7
@@ -1777,9 +1760,10 @@ Macro Statistics
  6-bit register                                        : 2
  8-bit register                                        : 4
  9-bit register                                        : 2
-# Comparators                                          : 6
+# Comparators                                          : 8
  13-bit comparator not equal                           : 1
  32-bit comparator equal                               : 1
+ 32-bit comparator greater                             : 2
  6-bit comparator not equal                            : 2
  8-bit comparator equal                                : 1
  9-bit comparator not equal                            : 1
@@ -1792,9 +1776,9 @@ Macro Statistics
 # Tristates                                            : 5
  1-bit tristate buffer                                 : 4
  16-bit tristate buffer                                : 1
-# Xors                                                 : 262
- 1-bit xor2                                            : 197
- 1-bit xor3                                            : 64
+# Xors                                                 : 344
+ 1-bit xor2                                            : 329
+ 1-bit xor3                                            : 14
  32-bit xor2                                           : 1
 
 =========================================================================
@@ -1830,8 +1814,9 @@ Macro Statistics
 # ROMs                                                 : 2
  16x4-bit ROM                                          : 1
  32x2-bit ROM                                          : 1
-# Adders/Subtractors                                   : 3
+# Adders/Subtractors                                   : 5
  10-bit adder                                          : 1
+ 32-bit adder                                          : 2
  6-bit subtractor                                      : 1
  8-bit adder                                           : 1
 # Counters                                             : 7
@@ -1843,9 +1828,10 @@ Macro Statistics
  8-bit up counter                                      : 1
 # Registers                                            : 707
  Flip-Flops                                            : 707
-# Comparators                                          : 6
+# Comparators                                          : 8
  13-bit comparator not equal                           : 1
  32-bit comparator equal                               : 1
+ 32-bit comparator greater                             : 2
  6-bit comparator not equal                            : 2
  8-bit comparator equal                                : 1
  9-bit comparator not equal                            : 1
@@ -1855,9 +1841,9 @@ Macro Statistics
  13-bit 4-to-1 multiplexer                             : 1
  32-bit 4-to-1 multiplexer                             : 4
  32-bit 8-to-1 multiplexer                             : 2
-# Xors                                                 : 262
- 1-bit xor2                                            : 197
- 1-bit xor3                                            : 64
+# Xors                                                 : 344
+ 1-bit xor2                                            : 329
+ 1-bit xor3                                            : 14
  32-bit xor2                                           : 1
 
 =========================================================================
@@ -1886,13 +1872,11 @@ Optimizing unit <control> ...
 
 Optimizing unit <bus_mux> ...
 
-Optimizing unit <alu> ...
-
 Optimizing unit <shifter> ...
 
-Optimizing unit <mult> ...
-
 Optimizing unit <pipeline> ...
+
+Optimizing unit <adder> ...
 
 Optimizing unit <boot_ram> ...
 
@@ -1904,9 +1888,13 @@ Optimizing unit <uart> ...
 
 Optimizing unit <ddr_init> ...
 
-Optimizing unit <mlite_cpu> ...
+Optimizing unit <alu> ...
+
+Optimizing unit <mult> ...
 
 Optimizing unit <cache> ...
+
+Optimizing unit <mlite_cpu> ...
 
 Optimizing unit <plasma> ...
 WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_27> of sequential type is unconnected in block <top_ml410>.
@@ -1917,17 +1905,15 @@ Mapping all equations...
 Building and optimizing final netlist ...
 Found area constraint ratio of 100 (+ 5) on block top_ml410, actual ratio is 8.
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_1 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_15 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_23 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_26 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_26 has been replicated 2 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_27 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_28 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_29 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_30 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_0 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_1 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_2 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_3 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_30 has been replicated 2 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/b_busD_0 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u2_ddr/u1_ddr_init/init_step_3 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u2_ddr/u1_ddr_init/wait_cnt_1 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u2_ddr/u1_ddr_init/wait_cnt_7 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u2_ddr/u2_ddr/clk_p has been replicated 3 time(s) to handle iob=true attribute.
 
 Final Macro Processing ...
@@ -1966,28 +1952,28 @@ Design Statistics
 # IOs                              : 77
 
 Cell Usage :
-# BELS                             : 3884
+# BELS                             : 4378
 #      GND                         : 1
-#      INV                         : 22
-#      LUT1                        : 8
-#      LUT2                        : 193
-#      LUT2_D                      : 35
-#      LUT2_L                      : 9
-#      LUT3                        : 701
-#      LUT3_D                      : 103
+#      INV                         : 84
+#      LUT1                        : 10
+#      LUT2                        : 230
+#      LUT2_D                      : 19
+#      LUT2_L                      : 12
+#      LUT3                        : 776
+#      LUT3_D                      : 122
 #      LUT3_L                      : 70
-#      LUT4                        : 2009
+#      LUT4                        : 2100
 #      LUT4_D                      : 174
-#      LUT4_L                      : 173
-#      MUXCY                       : 44
-#      MUXF5                       : 323
+#      LUT4_L                      : 147
+#      MUXCY                       : 170
+#      MUXF5                       : 380
 #      VCC                         : 1
-#      XORCY                       : 18
+#      XORCY                       : 82
 # FlipFlops/Latches                : 768
 #      FD                          : 6
-#      FDC                         : 241
+#      FDC                         : 243
 #      FDC_1                       : 39
-#      FDCE                        : 365
+#      FDCE                        : 363
 #      FDCE_1                      : 18
 #      FDE                         : 88
 #      FDP                         : 2
@@ -2011,10 +1997,10 @@ Device utilization summary:
 
 Selected Device : 4vfx60ff1152-11 
 
- Number of Slices:                     2090  out of  25280     8%  
+ Number of Slices:                     2215  out of  25280     8%  
  Number of Slice Flip Flops:            765  out of  50560     1%  
- Number of 4 input LUTs:               3753  out of  50560     7%  
-    Number used as logic:              3497
+ Number of 4 input LUTs:               4000  out of  50560     7%  
+    Number used as logic:              3744
     Number used as RAMs:                256
  Number of IOs:                          77
  Number of bonded IOBs:                  75  out of    576    13%  
@@ -2054,9 +2040,9 @@ Asynchronous Control Signals Information:
 -----------------------------------------------------------------------------------+----------------------------------------------------------+-------+
 Control Signal                                                                     | Buffer(FF name)                                          | Load  |
 -----------------------------------------------------------------------------------+----------------------------------------------------------+-------+
-u1_plasma_top/u1_plasma/u1_cpu/reset(u1_plasma_top/u1_plasma/u1_cpu/reset_or0000:O)| NONE(u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_reg_10)| 393   |
+u1_plasma_top/u1_plasma/u1_cpu/reset(u1_plasma_top/u1_plasma/u1_cpu/reset_or0000:O)| NONE(u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_reg_10)| 390   |
 u1_plasma_top/reset_cpu(u1_plasma_top/reset_cpu1:O)                                | NONE(u1_plasma_top/u1_plasma/counter_hi_reg_32)          | 176   |
-u1_plasma_top/reset(u1_plasma_top/reset1:O)                                        | NONE(u1_plasma_top/u2_ddr/u1_ddr_init/init_step_0)       | 104   |
+u1_plasma_top/reset(u1_plasma_top/reset1:O)                                        | NONE(u1_plasma_top/u2_ddr/u1_ddr_init/init_step_0)       | 107   |
 u1_plasma_top/reset_in(u1_plasma_top/reset_in1_INV_0:O)                            | NONE(u1_plasma_top/u0_clk/clk_bufg_in)                   | 1     |
 -----------------------------------------------------------------------------------+----------------------------------------------------------+-------+
 
@@ -2064,9 +2050,9 @@ Timing Summary:
 ---------------
 Speed Grade: -11
 
-   Minimum period: 13.270ns (Maximum Frequency: 75.357MHz)
-   Minimum input arrival time before clock: 9.604ns
-   Maximum output required time after clock: 11.502ns
+   Minimum period: 12.852ns (Maximum Frequency: 77.809MHz)
+   Minimum input arrival time before clock: 9.956ns
+   Maximum output required time after clock: 11.601ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -2098,59 +2084,50 @@ Delay:               2.491ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Clock period: 13.270ns (frequency: 75.357MHz)
-  Total number of paths / destination ports: 66021195 / 2588
+  Clock period: 12.852ns (frequency: 77.809MHz)
+  Total number of paths / destination ports: 76345541 / 2586
 -------------------------------------------------------------------------
-Delay:               13.270ns (Levels of Logic = 29)
-  Source:            u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_31 (FF)
+Delay:               12.852ns (Levels of Logic = 20)
+  Source:            u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 (FF)
   Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block0.ram_byte0 (RAM)
   Source Clock:      u1_plasma_top/u0_clk/clk_bufg_in rising
   Destination Clock: u1_plasma_top/u0_clk/clk_bufg_in rising
 
-  Data Path: u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_31 to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block0.ram_byte0
+  Data Path: u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block0.ram_byte0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCE:C->Q            18   0.307   0.655  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_31 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_31)
-     LUT4_D:I3->O         15   0.166   0.653  u1_plasma_top/u1_plasma/u1_cpu/u3_control/alu_func_cmp_eq000011 (u1_plasma_top/u1_plasma/u1_cpu/u3_control/rt_index_and0000)
-     LUT4:I3->O          150   0.166   1.347  u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000 (u1_plasma_top/u1_plasma/u1_cpu/exception_sig)
-     LUT4:I3->O           68   0.166   1.068  u1_plasma_top/u1_plasma/u1_cpu/u3_control/rt_index<2>1 (u1_plasma_top/u1_plasma/u1_cpu/rt_index<2>)
-     LUT4:I3->O           18   0.166   0.655  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_target_out<1>1_SW0 (N748)
-     LUT4:I3->O            8   0.166   0.579  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_target_out<1>1 (u1_plasma_top/u1_plasma/u1_cpu/reg_target<1>)
-     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_lut<0> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_lut<0>)
-     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<0> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<0>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<1> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<1>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<2> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<2>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<3> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<3>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<4> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<4>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<5> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<5>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<6> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<6>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<7> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<7>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<8> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<8>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<9> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<9>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<10> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<10>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<11> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<11>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<12> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<12>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<13> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<13>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<14> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<14>)
-     MUXCY:CI->O          10   0.315   0.563  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<15> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<15>)
-     LUT4_D:I3->O         14   0.166   0.620  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<29>21 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N13)
-     LUT4:I3->O            5   0.166   0.333  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<12>34 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N48)
-     MUXF5:S->O            1   0.449   0.452  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<25>51_SW0 (N987)
-     LUT4:I3->O            4   0.166   0.464  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000019 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000019)
-     LUT4:I3->O            1   0.166   0.452  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000103_SW0_SW0 (N1325)
-     LUT4_D:I3->O          9   0.166   0.547  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000147_SW1_SW0 (N719)
-     LUT4:I3->O            4   0.166   0.325  u1_plasma_top/u1_plasma/cache_ram_byte_we<0>1 (u1_plasma_top/u1_plasma/cache_ram_byte_we<0>)
-     RAMB16:WEA0               0.650          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block0.ram_byte0
+     FDCE:C->Q             5   0.307   0.658  u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 (u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1)
+     LUT4_D:I0->O          7   0.166   0.554  u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>19 (u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>19)
+     LUT4:I2->O           15   0.166   0.653  u1_plasma_top/u2_ddr/u1_ddr_init/initiating1_1 (u1_plasma_top/u2_ddr/u1_ddr_init/initiating1)
+     LUT4:I3->O           12   0.166   0.732  u1_plasma_top/u2_ddr/address_ddr<10>1 (fpga_0_DDR_SDRAM_32Mx64_DDR_BankAddr_pin_0_OBUF)
+     LUT3:I0->O            1   0.166   0.505  u1_plasma_top/u2_ddr/u2_ddr/Mmux_address_row_mux0000_2_f5_7 (u1_plasma_top/u2_ddr/u2_ddr/address_row_mux0000<5>)
+     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<2> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<2>)
+     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<3> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<3>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<4> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<4>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<5> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<5>)
+     MUXCY:CI->O           7   0.315   0.501  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6>)
+     LUT4:I3->O           15   0.166   0.653  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<0>50 (fpga_0_DDR_SDRAM_32Mx64_DDR_WEn_pin_OBUF)
+     LUT4_D:I3->O         14   0.166   0.620  u1_plasma_top/u2_ddr/u2_ddr/pause_and000039 (u1_plasma_top/pause)
+     LUT4:I3->O           17   0.166   0.643  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/pause_out1 (u1_plasma_top/u1_plasma/u1_cpu/pause_ctrl)
+     LUT4:I3->O            1   0.166   0.593  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<25>5_SW0 (N861)
+     LUT4:I1->O            1   0.166   0.452  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<25>22 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<25>22)
+     LUT4:I3->O            2   0.166   0.467  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<25>51 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<25>)
+     LUT4:I3->O            2   0.166   0.520  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000019 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000019)
+     LUT4:I2->O           13   0.166   0.597  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000178_SW0 (N449)
+     LUT4_D:I3->O         15   0.166   0.653  u1_plasma_top/u1_plasma/Mmux_cache_ram_data_w1011 (u1_plasma_top/u1_plasma/N0)
+     LUT3:I2->O            1   0.166   0.313  u1_plasma_top/u1_plasma/Mmux_cache_ram_data_w221 (u1_plasma_top/u1_plasma/cache_ram_data_w<19>)
+     RAMB16:DIA3               0.200          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block0.ram_byte2
     ----------------------------------------
-    Total                     13.270ns (4.557ns logic, 8.713ns route)
-                                       (34.3% logic, 65.7% route)
+    Total                     12.852ns (3.738ns logic, 9.114ns route)
+                                       (29.1% logic, 70.9% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'sys_clk_pin'
   Total number of paths / destination ports: 68 / 68
 -------------------------------------------------------------------------
-Offset:              4.159ns (Levels of Logic = 3)
+Offset:              4.170ns (Levels of Logic = 3)
   Source:            sys_rst_pin (PAD)
   Destination:       u1_plasma_top/u2_ddr/u2_ddr/data_read_29 (FF)
   Destination Clock: sys_clk_pin rising 0.8X
@@ -2160,18 +2137,18 @@ Offset:              4.159ns (Levels of Logic = 3)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O             9   0.867   0.600  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
-     LUT2:I0->O          106   0.166   1.383  u1_plasma_top/reset1 (u1_plasma_top/reset)
+     LUT2:I0->O          109   0.166   1.394  u1_plasma_top/reset1 (u1_plasma_top/reset)
      LUT4:I0->O           16   0.166   0.516  u1_plasma_top/u2_ddr/u2_ddr/data_read_29_and00001 (u1_plasma_top/u2_ddr/u2_ddr/data_read_29_and0000)
      FDE:CE                    0.461          u1_plasma_top/u2_ddr/u2_ddr/data_read_29
     ----------------------------------------
-    Total                      4.159ns (1.660ns logic, 2.499ns route)
-                                       (39.9% logic, 60.1% route)
+    Total                      4.170ns (1.660ns logic, 2.510ns route)
+                                       (39.8% logic, 60.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Total number of paths / destination ports: 1373 / 278
+  Total number of paths / destination ports: 1638 / 278
 -------------------------------------------------------------------------
-Offset:              9.604ns (Levels of Logic = 10)
+Offset:              9.956ns (Levels of Logic = 11)
   Source:            sys_rst_pin (PAD)
   Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block0.ram_byte0 (RAM)
   Destination Clock: u1_plasma_top/u0_clk/clk_bufg_in rising
@@ -2181,19 +2158,20 @@ Offset:              9.604ns (Levels of Logic = 10)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O             9   0.867   0.688  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
-     LUT4_L:I1->LO         1   0.166   0.192  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N148)
-     LUT4:I2->O          418   0.166   2.258  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
-     LUT4:I3->O            1   0.166   0.638  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW1 (N1243)
-     LUT4:I0->O           23   0.166   0.836  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N14)
-     LUT4_L:I2->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>13 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>13)
-     LUT4:I3->O            3   0.166   0.518  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>31 (u1_plasma_top/u1_plasma/address_next<23>)
-     LUT4:I2->O            1   0.166   0.452  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000103_SW0_SW0 (N1325)
-     LUT4_D:I3->O          9   0.166   0.547  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000147_SW1_SW0 (N719)
-     LUT4:I3->O            4   0.166   0.325  u1_plasma_top/u1_plasma/cache_ram_byte_we<0>1 (u1_plasma_top/u1_plasma/cache_ram_byte_we<0>)
-     RAMB16:WEA0               0.650          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block0.ram_byte0
+     LUT4_L:I1->LO         1   0.166   0.192  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N140)
+     LUT4:I2->O          412   0.166   2.238  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
+     LUT4_D:I3->LO         1   0.166   0.192  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW0 (N2961)
+     LUT2:I0->O            1   0.166   0.593  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11_SW0 (N1271)
+     LUT4:I1->O            2   0.166   0.520  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27>_SW0_SW0_SW1 (N1016)
+     LUT4:I2->O            1   0.166   0.593  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27>_SW0_SW0_SW2 (N1428)
+     LUT4:I1->O            4   0.166   0.650  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27> (u1_plasma_top/u1_plasma/address_next<29>)
+     LUT4:I0->O           13   0.166   0.597  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000178_SW0 (N449)
+     LUT4_D:I3->O         15   0.166   0.653  u1_plasma_top/u1_plasma/Mmux_cache_ram_data_w1011 (u1_plasma_top/u1_plasma/N0)
+     LUT3:I2->O            1   0.166   0.313  u1_plasma_top/u1_plasma/Mmux_cache_ram_data_w221 (u1_plasma_top/u1_plasma/cache_ram_data_w<19>)
+     RAMB16:DIA3               0.200          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_data/block0.ram_byte2
     ----------------------------------------
-    Total                      9.604ns (3.011ns logic, 6.593ns route)
-                                       (31.4% logic, 68.6% route)
+    Total                      9.956ns (2.727ns logic, 7.229ns route)
+                                       (27.4% logic, 72.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'sys_clk_pin'
@@ -2217,50 +2195,48 @@ Offset:              4.839ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Total number of paths / destination ports: 59324 / 49
+  Total number of paths / destination ports: 63366 / 49
 -------------------------------------------------------------------------
-Offset:              11.502ns (Levels of Logic = 16)
-  Source:            u1_plasma_top/u2_ddr/u1_ddr_init/init_step_8 (FF)
-  Destination:       fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<12> (PAD)
+Offset:              11.601ns (Levels of Logic = 14)
+  Source:            u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 (FF)
+  Destination:       fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<8> (PAD)
   Source Clock:      u1_plasma_top/u0_clk/clk_bufg_in rising
 
-  Data Path: u1_plasma_top/u2_ddr/u1_ddr_init/init_step_8 to fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<12>
+  Data Path: u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 to fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<8>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCE:C->Q             3   0.307   0.651  u1_plasma_top/u2_ddr/u1_ddr_init/init_step_8 (u1_plasma_top/u2_ddr/u1_ddr_init/init_step_8)
-     LUT4_D:I0->O          8   0.166   0.579  u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>14 (u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>14)
-     LUT4:I2->O            6   0.166   0.537  u1_plasma_top/u2_ddr/u1_ddr_init/initiating1_1 (u1_plasma_top/u2_ddr/u1_ddr_init/initiating1)
-     LUT4:I2->O           16   0.166   0.655  u1_plasma_top/u2_ddr/address_ddr<10>1 (fpga_0_DDR_SDRAM_32Mx64_DDR_BankAddr_pin_0_OBUF)
-     LUT3:I2->O            1   0.166   0.505  u1_plasma_top/u2_ddr/u2_ddr/Mmux_address_row_mux0000_2_f5_3 (u1_plasma_top/u2_ddr/u2_ddr/address_row_mux0000<1>)
-     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<0> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<0>)
-     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<0> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<0>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<1> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<1>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2>)
+     FDCE:C->Q             5   0.307   0.658  u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 (u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1)
+     LUT4_D:I0->O          7   0.166   0.554  u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>19 (u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>19)
+     LUT4:I2->O           15   0.166   0.653  u1_plasma_top/u2_ddr/u1_ddr_init/initiating1_1 (u1_plasma_top/u2_ddr/u1_ddr_init/initiating1)
+     LUT4:I3->O           12   0.166   0.732  u1_plasma_top/u2_ddr/address_ddr<10>1 (fpga_0_DDR_SDRAM_32Mx64_DDR_BankAddr_pin_0_OBUF)
+     LUT3:I0->O            1   0.166   0.505  u1_plasma_top/u2_ddr/u2_ddr/Mmux_address_row_mux0000_2_f5_7 (u1_plasma_top/u2_ddr/u2_ddr/address_row_mux0000<5>)
+     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<2> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<2>)
+     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2>)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<3> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<3>)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<4> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<4>)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<5> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<5>)
      MUXCY:CI->O           7   0.315   0.501  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6>)
      LUT4:I3->O           23   0.166   0.924  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<1>79 (fpga_0_DDR_SDRAM_32Mx64_DDR_CASn_pin_OBUF)
      LUT3:I0->O           17   0.166   0.784  u1_plasma_top/u2_ddr/u2_ddr/address_row_0_and000021 (N22)
-     LUT4:I1->O            1   0.166   0.313  u1_plasma_top/u2_ddr/u2_ddr/SD_A<12>1 (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_12_OBUF)
-     OBUF:I->O                 3.601          fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_12_OBUF (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<12>)
+     LUT4:I1->O            1   0.166   0.313  u1_plasma_top/u2_ddr/u2_ddr/SD_A<8> (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_8_OBUF)
+     OBUF:I->O                 3.601          fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_8_OBUF (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<8>)
     ----------------------------------------
-    Total                     11.502ns (6.053ns logic, 5.449ns route)
-                                       (52.6% logic, 47.4% route)
+    Total                     11.601ns (5.977ns logic, 5.624ns route)
+                                       (51.5% logic, 48.5% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 92.00 secs
-Total CPU time to Xst completion: 87.46 secs
+Total REAL time to Xst completion: 117.00 secs
+Total CPU time to Xst completion: 89.12 secs
  
 --> 
 
 
-Total memory usage is 662284 kilobytes
+Total memory usage is 661688 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   66 (   0 filtered)
+Number of warnings :   24 (   0 filtered)
 Number of infos    :   17 (   0 filtered)
 

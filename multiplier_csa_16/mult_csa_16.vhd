@@ -1,12 +1,13 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_unsigned.all;
-use IEEE.std_logic_arith.all;
+use ieee.numeric_std.all;
 
 library work;
 use work.mlite_pack.all;
 
 entity mult_csa is
+    generic (RADIX      : positive := 4;  
+             LOG2RADIX  : positive := 2); -- MS: adjust this value if RADIX is changed
     port(
           clk                          : in  std_logic;
           reset                        : in  std_logic;
@@ -25,6 +26,12 @@ Architecture logic Of mult_csa Is
     -- MS: signal for carry-SAVE adder
     signal csav_a, csav_b, csav_c   : std_logic_vector(iMultiplier'length+1 downto 0);
     signal csav_sum, csav_car       : std_logic_vector(iMultiplier'length+2 downto 0);
+    -- MS: counter variable
+    signal counter  : INTEGER range 0 to 31;
+    -- MS: array of vectors
+    subtype mulmul_add is integer range 0 to (LOG2RADIX)-1;
+    type muxmul is array(mulmul_add) of std_logic_vector(iMultiplier'length+1 downto 0);
+    signal Muxmuls : muxmul;
 
     component carry_sel_adder Port (
         a, b   : In std_logic_vector(31 Downto 0);
@@ -56,10 +63,24 @@ Begin
         ocarry  => csav_car
     );
 
-    -- MS: get 2's complement when subtracting
-    bb <= (Not b) + '1' When do_add = '0' Else
-          b;
+    -- MS : generate the muxes with a, 2a, 4a, etc.
+    Muxmuls(counter) <= (others => '0') When iMultiplier(counter) = '0' else
+                        '0' & iMultiplicand;
+    Muxmuls(counter+1) <= (others => '0') When iMultiplier(counter) = '0' else
+                        iMultiplicand & '0'; -- MS: times two                       
 
-    variable count : std_logic_vector(2 downto 0);
+    --for_gen_csa : for index in 0 to (LOG2RADIX)-1 generate
+    --    Muxmuls(index) <= (others => '0') When iMultiplier(counter) = '0' else
+    --    for_gen_shift : for i                 
+
+    --                    --std_logic_vector(unsigned(iMultiplicand) sll to_integer(unsigned(index))) & (others => '0'); -- Shift left
+     
+    --end generate;
+
+    -- MS: get 2's complement when subtracting
+    --bb <= (Not b) + '1' When do_add = '0' Else
+    --      b;
+
+    --variable count : std_logic_vector(2 downto 0);
 
 End; --architecture logic

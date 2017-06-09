@@ -1,7 +1,7 @@
 vlib work
 vlib grlib
 
-vcom -quiet  -93  -work work   adder.vhd
+vcom -quiet  -93  -work work   csa_adder.vhd
 vcom -quiet  -93  -work work   mlite_pack.vhd
 vcom -quiet  -93  -work work   tb_adder.vhd
 vcom -quiet  -93  -work work   TxtUtil_pkg.vhd

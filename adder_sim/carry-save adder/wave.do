@@ -23,8 +23,9 @@ add wave -noupdate /adder_tb/UUT_S/osum
 add wave -noupdate /adder_tb/UUT_S/ocarry
 add wave -noupdate /adder_tb/UUT_S/sum
 add wave -noupdate /adder_tb/UUT_S/car
+add wave -noupdate /adder_tb/carryAndSum
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {85 ns} 0}
+WaveRestoreCursors {{Cursor 1} {126 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 203
 configure wave -valuecolwidth 199
@@ -40,4 +41,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ns} {1206 ns}
+WaveRestoreZoom {90 ns} {250 ns}

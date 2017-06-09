@@ -70,20 +70,39 @@ architecture logic of mult is
     signal a_neg       : std_logic_vector(31 downto 0);
     signal b_neg       : std_logic_vector(31 downto 0);
     signal sum         : std_logic_vector(32 downto 0);
+    signal sum_cust_add: std_logic_vector(32 downto 0);
+
+    component adder Port (
+        a, b   : In std_logic_vector(31 Downto 0);
+        do_add : In std_logic;
+        c      : Out std_logic_vector(32 Downto 0)
+    );
+    end component;
+
 
 begin
+
+    
+    custom_cs_adder :  adder PORT MAP(
+        a       => upper_reg,
+        b       => aa_reg,
+        do_add  => mode_reg,
+        c       => sum
+    );
+
+    --sum     <= bv_adder(upper_reg, aa_reg, mode_reg);
 
     -- Result
     c_mult <=   lower_reg               when mult_func = MULT_READ_LO and negate_reg = '0' else
                 bv_negate(lower_reg)    when mult_func = MULT_READ_LO and negate_reg = '1' else
                 upper_reg               when mult_func = MULT_READ_HI and negate_reg = '0' else
                 bv_negate(upper_reg)    when mult_func = MULT_READ_HI and negate_reg = '1' else ZERO;
+    -- MS: the multiplier only sends the pause_out signal if the results is read prematurely
     pause_out <= '1' when (count_reg /= "000000") and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else '0';
 
     -- ABS and remainder signals
-    a_neg   <= bv_negate(a);
+    a_neg   <= bv_negate(a); -- MS: 2's complement
     b_neg   <= bv_negate(b);
-    sum     <= bv_adder(upper_reg, aa_reg, mode_reg);
 
     --multiplication/division unit
     mult_proc: process(clk, reset_in, a, b, mult_func,
@@ -106,7 +125,7 @@ begin
             lower_reg <= ZERO;
         elsif rising_edge(clk) then
             case mult_func is
-                when MULT_WRITE_LO =>
+                when MULT_WRITE_LO => -- MS : why do we need this?
                     lower_reg <= a;
                     negate_reg <= '0';
                 when MULT_WRITE_HI =>
@@ -130,11 +149,13 @@ begin
                         aa_reg <= a_neg;
                         bb_reg <= b_neg;
                     end if;
+                    
                     if a /= ZERO then
                         sign_reg <= a(31) xor b(31);
                     else
                         sign_reg <= '0';
                     end if;
+                    
                     sign2_reg <= '0';
                     upper_reg <= ZERO;
                     count_reg <= "100000";

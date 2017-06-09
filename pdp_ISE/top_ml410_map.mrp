@@ -9,7 +9,7 @@ Target Device  : xc4vfx60
 Target Package : ff1152
 Target Speed   : -11
 Mapper Version : virtex4 -- $Revision: 1.55 $
-Mapped Date    : Wed May 31 23:16:03 2017
+Mapped Date    : Tue Jun  6 09:53:36 2017
 
 Design Summary
 --------------
@@ -19,19 +19,19 @@ Logic Utilization:
   Number of Slice Flip Flops:           772 out of  50,560    1%
     Number of Slice FFs used for
     DCM autocalibration logic:          7 out of     772    1%
-  Number of 4 input LUTs:             3,754 out of  50,560    7%
+  Number of 4 input LUTs:             3,998 out of  50,560    7%
     Number of LUTs used for
-    DCM autocalibration logic:          4 out of   3,754    1%
+    DCM autocalibration logic:          4 out of   3,998    1%
       *See INFO below for an explanation of the DCM autocalibration logic
        added by Map
 Logic Distribution:
-  Number of occupied Slices:          2,009 out of  25,280    7%
-    Number of Slices containing only related logic:   2,009 out of   2,009 100%
-    Number of Slices containing unrelated logic:          0 out of   2,009   0%
+  Number of occupied Slices:          2,129 out of  25,280    8%
+    Number of Slices containing only related logic:   2,129 out of   2,129 100%
+    Number of Slices containing unrelated logic:          0 out of   2,129   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:       3,766 out of  50,560    7%
-    Number used as logic:             3,491
-    Number used as a route-thru:         12
+  Total Number of 4 input LUTs:       4,012 out of  50,560    7%
+    Number used as logic:             3,735
+    Number used as a route-thru:         14
     Number used for Dual Port RAMs:     256
       (Two LUTs used per Dual Port RAM)
     Number used as Shift registers:       7
@@ -48,9 +48,9 @@ Logic Distribution:
 
 Average Fanout of Non-Clock Nets:                4.20
 
-Peak Memory Usage:  799 MB
-Total REAL time to MAP completion:  13 secs 
-Total CPU time to MAP completion:   11 secs 
+Peak Memory Usage:  801 MB
+Total REAL time to MAP completion:  15 secs 
+Total CPU time to MAP completion:   12 secs 
 
 NOTES:
 

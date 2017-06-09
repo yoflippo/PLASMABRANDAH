@@ -29,10 +29,27 @@ architecture logic of alu is
     signal do_add    : std_logic;
     signal sum       : std_logic_vector(32 downto 0);
     signal less_than : std_logic;
+
+    component adder Port (
+        a, b   : In std_logic_vector(31 Downto 0);
+        do_add : In std_logic;
+        c      : Out std_logic_vector(32 Downto 0)
+    );
+    end component;
+
+
 begin
 
+    -- MS: custom adder
+    custom_cs_adder :  adder PORT MAP(
+        a       => a_in,
+        b       => b_in,
+        do_add  => do_add,
+        c       => sum
+    );
+    
     do_add <= '1' when alu_function = ALU_ADD else '0';
-    sum <= bv_adder(a_in, b_in, do_add);
+    -- MS: sum <= bv_adder(a_in, b_in, do_add);
     less_than <= sum(32) when a_in(31) = b_in(31) or alu_function = ALU_LESS_THAN
                 else a_in(31);
 

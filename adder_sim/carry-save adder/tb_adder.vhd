@@ -39,12 +39,13 @@ architecture sim of adder_tb is
     ---------------------------------------------------------------------------------------------------------------------
     -- Unit under test connections
     ---------------------------------------------------------------------------------------------------------------------
-    signal a, b, c  : std_logic_vector(31 downto 0);
-    signal sum      : std_logic_vector(31 downto 0);
-    signal carry    : std_logic_vector(32 downto 0);
+    signal a, b, c       : std_logic_vector(31 downto 0);
+    signal carry,sum     : std_logic_vector(a'length downto 0);
 
-    signal as, bs, cs, sums  : std_logic_vector(11 downto 0);
-    signal carrys            : std_logic_vector(as'length downto 0);
+    signal as, bs, cs    : std_logic_vector(11 downto 0);
+    signal carrys,sums   : std_logic_vector(as'length downto 0);
+
+    signal carryAndSum   : std_logic_vector(carry'length downto 0);
 
 begin
     ---------------------------------------------------------------------------------------------------------------------
@@ -81,125 +82,133 @@ begin
         osum => sums,
         ocarry => carrys  
     );
-    --        ---------------------------------------------------------------------------------------------------------------------
-            -- Target model(s)
-            ---------------------------------------------------------------------------------------------------------------------
-            ---------------------------------------------------------------------------------------------------------------------
-            -- Stimulation
-            ---------------------------------------------------------------------------------------------------------------------
 
-            prStimuli           : process
-                variable vSimResult     : boolean := true;
-                variable va, vb, vc     : std_logic_vector(31 downto 0);
-                variable vas, vbs, vcs  : std_logic_vector(as'length-1 downto 0);
-            begin
-                Rst <= '0';
-                wait until rising_edge(Clk);
-                Rst             <= '1';
-                wait until rising_edge(Clk);
-                wait for cCLOCK_PERIOD * 10;
-                Rst <= '0';
-                wait until rising_edge(Clk);
-                
+    ---------------------------------------------------------------------------------------------------------------------
+    -- Target model(s)
+    ---------------------------------------------------------------------------------------------------------------------
+    ---------------------------------------------------------------------------------------------------------------------
+    -- Stimulation
+    ---------------------------------------------------------------------------------------------------------------------
 
-                -- TEST 1
-                va      := X"11111111";
-                vb      := X"11111111";
-                vc      := X"00000000";
-                a      <= va;
-                b      <= vb;
-                c      <= vc;
+    prStimuli           : process
+        variable vSimResult     : boolean := true;
+        variable va, vb, vc     : std_logic_vector(31 downto 0);
+        variable vas, vbs, vcs  : std_logic_vector(as'length-1 downto 0);
+        constant CONST          : std_logic := '1';
+    begin
+        Rst <= '0';
+        wait until rising_edge(Clk);
+        Rst             <= '1';
+        wait until rising_edge(Clk);
+        wait for cCLOCK_PERIOD * 10;
+        Rst <= '0';
+        wait until rising_edge(Clk);
+        
 
-                -- TEST 1.1 - shorter words
-                vas      := X"000";
-                vbs      := X"111";
-                vcs      := X"111";
-                as      <= vas;
-                bs      <= vbs;
-                cs      <= vcs;
+        -- TEST 1
+        va      := X"11111111";
+        vb      := X"11111111";
+        vc      := X"00000000";
+        a      <= va;
+        b      <= vb;
+        c      <= vc;
 
-                wait until rising_edge(Clk);
-                if sum = X"000" AND carry = X"0222" then
-                    vSimResult := false;
-                    report "Test3 Failed!!" severity ERROR;
-                end if;
-                wait until rising_edge(Clk);
-                if sum = X"00000000" AND carry = X"022222222" then
-                    vSimResult := false;
-                    report "Test1 Failed!!" severity ERROR;
-                end if;
-
-                -- TEST 2
-                va      := X"11111111";
-                vb      := X"00000000";
-                vc      := X"11111111";
-                a      <= va;
-                b      <= vb;
-                c      <= vc;
-                wait until rising_edge(Clk);
-                if sum = X"00000000" AND carry = X"022222222" then
-                    vSimResult := false;
-                    report "Test2 Failed!!" severity ERROR;
-                end if;
-
-                -- TEST 3
-                va      := X"00000000";
-                vb      := X"11111111";
-                vc      := X"11111111";
-                a      <= va;
-                b      <= vb;
-                c      <= vc;
-                wait until rising_edge(Clk);
-                if sum = X"00000000" AND carry = X"022222222" then
-                    vSimResult := false;
-                    report "Test3 Failed!!" severity ERROR;
-                end if;
-
-                -- TEST 4
-                va      := X"00000000";
-                vb      := X"00000000";
-                vc      := X"11111111";
-                a      <= va;
-                b      <= vb;
-                c      <= vc;
-                wait until rising_edge(Clk);
-                if sum = X"11111111" AND carry = X"000000000" then
-                    vSimResult := false;
-                    report "Test4 Failed!!" severity ERROR;
-                end if;
-
-                -- TEST 5
-                va      := X"FFFFFFFF";
-                vb      := X"FFFFFFFF";
-                vc      := X"FFFFFFFF";
-                a      <= va;
-                b      <= vb;
-                c      <= vc;
-                wait until rising_edge(Clk);
-                if sum = X"FFFFFFFF" AND carry = X"1FFFFFFE" then
-                    vSimResult := false;
-                    report "Test5 Failed!!" severity ERROR;
-                end if;
+        -- TEST 1.1 - shorter words
+        vas      := X"000";
+        vbs      := X"111";
+        vcs      := X"111";
+        as      <= vas;
+        bs      <= vbs;
+        cs      <= vcs;
 
 
-               
+        wait until rising_edge(Clk);
+        carryAndSum <= bv_adder(carry,sum,CONST);
+        if sum = X"000" AND carry = X"0222" then
+            vSimResult := false;
+            report "Test3 Failed!!" severity ERROR;
+        end if;
+        wait until rising_edge(Clk);
+        if sum = X"00000000" AND carry = X"022222222" then
+            vSimResult := false;
+            report "Test1 Failed!!" severity ERROR;
+        end if;
 
-                if (vSimResult) then
-                    echo("-----------------------------------------------------------------");
-                    echo("");
-                    echo(" SIMULATION PASSED :-)");
-                    echo("");
-                    echo("-----------------------------------------------------------------");
-                else
-                    echo("-----------------------------------------------------------------");
-                    echo("#######################################");
-                    echo("SIMULATION FAILED :-(");
-                    echo("#########################");
-                    echo("-----------------------------------------------------------------");
-                end if;
+        -- TEST 2
+        va      := X"11111111";
+        vb      := X"00000000";
+        vc      := X"11111111";
+        a      <= va;
+        b      <= vb;
+        c      <= vc;
+        wait until rising_edge(Clk);
+        carryAndSum <= bv_adder(carry,sum,CONST);   
+        if sum = X"00000000" AND carry = X"022222222" then
+            vSimResult := false;
+            report "Test2 Failed!!" severity ERROR;
+        end if;
 
-                SimFinished <= true;
-                wait;
-            end process prStimuli;
+        -- TEST 3
+        va      := X"00000000";
+        vb      := X"11111111";
+        vc      := X"11111111";
+        a      <= va;
+        b      <= vb;
+        c      <= vc;
+        wait until rising_edge(Clk);
+        carryAndSum <= bv_adder(carry,sum,CONST);          
+        if sum = X"00000000" AND carry = X"022222222" then
+            vSimResult := false;
+            report "Test3 Failed!!" severity ERROR;
+        end if;
+
+        -- TEST 4
+        va      := X"00000000";
+        vb      := X"00000000";
+        vc      := X"11111111";
+        a      <= va;
+        b      <= vb;
+        c      <= vc;
+        wait until rising_edge(Clk);
+        carryAndSum <= bv_adder(carry,sum,CONST);
+        if sum = X"11111111" AND carry = X"000000000" then
+            vSimResult := false;
+            report "Test4 Failed!!" severity ERROR;
+        end if;
+
+        -- TEST 5
+        va      := X"FFFFFFFF";
+        vb      := X"FFFFFFFF";
+        vc      := X"FFFFFFFF";
+        a      <= va;
+        b      <= vb;
+        c      <= vc;
+        wait until rising_edge(Clk);
+        carryAndSum <= bv_adder(carry,sum,CONST);
+        if sum = X"FFFFFFFF" AND carry = X"1FFFFFFE" then
+            vSimResult := false;
+            report "Test5 Failed!!" severity ERROR;
+        end if;
+
+
+       
+
+        if (vSimResult) then
+            echo("-----------------------------------------------------------------");
+            echo("");
+            echo(" SIMULATION PASSED :-)");
+            echo("");
+            echo("-----------------------------------------------------------------");
+        else
+            echo("-----------------------------------------------------------------");
+            echo("#######################################");
+            echo("SIMULATION FAILED :-(");
+            echo("#########################");
+            echo("-----------------------------------------------------------------");
+        end if;
+
+        SimFinished <= true;
+        wait;
+    end process prStimuli;
 
 end architecture sim;
