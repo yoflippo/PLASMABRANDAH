@@ -69,7 +69,7 @@ architecture logic of cache is
 
     --TvE: Adjustments for 16 kB Cache (Tag doubling)-----------------------------------------
     type mem8_vector IS ARRAY (NATURAL RANGE<>) OF std_logic_vector(7 downto 0);
-    type mem32_vector IS ARRAY (NATURAL RANGE<>) OF std_logic_vector(31 downto 0);
+
 
     signal tag_block_sel: std_logic_vector(0 downto 0); -- TvE: signal to select which block of tags is used
     signal tag_block_sel_reg: std_logic_vector(0 downto 0); -- TvE: signal to select which block of tags is used
@@ -83,7 +83,7 @@ architecture logic of cache is
     signal cache_ram_byte_we_temp   : std_logic_vector(3 downto 0);
     signal cache_ram_address_temp   : std_logic_vector(31 downto 2);
     signal cache_ram_data_w_temp    : std_logic_vector(31 downto 0);	--data_input
-    signal cache_ram_data_r_temp    : mem32_vector(1 downto 0);		 	--data_output (2 vectors)
+    signal cache_ram_data_r_temp    : std_logic_vector(31 downto 0);	--data_output
     signal cache_FIFO_flag_in		: std_logic_vector(1 downto 0);		--FIFO flag
     signal cache_FIFO_flag_out		: std_logic_vector(1 downto 0);		--FIFO flag
     signal FIFO_flag 				: std_logic_vector(1 downto 0);		--FIFO flag
@@ -119,8 +119,17 @@ begin
                     cache_miss <= '1';
                     state <= STATE_MISSED;
                 else
-                    cache_miss <= '0';
+                	cache_miss <= '0';
                     state <= STATE_IDLE;
+                    if tag_block_do(1) = cache_tag_reg then
+                    	cache_ram_address_temp(31 downto 14) <= ZERO(31 downto 14);
+                    	cache_ram_address_temp(13) <= '1';		-- TvE: Selection bit to determine which block the confirmed data is in
+                    	cache_ram_address_temp(12 downto 2) <= cache_ram_address(12 downto 2);
+                    else
+                    	cache_ram_address_temp(31 downto 14) <= ZERO(31 downto 14);
+                    	cache_ram_address_temp(13) <= '0';		-- TvE: Selection bit to determine which block the confirmed data is in
+                    	cache_ram_address_temp(12 downto 2) <= cache_ram_address(12 downto 2);
+                    end if;
                 end if;
             when STATE_MISSED =>          --current read cache miss
                 cache_checking <= '0';
@@ -412,8 +421,7 @@ begin
             write_byte_enable => cache_ram_byte_we_temp,
             address           => cache_ram_address_temp,
             data_write        => cache_ram_data_w_temp,
-            data_read_0       => cache_ram_data_r_temp(0),
-            data_read_1 	  => cache_ram_data_r_temp(1)
+            data_read 	  	  => cache_ram_data_r_temp
         );
 
 end; --logic
