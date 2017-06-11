@@ -39,7 +39,8 @@ entity cache_ram is
         write_byte_enable : in std_logic_vector(3 downto 0);
         address           : in std_logic_vector(31 downto 2);
         data_write        : in std_logic_vector(31 downto 0);
-        data_read         : out std_logic_vector(31 downto 0)
+        data_read_0       : out std_logic_vector(31 downto 0);
+        data_read_1       : out std_logic_vector(31 downto 0)
     );
 end; --entity ram
 

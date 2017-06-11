@@ -19,6 +19,9 @@
 --   address_next(21 : 13)   |   address_next(12: 2)   |   address_next(1:0)  |   8kb  Cache, 4MB Ram
 --   address_next(21 : 14)   |   address_next(13: 2)   |   address_next(1:0)  |   16kb Cache, 4MB Ram
 ------------------------------------------------------------------------------------------------------
+--   address_next(20 : 13)   |   address_next(12: 2)   |   address_next(1:0)  |   16kb Cache, 2MB Ram, 2-way set associative
+------------------------------------------------------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
@@ -66,12 +69,25 @@ architecture logic of cache is
 
     --TvE: Adjustments for 16 kB Cache (Tag doubling)-----------------------------------------
     type mem8_vector IS ARRAY (NATURAL RANGE<>) OF std_logic_vector(7 downto 0);
+    type mem32_vector IS ARRAY (NATURAL RANGE<>) OF std_logic_vector(31 downto 0);
 
     signal tag_block_sel: std_logic_vector(0 downto 0); -- TvE: signal to select which block of tags is used
     signal tag_block_sel_reg: std_logic_vector(0 downto 0); -- TvE: signal to select which block of tags is used
 
     signal tag_block_do: mem8_vector(1 downto 0); -- TvE: Output of the tag block
 
+    ---------------------------------------------------------------------------------------
+    
+    --TvE: Adjustments for 2-way set associative Cache -----------------------------------------
+    signal cache_ram_enable_temp    : std_logic;
+    signal cache_ram_byte_we_temp   : std_logic_vector(3 downto 0);
+    signal cache_ram_address_temp   : std_logic_vector(31 downto 2);
+    signal cache_ram_data_w_temp    : std_logic_vector(31 downto 0);	--data_input
+    signal cache_ram_data_r_temp    : mem32_vector(1 downto 0);		 	--data_output (2 vectors)
+    signal cache_FIFO_flag_in		: std_logic_vector(1 downto 0);		--FIFO flag
+    signal cache_FIFO_flag_out		: std_logic_vector(1 downto 0);		--FIFO flag
+    signal FIFO_flag 				: std_logic_vector(1 downto 0);		--FIFO flag
+    signal cache_FIFO_flag_reg		: std_logic_vector(1 downto 0);		--FIFO flag
     ---------------------------------------------------------------------------------------
 begin
    
@@ -81,6 +97,14 @@ begin
         cache_tag_reg, tag_block_do,           --Stage2 TvE: changed cache_tag_out to tag_block_do
         cpu_address) --Stage3
     begin
+
+    ------------------------
+    -- TvE: Assignment of cache_ram_..._temp signals! 
+    ------------------------
+    ------------------------
+    -- TvE: Assignment of FIFO_flag_in data!
+    ------------------------
+
         
         case state_reg is
             when STATE_IDLE =>            --cache idle
@@ -89,8 +113,9 @@ begin
                 state <= STATE_IDLE;
             when STATE_CHECKING =>        --current read in cached range, check if match
                 cache_checking <= '1';
-                if tag_block_do(conv_integer(tag_block_sel_reg)) /= cache_tag_reg or 
-                   tag_block_do(conv_integer(tag_block_sel_reg)) = ONES(7 downto 0) then --TvE: changed cache_tag_out to tag_block_do
+                if tag_block_do(1) /= cache_tag_reg or tag_block_do(0) /= cache_tag_reg or
+                   tag_block_do(1) = ONES(7 downto 0) or tag_block_do(0) = ONES(7 downto 0) then --TvE: changed cache_tag_out to tag_block_do
+                   	FIFO_flag <= cache_FIFO_flag_out;
                     cache_miss <= '1';
                     state <= STATE_MISSED;
                 else
@@ -157,9 +182,9 @@ begin
         end if;
 
         if byte_we_next = "0000" or byte_we_next = "1111" then  --read or 32-bit write
-            cache_tag_in <= '0' & address_next(20 downto 14);   -- TvE changed to get correct tag length for 2 MB
+            cache_tag_in <= address_next(20 downto 13);   -- TvE changed to get correct tag length for 2 MB 2-way set associative
         else
-            cache_tag_in <= ONES(7 downto 0);  --invalid tag -- 
+            cache_tag_in <= ONES(7 downto 0);  --invalid tag 
         end if;
 
         if reset = '1' then
@@ -167,8 +192,8 @@ begin
             cache_tag_reg <= ZERO(7 downto 0);  -- TvE: changed to get correct tag length
         elsif rising_edge(clk) then
             state_reg <= state_next;
-            tag_block_sel_reg <= tag_block_sel; --TvE: registered tag block select since the evaluation of state_reg is also registered 
-                                                -- THIS WAS THE PROBLEM!    
+            tag_block_sel_reg <= tag_block_sel; --TvE: registered tag block select since the evaluation of state_reg is also registered
+            cache_FIFO_flag_reg <= FIFO_flag;
             if state = STATE_IDLE and state_reg /= STATE_MISSED then
                 cache_tag_reg <= cache_tag_in;
             end if;
@@ -252,26 +277,27 @@ begin
             INIT_3E => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
             INIT_3F => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
             -- The next set of INITP_xx are for the parity bits
+            -- TvE: Changed from FFFF to 0000 as init value.
             -- Address 0 to 511
-            INITP_00 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            INITP_01 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+            INITP_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+            INITP_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
             -- Address 512 to 1023
-            INITP_02 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            INITP_03 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+            INITP_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+            INITP_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
             -- Address 1024 to 1535
-            INITP_04 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            INITP_05 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+            INITP_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+            INITP_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
             -- Address 1536 to 2047
-            INITP_06 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            INITP_07 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
+            INITP_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+            INITP_07 => X"0000000000000000000000000000000000000000000000000000000000000000"
         )
         port map (
             DO   => tag_block_do(0)(7 downto 0),                --TvE: changed cache_tag_out to tag_block_do
-            DOP  => open,
+            DOP  => cache_FIFO_flag_out(0),
             ADDR => cache_address,             --registered
             CLK  => clk,
             DI   => cache_tag_in(7 downto 0),  --registered
-            DIP  => ZERO(0 downto 0),
+            DIP  => cache_FIFO_flag_in(0),
             EN   => '1',        --TvE: Changed from '1'
             SSR  => ZERO(0),
             WE   => cache_we(0)
@@ -352,26 +378,27 @@ begin
             INIT_3E => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
             INIT_3F => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
             -- The next set of INITP_xx are for the parity bits
+            -- TvE: Changed from FFFF to 0000 as init value.
             -- Address 0 to 511
-            INITP_00 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            INITP_01 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+            INITP_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+            INITP_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
             -- Address 512 to 1023
-            INITP_02 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            INITP_03 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+            INITP_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+            INITP_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
             -- Address 1024 to 1535
-            INITP_04 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            INITP_05 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+            INITP_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+            INITP_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
             -- Address 1536 to 2047
-            INITP_06 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
-            INITP_07 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
+            INITP_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+            INITP_07 => X"0000000000000000000000000000000000000000000000000000000000000000"
         )
         port map (
             DO   => tag_block_do(1)(7 downto 0),
-            DOP  => open,
+            DOP  => cache_FIFO_flag_out(1),
             ADDR => cache_address,             --registered
             CLK  => clk,
             DI   => cache_tag_in(7 downto 0),  --registered
-            DIP  => ZERO(0 downto 0),
+            DIP  => cache_FIFO_flag_in(1),
             EN   => '1', --TvE: Changed from '1'
             SSR  => ZERO(0),
             WE   => cache_we(1)
@@ -381,11 +408,12 @@ begin
     cache_data: cache_ram     -- cache data storage
         port map (
             clk               => clk,
-            enable            => cache_ram_enable,
-            write_byte_enable => cache_ram_byte_we,
-            address           => cache_ram_address,
-            data_write        => cache_ram_data_w,
-            data_read         => cache_ram_data_r
+            enable            => cache_ram_enable_temp,
+            write_byte_enable => cache_ram_byte_we_temp,
+            address           => cache_ram_address_temp,
+            data_write        => cache_ram_data_w_temp,
+            data_read_0       => cache_ram_data_r_temp(0),
+            data_read_1 	  => cache_ram_data_r_temp(1)
         );
 
 end; --logic
