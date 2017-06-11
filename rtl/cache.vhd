@@ -51,11 +51,12 @@ entity cache is
 end; --cache
 
 architecture logic of cache is
-    subtype state_type is std_logic_vector(1 downto 0);
-    constant STATE_IDLE     : state_type := "00";
-    constant STATE_CHECKING : state_type := "01";
-    constant STATE_MISSED   : state_type := "10";
-    constant STATE_WAITING  : state_type := "11";
+    subtype state_type is std_logic_vector(2 downto 0);
+    constant STATE_IDLE     : state_type := "000";
+    constant STATE_CHECKING : state_type := "001";
+    constant STATE_MISSED   : state_type := "010";
+    constant STATE_WAITING  : state_type := "011";
+    constant STATE_SET_ASS	: state_type := "111";
 
     signal state_reg        : state_type;
     signal state            : state_type;
@@ -79,18 +80,29 @@ architecture logic of cache is
     ---------------------------------------------------------------------------------------
     
     --TvE: Adjustments for 2-way set associative Cache -----------------------------------------
-    signal cache_ram_enable_temp    : std_logic;
-    signal cache_ram_byte_we_temp   : std_logic_vector(3 downto 0);
-    signal cache_ram_address_temp   : std_logic_vector(31 downto 2);
-    signal cache_ram_data_w_temp    : std_logic_vector(31 downto 0);	--data_input
+    signal cache_ram_enable_temp    : std_logic;						--TvE: latched	
+    signal cache_ram_byte_we_temp   : std_logic_vector(3 downto 0);		--TvE: latched
+    signal cache_ram_address_temp   : std_logic_vector(31 downto 2);	--TvE: Determined by combinatorics
+    signal cache_ram_data_w_temp    : std_logic_vector(31 downto 0);	--TvE: Data_input Latched
     signal cache_ram_data_r_temp    : std_logic_vector(31 downto 0);	--data_output
-    signal cache_FIFO_flag_in		: std_logic_vector(1 downto 0);		--FIFO flag
-    signal cache_FIFO_flag_out		: std_logic_vector(1 downto 0);		--FIFO flag
-    signal FIFO_flag 				: std_logic_vector(1 downto 0);		--FIFO flag
-    signal cache_FIFO_flag_reg		: std_logic_vector(1 downto 0);		--FIFO flag
+
+    subtype cache_state is std_logic_vector(1 downto 0);
+    constant CACHE_0_FO	    : cache_state := "00";	--TvE: Meaning replace cache line in set 0
+    constant CACHE_1_FO2	: cache_state := "01";	--TvE: Meaning replace cache line in set 1
+    constant CACHE_1_FO 	: cache_state := "10";	--TvE: Meaning replace cache line in set 1
+    constant CACHE_0_FO2  	: cache_state := "11";	--TvE: Meaning replace cache line in set 0
+
+    signal cache_FIFO_flag_in		: cache_state;		--FIFO flag
+    signal cache_FIFO_flag_out		: cache_state;		--FIFO flag
+    signal FIFO_flag 			: cache_state;		--FIFO flag
+    signal cache_FIFO_flag_reg		: cache_state;		--FIFO flag
+
+
     ---------------------------------------------------------------------------------------
 begin
-   
+   	-- TvE: Assignment of cache_ram_..._temp signals! 
+   	cache_ram_data_r <= cache_ram_data_r_temp;
+   	
     cache_proc: process(clk, reset, mem_busy, cache_address,
         state_reg, state, state_next,
         address_next, byte_we_next, cache_tag_in, --Stage1
@@ -99,7 +111,8 @@ begin
     begin
 
     ------------------------
-    -- TvE: Assignment of cache_ram_..._temp signals! 
+    
+	
     ------------------------
     ------------------------
     -- TvE: Assignment of FIFO_flag_in data!
@@ -147,27 +160,35 @@ begin
                 else
                     state <= STATE_IDLE;
                 end if;
+            when STATE_SET_ASS =>			--TvE: added state to check the FIFO flags in order to write the data to the correct cache block
+
+        	    if cache_FIFO_flag_out = CACHE_1_FO or cache_FIFO_flag_out = CACHE_1_FO2 then
+                	cache_ram_address_temp(31 downto 14) <= ZERO(31 downto 14);
+                	cache_ram_address_temp(13) <= '1';		-- TvE: Selection bit to determine which block to write the data to
+                	cache_ram_address_temp(12 downto 2) <= cache_ram_address(12 downto 2);
+                else
+                	cache_ram_address_temp(31 downto 14) <= ZERO(31 downto 14);
+                	cache_ram_address_temp(13) <= '0';		-- TvE: Selection bit to determine which block to write the data to
+                	cache_ram_address_temp(12 downto 2) <= cache_ram_address(12 downto 2);
+                end if;
+                FIFO_flag <= cache_FIFO_flag_out;
+                state <= STATE_WAITING;	-- TvE: extra clockcycle needed to write into cache
+
             when others =>
                 cache_checking <= '0';
                 cache_miss <= '0';
                 state <= STATE_IDLE;
         end case; --state
 
-        if state = STATE_IDLE then    --check if next access in cached range
-            cache_address <= address_next(12 downto 2); -- TvE change: to 12 concatenation with 0 removed
-            tag_block_sel(0) <= address_next(13);              -- TvE: Added selection bit for Tag block selection
-            if address_next(30 downto 21) = "0010000000" then  --first 2MB of DDR -- TvE: changed from: (30 downto 21) = "0010000000" MS: first and only 1 is for activating DDR
+        if state = STATE_IDLE then    							--check if next access in cached range
+            cache_address <= address_next(12 downto 2); 		--TvE: change: to 12 concatenation with 0 removed
+            if address_next(30 downto 21) = "0010000000" then  	--first 2MB of DDR 
                 cache_access <= '1';
-                if byte_we_next = "0000" then     --read cycle
-                    cache_we <= "00";
-                    state_next <= STATE_CHECKING;  --need to check if match
-                else
-                    if tag_block_sel(0) = '0' then
-                        cache_we <= "01";       --update cache tag TvE: in right tag block
-                    else
-                        cache_we <= "10";
-                    end if;
-                    state_next <= STATE_WAITING;
+                cache_we <= "00";								--TvE: no writes to tags yet!
+                if byte_we_next = "0000" then     				--read cycle
+                    state_next <= STATE_CHECKING;  				--need to check if match
+                else                							--TvE: Write cycle
+                    state_next <= STATE_SET_ASS; 				--TvE: was STATE_WAITING, this state checks to which of the 2 sets it has to write the data to
                 end if;
             else
                 cache_access <= '0';
@@ -176,13 +197,14 @@ begin
             end if;
         else
             cache_address <= cpu_address(12 downto 2);  -- TvE: changed: 0 concatenation with 11 downto 2 to 12 downto 2
-            tag_block_sel(0) <= cpu_address(13);                -- TvE: Added selection bit for Tag block selection
             cache_access <= '0';
-            if state = STATE_MISSED then
-                    if tag_block_sel(0) = '0' then
+            if state = STATE_MISSED or state = STATE_WAITING then
+                    if cache_FIFO_flag_reg = CACHE_0_FO or cache_FIFO_flag_reg = CACHE_0_FO2 then		--TvE: Can also be the (un)clocked flag: FIFO_flag!
                         cache_we <= "01";       --update cache tag TvE: in right tag block
+                        cache_FIFO_flag_in <= "11";
                     else
-                        cache_we <= "10";
+                    	cache_we <= "10";
+                    	cache_FIFO_flag_in <= "00";
                     end if;
             else
                 cache_we <= "00";
@@ -193,7 +215,7 @@ begin
         if byte_we_next = "0000" or byte_we_next = "1111" then  --read or 32-bit write
             cache_tag_in <= address_next(20 downto 13);   -- TvE changed to get correct tag length for 2 MB 2-way set associative
         else
-            cache_tag_in <= ONES(7 downto 0);  --invalid tag 
+            cache_tag_in <= ONES(7 downto 0);  --invalid tag
         end if;
 
         if reset = '1' then
@@ -201,9 +223,11 @@ begin
             cache_tag_reg <= ZERO(7 downto 0);  -- TvE: changed to get correct tag length
         elsif rising_edge(clk) then
             state_reg <= state_next;
-            tag_block_sel_reg <= tag_block_sel; --TvE: registered tag block select since the evaluation of state_reg is also registered
-            cache_FIFO_flag_reg <= FIFO_flag;
-            if state = STATE_IDLE and state_reg /= STATE_MISSED then
+            cache_ram_enable_temp <= cache_ram_enable;		--TvE: Latched enable
+            cache_FIFO_flag_reg <= FIFO_flag;				--TvE: Latched fifo flag
+            cache_ram_byte_we_temp <= cache_ram_byte_we;	--TvE: Latched byte_we
+            if (state = STATE_IDLE and state_reg /= STATE_MISSED) or state_reg = STATE_SET_ASS then
+            	cache_ram_data_w_temp <= cache_ram_data_w;	--TvE: Latched data input.
                 cache_tag_reg <= cache_tag_in;
             end if;
         end if;
@@ -302,11 +326,11 @@ begin
         )
         port map (
             DO   => tag_block_do(0)(7 downto 0),                --TvE: changed cache_tag_out to tag_block_do
-            DOP  => cache_FIFO_flag_out(0),
+            DOP  => cache_FIFO_flag_out(0 downto 0),
             ADDR => cache_address,             --registered
             CLK  => clk,
             DI   => cache_tag_in(7 downto 0),  --registered
-            DIP  => cache_FIFO_flag_in(0),
+            DIP  => cache_FIFO_flag_in(0 downto 0),
             EN   => '1',        --TvE: Changed from '1'
             SSR  => ZERO(0),
             WE   => cache_we(0)
@@ -403,11 +427,11 @@ begin
         )
         port map (
             DO   => tag_block_do(1)(7 downto 0),
-            DOP  => cache_FIFO_flag_out(1),
+            DOP  => cache_FIFO_flag_out(1 downto 1),
             ADDR => cache_address,             --registered
             CLK  => clk,
             DI   => cache_tag_in(7 downto 0),  --registered
-            DIP  => cache_FIFO_flag_in(1),
+            DIP  => cache_FIFO_flag_in(1 downto 1),
             EN   => '1', --TvE: Changed from '1'
             SSR  => ZERO(0),
             WE   => cache_we(1)

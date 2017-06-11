@@ -1,10 +1,22 @@
 Release 14.7 Drc P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Wed May 31 20:58:55 2017
+Sun Jun 11 14:22:15 2017
 
 drc -z top_ml410.ncd top_ml410.pcf
 
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   u1_plasma_top/u1_plasma/opt_cache2.u_cache/FIFO_flag_not0001 is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_3_not0001
+   is sourced by a combinatorial pin. This is not good design practice. Use the
+   CE pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_FIFO_flag_in_not0001 is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    DCM_AUTOCALIBRATION_u1_plasma_top/u0_clk/DCM_BASE0/u1_plasma_top/u0_clk/DCM_B
    ASE0/CLKOUT is sourced by a combinatorial pin. This is not good design
@@ -37,5 +49,5 @@ INFO:PhysDesignRules:1437 - To achieve optimal frequency synthesis performance
    with the CLKFX and CLKFX180 outputs of the DCM_ADV comp
    DCM_AUTOCALIBRATION_u1_plasma_top/u0_clk/DCM_BASE0/u1_plasma_top/u0_clk/DCM_B
    ASE0, consult the device Data Sheet.
-DRC detected 0 errors and 7 warnings.  Please see the previously displayed
+DRC detected 0 errors and 10 warnings.  Please see the previously displayed
 individual error or warning messages for more details.
