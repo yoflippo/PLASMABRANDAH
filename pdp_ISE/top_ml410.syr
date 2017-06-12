@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.12 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.12 secs
  
 --> 
 Reading design: top_ml410.prj
@@ -110,96 +110,94 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-WARNING:HDLParsers:3607 - Unit work/top_ml410 is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/top_ml410.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/top_ml410.vhd".
-WARNING:HDLParsers:3607 - Unit work/top_ml410/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/top_ml410.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/top_ml410.vhd".
-WARNING:HDLParsers:3607 - Unit work/plasma_top is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/plasma_top.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma_top.vhd".
-WARNING:HDLParsers:3607 - Unit work/plasma_top/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/plasma_top.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma_top.vhd".
-WARNING:HDLParsers:3607 - Unit work/clk_gen is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/clk_gen.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/clk_gen.vhd".
-WARNING:HDLParsers:3607 - Unit work/clk_gen/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/clk_gen.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/clk_gen.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_ctrl_top is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_ctrl_top/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
-WARNING:HDLParsers:3607 - Unit work/plasma is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/plasma.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma.vhd".
-WARNING:HDLParsers:3607 - Unit work/plasma/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/plasma.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma.vhd".
-WARNING:HDLParsers:3607 - Unit work/boot_ram is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/boot_ram.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/boot_ram.vhd".
-WARNING:HDLParsers:3607 - Unit work/boot_ram/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/boot_ram.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/boot_ram.vhd".
-WARNING:HDLParsers:3607 - Unit work/cache is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/cache.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd".
-WARNING:HDLParsers:3607 - Unit work/cache/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/cache.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_ctrl is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_ctrl.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_ctrl/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_ctrl.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_init is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_init.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_init.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_init/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/ddr_init.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_init.vhd".
-WARNING:HDLParsers:3607 - Unit work/mlite_cpu is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mlite_cpu.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd".
-WARNING:HDLParsers:3607 - Unit work/mlite_cpu/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mlite_cpu.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd".
-WARNING:HDLParsers:3607 - Unit work/uart is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/uart.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/uart.vhd".
-WARNING:HDLParsers:3607 - Unit work/uart/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/uart.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/uart.vhd".
-WARNING:HDLParsers:3607 - Unit work/alu is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/alu.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/alu.vhd".
-WARNING:HDLParsers:3607 - Unit work/alu/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/alu.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/alu.vhd".
-WARNING:HDLParsers:3607 - Unit work/bus_mux is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/bus_mux.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd".
-WARNING:HDLParsers:3607 - Unit work/bus_mux/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/bus_mux.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd".
-WARNING:HDLParsers:3607 - Unit work/cache_ram is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/cache_ram.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd".
-WARNING:HDLParsers:3607 - Unit work/cache_ram/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/cache_ram.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd".
-WARNING:HDLParsers:3607 - Unit work/control is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/control.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd".
-WARNING:HDLParsers:3607 - Unit work/control/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/control.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd".
-WARNING:HDLParsers:3607 - Unit work/mem_ctrl is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mem_ctrl.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd".
-WARNING:HDLParsers:3607 - Unit work/mem_ctrl/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mem_ctrl.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd".
-WARNING:HDLParsers:3607 - Unit work/mult is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mult.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mult.vhd".
-WARNING:HDLParsers:3607 - Unit work/mult/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mult.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mult.vhd".
-WARNING:HDLParsers:3607 - Unit work/pc_next is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/pc_next.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd".
-WARNING:HDLParsers:3607 - Unit work/pc_next/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/pc_next.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd".
-WARNING:HDLParsers:3607 - Unit work/pipeline is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/pipeline.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pipeline.vhd".
-WARNING:HDLParsers:3607 - Unit work/pipeline/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/pipeline.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pipeline.vhd".
-WARNING:HDLParsers:3607 - Unit work/reg_bank is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/reg_bank.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd".
-WARNING:HDLParsers:3607 - Unit work/reg_bank/ram_block is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/reg_bank.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd".
-WARNING:HDLParsers:3607 - Unit work/shifter is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/shifter.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/shifter.vhd".
-WARNING:HDLParsers:3607 - Unit work/shifter/logic is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/shifter.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/shifter.vhd".
-WARNING:HDLParsers:3607 - Unit work/mlite_pack is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mlite_pack.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_pack.vhd".
-WARNING:HDLParsers:3607 - Unit work/mlite_pack is now defined in a different file.  It was defined in "/home/pdp/APLASMA/GIT/PLASMABRANDAH/rtl/mlite_pack.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_pack.vhd".
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_pack.vhd" in Library work.
+WARNING:HDLParsers:3607 - Unit work/top_ml410 is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/top_ml410.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/top_ml410.vhd".
+WARNING:HDLParsers:3607 - Unit work/top_ml410/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/top_ml410.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/top_ml410.vhd".
+WARNING:HDLParsers:3607 - Unit work/plasma_top is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma_top.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma_top.vhd".
+WARNING:HDLParsers:3607 - Unit work/plasma_top/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma_top.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma_top.vhd".
+WARNING:HDLParsers:3607 - Unit work/clk_gen is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/clk_gen.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/clk_gen.vhd".
+WARNING:HDLParsers:3607 - Unit work/clk_gen/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/clk_gen.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/clk_gen.vhd".
+WARNING:HDLParsers:3607 - Unit work/ddr_ctrl_top is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
+WARNING:HDLParsers:3607 - Unit work/ddr_ctrl_top/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
+WARNING:HDLParsers:3607 - Unit work/plasma is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma.vhd".
+WARNING:HDLParsers:3607 - Unit work/plasma/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma.vhd".
+WARNING:HDLParsers:3607 - Unit work/boot_ram is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/boot_ram.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/boot_ram.vhd".
+WARNING:HDLParsers:3607 - Unit work/boot_ram/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/boot_ram.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/boot_ram.vhd".
+WARNING:HDLParsers:3607 - Unit work/cache is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd".
+WARNING:HDLParsers:3607 - Unit work/cache/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd".
+WARNING:HDLParsers:3607 - Unit work/ddr_ctrl is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
+WARNING:HDLParsers:3607 - Unit work/ddr_ctrl/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
+WARNING:HDLParsers:3607 - Unit work/ddr_init is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_init.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_init.vhd".
+WARNING:HDLParsers:3607 - Unit work/ddr_init/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_init.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_init.vhd".
+WARNING:HDLParsers:3607 - Unit work/mlite_cpu is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd".
+WARNING:HDLParsers:3607 - Unit work/mlite_cpu/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd".
+WARNING:HDLParsers:3607 - Unit work/uart is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/uart.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/uart.vhd".
+WARNING:HDLParsers:3607 - Unit work/uart/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/uart.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/uart.vhd".
+WARNING:HDLParsers:3607 - Unit work/alu is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/alu.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/alu.vhd".
+WARNING:HDLParsers:3607 - Unit work/alu/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/alu.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/alu.vhd".
+WARNING:HDLParsers:3607 - Unit work/bus_mux is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/bus_mux.vhd".
+WARNING:HDLParsers:3607 - Unit work/bus_mux/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/bus_mux.vhd".
+WARNING:HDLParsers:3607 - Unit work/cache_ram is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache_ram.vhd".
+WARNING:HDLParsers:3607 - Unit work/cache_ram/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache_ram.vhd".
+WARNING:HDLParsers:3607 - Unit work/control is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/control.vhd".
+WARNING:HDLParsers:3607 - Unit work/control/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/control.vhd".
+WARNING:HDLParsers:3607 - Unit work/mem_ctrl is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd".
+WARNING:HDLParsers:3607 - Unit work/mem_ctrl/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd".
+WARNING:HDLParsers:3607 - Unit work/mult is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mult.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mult.vhd".
+WARNING:HDLParsers:3607 - Unit work/mult/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mult.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mult.vhd".
+WARNING:HDLParsers:3607 - Unit work/pc_next is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pc_next.vhd".
+WARNING:HDLParsers:3607 - Unit work/pc_next/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pc_next.vhd".
+WARNING:HDLParsers:3607 - Unit work/pipeline is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pipeline.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pipeline.vhd".
+WARNING:HDLParsers:3607 - Unit work/pipeline/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pipeline.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pipeline.vhd".
+WARNING:HDLParsers:3607 - Unit work/reg_bank is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/reg_bank.vhd".
+WARNING:HDLParsers:3607 - Unit work/reg_bank/ram_block is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/reg_bank.vhd".
+WARNING:HDLParsers:3607 - Unit work/shifter is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/shifter.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/shifter.vhd".
+WARNING:HDLParsers:3607 - Unit work/shifter/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/shifter.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/shifter.vhd".
+WARNING:HDLParsers:3607 - Unit work/mlite_pack is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_pack.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_pack.vhd".
+WARNING:HDLParsers:3607 - Unit work/mlite_pack is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_pack.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_pack.vhd".
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_pack.vhd" in Library work.
 Architecture mlite_pack of Entity mlite_pack is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd" in Library work.
-Entity <cache_ram> compiled.
-Entity <cache_ram> (Architecture <logic>) compiled.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd" in Library work.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache_ram.vhd" in Library work.
+Architecture logic of Entity cache_ram is up to date.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pc_next.vhd" in Library work.
 Architecture logic of Entity pc_next is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd" in Library work.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd" in Library work.
 Architecture logic of Entity mem_ctrl is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd" in Library work.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/control.vhd" in Library work.
 Architecture logic of Entity control is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd" in Library work.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/reg_bank.vhd" in Library work.
 Architecture ram_block of Entity reg_bank is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd" in Library work.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/bus_mux.vhd" in Library work.
 Architecture logic of Entity bus_mux is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/alu.vhd" in Library work.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/alu.vhd" in Library work.
 Architecture logic of Entity alu is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/shifter.vhd" in Library work.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/shifter.vhd" in Library work.
 Architecture logic of Entity shifter is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/mult.vhd" in Library work.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mult.vhd" in Library work.
 Architecture logic of Entity mult is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/pipeline.vhd" in Library work.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pipeline.vhd" in Library work.
 Architecture logic of Entity pipeline is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_init.vhd" in Library work.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_init.vhd" in Library work.
 Architecture logic of Entity ddr_init is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd" in Library work.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd" in Library work.
 Architecture logic of Entity ddr_ctrl is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd" in Library work.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd" in Library work.
 Architecture logic of Entity mlite_cpu is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd" in Library work.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd" in Library work.
 Entity <cache> compiled.
 Entity <cache> (Architecture <logic>) compiled.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/boot_ram.vhd" in Library work.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/boot_ram.vhd" in Library work.
 Architecture logic of Entity boot_ram is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/uart.vhd" in Library work.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/uart.vhd" in Library work.
 Architecture logic of Entity uart is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/clk_gen.vhd" in Library work.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/clk_gen.vhd" in Library work.
 Architecture logic of Entity clk_gen is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma.vhd" in Library work.
-Entity <plasma> compiled.
-Entity <plasma> (Architecture <logic>) compiled.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd" in Library work.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma.vhd" in Library work.
+Architecture logic of Entity plasma is up to date.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd" in Library work.
 Architecture logic of Entity ddr_ctrl_top is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma_top.vhd" in Library work.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma_top.vhd" in Library work.
 Architecture logic of Entity plasma_top is up to date.
-Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/top_ml410.vhd" in Library work.
+Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/top_ml410.vhd" in Library work.
 Architecture logic of Entity top_ml410 is up to date.
 
 =========================================================================
@@ -457,7 +455,7 @@ Analyzing Entity <reg_bank> in library <work> (Architecture <ram_block>).
 Entity <reg_bank> analyzed. Unit <reg_bank> generated.
 
 Analyzing Entity <bus_mux> in library <work> (Architecture <logic>).
-INFO:Xst:1561 - "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd" line 84: Mux is complete : default of case is discarded
+INFO:Xst:1561 - "/home/pdp/New_Repository/PLASMABRANDAH/rtl/bus_mux.vhd" line 84: Mux is complete : default of case is discarded
 Entity <bus_mux> analyzed. Unit <bus_mux> generated.
 
 Analyzing generic Entity <alu> in library <work> (Architecture <logic>).
@@ -476,8 +474,9 @@ Analyzing Entity <pipeline> in library <work> (Architecture <logic>).
 Entity <pipeline> analyzed. Unit <pipeline> generated.
 
 Analyzing Entity <cache> in library <work> (Architecture <logic>).
-WARNING:Xst:819 - "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd" line 106: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
-   <cache_FIFO_flag_out>, <cache_ram_address>, <cache_FIFO_flag_reg>
+INFO:Xst:1561 - "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd" line 209: Mux is complete : default of case is discarded
+WARNING:Xst:819 - "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd" line 101: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <cache_ram_address>
     Set user-defined property "INIT =  000000FFF" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag1> in unit <cache>.
@@ -1574,7 +1573,7 @@ Entity <ddr_init> analyzed. Unit <ddr_init> generated.
 Analyzing generic Entity <ddr_ctrl> in library <work> (Architecture <logic>).
 	DDR_DLL = "DISABLE"
 	memory_size = 32
-WARNING:Xst:795 - "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd" line 328: Size of operands are different : result is <false>.
+WARNING:Xst:795 - "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd" line 328: Size of operands are different : result is <false>.
 Entity <ddr_ctrl> analyzed. Unit <ddr_ctrl> generated.
 
 
@@ -1585,7 +1584,7 @@ Entity <ddr_ctrl> analyzed. Unit <ddr_ctrl> generated.
 Performing bidirectional port resolution...
 
 Synthesizing Unit <uart>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/uart.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/uart.vhd".
     Found 4-bit down counter for signal <bits_read_reg>.
     Found 4-bit down counter for signal <bits_write_reg>.
     Found 8-bit register for signal <data_read_reg>.
@@ -1603,7 +1602,7 @@ Unit <uart> synthesized.
 
 
 Synthesizing Unit <pc_next>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pc_next.vhd".
     Found 1-bit xor2 for signal <pc_inc$xor0000> created at line 559.
     Found 1-bit xor2 for signal <pc_inc$xor0001> created at line 559.
     Found 1-bit xor2 for signal <pc_inc$xor0002> created at line 559.
@@ -1640,7 +1639,7 @@ Unit <pc_next> synthesized.
 
 
 Synthesizing Unit <mem_ctrl>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd".
     Found 30-bit register for signal <address_reg>.
     Found 4-bit register for signal <byte_we_reg>.
     Found 1-bit 4-to-1 multiplexer for signal <data_read_var_7$mux0000> created at line 94.
@@ -1655,7 +1654,7 @@ Unit <mem_ctrl> synthesized.
 
 
 Synthesizing Unit <control>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/control.vhd".
     Found 16x4-bit ROM for signal <mem_source_out$mux0000>.
     Found 32x2-bit ROM for signal <b_source_out$mux0000>.
     Summary:
@@ -1664,7 +1663,7 @@ Unit <control> synthesized.
 
 
 Synthesizing Unit <bus_mux>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/bus_mux.vhd".
     Found 32-bit 4-to-1 multiplexer for signal <b_out>.
     Found 1-bit 8-to-1 multiplexer for signal <take_branch>.
     Found 32-bit 4-to-1 multiplexer for signal <a_out>.
@@ -1676,7 +1675,7 @@ Unit <bus_mux> synthesized.
 
 
 Synthesizing Unit <alu>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/alu.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/alu.vhd".
     Found 32-bit xor2 for signal <c_alu$xor0000> created at line 40.
     Found 1-bit xor2 for signal <less_than$xor0000> created at line 36.
     Found 1-bit xor3 for signal <result_11$xor0000> created at line 528.
@@ -1718,7 +1717,7 @@ Unit <alu> synthesized.
 
 
 Synthesizing Unit <shifter>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/shifter.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/shifter.vhd".
     Found 32-bit 4-to-1 multiplexer for signal <c_shift>.
     Summary:
 	inferred  32 Multiplexer(s).
@@ -1726,7 +1725,7 @@ Unit <shifter> synthesized.
 
 
 Synthesizing Unit <mult>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/mult.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mult.vhd".
     Found 1-bit xor2 for signal <a_neg$xor0000> created at line 545.
     Found 1-bit xor2 for signal <a_neg$xor0001> created at line 545.
     Found 1-bit xor2 for signal <a_neg$xor0002> created at line 545.
@@ -1904,7 +1903,7 @@ Unit <mult> synthesized.
 
 
 Synthesizing Unit <pipeline>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/pipeline.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pipeline.vhd".
     Found 2-bit register for signal <shift_funcD>.
     Found 32-bit register for signal <a_busD>.
     Found 4-bit register for signal <alu_funcD>.
@@ -1923,7 +1922,7 @@ Unit <pipeline> synthesized.
 
 
 Synthesizing Unit <ddr_init>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_init.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_init.vhd".
     Using one-hot encoding for signal <init_step>.
 INFO:Xst:2117 - HDL ADVISOR - Mux Selector <init_step> of Case statement line 65 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
    	- add an 'INIT' attribute on signal <init_step> (optimization is then done without any risk)
@@ -1957,7 +1956,7 @@ Unit <ddr_init> synthesized.
 
 
 Synthesizing Unit <ddr_ctrl>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
 WARNING:Xst:647 - Input <address<26:25>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found finite state machine <FSM_0> for signal <state_prev>.
     -----------------------------------------------------------------------
@@ -2003,7 +2002,7 @@ Unit <ddr_ctrl> synthesized.
 
 
 Synthesizing Unit <clk_gen>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/clk_gen.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/clk_gen.vhd".
     Found 1-bit register for signal <clk_bufg_in>.
     Summary:
 	inferred   1 D-type flip-flop(s).
@@ -2011,13 +2010,13 @@ Unit <clk_gen> synthesized.
 
 
 Synthesizing Unit <ddr_ctrl_top>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
 WARNING:Xst:646 - Signal <address_ddr<27>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 Unit <ddr_ctrl_top> synthesized.
 
 
 Synthesizing Unit <boot_ram>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/boot_ram.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/boot_ram.vhd".
 WARNING:Xst:647 - Input <address<31:16>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:646 - Signal <block_enable<7:1>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1781 - Signal <block_do<7:1>> is used but never assigned. Tied to default value.
@@ -2030,7 +2029,7 @@ Unit <boot_ram> synthesized.
 
 
 Synthesizing Unit <reg_bank>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/reg_bank.vhd".
 WARNING:Xst:646 - Signal <no_connect> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found 1-bit register for signal <intr_enable_reg>.
     Summary:
@@ -2039,7 +2038,7 @@ Unit <reg_bank> synthesized.
 
 
 Synthesizing Unit <cache_ram>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache_ram.vhd".
 WARNING:Xst:647 - Input <address<31:16>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:646 - Signal <block_enable<7:2>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1781 - Signal <block_do<7:2>> is used but never assigned. Tied to default value.
@@ -2052,7 +2051,7 @@ Unit <cache_ram> synthesized.
 
 
 Synthesizing Unit <mlite_cpu>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd".
     Found 1-bit register for signal <intr_signal>.
     Found 4-bit up counter for signal <reset_reg>.
     Summary:
@@ -2062,12 +2061,11 @@ Unit <mlite_cpu> synthesized.
 
 
 Synthesizing Unit <cache>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd".
 WARNING:Xst:647 - Input <cpu_address<31:13>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <address_next<31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <cache_ram_address<31:13>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:1780 - Signal <tag_block_sel_reg> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <tag_block_sel> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <cache_FIFO_flag_reg> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Using one-hot encoding for signal <state_reg>.
     Using one-hot encoding for signal <state>.
 WARNING:Xst:737 - Found 1-bit latch for signal <cache_ram_address_temp_3>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
@@ -2100,26 +2098,27 @@ WARNING:Xst:737 - Found 1-bit latch for signal <cache_ram_address_temp_12>. Latc
 INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
 WARNING:Xst:737 - Found 1-bit latch for signal <cache_ram_address_temp_13>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 1-bit latch for signal <write_cycle_set_ass>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
 WARNING:Xst:737 - Found 1-bit latch for signal <cache_ram_address_temp_2>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-    Found 2-bit register for signal <cache_FIFO_flag_reg>.
-    Found 8-bit comparator not equal for signal <cache_ram_address_temp_3$cmp_ne0000> created at line 129.
-    Found 8-bit comparator not equal for signal <cache_ram_address_temp_3$cmp_ne0001> created at line 129.
+    Found 8-bit comparator equal for signal <cache_ram_address_temp_13$cmp_eq0000> created at line 134.
+    Found 8-bit comparator not equal for signal <cache_ram_address_temp_3$cmp_ne0000> created at line 124.
+    Found 8-bit comparator not equal for signal <cache_ram_address_temp_3$cmp_ne0001> created at line 124.
     Found 4-bit register for signal <cache_ram_byte_we_temp>.
     Found 32-bit register for signal <cache_ram_data_w_temp>.
     Found 1-bit register for signal <cache_ram_enable_temp>.
     Found 8-bit register for signal <cache_tag_reg>.
-    Found 8-bit comparator equal for signal <FIFO_flag$cmp_eq0000> created at line 129.
-    Found 8-bit comparator equal for signal <FIFO_flag$cmp_eq0001> created at line 129.
+    Found 8-bit comparator equal for signal <FIFO_flag$cmp_eq0000> created at line 124.
     Found 5-bit register for signal <state_reg>.
     Summary:
-	inferred  47 D-type flip-flop(s).
+	inferred  45 D-type flip-flop(s).
 	inferred   4 Comparator(s).
 Unit <cache> synthesized.
 
 
 Synthesizing Unit <plasma>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma.vhd".
 WARNING:Xst:646 - Signal <cpu_address<1:0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found 32-bit 4-to-1 multiplexer for signal <cache_ram_data_w>.
     Found 8-bit register for signal <counter_hi_reg>.
@@ -2172,13 +2171,13 @@ Unit <plasma> synthesized.
 
 
 Synthesizing Unit <plasma_top>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma_top.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma_top.vhd".
 WARNING:Xst:646 - Signal <gpio0_out<31:8>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 Unit <plasma_top> synthesized.
 
 
 Synthesizing Unit <top_ml410>.
-    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/top_ml410.vhd".
+    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/top_ml410.vhd".
 WARNING:Xst:647 - Input <fpga_0_RS232_Uart_1_ctsN_pin> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <fpga_0_DDR_CLK_FB> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 Unit <top_ml410> synthesized.
@@ -2202,12 +2201,12 @@ Macro Statistics
  4-bit up counter                                      : 1
  7-bit updown counter                                  : 1
  8-bit up counter                                      : 1
-# Registers                                            : 223
+# Registers                                            : 222
  1-bit register                                        : 186
  10-bit register                                       : 1
  12-bit register                                       : 1
  13-bit register                                       : 4
- 2-bit register                                        : 2
+ 2-bit register                                        : 1
  3-bit register                                        : 4
  30-bit register                                       : 2
  32-bit register                                       : 9
@@ -2217,8 +2216,8 @@ Macro Statistics
  6-bit register                                        : 2
  8-bit register                                        : 5
  9-bit register                                        : 1
-# Latches                                              : 16
- 1-bit latch                                           : 14
+# Latches                                              : 17
+ 1-bit latch                                           : 15
  2-bit latch                                           : 2
 # Comparators                                          : 9
  13-bit comparator not equal                           : 1
@@ -2286,10 +2285,10 @@ Macro Statistics
  4-bit up counter                                      : 1
  7-bit updown counter                                  : 1
  8-bit up counter                                      : 1
-# Registers                                            : 746
- Flip-Flops                                            : 746
-# Latches                                              : 16
- 1-bit latch                                           : 14
+# Registers                                            : 744
+ Flip-Flops                                            : 744
+# Latches                                              : 17
+ 1-bit latch                                           : 15
  2-bit latch                                           : 2
 # Comparators                                          : 9
  13-bit comparator not equal                           : 1
@@ -2314,7 +2313,6 @@ Macro Statistics
 *                         Low Level Synthesis                           *
 =========================================================================
 INFO:Xst:2261 - The FF/Latch <block_sel_buf_1> in Unit <cache_ram> is equivalent to the following FF/Latch, which will be removed : <block_sel_buf_2> 
-INFO:Xst:2261 - The FF/Latch <cache_FIFO_flag_in_0> in Unit <cache> is equivalent to the following FF/Latch, which will be removed : <cache_FIFO_flag_in_1> 
 WARNING:Xst:1710 - FF/Latch <block_sel_buf_1> (without init value) has a constant value of 0 in block <cache_ram>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <state_reg_0> of sequential type is unconnected in block <cache>.
 INFO:Xst:1901 - Instance block0.ram_byte3 in unit boot_ram of type RAMB16_S9 has been replaced by RAMB16
@@ -2374,7 +2372,6 @@ Mapping all equations...
 Building and optimizing final netlist ...
 Found area constraint ratio of 100 (+ 5) on block top_ml410, actual ratio is 8.
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_11 has been replicated 2 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_29 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_1 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_26 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_27 has been replicated 1 time(s)
@@ -2393,8 +2390,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 808
- Flip-Flops                                            : 808
+# Registers                                            : 805
+ Flip-Flops                                            : 805
 
 =========================================================================
 
@@ -2423,33 +2420,33 @@ Design Statistics
 # IOs                              : 77
 
 Cell Usage :
-# BELS                             : 4058
+# BELS                             : 4063
 #      GND                         : 1
 #      INV                         : 23
 #      LUT1                        : 8
-#      LUT2                        : 185
-#      LUT2_D                      : 54
-#      LUT2_L                      : 19
-#      LUT3                        : 734
-#      LUT3_D                      : 101
+#      LUT2                        : 181
+#      LUT2_D                      : 53
+#      LUT2_L                      : 20
+#      LUT3                        : 730
+#      LUT3_D                      : 99
 #      LUT3_L                      : 62
-#      LUT4                        : 2089
-#      LUT4_D                      : 177
-#      LUT4_L                      : 190
+#      LUT4                        : 2091
+#      LUT4_D                      : 179
+#      LUT4_L                      : 201
 #      MUXCY                       : 39
 #      MUXF5                       : 357
 #      VCC                         : 1
 #      XORCY                       : 18
-# FlipFlops/Latches                : 825
+# FlipFlops/Latches                : 824
 #      FD                          : 4
 #      FDC                         : 242
 #      FDC_1                       : 39
-#      FDCE                        : 368
+#      FDCE                        : 367
 #      FDCE_1                      : 18
-#      FDE                         : 127
+#      FDE                         : 125
 #      FDP                         : 1
 #      FDPE                        : 9
-#      LD                          : 15
+#      LD                          : 17
 #      LD_1                        : 2
 # RAMS                             : 142
 #      RAM16X1D                    : 128
@@ -2470,10 +2467,10 @@ Device utilization summary:
 
 Selected Device : 4vfx60ff1152-11 
 
- Number of Slices:                     2165  out of  25280     8%  
- Number of Slice Flip Flops:            822  out of  50560     1%  
- Number of 4 input LUTs:               3898  out of  50560     7%  
-    Number used as logic:              3642
+ Number of Slices:                     2169  out of  25280     8%  
+ Number of Slice Flip Flops:            821  out of  50560     1%  
+ Number of 4 input LUTs:               3903  out of  50560     7%  
+    Number used as logic:              3647
     Number used as RAMs:                256
  Number of IOs:                          77
  Number of bonded IOBs:                  75  out of    576    13%  
@@ -2505,13 +2502,14 @@ Clock Information:
 Clock Signal                                                                                                                                               | Clock buffer(FF name)                                                       | Load  |
 -----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+-------+
 sys_clk_pin                                                                                                                                                | u1_plasma_top/u0_clk/DCM_BASE0:CLKFX                                        | 97    |
-u1_plasma_top/u0_clk/clk_bufg_in                                                                                                                           | BUFG                                                                        | 853   |
+u1_plasma_top/u0_clk/clk_bufg_in                                                                                                                           | BUFG                                                                        | 850   |
+u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_cycle_set_ass_or0000(u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_cycle_set_ass_or00001:O)            | NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_cycle_set_ass)     | 1     |
 u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_reg_4                                                                                                     | NONE(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss)                 | 2     |
 u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_3_not0001(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_3_not00011:O)| NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_2)| 12    |
 u1_plasma_top/u1_plasma/opt_cache2.u_cache/FIFO_flag_not0001(u1_plasma_top/u1_plasma/opt_cache2.u_cache/FIFO_flag_not00012:O)                              | NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/FIFO_flag_0)             | 2     |
-u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_FIFO_flag_in_not0001(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_FIFO_flag_in_not00011:O)            | NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_FIFO_flag_in_0)    | 1     |
+u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_FIFO_flag_in_not0001(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_FIFO_flag_in_not00011:O)            | NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_FIFO_flag_in_0)    | 2     |
 -----------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+-------+
-(*) These 3 clock signal(s) are generated by combinatorial logic,
+(*) These 4 clock signal(s) are generated by combinatorial logic,
 and XST is not able to identify which are the primary clock signals.
 Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
@@ -2521,7 +2519,7 @@ Asynchronous Control Signals Information:
 -----------------------------------------------------------------------------------+----------------------------------------------------------+-------+
 Control Signal                                                                     | Buffer(FF name)                                          | Load  |
 -----------------------------------------------------------------------------------+----------------------------------------------------------+-------+
-u1_plasma_top/u1_plasma/u1_cpu/reset(u1_plasma_top/u1_plasma/u1_cpu/reset_or0000:O)| NONE(u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_reg_10)| 393   |
+u1_plasma_top/u1_plasma/u1_cpu/reset(u1_plasma_top/u1_plasma/u1_cpu/reset_or0000:O)| NONE(u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_reg_10)| 392   |
 u1_plasma_top/reset_cpu(u1_plasma_top/reset_cpu1:O)                                | NONE(u1_plasma_top/u1_plasma/counter_hi_reg_32)          | 175   |
 u1_plasma_top/reset(u1_plasma_top/reset1:O)                                        | NONE(u1_plasma_top/u2_ddr/u1_ddr_init/init_step_0)       | 108   |
 u1_plasma_top/reset_in(u1_plasma_top/reset_in1_INV_0:O)                            | NONE(u1_plasma_top/u0_clk/clk_bufg_in)                   | 1     |
@@ -2531,8 +2529,8 @@ Timing Summary:
 ---------------
 Speed Grade: -11
 
-   Minimum period: 12.462ns (Maximum Frequency: 80.244MHz)
-   Minimum input arrival time before clock: 9.857ns
+   Minimum period: 12.353ns (Maximum Frequency: 80.952MHz)
+   Minimum input arrival time before clock: 9.745ns
    Maximum output required time after clock: 11.834ns
    Maximum combinational path delay: No path found
 
@@ -2565,16 +2563,16 @@ Delay:               2.491ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Clock period: 12.462ns (frequency: 80.244MHz)
-  Total number of paths / destination ports: 55511854 / 2697
+  Clock period: 12.353ns (frequency: 80.952MHz)
+  Total number of paths / destination ports: 56444495 / 2693
 -------------------------------------------------------------------------
-Delay:               12.462ns (Levels of Logic = 22)
+Delay:               12.353ns (Levels of Logic = 22)
   Source:            u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 (FF)
-  Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_w_temp_0 (FF)
+  Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_byte_we_temp_0 (FF)
   Source Clock:      u1_plasma_top/u0_clk/clk_bufg_in rising
   Destination Clock: u1_plasma_top/u0_clk/clk_bufg_in rising
 
-  Data Path: u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_w_temp_0
+  Data Path: u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_byte_we_temp_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
@@ -2595,16 +2593,16 @@ Delay:               12.462ns (Levels of Logic = 22)
      LUT4:I1->O           21   0.166   0.755  u1_plasma_top/u2_ddr/u2_ddr/pause_and000039 (u1_plasma_top/pause)
      LUT4:I3->O           19   0.166   0.715  u1_plasma_top/u1_plasma/cpu_pause (u1_plasma_top/u1_plasma/cpu_pause)
      LUT4_D:I2->O         10   0.166   0.563  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_1 (u1_plasma_top/u1_plasma/u1_cpu/pause_any1)
-     LUT4:I3->O            1   0.166   0.505  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<20>16_SW0_SW0 (N1096)
+     LUT4:I3->O            1   0.166   0.505  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<20>16_SW0_SW0 (N1099)
      LUT4:I2->O            2   0.166   0.520  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<20>16 (u1_plasma_top/u1_plasma/address_next<22>)
-     LUT4:I2->O            1   0.166   0.452  u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_next<1>1107_SW0_SW0 (N934)
-     LUT4:I3->O            3   0.166   0.518  u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_next<1>1126_SW0_SW0_SW0_SW0_SW0 (N1619)
-     LUT4_D:I2->O         18   0.166   0.655  u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_next<1>1213 (u1_plasma_top/u1_plasma/cache_access)
-     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/Mmux_cache_ram_data_w421 (u1_plasma_top/u1_plasma/cache_ram_data_w<28>)
-     FDE:D                     0.018          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_w_temp_28
+     LUT4:I2->O            1   0.166   0.452  u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_next<1>1107_SW0_SW0 (N937)
+     LUT4:I3->O            4   0.166   0.517  u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_next<1>1126_SW0_SW0_SW0_SW0_SW0 (N1622)
+     LUT4_D:I2->O          9   0.166   0.547  u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_next<1>1213 (u1_plasma_top/u1_plasma/cache_access)
+     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/Mmux_cache_ram_data_w221 (u1_plasma_top/u1_plasma/cache_ram_data_w<19>)
+     FDE:D                     0.018          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_w_temp_19
     ----------------------------------------
-    Total                     12.462ns (3.632ns logic, 8.830ns route)
-                                       (29.1% logic, 70.9% route)
+    Total                     12.353ns (3.632ns logic, 8.721ns route)
+                                       (29.4% logic, 70.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'sys_clk_pin'
@@ -2629,39 +2627,39 @@ Offset:              4.189ns (Levels of Logic = 3)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Total number of paths / destination ports: 1303 / 270
+  Total number of paths / destination ports: 1323 / 268
 -------------------------------------------------------------------------
-Offset:              9.857ns (Levels of Logic = 12)
+Offset:              9.745ns (Levels of Logic = 12)
   Source:            sys_rst_pin (PAD)
-  Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_w_temp_0 (FF)
+  Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_byte_we_temp_0 (FF)
   Destination Clock: u1_plasma_top/u0_clk/clk_bufg_in rising
 
-  Data Path: sys_rst_pin to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_w_temp_0
+  Data Path: sys_rst_pin to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_byte_we_temp_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O            10   0.867   0.704  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
      LUT4_L:I1->LO         1   0.166   0.192  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N130)
-     LUT4:I2->O          426   0.166   2.285  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
-     LUT4:I3->O            2   0.166   0.653  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW0 (N1241)
-     LUT4_D:I0->O          1   0.166   0.505  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27>_SW0_SW0_SW1_SW0 (N1673)
-     LUT4:I2->O            3   0.166   0.465  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27>_SW0_SW0_SW1 (N1408)
-     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27>_SW0_SW0_F (N1866)
-     MUXF5:I0->O           1   0.325   0.505  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27>_SW0_SW0 (N1597)
-     LUT3:I1->O            1   0.166   0.505  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27>_SW1 (N1258)
-     LUT4:I2->O            3   0.166   0.518  u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_next<1>1126_SW0_SW0_SW0_SW0_SW0 (N1619)
-     LUT4_D:I2->O         18   0.166   0.655  u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_next<1>1213 (u1_plasma_top/u1_plasma/cache_access)
-     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/Mmux_cache_ram_data_w421 (u1_plasma_top/u1_plasma/cache_ram_data_w<28>)
-     FDE:D                     0.018          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_w_temp_28
+     LUT4:I2->O          425   0.166   2.282  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
+     LUT4:I3->O            2   0.166   0.653  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW0 (N1244)
+     LUT4_D:I0->O          1   0.166   0.505  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27>_SW0_SW0_SW1_SW0 (N1676)
+     LUT4:I2->O            3   0.166   0.465  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27>_SW0_SW0_SW1 (N1411)
+     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27>_SW0_SW0_F (N1869)
+     MUXF5:I0->O           1   0.325   0.505  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27>_SW0_SW0 (N1600)
+     LUT3:I1->O            1   0.166   0.505  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27>_SW1 (N1261)
+     LUT4:I2->O            4   0.166   0.517  u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_next<1>1126_SW0_SW0_SW0_SW0_SW0 (N1622)
+     LUT4_D:I2->O          9   0.166   0.547  u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_next<1>1213 (u1_plasma_top/u1_plasma/cache_access)
+     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/Mmux_cache_ram_data_w221 (u1_plasma_top/u1_plasma/cache_ram_data_w<19>)
+     FDE:D                     0.018          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_w_temp_19
     ----------------------------------------
-    Total                      9.857ns (2.870ns logic, 6.987ns route)
-                                       (29.1% logic, 70.9% route)
+    Total                      9.745ns (2.870ns logic, 6.875ns route)
+                                       (29.5% logic, 70.5% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_3_not0001'
   Total number of paths / destination ports: 11 / 11
 -------------------------------------------------------------------------
-Offset:              7.585ns (Levels of Logic = 8)
+Offset:              7.582ns (Levels of Logic = 8)
   Source:            sys_rst_pin (PAD)
   Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_9 (LATCH)
   Destination Clock: u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_3_not0001 falling
@@ -2672,15 +2670,15 @@ Offset:              7.585ns (Levels of Logic = 8)
     ----------------------------------------  ------------
      IBUF:I->O            10   0.867   0.704  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
      LUT4_L:I1->LO         1   0.166   0.192  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N130)
-     LUT4:I2->O          426   0.166   2.285  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
-     LUT4:I3->O            2   0.166   0.653  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW0 (N1241)
+     LUT4:I2->O          425   0.166   2.282  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
+     LUT4:I3->O            2   0.166   0.653  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW0 (N1244)
      LUT4_D:I0->O         19   0.166   0.715  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N14)
      LUT4_D:I2->O          1   0.166   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<7>13 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<7>13)
      LUT4:I3->O            6   0.166   0.537  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<7>14 (u1_plasma_top/u1_plasma/address_next<9>)
-     LUT2:I0->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_9_mux00001 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_9_mux0000)
+     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_9_mux00001 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_9_mux0000)
      LD:D                      0.018          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_9
     ----------------------------------------
-    Total                      7.585ns (2.047ns logic, 5.538ns route)
+    Total                      7.582ns (2.047ns logic, 5.535ns route)
                                        (27.0% logic, 73.0% route)
 
 =========================================================================
@@ -2731,7 +2729,7 @@ Offset:              11.834ns (Levels of Logic = 17)
      MUXCY:CI->O           6   0.315   0.484  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6>)
      LUT4:I3->O           20   0.166   0.842  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<1>79 (fpga_0_DDR_SDRAM_32Mx64_DDR_CASn_pin_OBUF)
      LUT3_D:I0->O         16   0.166   0.655  u1_plasma_top/u2_ddr/u2_ddr/address_row_0_and000021 (N22)
-     LUT3:I2->O            1   0.166   0.452  u1_plasma_top/u2_ddr/u2_ddr/SD_A<7>_SW1 (N2118)
+     LUT3:I2->O            1   0.166   0.452  u1_plasma_top/u2_ddr/u2_ddr/SD_A<7>_SW1 (N2121)
      LUT4:I3->O            1   0.166   0.313  u1_plasma_top/u2_ddr/u2_ddr/SD_A<7> (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_7_OBUF)
      OBUF:I->O                 3.601          fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_7_OBUF (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<7>)
     ----------------------------------------
@@ -2754,11 +2752,11 @@ Offset:              10.639ns (Levels of Logic = 9)
      LD_1:G->Q            72   0.358   1.223  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_checking (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_checking)
      LUT3:I0->O            1   0.166   0.638  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<2>5 (u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<2>5)
      LUT4:I0->O            2   0.166   0.653  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<2>26 (u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<2>26)
-     LUT4:I0->O            1   0.166   0.000  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<2>21_SW0_F (N1796)
-     MUXF5:I0->O           1   0.325   0.505  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<2>21_SW0 (N976)
+     LUT4:I0->O            1   0.166   0.000  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<2>21_SW0_F (N1799)
+     MUXF5:I0->O           1   0.325   0.505  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<2>21_SW0 (N979)
      LUT4:I2->O           20   0.166   0.754  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<2>62 (fpga_0_DDR_SDRAM_32Mx64_DDR_RASn_pin_OBUF)
      LUT3_D:I1->O         16   0.166   0.655  u1_plasma_top/u2_ddr/u2_ddr/address_row_0_and000021 (N22)
-     LUT3:I2->O            1   0.166   0.452  u1_plasma_top/u2_ddr/u2_ddr/SD_A<7>_SW1 (N2118)
+     LUT3:I2->O            1   0.166   0.452  u1_plasma_top/u2_ddr/u2_ddr/SD_A<7>_SW1 (N2121)
      LUT4:I3->O            1   0.166   0.313  u1_plasma_top/u2_ddr/u2_ddr/SD_A<7> (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_7_OBUF)
      OBUF:I->O                 3.601          fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_7_OBUF (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<7>)
     ----------------------------------------
@@ -2768,15 +2766,15 @@ Offset:              10.639ns (Levels of Logic = 9)
 =========================================================================
 
 
-Total REAL time to Xst completion: 103.00 secs
-Total CPU time to Xst completion: 97.98 secs
+Total REAL time to Xst completion: 166.00 secs
+Total CPU time to Xst completion: 134.13 secs
  
 --> 
 
 
-Total memory usage is 668120 kilobytes
+Total memory usage is 668432 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   90 (   0 filtered)
-Number of infos    :   58 (   0 filtered)
+Number of infos    :   59 (   0 filtered)
 

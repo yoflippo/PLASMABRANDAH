@@ -79,7 +79,9 @@ architecture logic of cache is
     signal cache_ram_byte_we_temp   : std_logic_vector(3 downto 0);		--TvE: latched
     signal cache_ram_address_temp   : std_logic_vector(31 downto 2);	--TvE: Determined by combinatorics
     signal cache_ram_data_w_temp    : std_logic_vector(31 downto 0);	--TvE: Data_input Latched
-    signal cache_ram_data_r_temp    : std_logic_vector(31 downto 0);	--data_output
+    signal cache_ram_address_next   : std_logic_vector(31 downto 2);    --TvE: address input next
+    signal cache_ram_address_reg    : std_logic_vector(31 downto 2);    --TvE: address input Latched
+    --signal cache_ram_data_r_temp    : std_logic_vector(31 downto 0);	--data_output
 
     subtype cache_state is std_logic_vector(1 downto 0);
     constant CACHE_0_FO	    : cache_state := "00";	--TvE: Meaning replace cache line in set 0
@@ -87,16 +89,16 @@ architecture logic of cache is
     constant CACHE_1_FO2 	: cache_state := "10";	--TvE: Meaning replace cache line in set 1
     constant CACHE_0_FO2  	: cache_state := "11";	--TvE: Meaning replace cache line in set 0
 
-    signal cache_FIFO_flag_in		: cache_state;--FIFO flag
+    signal cache_FIFO_flag_in		: cache_state;      --FIFO flag
     signal cache_FIFO_flag_out		: cache_state;      --FIFO flag
     signal FIFO_flag 			    : cache_state;		--FIFO flag
     signal cache_FIFO_flag_reg		: cache_state;		--FIFO flag
-    signal write_cycle              : std_logic := '0';
+    signal write_cycle_set_ass      : std_logic := '0'; --Track the progress in the write cycle, takes more cycles than
 
     ---------------------------------------------------------------------------------------
 begin
    	-- TvE: Assignment of cache_ram_..._temp signals! 
-   	cache_ram_data_r <= cache_ram_data_r_temp;
+   	--cache_ram_data_r <= cache_ram_data_r_temp;
    	
     cache_proc: process(clk, reset, mem_busy, cache_address,
         state_reg, state, state_next,
@@ -106,7 +108,9 @@ begin
     begin
 
     ------------------------
-    
+    cache_ram_address_temp(31 downto 14) <= cache_ram_address(31 downto 14);
+    --TvE: only the 13th bit needs to be set according to which cache block must be updated/read
+    --cache_ram_address_temp(12 downto 2) <= cache_ram_address(12 downto 2);
 	
     ------------------------
     ------------------------
@@ -129,8 +133,7 @@ begin
                 else
                 	cache_miss <= '0';
                     state <= STATE_IDLE;
-                        cache_ram_address_temp(31 downto 14) <= ZERO(31 downto 14);
-                        cache_ram_address_temp(12 downto 2) <= cache_ram_address(12 downto 2);
+                    cache_ram_address_temp(12 downto 2)<= cache_ram_address_reg(12 downto 2);
                     if tag_block_do(1) = cache_tag_reg then
                     	cache_ram_address_temp(13) <= '1';		-- TvE: Selection bit to determine which block the confirmed data is in
                     else
@@ -148,22 +151,43 @@ begin
             when STATE_WAITING =>         --waiting for memory access to complete
                 cache_checking <= '0';
                 cache_miss <= '0';
-                write_cycle <= '0';     --TvE: extra signal to be sure it takes 1 more cycle for writing
+                write_cycle_set_ass <= '0';     --TvE: extra signal to be sure it takes 1 more cycle for writing
+                --if cache_FIFO_flag_reg = CACHE_1_FO or cache_FIFO_flag_reg = CACHE_1_FO2 then
+                --    cache_ram_address_temp(13) <= '1';      -- TvE: Selection bit to determine which block to write the data to
+                --else
+                --    cache_ram_address_temp(13) <= '0';      -- TvE: Selection bit to determine which block to write the data to
+                --end if;
                 if mem_busy = '1' then
                     state <= STATE_WAITING;
                 else
                     state <= STATE_IDLE;
                 end if;
             when STATE_SET_ASS =>			--TvE: added state to check the FIFO flags in order to write the data to the correct cache block
-        	    cache_ram_address_temp(31 downto 14) <= ZERO(31 downto 14);
-                cache_ram_address_temp(12 downto 2) <= cpu_address(12 downto 2);
-                if cache_FIFO_flag_out = CACHE_1_FO or cache_FIFO_flag_out = CACHE_1_FO2 then
-                   	cache_ram_address_temp(13) <= '1';		-- TvE: Selection bit to determine which block to write the data to
-                else
-                   	cache_ram_address_temp(13) <= '0';		-- TvE: Selection bit to determine which block to write the data to
-                end if;
-                write_cycle <= '1';
-                FIFO_flag <= cache_FIFO_flag_out;
+                
+                cache_ram_address_temp(12 downto 2)<= cache_ram_address_reg(12 downto 2);
+                cache_address <= cache_ram_address_reg(12 downto 2);
+                case cache_FIFO_flag_out is           --TvE: Can also be the (un)clocked flag
+                        when CACHE_0_FO =>      --"00"
+                            cache_we <= "01";       --update cache tag TvE: in right tag block
+                            cache_FIFO_flag_in <= "01";
+                            cache_ram_address_temp(13) <= '0';      -- TvE: Selection bit to determine which block to write the data to
+                        when CACHE_1_FO =>      --"01"
+                            cache_we <= "10";       --update cache tag TvE: in right tag block
+                            cache_FIFO_flag_in <= "11";
+                            cache_ram_address_temp(13) <= '1';      -- TvE: Selection bit to determine which block to write the data to
+                        when CACHE_0_FO2 =>     --"11"
+                            cache_we <= "01";       --update cache tag TvE: in right tag block
+                            cache_FIFO_flag_in <= "10";
+                            cache_ram_address_temp(13) <= '0';      -- TvE: Selection bit to determine which block to write the data to
+                        when CACHE_1_FO2 =>     --"10"
+                            cache_we <= "10";       --update cache tag TvE: in right tag block
+                            cache_FIFO_flag_in <= "00";
+                            cache_ram_address_temp(13) <= '1';      -- TvE: Selection bit to determine which block to write the data to
+                        when others =>
+                            cache_we <= "00";
+                    end case;
+                write_cycle_set_ass <= '1';
+                --FIFO_flag <= cache_FIFO_flag_out;
                 state <= STATE_WAITING;
             when others =>
                 cache_checking <= '0';
@@ -179,8 +203,9 @@ begin
                 if byte_we_next = "0000" then     				--read cycle
                     state_next <= STATE_CHECKING;  				--need to check if match
                 else                                            --TvE: Write cycle
-                    if write_cycle = '0' then
+                    if write_cycle_set_ass = '0' then
                         state_next <= STATE_SET_ASS;            --TvE: was STATE_WAITING, this state checks to which of the 2 sets it has to write the data to                        
+                        cache_ram_address_next <= cache_ram_address;                   
                     else
                         state_next <= STATE_WAITING;
                     end if ;
@@ -191,26 +216,31 @@ begin
                 state_next <= STATE_IDLE;
             end if;
         else
-            cache_address <= cpu_address(12 downto 2);  -- TvE: changed: 0 concatenation with 11 downto 2 to 12 downto 2
-            cache_access <= '0';
-            if state = STATE_MISSED or state = STATE_WAITING then
-                    case FIFO_flag is           --TvE: Can also be the (un)clocked flag: FIFO_flag!
-                        when CACHE_0_FO =>		
+            if state_reg /= STATE_SET_ASS then
+                cache_address <= cpu_address(12 downto 2);  -- TvE: changed: 0 concatenation with 11 downto 2 to 12 downto 2    
+            end if ;
+                cache_access <= '0';
+            if state = STATE_MISSED then
+                    case cache_FIFO_flag_reg is           --TvE: Can also be the (un)clocked flag
+                        when CACHE_0_FO =>		--"00"
                             cache_we <= "01";       --update cache tag TvE: in right tag block
                             cache_FIFO_flag_in <= "01";
-                        when CACHE_1_FO =>
+                        when CACHE_1_FO =>      --"01"
+                            cache_we <= "10";       --update cache tag TvE: in right tag block
+                            cache_FIFO_flag_in <= "11";
+                        when CACHE_0_FO2 =>     --"11"
+                            cache_we <= "01";       --update cache tag TvE: in right tag block
+                            cache_FIFO_flag_in <= "10";
+                        when CACHE_1_FO2 =>     --"10"
                             cache_we <= "10";       --update cache tag TvE: in right tag block
                             cache_FIFO_flag_in <= "00";
-                        when CACHE_0_FO2 =>
-                        when CACHE_1_FO2 =>
                         when others =>
-
+                            cache_we <= "00";
                     end case;
-                    	cache_we <= "10";
-                    	cache_FIFO_flag_in <= "00";
-                    end if;
             else
-                cache_we <= "00";
+                if state_reg /= STATE_SET_ASS then
+                    cache_we <= "00";    
+                end if ;
             end if;
             state_next <= state;
         end if;
@@ -229,6 +259,7 @@ begin
             cache_ram_enable_temp <= cache_ram_enable;		--TvE: Latched enable
             cache_FIFO_flag_reg <= FIFO_flag;				--TvE: Latched fifo flag
             cache_ram_byte_we_temp <= cache_ram_byte_we;	--TvE: Latched byte_we
+            cache_ram_address_reg <= cache_ram_address_next;
             if (state = STATE_IDLE and state_reg /= STATE_MISSED) or state_reg = STATE_SET_ASS then
             	cache_ram_data_w_temp <= cache_ram_data_w;	--TvE: Latched data input.
                 cache_tag_reg <= cache_tag_in;
@@ -448,7 +479,7 @@ begin
             write_byte_enable => cache_ram_byte_we_temp,
             address           => cache_ram_address_temp,
             data_write        => cache_ram_data_w_temp,
-            data_read 	  	  => cache_ram_data_r_temp
+            data_read 	  	  => cache_ram_data_r
         );
 
 end; --logic

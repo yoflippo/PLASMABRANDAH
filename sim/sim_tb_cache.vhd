@@ -71,10 +71,15 @@ end component; --cache
   signal cache_ram_set_ass_address:   std_logic_vector(31 downto 2);
   signal cache_ram_data_w     :   std_logic_vector(31 downto 0);
   signal cache_ram_data_r     :   std_logic_vector(31 downto 0);
+  signal cache_ram_data_r_dut :   std_logic_vector(31 downto 0);
+
 
   signal cache_access         :   std_logic;   
   signal cache_checking       :   std_logic;   
   signal cache_miss           :   std_logic; 
+  signal cache_access_dut     :   std_logic;   
+  signal cache_checking_dut   :   std_logic;   
+  signal cache_miss_dut       :   std_logic; 
   signal status               :   std_logic_vector(3 downto 0) := "0000";
   signal rst                  :   std_logic;
 
@@ -249,10 +254,10 @@ begin
             cache_ram_byte_we   => cache_ram_byte_we, --: in  std_logic_vector(3 downto 0);
             cache_ram_address   => cache_ram_set_ass_address, --: in  std_logic_vector(31 downto 2);
             cache_ram_data_w    => cache_ram_data_w,    --: in  std_logic_vector(31 downto 0);
-            cache_ram_data_r    => cache_ram_data_r,    --: out std_logic_vector(31 downto 0);
+            cache_ram_data_r    => cache_ram_data_r_dut,    --: out std_logic_vector(31 downto 0);
 
-            cache_access        => cache_access,      --: out std_logic;   --access 4KB cache
-            cache_checking      => cache_checking,    --: out std_logic;   --checking if cache hit
-            cache_miss          => cache_miss     --: out std_logic    --cache miss
+            cache_access        => cache_access_dut,      --: out std_logic;   --access 4KB cache
+            cache_checking      => cache_checking_dut,    --: out std_logic;   --checking if cache hit
+            cache_miss          => cache_miss_dut     --: out std_logic    --cache miss
         );
 end;

@@ -124,6 +124,6 @@ TS_clk = PERIOD TIMEGRP "clk" TS_u1_plasma_top_u0_clk_clk_2x_bufg_in * 2 PHASE  
    u1_plasma_top/u0_clk/clk_bufg_in (u1_plasma_top/u0_clk/clk_bufg_in.CLK)
 }
 
-Timespec interaction analysis completed Sun Jun 11 14:22:05 2017
+Timespec interaction analysis completed Mon Jun 12 05:47:48 2017
 --------------------------------------------------------------------------------
 

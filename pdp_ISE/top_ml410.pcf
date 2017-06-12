@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Sun Jun 11 14:19:59 2017
+// Written by: Map P.20131013 on Mon Jun 12 05:45:00 2017
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -352,8 +352,6 @@ TIMEGRP clk = BEL "u1_plasma_top/u0_clk/clk_bufg_in" BEL
         "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag_reg_5" BEL
         "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag_reg_6" BEL
         "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag_reg_7" BEL
-        "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_FIFO_flag_reg_0" BEL
-        "u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_FIFO_flag_reg_1" BEL
         "u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_reg_4" BEL
         "u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_reg_3" BEL
         "u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_reg_1" BEL
@@ -1422,12 +1420,11 @@ TIMEGRP clk = BEL "u1_plasma_top/u0_clk/clk_bufg_in" BEL
         "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_26_1" BEL
         "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_29_1" BEL
         "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_1_1" BEL
-        "u1_plasma_top/u2_ddr/u1_ddr_init/init_step_5_1" BEL
         "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_11_1" BEL
+        "u1_plasma_top/u2_ddr/u1_ddr_init/init_step_5_1" BEL
         "u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_0_1" BEL
         "u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_1_1" BEL
         "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_30_1" BEL
-        "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_29_1" BEL
         "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_30_2" BEL
         "u1_plasma_top/u2_ddr/u1_ddr_init/init_step_5_2" BEL
         "u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_11_2" BEL
