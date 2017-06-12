@@ -1,0 +1,75 @@
+/home/pdp/APLASMA/GIT/PLASMABRANDAH/multiplier_sim/multiplier_csa_16/tb_multiplier.vhd {1 {vcom -work work -2002 -explicit -vopt /home/pdp/APLASMA/GIT/PLASMABRANDAH/multiplier_sim/multiplier_csa_16/tb_multiplier.vhd
+QuestaSim-64 vcom 10.5c_4 Compiler 2016.11 Nov 30 2016
+Start time: 14:51:12 on Jun 12,2017
+vcom -reportprogress 300 -work work -2002 -explicit -vopt /home/pdp/APLASMA/GIT/PLASMABRANDAH/multiplier_sim/multiplier_csa_16/tb_multiplier.vhd 
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package TxtUtil_pkg
+-- Loading package mlite_pack
+-- Compiling entity multiplier_tb
+-- Compiling architecture sim of multiplier_tb
+-- Loading entity mult_csa
+End time: 14:51:12 on Jun 12,2017, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+
+} {} {}} /home/pdp/APLASMA/GIT/PLASMABRANDAH/multiplier_sim/multiplier_csa_16/mult.vhd {1 {vcom -work work -2002 -explicit -vopt /home/pdp/APLASMA/GIT/PLASMABRANDAH/multiplier_sim/multiplier_csa_16/mult.vhd
+QuestaSim-64 vcom 10.5c_4 Compiler 2016.11 Nov 30 2016
+Start time: 14:51:12 on Jun 12,2017
+vcom -reportprogress 300 -work work -2002 -explicit -vopt /home/pdp/APLASMA/GIT/PLASMABRANDAH/multiplier_sim/multiplier_csa_16/mult.vhd 
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package mlite_pack
+-- Compiling entity mult
+-- Compiling architecture logic of mult
+End time: 14:51:12 on Jun 12,2017, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+
+} {} {}} /home/pdp/APLASMA/GIT/PLASMABRANDAH/multiplier_sim/multiplier_csa_16/csa_adder.vhd {1 {vcom -work work -2002 -explicit -vopt /home/pdp/APLASMA/GIT/PLASMABRANDAH/multiplier_sim/multiplier_csa_16/csa_adder.vhd
+QuestaSim-64 vcom 10.5c_4 Compiler 2016.11 Nov 30 2016
+Start time: 14:51:12 on Jun 12,2017
+vcom -reportprogress 300 -work work -2002 -explicit -vopt /home/pdp/APLASMA/GIT/PLASMABRANDAH/multiplier_sim/multiplier_csa_16/csa_adder.vhd 
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package mlite_pack
+-- Compiling entity csa_adder
+-- Compiling architecture logic of csa_adder
+End time: 14:51:12 on Jun 12,2017, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+
+} {} {}} /home/pdp/APLASMA/GIT/PLASMABRANDAH/multiplier_sim/multiplier_csa_16/multiplier_tree_radix16_sim/multiplier_tree_radix16.vhd {1 {vcom -work work -2002 -explicit -vopt /home/pdp/APLASMA/GIT/PLASMABRANDAH/multiplier_sim/multiplier_csa_16/multiplier_tree_radix16_sim/multiplier_tree_radix16.vhd
+QuestaSim-64 vcom 10.5c_4 Compiler 2016.11 Nov 30 2016
+Start time: 14:51:12 on Jun 12,2017
+vcom -reportprogress 300 -work work -2002 -explicit -vopt /home/pdp/APLASMA/GIT/PLASMABRANDAH/multiplier_sim/multiplier_csa_16/multiplier_tree_radix16_sim/multiplier_tree_radix16.vhd 
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package mlite_pack
+-- Compiling entity multiplier_tree_radix16
+-- Compiling architecture logic of multiplier_tree_radix16
+End time: 14:51:12 on Jun 12,2017, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+
+} {} {}} /home/pdp/APLASMA/GIT/PLASMABRANDAH/multiplier_sim/multiplier_csa_16/TxtUtil_pkg.vhd {1 {vcom -work work -2002 -explicit -vopt /home/pdp/APLASMA/GIT/PLASMABRANDAH/multiplier_sim/multiplier_csa_16/TxtUtil_pkg.vhd
+QuestaSim-64 vcom 10.5c_4 Compiler 2016.11 Nov 30 2016
+Start time: 14:51:12 on Jun 12,2017
+vcom -reportprogress 300 -work work -2002 -explicit -vopt /home/pdp/APLASMA/GIT/PLASMABRANDAH/multiplier_sim/multiplier_csa_16/TxtUtil_pkg.vhd 
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling package TxtUtil_pkg
+-- Compiling package body TxtUtil_pkg
+-- Loading package TxtUtil_pkg
+End time: 14:51:12 on Jun 12,2017, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+
+} {} {}}

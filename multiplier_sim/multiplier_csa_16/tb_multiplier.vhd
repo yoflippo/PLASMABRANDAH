@@ -43,24 +43,8 @@ architecture sim of multiplier_tb is
    -- Unit under test connections
    ---------------------------------------------------------------------------------------------------------------------
    -- Original Multiplier
-   signal a                : std_logic_vector(31 downto 0) := (others => '0');
-   signal b                : std_logic_vector(31 downto 0) := (others => '0');
-   signal mult_func        : mult_function_type;
-   signal c_mult           : std_logic_vector(31 downto 0) := (others => '0');
-   signal pause_out        : std_logic;
-
-   component mult is
-      port(
-         clk       : in std_logic;
-         reset_in  : in std_logic;
-         a, b      : in std_logic_vector(31 downto 0);
-         mult_func : in mult_function_type;
-         c_mult    : out std_logic_vector(31 downto 0);
-         pause_out : out std_logic
-      );
-   end component; 
-
-
+   signal multiplier,multiplicand      : std_logic_vector(31 downto 0) := (others => '0');
+   signal finished                     : std_logic;
 
 begin
 
@@ -81,15 +65,13 @@ begin
    ---------------------------------------------------------------------------------------------------------------------
    -- Unit under test
    ---------------------------------------------------------------------------------------------------------------------
-   UUT: entity work.mult
+   UUT: entity work.mult_csa
      port map(
-        clk       => Clk,
-        reset_in  => Rst,
-        a         => a,
-        b         => b,
-        mult_func => mult_func,
-        c_mult    => c_mult,
-        pause_out => pause_out
+         iclk          => Clk,
+         ireset        => Rst,
+         iMultiplier   => multiplier,
+         iMultiplicand => multiplicand,
+         oFinished     => finished
     );
 
 
@@ -104,8 +86,8 @@ begin
    ---------------------------------------------------------------------------------------------------------------------
    prStimuli: process
       variable vSimResult : boolean := true;
-      variable ia          : integer;
-      variable ib          : integer;
+      --variable ia          : integer;
+      --variable ib          : integer;
    begin
       Rst   <= '0';
       wait until rising_edge(Clk);
@@ -116,65 +98,65 @@ begin
       Rst   <= '0';
       wait until rising_edge(Clk);
 
-      -- MS : test the multiplier with(out) faster adder
-      ia := 3333;
-      ib := 2;
-      a         <= std_logic_vector(to_unsigned(ia, a'length));
-      b         <= std_logic_vector(to_unsigned(ib, b'length));
-      mult_func <= MULT_MULT; 		-- MS: choose type of multiplication
- 	   wait until rising_edge(Clk);
-      mult_func <= MULT_READ_LO;
- 	   wait until falling_edge(pause_out);
-      if c_mult /= std_logic_vector(to_unsigned(ia*ib, c_mult'length)) then
-         vSimResult := false;
-         report "Test1 Failed!!" severity ERROR;
-      end if;
+     -- -- MS : test the multiplier with(out) faster adder
+     -- ia := 3333;
+     -- ib := 2;
+     -- a         <= std_logic_vector(to_unsigned(ia, a'length));
+     -- b         <= std_logic_vector(to_unsigned(ib, b'length));
+     -- mult_func <= MULT_MULT; 		-- MS: choose type of multiplication
+ 	   --wait until rising_edge(Clk);
+     -- mult_func <= MULT_READ_LO;
+ 	   --wait until falling_edge(pause_out);
+     -- if c_mult /= std_logic_vector(to_unsigned(ia*ib, c_mult'length)) then
+     --    vSimResult := false;
+     --    report "Test1 Failed!!" severity ERROR;
+     -- end if;
 
 
-      ia := 1024;
-      ib := 16;
-      a         <= std_logic_vector(to_unsigned(ia, a'length));
-      b         <= std_logic_vector(to_unsigned(ib, b'length));
-      mult_func <= MULT_MULT;       -- MS: choose type of multiplication
-      wait until rising_edge(Clk);
-      mult_func <= MULT_READ_LO;
-      wait until falling_edge(pause_out);
-      if c_mult /= std_logic_vector(to_unsigned(ia*ib, c_mult'length)) then
-         vSimResult := false;
-         report "Test2 Failed!!" severity ERROR;
-      end if;
+     -- ia := 1024;
+     -- ib := 16;
+     -- a         <= std_logic_vector(to_unsigned(ia, a'length));
+     -- b         <= std_logic_vector(to_unsigned(ib, b'length));
+     -- mult_func <= MULT_MULT;       -- MS: choose type of multiplication
+     -- wait until rising_edge(Clk);
+     -- mult_func <= MULT_READ_LO;
+     -- wait until falling_edge(pause_out);
+     -- if c_mult /= std_logic_vector(to_unsigned(ia*ib, c_mult'length)) then
+     --    vSimResult := false;
+     --    report "Test2 Failed!!" severity ERROR;
+     -- end if;
 
 
-      a         <= x"FFFFFFFF";
-      b         <= x"00000010";
-      ia := to_integer(unsigned(a));
-      ib := to_integer(unsigned(b));
-      mult_func <= MULT_MULT;       -- MS: choose type of multiplication
-      wait until rising_edge(Clk);
-      mult_func <= MULT_READ_LO;
-      wait until falling_edge(pause_out);
-      if c_mult /= x"FFFFFFF0" then
-         vSimResult := false;
-         report "Test3 Failed!!" severity ERROR;
-      end if;
+     -- a         <= x"FFFFFFFF";
+     -- b         <= x"00000010";
+     -- ia := to_integer(unsigned(a));
+     -- ib := to_integer(unsigned(b));
+     -- mult_func <= MULT_MULT;       -- MS: choose type of multiplication
+     -- wait until rising_edge(Clk);
+     -- mult_func <= MULT_READ_LO;
+     -- wait until falling_edge(pause_out);
+     -- if c_mult /= x"FFFFFFF0" then
+     --    vSimResult := false;
+     --    report "Test3 Failed!!" severity ERROR;
+     -- end if;
 
 
 
-      -- MS : other cases like division and signed multiplication...
-      -- PENDING...
+     -- -- MS : other cases like division and signed multiplication...
+     -- -- PENDING...
       
-      a         <= x"FFFFFFFF";
-      b         <= x"00000010";
-      ia := to_integer(unsigned(a));
-      ib := to_integer(unsigned(b));
-      mult_func <= MULT_MULT;       -- MS: choose type of multiplication
-      wait until rising_edge(Clk);
-      mult_func <= MULT_READ_LO;
-      wait until falling_edge(pause_out);
-      if c_mult /= x"FFFFFFF0" then
-         vSimResult := false;
-         report "Test3 Failed!!" severity ERROR;
-      end if;
+     -- a         <= x"FFFFFFFF";
+     -- b         <= x"00000010";
+     -- ia := to_integer(unsigned(a));
+     -- ib := to_integer(unsigned(b));
+     -- mult_func <= MULT_MULT;       -- MS: choose type of multiplication
+     -- wait until rising_edge(Clk);
+     -- mult_func <= MULT_READ_LO;
+     -- wait until falling_edge(pause_out);
+     -- if c_mult /= x"FFFFFFF0" then
+     --    vSimResult := false;
+     --    report "Test3 Failed!!" severity ERROR;
+     -- end if;
       
 
 

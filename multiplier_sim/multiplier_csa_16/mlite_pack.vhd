@@ -118,16 +118,6 @@ package mlite_pack is
     function bv_inc(a : in std_logic_vector) 
     return std_logic_vector;
 
--- MS: in order for custom component to be used they have to be
---     added to the package
-COMPONENT adder 
-    Port (
-        a, b   : In std_logic_vector(31 Downto 0);
-        do_add : In std_logic;
-        c      : Out std_logic_vector(32 Downto 0)
-    );
-End COMPONENT; --entity adder
-
     -- For Altera
     COMPONENT lpm_ram_dp
         generic (

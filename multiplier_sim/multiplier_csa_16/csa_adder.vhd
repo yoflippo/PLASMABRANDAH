@@ -9,10 +9,9 @@ library work;
 use work.mlite_pack.all;
 
 entity csa_adder is
-generic ( CSA_SIZE : POSITIVE := 32 );
     port (
-        ia, ib, ic   : in  std_logic_vector(CSA_SIZE-1 downto 0) := (others => '0'); 
-        osum, ocarry : out std_logic_vector(CSA_SIZE downto 0)
+        ia, ib, ic   : in  std_logic_vector; 
+        osum, ocarry : out std_logic_vector
     );
 end; --entity adder
 
