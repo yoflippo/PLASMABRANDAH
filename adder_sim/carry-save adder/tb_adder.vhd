@@ -17,6 +17,7 @@ use ieee.numeric_std.all;
 library work;
 use work.TxtUtil_pkg.all;
 use work.mlite_pack.all; -- MS: for use of subtypes
+
 entity adder_tb is
 end entity adder_tb;
 

@@ -6,8 +6,8 @@ library work;
 use work.mlite_pack.all;
 
 entity mult_csa is
-    generic (RADIX      : positive := 4;  
-             LOG2RADIX  : positive := 2); -- MS: adjust this value if RADIX is changed
+    generic (RADIX      : positive := 16;  
+             LOG2RADIX  : positive := 4); -- MS: adjust this value if RADIX is changed
     port(
           clk                          : in  std_logic;
           reset                        : in  std_logic;
@@ -31,7 +31,7 @@ Architecture logic Of mult_csa Is
     -- MS: array of vectors
     subtype mulmul_add is integer range 0 to (LOG2RADIX)-1;
     type muxmul is array(mulmul_add) of std_logic_vector(iMultiplier'length+1 downto 0);
-    signal Muxmuls : muxmul;
+    signal muxMultiplicands : muxmul;
 
     component carry_sel_adder Port (
         a, b   : In std_logic_vector(31 Downto 0);
@@ -64,13 +64,18 @@ Begin
     );
 
     -- MS : generate the muxes with a, 2a, 4a, etc.
-    Muxmuls(counter) <= (others => '0') When iMultiplier(counter) = '0' else
-                        '0' & iMultiplicand;
-    Muxmuls(counter+1) <= (others => '0') When iMultiplier(counter) = '0' else
-                        iMultiplicand & '0'; -- MS: times two                       
+    muxMultiplicands(counter) <= (others => '0') When iMultiplier(counter) = '0' else
+                        "000" & iMultiplicand;
+    muxMultiplicands(counter+1) <= (others => '0') When iMultiplier(counter+1) = '0' else
+                        "00" & iMultiplicand & '0'; -- MS: times two 
+    muxMultiplicands(counter+2) <= (others => '0') When iMultiplier(counter+2) = '0' else
+                        '0' & iMultiplicand &  "00"; -- MS: times four                       
+    muxMultiplicands(counter+3) <= (others => '0') When iMultiplier(counter+3) = '0' else
+                         iMultiplicand &  "000"; -- MS: times four   
 
-    --for_gen_csa : for index in 0 to (LOG2RADIX)-1 generate
-    --    Muxmuls(index) <= (others => '0') When iMultiplier(counter) = '0' else
+
+                            --for_gen_csa : for index in 0 to (LOG2RADIX)-1 generate
+    --    muxMultiplicands(index) <= (others => '0') When iMultiplier(counter) = '0' else
     --    for_gen_shift : for i                 
 
     --                    --std_logic_vector(unsigned(iMultiplicand) sll to_integer(unsigned(index))) & (others => '0'); -- Shift left
