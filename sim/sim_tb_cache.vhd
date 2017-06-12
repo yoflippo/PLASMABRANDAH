@@ -76,6 +76,7 @@ end component; --cache
   signal cache_checking       :   std_logic;   
   signal cache_miss           :   std_logic; 
   signal status               :   std_logic_vector(3 downto 0) := "0000";
+  signal rst                  :   std_logic;
 
 begin
   
@@ -96,6 +97,14 @@ begin
     wait;
   end process;
 
+   process           -- The reset on FPGA board is active low
+  begin
+    rst <= '1';
+    wait for 10 ns;
+    rst <= '0';
+    wait;
+  end process;
+
   mem_busy <= '0';
   address_next(31 downto 26) <= "000100"; -- Bit that checks bitje 28
  
@@ -110,59 +119,62 @@ begin
   statemachine: process(sys_clk)
   begin
   if rising_edge(sys_clk) then
-  case status is 
-    when "0000" =>              -- Write state
-      byte_we_next <= "1111"; 
-      address_next(25 downto 2) <= X"05B4B4"; -- Address that maps to set 0
-      cache_ram_data_w <= X"ECA86420";    -- TvE: Dummy data input
-      status <= "0001";
-    when "0001" =>             -- Read state of prev write address
-      byte_we_next <= "0000"; 
-      address_next(25 downto 2) <= X"05B4B4";
-      status <= "0010";
-    when "0010" =>              -- Write state
-      byte_we_next <= "1111"; 
-      address_next(25 downto 2) <= X"05A4B4"; -- Address that maps to set 1 with same index
-      cache_ram_data_w <= X"FDB97531";    -- TvE: Dummy data input
-      status <= "0011";
-    when "0011" =>              -- Read state of prev write address
-      byte_we_next <= "0000"; 
-      address_next(25 downto 2) <= X"05A4B4"; 
-      status <= "0100";
-    when "0100" =>              -- Check if data is still in cache of 1 write
-      byte_we_next <= "0000"; 
-      address_next(25 downto 2) <= X"05B4B4";           
-      status <= "0101";
-    when "0101" =>              -- Overwrite data in cache
-      byte_we_next <= "1111"; 
-      address_next(25 downto 2) <= X"05C4B4"; -- Address that maps to set 0 (should)
-      cache_ram_data_w <= X"0F0F0F0F";    -- TvE: Dummy data input
-      status <= "0110";
-    when "0110" =>              -- Check if overwritten data is in cache
-      byte_we_next <= "0000"; 
-      address_next(25 downto 2) <= X"05C4B4";
-      status <= "0111";
-    when "0111" => 
-      byte_we_next <= "1111"; 
-      address_next(25 downto 2) <= X"05D4B4"; -- Address that maps to set 1 (should)
-      cache_ram_data_w <= X"F0F0F0F0";    -- TvE: Dummy data input
-      status <= "1000";
-    when "1000" =>              -- Check if overwritten data is in cache
-      byte_we_next <= "0000"; 
-      address_next(25 downto 2) <= X"05D4B4";
-      status <= "1001";
-    when "1001" =>              -- Check if overwritten data is in cache
-      byte_we_next <= "1111"; 
-      address_next(25 downto 2) <= X"05D4B0";
-      cache_ram_data_w <= X"FF00FF00";    -- TvE: Dummy data input
-      status <= "1010";
-    when "1010" =>              -- Check if overwritten data is in cache
-      byte_we_next <= "0000"; 
-      address_next(25 downto 2) <= X"05D4B0";
-      status <= "0000";  
-    when others =>
-      status <= "0000";
-    end case;
+
+    if rst = '0' then
+    case status is 
+      when "0000" =>              -- Write state
+        byte_we_next <= "1111"; 
+        address_next(25 downto 2) <= X"05B4B4"; -- Address that maps to set 0
+        cache_ram_data_w <= X"ECA86420";    -- TvE: Dummy data input
+        status <= "0001";
+      when "0001" =>             -- Read state of prev write address
+        byte_we_next <= "0000"; 
+        address_next(25 downto 2) <= X"05B4B4";
+        status <= "0010";
+      when "0010" =>              -- Write state
+        byte_we_next <= "1111"; 
+        address_next(25 downto 2) <= X"05A4B4"; -- Address that maps to set 1 with same index
+        cache_ram_data_w <= X"FDB97531";    -- TvE: Dummy data input
+        status <= "0011";
+      when "0011" =>              -- Read state of prev write address
+        byte_we_next <= "0000"; 
+        address_next(25 downto 2) <= X"05A4B4"; 
+        status <= "0100";
+      when "0100" =>              -- Check if data is still in cache of 1 write
+        byte_we_next <= "0000"; 
+        address_next(25 downto 2) <= X"05B4B4";           
+        status <= "0101";
+      when "0101" =>              -- Overwrite data in cache
+        byte_we_next <= "1111"; 
+        address_next(25 downto 2) <= X"05C4B4"; -- Address that maps to set 0 (should)
+        cache_ram_data_w <= X"0F0F0F0F";    -- TvE: Dummy data input
+        status <= "0110";
+      when "0110" =>              -- Check if overwritten data is in cache
+        byte_we_next <= "0000"; 
+        address_next(25 downto 2) <= X"05C4B4";
+        status <= "0111";
+      when "0111" => 
+        byte_we_next <= "1111"; 
+        address_next(25 downto 2) <= X"05D4B4"; -- Address that maps to set 1 (should)
+        cache_ram_data_w <= X"F0F0F0F0";    -- TvE: Dummy data input
+        status <= "1000";
+      when "1000" =>              -- Check if overwritten data is in cache
+        byte_we_next <= "0000"; 
+        address_next(25 downto 2) <= X"05D4B4";
+        status <= "1001";
+      when "1001" =>              -- Write in other cache line
+        byte_we_next <= "1111"; 
+        address_next(25 downto 2) <= X"05D4B0";
+        cache_ram_data_w <= X"FF00FF00";    -- TvE: Dummy data input
+        status <= "1010";
+      when "1010" =>              -- Check if data is in cache
+        byte_we_next <= "0000"; 
+        address_next(25 downto 2) <= X"05D4B0";
+        status <= "0000";  
+      when others =>
+        status <= "0000";
+      end case;
+      end if;
     end if;
   end process;
 
