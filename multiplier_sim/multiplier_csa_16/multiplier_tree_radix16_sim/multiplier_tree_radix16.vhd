@@ -28,6 +28,7 @@ entity multiplier_tree_radix16 is
     );
 end entity multiplier_tree_radix16;
 
+
 Architecture logic Of multiplier_tree_radix16 Is
 
     signal a : 					std_logic_vector(INPUT_SMALLEST_SIZE+2 downto 0);
@@ -50,14 +51,19 @@ Architecture logic Of multiplier_tree_radix16 Is
 
 begin
 
+ ----------------------------------------------------------------------------------------------
+ -- Combinatorics
+ ----------------------------------------------------------------------------------------------
  -- MS: assign port to signals because direct use in port map is not permitted
- a 	<= "000" & ia;
- a2	<= "00"  & i2a;
- a4	<= "0" 	 & i4a;
- a8	<= 		   i8a;
- sum1_to_csa3 <= "0" & output_csa_sum_1;   -- MS: please notice
+ a 	          <= "000" & ia;
+ a2	          <= "00"  & i2a;
+ a4	          <= "0"   & i4a;
+ a8	          <= i8a;
+ sum1_to_csa3 <= "0"   & output_csa_sum_1;   -- MS: please notice
 
-
+----------------------------------------------------------------------------------------------
+-- Instantiations
+----------------------------------------------------------------------------------------------  
 lbl_csa_1 : csa_adder 
 port map(
     ia      => a,

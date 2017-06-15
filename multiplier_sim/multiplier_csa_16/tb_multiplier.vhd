@@ -44,6 +44,7 @@ architecture sim of multiplier_tb is
    ---------------------------------------------------------------------------------------------------------------------
    -- Original Multiplier
    signal multiplier,multiplicand      : std_logic_vector(31 downto 0) := (others => '0');
+   signal resultH,resultL              : std_logic_vector(31 downto 0);
    signal finished                     : std_logic;
 
 begin
@@ -71,7 +72,9 @@ begin
          ireset        => Rst,
          iMultiplier   => multiplier,
          iMultiplicand => multiplicand,
-         oFinished     => finished
+         oFinished     => finished,
+         oResultL      => resultL,
+         oResultH      => resultH     
     );
 
 
@@ -85,9 +88,9 @@ begin
    -- Stimulation
    ---------------------------------------------------------------------------------------------------------------------
    prStimuli: process
-      variable vSimResult : boolean := true;
-      --variable ia          : integer;
-      --variable ib          : integer;
+      variable vSimResult  : boolean := true;
+      variable ia          : integer := 0;
+      variable ib          : integer := 0;
    begin
       Rst   <= '0';
       wait until rising_edge(Clk);
@@ -98,19 +101,17 @@ begin
       Rst   <= '0';
       wait until rising_edge(Clk);
 
-     -- -- MS : test the multiplier with(out) faster adder
-     -- ia := 3333;
-     -- ib := 2;
-     -- a         <= std_logic_vector(to_unsigned(ia, a'length));
-     -- b         <= std_logic_vector(to_unsigned(ib, b'length));
-     -- mult_func <= MULT_MULT; 		-- MS: choose type of multiplication
- 	   --wait until rising_edge(Clk);
-     -- mult_func <= MULT_READ_LO;
- 	   --wait until falling_edge(pause_out);
-     -- if c_mult /= std_logic_vector(to_unsigned(ia*ib, c_mult'length)) then
-     --    vSimResult := false;
-     --    report "Test1 Failed!!" severity ERROR;
-     -- end if;
+      -- MS : test
+      ia := 2;
+      ib := 2;
+      multiplier         <= std_logic_vector(to_unsigned(ia, multiplier'length));
+      multiplicand       <= std_logic_vector(to_unsigned(ib, multiplier'length));
+ 	   wait until rising_edge(Clk);
+ 	   wait until falling_edge(finished);
+      --if c_mult /= std_logic_vector(to_unsigned(ia*ib, c_mult'length)) then
+      --   vSimResult := false;
+      --   report "Test1 Failed!!" severity ERROR;
+      --end if;
 
 
      -- ia := 1024;
