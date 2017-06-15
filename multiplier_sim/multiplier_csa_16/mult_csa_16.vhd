@@ -50,7 +50,7 @@ Architecture logic Of mult_csa Is
             i8a    : in  std_logic_vector(INPUT_SMALLEST_SIZE+2 downto 0);
             ioldsum: in  std_logic_vector(INPUT_SMALLEST_SIZE+2 downto 0);
             ioldcar: in  std_logic_vector(INPUT_SMALLEST_SIZE+2 downto 0);
-            osum   : out std_logic_vector(INPUT_SMALLEST_SIZE+5 downto 0);
+            osumm  : out std_logic_vector(INPUT_SMALLEST_SIZE+5 downto 0);
             ocar   : out std_logic_vector(INPUT_SMALLEST_SIZE+5 downto 0)
     );
     end component multiplier_tree_radix16;
@@ -96,7 +96,7 @@ Begin
         i8a     => a8,
         ioldsum => oldsum,
         ioldcar => oldcar,
-        osum    => sum,
+        osumm   => sum,
         ocar    => car   
     );
 
@@ -110,12 +110,6 @@ Begin
     --a4               <= (others => '0') When iMultiplier((counter*4)+2) = '0' else iMultiplicand & "00";                         
     --a8               <= (others => '0') When iMultiplier((counter*4)+3) = '0' else iMultiplicand & "000";   
     -- part of carry and sum has to be saved 8 times to get 32 bits
-    part_car         <= car(2 downto 0); -- split the output of the CSA_PART_TREE
-    part_car_com     <= part_car & car_out_bv; 
-    oldcar           <= car(car'high downto 3);-- split the output of the CSA_PART_TREE
-    part_sum         <= sum(3 downto 0);       -- split the output of the CSA_PART_TREE
-    oldsum           <= '0' & sum(sum'high downto 4);-- split the output of the CSA_PART_TREE
-    finished         <= '1' when counter = 0 else '0';
     oFinished        <= finished;
     oResultH         <= (others => '0');
     oResultL(3  downto 0 ) <= result(0) when finished = '1' else (others => '0');
@@ -127,9 +121,9 @@ Begin
     oResultL(27 downto 24) <= result(6) when finished = '1' else (others => '0');
     oResultL(31 downto 28) <= result(7) when finished = '1' else (others => '0');
     
-    result(counter)  <= part_out(3 downto 0);  -- the output of bv_adder has to be saved for next clk
    
 pMulProcess : process(iclk, ireset)
+variable vCounter : integer := 0;
 begin
     if ireset = '1' then
         a        <= (others => '0'); 
@@ -138,40 +132,59 @@ begin
         a8       <= (others => '0'); 
         oldsum   <= (others => '0'); 
         oldcar   <= (others => '0'); 
-        sum      <= (others => '0'); 
-        car      <= (others => '0'); 
         part_sum <= (others => '0');
         part_car <= (others => '0');
         counter  <= 0;
+        finished <= '0';   
+        part_car_com <= (others => '0');
+        part_result  <= (others => '0');
+        part_out     <= (others => '0'); 
+        car_out_bv <= '0';
+    
     elsif rising_edge(iclk) then
         if counter < 8 then
-            if iMultiplier((counter*4)+0) = '0' then
+            if iMultiplier(vCounter+0) = '0' then
                 a <= (others => '0');
             else
                 a <= iMultiplicand;
             end if;
 
-            if iMultiplier((counter*4)+1) = '0' then
+            if iMultiplier(vCounter+1) = '0' then
                 a2 <= (others => '0');
             else
                 a2 <= iMultiplicand & '0';
             end if;
 
-            if iMultiplier((counter*4)+2) = '0' then
+            if iMultiplier(vCounter+2) = '0' then
                 a4 <= (others => '0');
             else
                 a4 <= iMultiplicand & "00";
             end if;
 
-            if iMultiplier((counter*4)+3) = '0' then
+            if iMultiplier(vCounter+3) = '0' then
                 a8 <= (others => '0');
             else
                 a8 <= iMultiplicand & "000";
             end if;
 
-            part_out    <= bv_adder(part_sum,part_car_com,do_add);
-            car_out_bv  <= part_out(4);           -- the carry of bv_adder has to be saved for next clk
-            counter     <= counter + 1;
+            part_out         <= bv_adder(part_sum,part_car_com,do_add);
+            result(counter)  <= part_out(3 downto 0);  -- the output of bv_adder has to be saved for next clk
+            car_out_bv       <= part_out(4);           -- the carry of bv_adder has to be saved for next clk
+            part_car         <= car(2 downto 0); -- split the output of the CSA_PART_TREE
+            part_car_com     <= part_car & car_out_bv; 
+            oldcar           <= car(car'high downto 3);-- split the output of the CSA_PART_TREE
+            part_sum         <= sum(3 downto 0);       -- split the output of the CSA_PART_TREE
+            oldsum           <= '0' & sum(sum'high downto 4);-- split the output of the CSA_PART_TREE
+            
+            if counter > 7 then
+               finished     <= '1';
+            end if;
+  
+
+
+            counter          <= counter + 1;
+            vCounter         := counter*4;
+
         end if;     
     end if;
 end process;

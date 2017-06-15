@@ -23,7 +23,7 @@ entity multiplier_tree_radix16 is
 			i8a	   : in  std_logic_vector(INPUT_SMALLEST_SIZE+2 downto 0);
 			ioldsum: in  std_logic_vector(INPUT_SMALLEST_SIZE+2 downto 0);
 			ioldcar: in  std_logic_vector(INPUT_SMALLEST_SIZE+2 downto 0);
-			osum   : out std_logic_vector(INPUT_SMALLEST_SIZE+5 downto 0);
+			osumm  : out std_logic_vector(INPUT_SMALLEST_SIZE+5 downto 0);
 			ocar   : out std_logic_vector(INPUT_SMALLEST_SIZE+5 downto 0)
     );
 end entity multiplier_tree_radix16;
@@ -31,17 +31,17 @@ end entity multiplier_tree_radix16;
 
 Architecture logic Of multiplier_tree_radix16 Is
 
-    signal a : 					std_logic_vector(INPUT_SMALLEST_SIZE+2 downto 0);
-    signal a2: 					std_logic_vector(INPUT_SMALLEST_SIZE+2 downto 0);
-    signal a4: 					std_logic_vector(INPUT_SMALLEST_SIZE+2 downto 0);
-    signal a8: 					std_logic_vector(INPUT_SMALLEST_SIZE+2 downto 0);
-	signal output_csa_sum_1: 	std_logic_vector(INPUT_SMALLEST_SIZE+3 downto 0);
-	signal output_csa_car_1: 	std_logic_vector(INPUT_SMALLEST_SIZE+3 downto 0);
-	signal output_csa_sum_2: 	std_logic_vector(INPUT_SMALLEST_SIZE+3 downto 0);
-	signal output_csa_car_2: 	std_logic_vector(INPUT_SMALLEST_SIZE+3 downto 0);
-	signal output_csa_sum_3: 	std_logic_vector(INPUT_SMALLEST_SIZE+4 downto 0);
-	signal output_csa_car_3: 	std_logic_vector(INPUT_SMALLEST_SIZE+4 downto 0);
-    signal sum1_to_csa3    :    std_logic_vector(INPUT_SMALLEST_SIZE+4 downto 0);
+    signal a : 					std_logic_vector(INPUT_SMALLEST_SIZE+2 downto 0) := (others=> '0');
+    signal a2: 					std_logic_vector(INPUT_SMALLEST_SIZE+2 downto 0) := (others=> '0');
+    signal a4: 					std_logic_vector(INPUT_SMALLEST_SIZE+2 downto 0) := (others=> '0');
+    signal a8: 					std_logic_vector(INPUT_SMALLEST_SIZE+2 downto 0) := (others=> '0');
+	signal output_csa_sum_1: 	std_logic_vector(INPUT_SMALLEST_SIZE+3 downto 0) := (others=> '0');
+	signal output_csa_car_1: 	std_logic_vector(INPUT_SMALLEST_SIZE+3 downto 0) := (others=> '0');
+	signal output_csa_sum_2: 	std_logic_vector(INPUT_SMALLEST_SIZE+3 downto 0) := (others=> '0');
+	signal output_csa_car_2: 	std_logic_vector(INPUT_SMALLEST_SIZE+3 downto 0) := (others=> '0');
+	signal output_csa_sum_3: 	std_logic_vector(INPUT_SMALLEST_SIZE+4 downto 0) := (others=> '0');
+	signal output_csa_car_3: 	std_logic_vector(INPUT_SMALLEST_SIZE+4 downto 0) := (others=> '0');
+    signal sum1_to_csa3    :    std_logic_vector(INPUT_SMALLEST_SIZE+4 downto 0) := (others=> '0');
 
 	component csa_adder Port (
         ia, ib, ic   : in  std_logic_vector;
@@ -97,7 +97,7 @@ port map(
     ia      => output_csa_sum_3,
     ib      => output_csa_car_3,
     ic      => sum1_to_csa3, --sum1_to_csa3,  -- MS: please notice
-    osum    => osum,
+    osum    => osumm,
     ocarry  => ocar
 );
 

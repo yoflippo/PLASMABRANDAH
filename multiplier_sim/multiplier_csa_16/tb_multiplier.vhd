@@ -102,8 +102,8 @@ begin
       wait until rising_edge(Clk);
 
       -- MS : test
-      ia := 2;
-      ib := 2;
+      ia := 1654321;
+      ib := 987654;
       multiplier         <= std_logic_vector(to_unsigned(ia, multiplier'length));
       multiplicand       <= std_logic_vector(to_unsigned(ib, multiplier'length));
  	   wait until rising_edge(Clk);
