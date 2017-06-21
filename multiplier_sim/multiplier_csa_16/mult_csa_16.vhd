@@ -59,11 +59,8 @@ Architecture logic Of mult_csa Is
     -- Signals
     ----------------------------------------------------------------------------------------------
     constant BUS_WIDTH : integer    := 32;
-    signal counter     : integer    := 7;
-    signal do_add      : std_logic  := '1'; 
-    signal car_out_bv  : std_logic  := '0';    
-    --signal csel_a, csel_b : std_logic_vector(iMultiplier'range);
-    --signal csel_c         : std_logic_vector(iMultiplier'length+1 downto 0);
+    signal counter     : integer    := 0;
+    signal do_add      : std_logic  := '1';    
     signal a           : std_logic_vector(BUS_WIDTH-1 downto 0);
     signal a2          : std_logic_vector(BUS_WIDTH+0 downto 0);
     signal a4          : std_logic_vector(BUS_WIDTH+1 downto 0);
@@ -72,14 +69,13 @@ Architecture logic Of mult_csa Is
     signal oldcar      : std_logic_vector(BUS_WIDTH+2 downto 0) := (others => '0');
     signal sum         : std_logic_vector(BUS_WIDTH+5 downto 0);
     signal car         : std_logic_vector(BUS_WIDTH+5 downto 0);
-    signal part_sum    : std_logic_vector(3 downto 0);
-    signal part_car    : std_logic_vector(2 downto 0);
-    signal part_car_com: std_logic_vector(3 downto 0); -- complete signal
     signal part_result : std_logic_vector(3 downto 0);
-    signal part_out    : std_logic_vector(4 downto 0);
+    signal bv_adder_out    : std_logic_vector(4 downto 0);
     signal finished    : std_logic := '0';
+    signal MulPliOld   : std_logic_vector(31 downto 0) := (others => '0');
+    signal MulCanOld   : std_logic_vector(31 downto 0) := (others => '0');
 
-    subtype mulmul_add is integer range 0 to 15;
+    subtype mulmul_add is integer range 0 to 16; -- MS: 16 because we have 1 cc extra
     type res is array(mulmul_add) of std_logic_vector(3 downto 0);
     signal result : res;
 
@@ -103,90 +99,83 @@ Begin
 
     ----------------------------------------------------------------------------------------------
     -- Combinatorics
-    ----------------------------------------------------------------------------------------------
-    ---- select the right a, a2, a4 and a8
-    --a                <= (others => '0') When iMultiplier((counter*4)+0) = '0' else iMultiplicand;
-    --a2               <= (others => '0') When iMultiplier((counter*4)+1) = '0' else iMultiplicand & "0";   
-    --a4               <= (others => '0') When iMultiplier((counter*4)+2) = '0' else iMultiplicand & "00";                         
-    --a8               <= (others => '0') When iMultiplier((counter*4)+3) = '0' else iMultiplicand & "000";   
-    -- part of carry and sum has to be saved 8 times to get 32 bits
-    oFinished        <= finished;
-    oResultH         <= (others => '0');
-    oResultL(3  downto 0 ) <= result(0) when finished = '1' else (others => '0');
-    oResultL(7  downto 4 ) <= result(1) when finished = '1' else (others => '0');
-    oResultL(11 downto 8 ) <= result(2) when finished = '1' else (others => '0');
-    oResultL(15 downto 12) <= result(3) when finished = '1' else (others => '0');
-    oResultL(19 downto 16) <= result(4) when finished = '1' else (others => '0');
-    oResultL(23 downto 20) <= result(5) when finished = '1' else (others => '0');
-    oResultL(27 downto 24) <= result(6) when finished = '1' else (others => '0');
-    oResultL(31 downto 28) <= result(7) when finished = '1' else (others => '0');
+    ----------------------------------------------------------------------------------------------  
+     --part of carry and sum has to be saved 8 times to get 32 bits
+    oFinished              <= finished;
+    oResultH               <= (others => '0');
+    oResultL(3  downto 0 ) <= result(1) when finished = '1' else (others => '0');
+    oResultL(7  downto 4 ) <= result(2) when finished = '1' else (others => '0');
+    oResultL(11 downto 8 ) <= result(3) when finished = '1' else (others => '0');
+    oResultL(15 downto 12) <= result(4) when finished = '1' else (others => '0');
+    oResultL(19 downto 16) <= result(5) when finished = '1' else (others => '0');
+    oResultL(23 downto 20) <= result(6) when finished = '1' else (others => '0');
+    oResultL(27 downto 24) <= result(7) when finished = '1' else (others => '0');
+    oResultL(31 downto 28) <= result(8) when finished = '1' else (others => '0');
     
    
 pMulProcess : process(iclk, ireset)
-variable vCounter : integer := 0;
+    variable vCounter     : integer    := 0;
+    variable vcar_out_bv  : std_logic  := '0'; 
 begin
     if ireset = '1' then
-        a        <= (others => '0'); 
-        a2       <= (others => '0'); 
-        a4       <= (others => '0'); 
-        a8       <= (others => '0'); 
-        oldsum   <= (others => '0'); 
-        oldcar   <= (others => '0'); 
-        part_sum <= (others => '0');
-        part_car <= (others => '0');
-        counter  <= 0;
-        finished <= '0';   
-        part_car_com <= (others => '0');
+        a            <= (others => '0'); 
+        a2           <= (others => '0'); 
+        a4           <= (others => '0'); 
+        a8           <= (others => '0'); 
+        oldsum       <= (others => '0'); 
+        oldcar       <= (others => '0'); 
+        counter      <= 0;
+        finished     <= '0';   
         part_result  <= (others => '0');
-        part_out     <= (others => '0'); 
-        car_out_bv <= '0';
-    
+        bv_adder_out     <= (others => '0'); 
+        vcar_out_bv  := '0';          
     elsif rising_edge(iclk) then
+
+        if iMultiplier(vCounter+0) = '0' then
+            a <= (others => '0');
+        else
+            a <= iMultiplicand;
+        end if;
+    
+        if iMultiplier(vCounter+1) = '0' then
+            a2 <= (others => '0');
+        else
+            a2 <= iMultiplicand & '0';
+        end if;
+    
+        if iMultiplier(vCounter+2) = '0' then
+            a4 <= (others => '0');
+        else
+            a4 <= iMultiplicand & "00";
+        end if;
+    
+        if iMultiplier(vCounter+3) = '0' then
+            a8 <= (others => '0');
+        else
+            a8 <= iMultiplicand & "000";
+        end if;
+    
+        bv_adder_out     <= bv_adder(sum(3 downto 0),car(3 downto 1) & bv_adder_out(4),do_add);
+        result(counter)  <= bv_adder_out(3 downto 0);        -- the output of bv_adder has to be saved for next clk
+        oldcar           <= '0' & car(car'high downto 4);      -- split the output of the CSA_PART_TREE
+        oldsum           <= '0' & sum(sum'high downto 4);-- split the output of the CSA_PART_TREE
+
         if counter < 8 then
-            if iMultiplier(vCounter+0) = '0' then
-                a <= (others => '0');
-            else
-                a <= iMultiplicand;
-            end if;
-
-            if iMultiplier(vCounter+1) = '0' then
-                a2 <= (others => '0');
-            else
-                a2 <= iMultiplicand & '0';
-            end if;
-
-            if iMultiplier(vCounter+2) = '0' then
-                a4 <= (others => '0');
-            else
-                a4 <= iMultiplicand & "00";
-            end if;
-
-            if iMultiplier(vCounter+3) = '0' then
-                a8 <= (others => '0');
-            else
-                a8 <= iMultiplicand & "000";
-            end if;
-
-            part_out         <= bv_adder(part_sum,part_car_com,do_add);
-            result(counter)  <= part_out(3 downto 0);  -- the output of bv_adder has to be saved for next clk
-            car_out_bv       <= part_out(4);           -- the carry of bv_adder has to be saved for next clk
-            part_car         <= car(2 downto 0); -- split the output of the CSA_PART_TREE
-            part_car_com     <= part_car & car_out_bv; 
-            oldcar           <= car(car'high downto 3);-- split the output of the CSA_PART_TREE
-            part_sum         <= sum(3 downto 0);       -- split the output of the CSA_PART_TREE
-            oldsum           <= '0' & sum(sum'high downto 4);-- split the output of the CSA_PART_TREE
-            
-            if counter > 7 then
-               finished     <= '1';
-            end if;
-  
-
-
-            counter          <= counter + 1;
-            vCounter         := counter*4;
-
-        end if;     
+            counter  <= counter + 1;
+            vCounter := counter * 4;
+        else
+            finished <= '1';
+        end if; 
     end if;
+
+
+    --if MulPliOld /= iMultiplier or MulCanOld /= iMultiplicand then
+    --    MulPliOld <= iMultiplier;
+    --    MulCanOld <= iMultiplicand;
+    --    counter <= 0; 
+    --    finished <= '0';
+    --end if;
+
 end process;
 
 End; --architecture logic
@@ -198,5 +187,5 @@ End; --architecture logic
     --    a      => part_sum,
     --    b      => part_car,  
     --    do_add => do_add,
-    --    c      => part_out
+    --    c      => bv_adder_out
     --);

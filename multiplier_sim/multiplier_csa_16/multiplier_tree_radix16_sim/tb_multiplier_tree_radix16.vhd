@@ -61,7 +61,7 @@ architecture sim of tb_multiplier_tree_radix16 is
          i8a      : in  std_logic_vector(INPUT_SMALLEST_SIZE+2 downto 0);
          ioldsum: in  std_logic_vector(INPUT_SMALLEST_SIZE+2 downto 0);
          ioldcar: in  std_logic_vector(INPUT_SMALLEST_SIZE+2 downto 0);
-         osum   : out std_logic_vector(INPUT_SMALLEST_SIZE+5 downto 0);
+         osumm   : out std_logic_vector(INPUT_SMALLEST_SIZE+5 downto 0);
          ocar   : out std_logic_vector(INPUT_SMALLEST_SIZE+5 downto 0)
     );
    end component; 
@@ -96,7 +96,7 @@ begin
          i8a     =>  a8,   
          ioldsum =>  oldsum,  
          ioldcar =>  oldcar, 
-         osum    =>  out_sum,
+         osumm    =>  out_sum,
          ocar    =>  out_car 
     );
 
@@ -303,10 +303,36 @@ begin
             report "Test8 Failed!!" severity ERROR;
       end if;
 
+      v_ia        := 170;     
+      v_i2a       := 170*2;  
+      v_i4a       := 170*4;
+      v_i8a       := 170*8;
+      v_ioldsum   := 95;
+      v_ioldcar   := 64;
+      a           <= std_logic_vector(to_unsigned(v_ia     ,a'length     ));        
+      a2          <= std_logic_vector(to_unsigned(v_i2a    ,a2'length    ));
+      a4          <= std_logic_vector(to_unsigned(v_i4a    ,a4'length    ));
+      a8          <= std_logic_vector(to_unsigned(v_i8a    ,a8'length    ));
+      oldsum      <= std_logic_vector(to_unsigned(v_ioldsum,oldsum'length));
+      oldcar      <= std_logic_vector(to_unsigned(v_ioldcar,oldcar'length));
+
+      wait until rising_edge(Clk);
+      v_tmp_1 := to_integer(unsigned( out_sum ));
+      v_tmp_2 := to_integer(unsigned( out_car ));
+      v_tmp_3 := v_tmp_1 + v_tmp_2;
+      --report "The value of 'v_tmp_1' is " & integer'image(v_tmp_1);
+      --report "The value of 'v_tmp_2' is " & integer'image(v_tmp_2);
+      --report "The value of 'v_tmp_3' is " & integer'image(v_tmp_3);
+
+      if (v_ia+v_i2a+v_i4a+v_i8a+v_ioldcar+v_ioldsum) /= v_tmp_3 then
+            vSimResult := false;
+            report "Test9 Failed!!" severity ERROR;
+      end if;
+
       v_ia        := 666;     
-      v_i2a       := 666;  
-      v_i4a       := 666;
-      v_i8a       := 666;
+      v_i2a       := 666*2;  
+      v_i4a       := 666*4;
+      v_i8a       := 666*8;
       v_ioldsum   := 666;
       v_ioldcar   := 666;
       a           <= std_logic_vector(to_unsigned(v_ia     ,a'length     ));        
@@ -328,7 +354,6 @@ begin
             vSimResult := false;
             report "Test9 Failed!!" severity ERROR;
       end if;
-
 
 
 

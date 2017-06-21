@@ -16,7 +16,8 @@ library work;
 use work.mlite_pack.all;
 
 entity multiplier_tree_radix16 is
-	generic ( INPUT_SMALLEST_SIZE : POSITIVE := 32 ); port(
+	generic ( INPUT_SMALLEST_SIZE : POSITIVE := 32 ); 
+    port(
             ia     : in  std_logic_vector(INPUT_SMALLEST_SIZE-1 downto 0);
             i2a	   : in  std_logic_vector(INPUT_SMALLEST_SIZE   downto 0);
 			i4a	   : in  std_logic_vector(INPUT_SMALLEST_SIZE+1 downto 0);
