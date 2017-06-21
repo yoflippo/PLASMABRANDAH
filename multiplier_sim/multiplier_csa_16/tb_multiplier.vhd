@@ -123,12 +123,41 @@ begin
       multiplicand       <= std_logic_vector(to_unsigned(ib, multiplier'length));
       wait until rising_edge(Clk);
       wait until rising_edge(finished);
-      vresult := to_integer(unsigned(resultH & resultL));
+      vresult := to_integer(unsigned(resultL));
       if vresult /= (ia*ib) then
          vSimResult := false;
          report "Test1 Failed!!" severity ERROR;
       end if;
       wait until rising_edge(Clk);
+      wait until rising_edge(Clk);
+
+      ia := 555;
+      ib := 555;
+      multiplier         <= std_logic_vector(to_unsigned(ia, multiplier'length));
+      multiplicand       <= std_logic_vector(to_unsigned(ib, multiplier'length));
+      wait until rising_edge(Clk);
+      wait until rising_edge(finished);
+      vresult := to_integer(unsigned(resultL));
+      if vresult /= (ia*ib) then
+         vSimResult := false;
+         report "Test1 Failed!!" severity ERROR;
+      end if;
+      wait until rising_edge(Clk);
+      wait until rising_edge(Clk);
+      
+      --    -- MS : test
+      --ia := 777;
+      --ib := 777;
+      --multiplier         <= std_logic_vector(to_unsigned(ia, multiplier'length));
+      --multiplicand       <= std_logic_vector(to_unsigned(ib, multiplier'length));
+      --wait until rising_edge(Clk);
+      --wait until rising_edge(finished);
+      --vresult := to_integer(unsigned(resultL));
+      --if vresult /= (ia*ib) then
+      --   vSimResult := false;
+      --   report "Test1 Failed!!" severity ERROR;
+      --end if;
+      --wait until rising_edge(Clk);
       --Rst   <= '1';
       --wait until rising_edge(Clk);
       --Rst   <= '0';

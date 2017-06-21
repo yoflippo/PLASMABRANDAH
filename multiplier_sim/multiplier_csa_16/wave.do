@@ -25,16 +25,19 @@ add wave -noupdate -expand -group UUT /multiplier_tb/UUT/oldsum
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/oldcar
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/sum
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/car
-add wave -noupdate -expand -group UUT /multiplier_tb/UUT/part_result
-add wave -noupdate -expand -group UUT /multiplier_tb/UUT/bv_adder_out
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/finished
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/MulPliOld
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/MulCanOld
-add wave -noupdate -expand -group UUT /multiplier_tb/UUT/result
+add wave -noupdate /multiplier_tb/UUT/pMulProcess/vCounter
+add wave -noupdate /multiplier_tb/UUT/pMulProcess/vcar_out_bv
+add wave -noupdate /multiplier_tb/UUT/pMulProcess/vBv_adder_out
+add wave -noupdate /multiplier_tb/UUT/pMulProcess/vResult
+add wave -noupdate /multiplier_tb/UUT/pMulProcess/vStarted
+add wave -noupdate /multiplier_tb/UUT/pMulProcess/vAlmostFinished
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {590 ns} 0}
+WaveRestoreCursors {{Cursor 1} {131 ns} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 317
+configure wave -namecolwidth 254
 configure wave -valuecolwidth 104
 configure wave -justifyvalue left
 configure wave -signalnamewidth 2
@@ -48,4 +51,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ns} {590 ns}
+WaveRestoreZoom {269 ns} {349 ns}
