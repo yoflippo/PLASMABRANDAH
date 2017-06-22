@@ -71,7 +71,6 @@ architecture logic of mult_csa is
     signal sum          : std_logic_vector(BUS_WIDTH + 5 downto 0);
     signal car          : std_logic_vector(BUS_WIDTH + 5 downto 0);
     signal part_vResult : std_logic_vector(3 downto 0);
-    signal finished     : std_logic := '0';
     signal MulPliOld    : std_logic_vector(31 downto 0) := (others => '0');
     signal MulCanOld    : std_logic_vector(31 downto 0) := (others => '0');
 
@@ -99,7 +98,7 @@ begin
         -- Combinatorics
         ---------------------------------------------------------------------------------------------- 
         -- MS: part of carry and sum has to be saved 8 times to get 32 bits
-        oFinished <= finished;
+      
 
 
  
@@ -110,8 +109,8 @@ begin
             variable vResult         : res;
             variable vStarted        : std_logic := '0';
             variable vAlmostFinished : std_logic := '0';
-
-    variable resultH      : std_logic_vector(BUS_WIDTH + 6 downto 0);
+            variable vFinished        : std_logic := '0';
+            variable resultH      : std_logic_vector(BUS_WIDTH + 6 downto 0);
         begin
             if ireset = '1' then
                 a            <= (others => '0');
@@ -121,24 +120,25 @@ begin
                 oldcar       <= (others => '0'); 
                 oldsum       <= (others => '0');
                 counter      <= 0;
-                finished     <= '0'; 
+                vFinished    := '0'; 
                 part_vResult <= (others => '0');
                 vBv_adder_out   := (others => '0');
                 vcar_out_bv     := '0'; 
                 vAlmostFinished := '0'; 
             elsif rising_edge(iclk) then
+
                 -- MS: logic for when the multiplier and multiplicand are changed
                 if MulPliOld /= iMultiplier or MulCanOld /= iMultiplicand then
                     MulPliOld <= iMultiplier;
                     MulCanOld <= iMultiplicand;
-                    finished  <= '0';
+                    vFinished       := '0';
                     vCounter        := 0;
                     vStarted        := '1';
                     vAlmostFinished := '0';
                 end if;
 
-                if vAlmostFinished = '1' then
-                        -- MS: reset the tree, to prevent residue values
+                -- MS: reset the tree, add the sum and carry for the high reg 
+                if vAlmostFinished = '1' then            
                         resultH   := bv_adder(sum, car, do_add);
                         oResultH  <= resultH(oResultH'range);
                         vAlmostFinished := '0';
@@ -183,7 +183,7 @@ begin
                     if vCounter < 8 then -- MS: this test case is repeated up top
                         vCounter := (vCounter + 1);
                     else
-                        finished <= '1';
+                        vFinished := '1';
                         -- MS: output the low register
                         for i in 0 to 6 loop
                             oResultL((3 + (i * 4)) downto (i * 4)) <= vResult(i + 1);
@@ -200,5 +200,6 @@ begin
                     end if; -- counter
                 end if; -- started
             end if; -- rising edge
+            oFinished <= vFinished;
         end process;
 end; --architecture logic

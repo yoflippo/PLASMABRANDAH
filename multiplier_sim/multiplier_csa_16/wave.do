@@ -7,7 +7,6 @@ add wave -noupdate -expand -group TB /multiplier_tb/multiplier
 add wave -noupdate -expand -group TB /multiplier_tb/multiplicand
 add wave -noupdate -expand -group TB /multiplier_tb/resultH
 add wave -noupdate -expand -group TB /multiplier_tb/resultL
-add wave -noupdate -expand -group TB /multiplier_tb/finished
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/iclk
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/ireset
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/iMultiplier
@@ -25,7 +24,6 @@ add wave -noupdate -expand -group UUT /multiplier_tb/UUT/oldsum
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/oldcar
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/sum
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/car
-add wave -noupdate -expand -group UUT /multiplier_tb/UUT/finished
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/MulPliOld
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/MulCanOld
 add wave -noupdate /multiplier_tb/UUT/pMulProcess/vCounter
@@ -51,4 +49,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {269 ns} {349 ns}
+WaveRestoreZoom {2068 ns} {2148 ns}
