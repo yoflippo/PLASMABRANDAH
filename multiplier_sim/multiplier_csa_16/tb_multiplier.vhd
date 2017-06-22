@@ -117,6 +117,38 @@ begin
       wait until rising_edge(Clk);
       wait until rising_edge(Clk);
 
+      ia := 1;
+      ib := -2;
+      multiplier         <= std_logic_vector(to_unsigned(ia, multiplier'length));
+      multiplicand       <= std_logic_vector(to_signed(ib, multiplier'length));
+      wait until rising_edge(finished);
+      wait until rising_edge(Clk);
+      wait until rising_edge(Clk);
+      vresult := to_integer(signed(resultH & resultL));
+      if vresult /= (ia*ib) then
+         vSimResult := false;
+         report "Test1-neg A Failed!!" severity ERROR;
+      end if;
+      wait until rising_edge(Clk);
+      wait until rising_edge(Clk);
+
+
+      ia := -1;
+      ib := -2;
+      multiplier         <= std_logic_vector(to_signed(ia, multiplier'length));
+      multiplicand       <= std_logic_vector(to_signed(ib, multiplier'length));
+      wait until rising_edge(finished);
+      wait until rising_edge(Clk);
+      wait until rising_edge(Clk);
+      vresult := to_integer(unsigned(resultH & resultL));
+      if vresult /= (ia*ib) then
+         vSimResult := false;
+         report "Test1-neg B Failed!!" severity ERROR;
+      end if;
+      wait until rising_edge(Clk);
+      wait until rising_edge(Clk);
+
+
       ia := 22;
       ib := 69;
       multiplier         <= std_logic_vector(to_unsigned(ia, multiplier'length));
