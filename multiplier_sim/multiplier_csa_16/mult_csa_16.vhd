@@ -176,6 +176,8 @@ begin
                         else
                             a8 <= iMultiplicand & "000";
                         end if;
+                        else
+                            
                     end if;
                     -- MS: sum the last part
                     vBv_adder_out     := bv_adder(sum(3 downto 0), car(3 downto 1) & vBv_adder_out(4), do_add);
@@ -194,6 +196,11 @@ begin
                         oResultL(31 downto 28) <= vBv_adder_out(3 downto 0);
                         vStarted := '0';
                         vAlmostFinished := '1';
+
+                        a      <= (others => '0');
+                        a2     <= (others => '0');
+                        a4     <= (others => '0');
+                        a8     <= (others => '0');
                     end if; -- counter
                 end if; -- started
             end if; -- rising edge

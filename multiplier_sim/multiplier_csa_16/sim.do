@@ -18,5 +18,5 @@ radix hex
 set NumericStdNoWarnings 1
 set StdArithNoWarnings 1
 
-run 2000 ns
+run 2500 ns
 stop
