@@ -142,10 +142,6 @@ begin
                         resultH   := bv_adder(sum, car, do_add);
                         oResultH  <= resultH(oResultH'range);
                         vAlmostFinished := '0';
-                        a      <= (others => '0');
-                        a2     <= (others => '0');
-                        a4     <= (others => '0');
-                        a8     <= (others => '0');
                         oldcar <= (others => '0'); 
                         oldsum <= (others => '0');
                 end if;
@@ -175,9 +171,7 @@ begin
                             a8 <= (others => '0');
                         else
                             a8 <= iMultiplicand & "000";
-                        end if;
-                        else
-                            
+                        end if;                            
                     end if;
                     -- MS: sum the last part
                     vBv_adder_out     := bv_adder(sum(3 downto 0), car(3 downto 1) & vBv_adder_out(4), do_add);
@@ -190,13 +184,15 @@ begin
                         vCounter := (vCounter + 1);
                     else
                         finished <= '1';
+                        -- MS: output the low register
                         for i in 0 to 6 loop
                             oResultL((3 + (i * 4)) downto (i * 4)) <= vResult(i + 1);
                         end loop;
+                        -- MS: the last part has to be assigned manually
                         oResultL(31 downto 28) <= vBv_adder_out(3 downto 0);
                         vStarted := '0';
                         vAlmostFinished := '1';
-
+                        -- MS: we went through all the 8 cycles so the input should be zero
                         a      <= (others => '0');
                         a2     <= (others => '0');
                         a4     <= (others => '0');
