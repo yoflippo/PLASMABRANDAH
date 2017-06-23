@@ -83,14 +83,14 @@ architecture logic of mult is
 begin
 
     
-    custom_cs_adder :  adder PORT MAP(
-        a       => upper_reg,
-        b       => aa_reg,
-        do_add  => mode_reg,
-        c       => sum
-    );
+    --custom_cs_adder :  adder PORT MAP(
+    --    a       => upper_reg,
+    --    b       => aa_reg,
+    --    do_add  => mode_reg,
+    --    c       => sum
+    --);
 
-    --sum     <= bv_adder(upper_reg, aa_reg, mode_reg);
+    sum     <= bv_adder(upper_reg, aa_reg, mode_reg);
 
     -- Result
     c_mult <=   lower_reg               when mult_func = MULT_READ_LO and negate_reg = '0' else

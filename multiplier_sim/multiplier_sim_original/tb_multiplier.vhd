@@ -103,9 +103,11 @@ begin
    -- Stimulation
    ---------------------------------------------------------------------------------------------------------------------
    prStimuli: process
-      variable vSimResult : boolean := true;
-      variable ia          : integer;
-      variable ib          : integer;
+      variable vSimResult  : boolean := true;
+      variable v_ia          : integer;
+      variable v_ib          : integer;
+      variable v_cl          : std_logic_vector(c_mult'range);
+      variable v_ch          : std_logic_vector(c_mult'range);
    begin
       Rst   <= '0';
       wait until rising_edge(Clk);
@@ -117,69 +119,225 @@ begin
       wait until rising_edge(Clk);
 
       -- MS : test the multiplier with(out) faster adder
-      ia := 3333;
-      ib := 2;
-      a         <= std_logic_vector(to_unsigned(ia, a'length));
-      b         <= std_logic_vector(to_unsigned(ib, b'length));
+      v_ia := 3333;
+      v_ib := 2;
+      a         <= std_logic_vector(to_unsigned(v_ia, a'length));
+      b         <= std_logic_vector(to_unsigned(v_ib, b'length));
       mult_func <= MULT_MULT; 		-- MS: choose type of multiplication
  	   wait until rising_edge(Clk);
       mult_func <= MULT_READ_LO;
  	   wait until falling_edge(pause_out);
-      if c_mult /= std_logic_vector(to_unsigned(ia*ib, c_mult'length)) then
+      if c_mult /= std_logic_vector(to_unsigned(v_ia*v_ib, c_mult'length)) then
          vSimResult := false;
          report "Test1 Failed!!" severity ERROR;
       end if;
 
 
-      ia := 1024;
-      ib := 16;
-      a         <= std_logic_vector(to_unsigned(ia, a'length));
-      b         <= std_logic_vector(to_unsigned(ib, b'length));
+      v_ia := 1024;
+      v_ib := 16;
+      a         <= std_logic_vector(to_unsigned(v_ia, a'length));
+      b         <= std_logic_vector(to_unsigned(v_ib, b'length));
       mult_func <= MULT_MULT;       -- MS: choose type of multiplication
       wait until rising_edge(Clk);
       mult_func <= MULT_READ_LO;
       wait until falling_edge(pause_out);
-      if c_mult /= std_logic_vector(to_unsigned(ia*ib, c_mult'length)) then
+      if c_mult /= std_logic_vector(to_unsigned(v_ia*v_ib, c_mult'length)) then
          vSimResult := false;
          report "Test2 Failed!!" severity ERROR;
       end if;
 
 
       a         <= x"FFFFFFFF";
-      b         <= x"00000010";
-      ia := to_integer(unsigned(a));
-      ib := to_integer(unsigned(b));
+      b         <= x"FF00FF00";
       mult_func <= MULT_MULT;       -- MS: choose type of multiplication
       wait until rising_edge(Clk);
       mult_func <= MULT_READ_LO;
       wait until falling_edge(pause_out);
-      if c_mult /= x"FFFFFFF0" then
+      mult_func <= MULT_READ_LO;
+      wait until rising_edge(Clk);
+      v_cl := c_mult;
+      mult_func <= MULT_READ_HI;
+      wait until rising_edge(Clk);
+      v_ch := c_mult;
+
+      if (v_ch & v_cl) /= x"ff00feff00ff0100"  then
          vSimResult := false;
          report "Test3 Failed!!" severity ERROR;
       end if;
 
 
+      a         <= x"ABCDEF00";
+      b         <= x"0ABCDEF0";
+      mult_func <= MULT_MULT;       -- MS: choose type of multiplication
+      wait until rising_edge(Clk);
+      mult_func <= MULT_READ_LO;
+      wait until falling_edge(pause_out);
+      mult_func <= MULT_READ_LO;
+      wait until rising_edge(Clk);
+      v_cl := c_mult;
+      mult_func <= MULT_READ_HI;
+      wait until rising_edge(Clk);
+      v_ch := c_mult;
 
-      -- MS : other cases like division and signed multiplication...
-      -- PENDING...
+      if (v_ch & v_cl) /= x"0734cc2f2a521000"  then
+         vSimResult := false;
+         report "Test4 Failed!!" severity ERROR;
+      end if;
+
       
       a         <= x"FFFFFFFF";
       b         <= x"00000010";
-      ia := to_integer(unsigned(a));
-      ib := to_integer(unsigned(b));
       mult_func <= MULT_MULT;       -- MS: choose type of multiplication
       wait until rising_edge(Clk);
       mult_func <= MULT_READ_LO;
       wait until falling_edge(pause_out);
-      if c_mult /= x"FFFFFFF0" then
+      mult_func <= MULT_READ_LO;
+      wait until rising_edge(Clk);
+      v_cl := c_mult;
+      mult_func <= MULT_READ_HI;
+      wait until rising_edge(Clk);
+      v_ch := c_mult;
+
+      if (v_ch & v_cl) /= x"0000000FFFFFFFF0"  then
          vSimResult := false;
-         report "Test3 Failed!!" severity ERROR;
+         report "Test5 Failed!!" severity ERROR;
       end if;
       
+      a         <= x"FFFFFFFF";
+      b         <= x"00000010";
+      v_ia := to_integer(signed(a));
+      v_ib := to_integer(signed(b));
+      mult_func <= MULT_SIGNED_MULT;       -- MS: choose type of multiplication
+      wait until rising_edge(Clk);
+      mult_func <= MULT_READ_LO;
+      wait until falling_edge(pause_out);
+      mult_func <= MULT_READ_LO;
+      wait until rising_edge(Clk);
+      v_cl := c_mult;
+      mult_func <= MULT_READ_HI;
+      wait until rising_edge(Clk);
+      v_ch := c_mult;
+
+      if (v_ch & v_cl) /= std_logic_vector(to_signed(v_ia*v_ib, c_mult'length*2))  then
+         vSimResult := false;
+         report "Test 6 - SIGNED Failed!!" severity ERROR;
+      end if;
+      
+      a         <= x"FFFFFFFE";
+      b         <= x"FFFFFFFE";
+      v_ia := to_integer(signed(a));
+      v_ib := to_integer(signed(b));
+      mult_func <= MULT_SIGNED_MULT;       -- MS: choose type of multiplication
+      wait until rising_edge(Clk);
+      mult_func <= MULT_READ_LO;
+      wait until falling_edge(pause_out);
+      mult_func <= MULT_READ_LO;
+      wait until rising_edge(Clk);
+      v_cl := c_mult;
+      mult_func <= MULT_READ_HI;
+      wait until rising_edge(Clk);
+      v_ch := c_mult;
+
+      if (v_ch & v_cl) /= x"0000000000000004"  then
+         vSimResult := false;
+         report "Test 7 - SIGNED Failed!!" severity ERROR;
+      end if;
 
 
+      a         <= x"FFFFF752"; -- -2222
+      b         <= x"FFFFF752";
+      v_ia := to_integer(signed(a));
+      v_ib := to_integer(signed(b));
+      mult_func <= MULT_SIGNED_MULT;       -- MS: choose type of multiplication
+      wait until rising_edge(Clk);
+      mult_func <= MULT_READ_LO;
+      wait until falling_edge(pause_out);
+      mult_func <= MULT_READ_LO;
+      wait until rising_edge(Clk);
+      v_cl := c_mult;
+      mult_func <= MULT_READ_HI;
+      wait until rising_edge(Clk);
+      v_ch := c_mult;
+
+      if (v_ch & v_cl) /= x"00000000004B5644"  then
+         vSimResult := false;
+         report "Test 8 - SIGNED Failed!!" severity ERROR;
+      end if;
+
+      mult_func <= MULT_MULT;       -- MS: choose type of multiplication
+      wait until rising_edge(Clk);
+      mult_func <= MULT_READ_LO;
+      wait until falling_edge(pause_out);
+      mult_func <= MULT_READ_LO;
+      wait until rising_edge(Clk);
+      v_cl := c_mult;
+      mult_func <= MULT_READ_HI;
+      wait until rising_edge(Clk);
+      v_ch := c_mult;
+
+      if (v_ch & v_cl) /= x"ffffeea4004b5644"  then
+         vSimResult := false;
+         report "Test 8A - UNSIGNED Failed!!" severity ERROR;
+      end if;
 
 
+      a         <= x"B669FD2E"; -- -1234567890
+      b         <= x"00000002";
+      mult_func <= MULT_SIGNED_MULT;       -- MS: choose type of multiplication
+      wait until rising_edge(Clk);
+      mult_func <= MULT_READ_LO;
+      wait until falling_edge(pause_out);
+      mult_func <= MULT_READ_LO;
+      wait until rising_edge(Clk);
+      v_cl := c_mult;
+      mult_func <= MULT_READ_HI;
+      wait until rising_edge(Clk);
+      v_ch := c_mult;
+
+      if (v_ch & v_cl) /= x"FFFFFFFF6CD3FA5C"  then
+         vSimResult := false;
+         report "Test 9 - SIGNED Failed!!" severity ERROR;
+      end if;
+
+
+      a         <= x"00000000"; -- 
+      b         <= x"00000000";
+      v_ia := to_integer(signed(a));
+      v_ib := to_integer(signed(b));
+      mult_func <= MULT_SIGNED_MULT;       -- MS: choose type of multiplication
+      wait until rising_edge(Clk);
+      mult_func <= MULT_READ_LO;
+      wait until falling_edge(pause_out);
+      mult_func <= MULT_READ_LO;
+      wait until rising_edge(Clk);
+      v_cl := c_mult;
+      mult_func <= MULT_READ_HI;
+      wait until rising_edge(Clk);
+      v_ch := c_mult;
+
+      if (v_ch & v_cl) /= x"0000000000000000"  then
+         vSimResult := false;
+         report "Test 10 - SIGNED Failed!!" severity ERROR;
+      end if;
+
+      mult_func <= MULT_MULT;       -- MS: choose type of multiplication
+      wait until rising_edge(Clk);
+      mult_func <= MULT_READ_LO;
+      wait until falling_edge(pause_out);
+      mult_func <= MULT_READ_LO;
+      wait until rising_edge(Clk);
+      v_cl := c_mult;
+      mult_func <= MULT_READ_HI;
+      wait until rising_edge(Clk);
+      v_ch := c_mult;
+
+      if (v_ch & v_cl) /= x"0000000000000000"  then
+         vSimResult := false;
+         report "Test 10A - UNSIGNED Failed!!" severity ERROR;
+      end if;
+
+     -- MS : other cases like division and signed multiplication...
+      -- PENDING...
 
       if (vSimResult) then
          echo("-----------------------------------------------------------------");
