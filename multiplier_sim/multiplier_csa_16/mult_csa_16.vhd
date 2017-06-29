@@ -3,6 +3,7 @@
 -- File Name: mult_csa_16.vhd
 -- Author: MS
 -- Date: 13-06-17
+-- Version: 0.3 - now the H/L results are both available after 8 cycles
 --
 -- Description: This is a faster multiplier than the default plasma processor multiplier.
 -- It uses a partial CSA-adder tree @radix-16.
@@ -114,17 +115,17 @@ begin
             variable vMulCanOld    : std_logic_vector(31 downto 0) := (others => '0');
         begin
             if ireset = '1' then
-                a            <= (others => '0');
-                a2           <= (others => '0');
-                a4           <= (others => '0');
-                a8           <= (others => '0');
-                oldcar       <= (others => '0'); 
-                oldsum       <= (others => '0');
-                vCarH        := (others => '0');
-                vSumH        := (others => '0');
-                counter      <= 0;
-                vFinished    := '0'; 
-                part_vResult <= (others => '0');
+                a               <= (others => '0');
+                a2              <= (others => '0');
+                a4              <= (others => '0');
+                a8              <= (others => '0');
+                oldcar          <= (others => '0'); 
+                oldsum          <= (others => '0');
+                vCarH           := (others => '0');
+                vSumH           := (others => '0');
+                counter         <= 0;
+                vFinished       := '0'; 
+                part_vResult    <= (others => '0');
                 vBv_adder_out   := (others => '0');
                 vcar_out_bv     := '0'; 
             elsif rising_edge(iclk) then
@@ -143,6 +144,7 @@ begin
                 -- MS: only do multiplication when new values are received
                 if vStarted = '1' then
                     if vCounter < 8 then
+                        -- MS: get a, a2, a4 and a8 based on indices
                         if vMulPliOld((vCounter * 4) + 0) = '0' then
                             a <= (others => '0');
                         else
@@ -186,7 +188,7 @@ begin
                         oResultL(31 downto 28) <= vBv_adder_out(3 downto 0);
                         vStarted := '0';
 
-                        -- MS: the last part of the high reg, must be calculate
+                        -- MS: the last part of the high reg, must be calculated separately
                         vCarH     := car(car'high downto 4);
                         vSumH     := sum(sum'high downto 4);
                         vResultH  := bv_adder(vSumH, vCarH, do_add);

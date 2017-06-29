@@ -206,6 +206,10 @@ begin
          report "Test5 Failed!!" severity ERROR;
       end if;
       
+      wait until rising_edge(Clk);
+      a         <= x"00000000";
+      b         <= x"00000000";
+      wait until rising_edge(Clk);
       a         <= x"FFFFFFFF";
       b         <= x"00000010";
       v_ia := to_integer(signed(a));
@@ -222,7 +226,8 @@ begin
       wait until rising_edge(Clk);
       v_ch := c_mult;
 
-      if (v_ch & v_cl) /= std_logic_vector(to_signed(v_ia*v_ib, c_mult'length*2))  then
+      --if (v_ch & v_cl) /= std_logic_vector(to_signed(v_ia*v_ib, c_mult'length*2))  then
+      if to_integer(signed(v_ch & v_cl)) /= (v_ia*v_ib)  then
          vSimResult := false;
          report "Test 6 - SIGNED Failed!!" severity ERROR;
       end if;
@@ -243,7 +248,8 @@ begin
       wait until rising_edge(Clk);
       v_ch := c_mult;
 
-      if (v_ch & v_cl) /= x"0000000000000004"  then
+      --if (v_ch & v_cl) /= x"0000000000000004"  then
+      if to_integer(signed(v_ch & v_cl)) /= (v_ia*v_ib)  then
          vSimResult := false;
          report "Test 7 - SIGNED Failed!!" severity ERROR;
       end if;
@@ -265,7 +271,8 @@ begin
       wait until rising_edge(Clk);
       v_ch := c_mult;
 
-      if (v_ch & v_cl) /= x"00000000004B5644"  then
+      --if (v_ch & v_cl) /= x"00000000004B5644"  then
+      if to_integer(signed(v_ch & v_cl)) /= (v_ia*v_ib)  then
          vSimResult := false;
          report "Test 8 - SIGNED Failed!!" severity ERROR;
       end if;
@@ -282,7 +289,8 @@ begin
       wait until rising_edge(Clk);
       v_ch := c_mult;
 
-      if (v_ch & v_cl) /= x"ffffeea4004b5644"  then
+      --if (v_ch & v_cl) /= x"ffffeea4004b5644"  then
+      if to_integer(signed(v_ch & v_cl)) /= (v_ia*v_ib)  then
          vSimResult := false;
          report "Test 8A - UNSIGNED Failed!!" severity ERROR;
       end if;
@@ -302,7 +310,8 @@ begin
       wait until rising_edge(Clk);
       v_ch := c_mult;
 
-      if (v_ch & v_cl) /= x"FFFFFFFF6CD3FA5C"  then
+      --if (v_ch & v_cl) /= x"FFFFFFFF6CD3FA5C"  then
+      if to_integer(signed(v_ch & v_cl)) /= (v_ia*v_ib)  then
          vSimResult := false;
          report "Test 9 - SIGNED Failed!!" severity ERROR;
       end if;
@@ -324,7 +333,8 @@ begin
       wait until rising_edge(Clk);
       v_ch := c_mult;
 
-      if (v_ch & v_cl) /= x"0000000000000000"  then
+      --if (v_ch & v_cl) /= x"0000000000000000"  then
+      if to_integer(signed(v_ch & v_cl)) /= (v_ia*v_ib)  then
          vSimResult := false;
          report "Test 10 - SIGNED Failed!!" severity ERROR;
       end if;
@@ -341,7 +351,8 @@ begin
       wait until rising_edge(Clk);
       v_ch := c_mult;
 
-      if (v_ch & v_cl) /= x"0000000000000000"  then
+      --if (v_ch & v_cl) /= x"0000000000000000"  then
+      if to_integer(signed(v_ch & v_cl)) /= (v_ia*v_ib)  then
          vSimResult := false;
          report "Test 10A - UNSIGNED Failed!!" severity ERROR;
       end if;

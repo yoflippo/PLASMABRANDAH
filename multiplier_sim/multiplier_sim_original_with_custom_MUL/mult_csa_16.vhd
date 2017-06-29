@@ -3,16 +3,13 @@
 -- File Name: mult_csa_16.vhd
 -- Author: MS
 -- Date: 13-06-17
+-- Version: 0.3 - now the H/L results are both available after 8 cycles
 --
 -- Description: This is a faster multiplier than the default plasma processor multiplier.
 -- It uses a partial CSA-adder tree @radix-16.
 -- It reduces the number of clockcycles with a factor of 4.
 -- Future improvements: use booths recoding based on paper:
 -- An Efficient Softcore Multiplier Architecture for Xilinx FPGAs
--- 
--- In hindsight we should have used a statemachine in combination with a coupel of processes
--- This particular design is not very readable and could be coded much more efficient.
--- However, it is the first real VHDL design I have made.
 --====================================================================================================================--
 
 library ieee;
@@ -75,8 +72,6 @@ architecture logic of mult_csa is
     signal sum          : std_logic_vector(BUS_WIDTH + 5 downto 0);
     signal car          : std_logic_vector(BUS_WIDTH + 5 downto 0);
     signal part_vResult : std_logic_vector(3 downto 0);
-    signal MulPliOld    : std_logic_vector(31 downto 0) := (others => '0');
-    signal MulCanOld    : std_logic_vector(31 downto 0) := (others => '0');
 
     subtype mulmul_add is integer range 0 to (15 + 2); -- MS: 17 because we have 1 cc extra
     type res is array(mulmul_add) of std_logic_vector(3 downto 0);
@@ -106,80 +101,75 @@ begin
 
 
  
-        pMulProcess              : process (iclk, ireset)
-            variable vCounter        : integer := 0;
-            variable vcar_out_bv     : std_logic := '0';
-            variable vBv_adder_out   : std_logic_vector(4 downto 0);
-            variable vResult         : res;
-            variable vStarted        : std_logic := '0';
-            variable vAlmostFinished : std_logic := '0';
-            variable vFinished        : std_logic := '0';
-            variable resultH      : std_logic_vector(BUS_WIDTH + 6 downto 0);
+        pMulProcess  : process (iclk, ireset)
+            variable vCounter      : integer := 0;
+            variable vcar_out_bv   : std_logic := '0';
+            variable vBv_adder_out : std_logic_vector(4 downto 0);
+            variable vResult       : res;
+            variable vStarted      : std_logic := '0';
+            variable vFinished     : std_logic := '0';
+            variable vResultH      : std_logic_vector(sum'high-3 downto 0);
+            variable vCarH         : std_logic_vector(sum'high-4 downto 0);
+            variable vSumH         : std_logic_vector(sum'high-4 downto 0);
+            variable vMulPliOld    : std_logic_vector(31 downto 0) := (others => '0');
+            variable vMulCanOld    : std_logic_vector(31 downto 0) := (others => '0');
         begin
             if ireset = '1' then
-                a            <= (others => '0');
-                a2           <= (others => '0');
-                a4           <= (others => '0');
-                a8           <= (others => '0');
-                oldcar       <= (others => '0'); 
-                oldsum       <= (others => '0');
-                counter      <= 0;
-                vFinished    := '0'; 
-                part_vResult <= (others => '0');
+                a               <= (others => '0');
+                a2              <= (others => '0');
+                a4              <= (others => '0');
+                a8              <= (others => '0');
+                oldcar          <= (others => '0'); 
+                oldsum          <= (others => '0');
+                vCarH           := (others => '0');
+                vSumH           := (others => '0');
+                counter         <= 0;
+                vFinished       := '0'; 
+                part_vResult    <= (others => '0');
                 vBv_adder_out   := (others => '0');
                 vcar_out_bv     := '0'; 
-                vAlmostFinished := '0'; 
-                oResultL <= (others => '0');
-                oResultH <= (others => '0');
             elsif rising_edge(iclk) then
 
                 -- MS: logic for when the multiplier and multiplicand are changed
-                if MulPliOld /= iMultiplier or MulCanOld /= iMultiplicand then
-                    MulPliOld <= iMultiplier;
-                    MulCanOld <= iMultiplicand;
+                if vMulPliOld /= iMultiplier or vMulCanOld /= iMultiplicand then
+                    vMulPliOld      := iMultiplier;
+                    vMulCanOld      := iMultiplicand;
                     vFinished       := '0';
-                    vCounter        := 0;
+                    vCounter        :=  0;
                     vStarted        := '1';
-                    vAlmostFinished := '0';
-                end if;
-
-                -- MS: reset the tree, add the sum and carry for the high reg 
-                if vAlmostFinished = '1' then            
-                        resultH   := bv_adder(sum, car, do_add);
-                        oResultH  <= resultH(oResultH'range);
-                        vAlmostFinished := '0';
-                        oldcar <= (others => '0'); 
-                        oldsum <= (others => '0');
+                    vCarH           := (others => '0');
+                    vSumH           := (others => '0');
                 end if;
 
                 -- MS: only do multiplication when new values are received
                 if vStarted = '1' then
                     if vCounter < 8 then
-                        if iMultiplier((vCounter * 4) + 0) = '0' then
+                        -- MS: get a, a2, a4 and a8 based on indices
+                        if vMulPliOld((vCounter * 4) + 0) = '0' then
                             a <= (others => '0');
                         else
-                            a <= iMultiplicand;
+                            a <= vMulCanOld;
                         end if;
  
-                        if iMultiplier((vCounter * 4) + 1) = '0' then
+                        if vMulPliOld((vCounter * 4) + 1) = '0' then
                             a2 <= (others => '0');
                         else
-                            a2 <= iMultiplicand & '0';
+                            a2 <= vMulCanOld & '0';
                         end if;
  
-                        if iMultiplier((vCounter * 4) + 2) = '0' then
+                        if vMulPliOld((vCounter * 4) + 2) = '0' then
                             a4 <= (others => '0');
                         else
-                            a4 <= iMultiplicand & "00";
+                            a4 <= vMulCanOld & "00";
                         end if;
  
-                        if iMultiplier((vCounter * 4) + 3) = '0' then
+                        if vMulPliOld((vCounter * 4) + 3) = '0' then
                             a8 <= (others => '0');
                         else
-                            a8 <= iMultiplicand & "000";
+                            a8 <= vMulCanOld & "000";
                         end if;                            
                     end if;
-                    -- MS: sum the last part
+                    -- MS: sum the last part every cycle
                     vBv_adder_out     := bv_adder(sum(3 downto 0), car(3 downto 1) & vBv_adder_out(4), do_add);
                     vResult(vCounter) := vBv_adder_out(3 downto 0); 
                     -- MS: relay the remaining part of the sum and carry
@@ -197,8 +187,16 @@ begin
                         -- MS: the last part has to be assigned manually
                         oResultL(31 downto 28) <= vBv_adder_out(3 downto 0);
                         vStarted := '0';
-                        vAlmostFinished := '1';
+
+                        -- MS: the last part of the high reg, must be calculated separately
+                        vCarH     := car(car'high downto 4);
+                        vSumH     := sum(sum'high downto 4);
+                        vResultH  := bv_adder(vSumH, vCarH, do_add);
+                        oResultH  <= vResultH(oResultH'range);
+
                         -- MS: we went through all the 8 cycles so the input should be zero
+                        oldcar <= (others => '0'); 
+                        oldsum <= (others => '0');
                         a      <= (others => '0');
                         a2     <= (others => '0');
                         a4     <= (others => '0');
