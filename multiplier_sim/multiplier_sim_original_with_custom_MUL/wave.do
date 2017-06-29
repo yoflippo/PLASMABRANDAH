@@ -49,10 +49,39 @@ add wave -noupdate -expand -group UUT /multiplier_tb/UUT/mult_proc/sign_value
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/mult_proc/sign_a_bit
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/mult_proc/sign_b_bit
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/mult_proc/signed_mul
+add wave -noupdate -expand -group CUSTOM_MUL /multiplier_tb/UUT/CUSTUM_MULT/iclk
+add wave -noupdate -expand -group CUSTOM_MUL /multiplier_tb/UUT/CUSTUM_MULT/ireset
+add wave -noupdate -expand -group CUSTOM_MUL /multiplier_tb/UUT/CUSTUM_MULT/iMultiplier
+add wave -noupdate -expand -group CUSTOM_MUL /multiplier_tb/UUT/CUSTUM_MULT/iMultiplicand
+add wave -noupdate -expand -group CUSTOM_MUL /multiplier_tb/UUT/CUSTUM_MULT/oFinished
+add wave -noupdate -expand -group CUSTOM_MUL /multiplier_tb/UUT/CUSTUM_MULT/oResultL
+add wave -noupdate -expand -group CUSTOM_MUL /multiplier_tb/UUT/CUSTUM_MULT/oResultH
+add wave -noupdate -expand -group CUSTOM_MUL /multiplier_tb/UUT/CUSTUM_MULT/counter
+add wave -noupdate -expand -group CUSTOM_MUL /multiplier_tb/UUT/CUSTUM_MULT/do_add
+add wave -noupdate -expand -group CUSTOM_MUL /multiplier_tb/UUT/CUSTUM_MULT/a
+add wave -noupdate -expand -group CUSTOM_MUL /multiplier_tb/UUT/CUSTUM_MULT/a2
+add wave -noupdate -expand -group CUSTOM_MUL /multiplier_tb/UUT/CUSTUM_MULT/a4
+add wave -noupdate -expand -group CUSTOM_MUL /multiplier_tb/UUT/CUSTUM_MULT/a8
+add wave -noupdate -expand -group CUSTOM_MUL /multiplier_tb/UUT/CUSTUM_MULT/oldsum
+add wave -noupdate -expand -group CUSTOM_MUL /multiplier_tb/UUT/CUSTUM_MULT/oldcar
+add wave -noupdate -expand -group CUSTOM_MUL /multiplier_tb/UUT/CUSTUM_MULT/sum
+add wave -noupdate -expand -group CUSTOM_MUL /multiplier_tb/UUT/CUSTUM_MULT/car
+add wave -noupdate -expand -group CUSTOM_MUL /multiplier_tb/UUT/CUSTUM_MULT/part_vResult
+add wave -noupdate /multiplier_tb/UUT/CUSTUM_MULT/pMulProcess/vCounter
+add wave -noupdate /multiplier_tb/UUT/CUSTUM_MULT/pMulProcess/vcar_out_bv
+add wave -noupdate /multiplier_tb/UUT/CUSTUM_MULT/pMulProcess/vBv_adder_out
+add wave -noupdate /multiplier_tb/UUT/CUSTUM_MULT/pMulProcess/vResult
+add wave -noupdate /multiplier_tb/UUT/CUSTUM_MULT/pMulProcess/vStarted
+add wave -noupdate /multiplier_tb/UUT/CUSTUM_MULT/pMulProcess/vFinished
+add wave -noupdate /multiplier_tb/UUT/CUSTUM_MULT/pMulProcess/vResultH
+add wave -noupdate /multiplier_tb/UUT/CUSTUM_MULT/pMulProcess/vCarH
+add wave -noupdate /multiplier_tb/UUT/CUSTUM_MULT/pMulProcess/vSumH
+add wave -noupdate /multiplier_tb/UUT/CUSTUM_MULT/pMulProcess/vMulPliOld
+add wave -noupdate /multiplier_tb/UUT/CUSTUM_MULT/pMulProcess/vMulCanOld
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {1900 ns} 0}
+WaveRestoreCursors {{Cursor 1} {3645 ns} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 183
+configure wave -namecolwidth 228
 configure wave -valuecolwidth 139
 configure wave -justifyvalue left
 configure wave -signalnamewidth 2
@@ -66,4 +95,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {1689 ns} {2349 ns}
+WaveRestoreZoom {3075 ns} {3703 ns}

@@ -132,8 +132,9 @@ begin
       a_neg, b_neg, sum, sign_reg, mode_reg, negate_reg,
       count_reg, aa_reg, bb_reg, upper_reg, lower_reg)
       
-      variable count : std_logic_vector(2 downto 0);
-      variable resultBig : std_logic_vector(63 downto 0);
+      variable count        : std_logic_vector(2 downto 0);
+      variable resultBig    : std_logic_vector(63 downto 0);
+      variable tmpResultBig : std_logic_vector(63 downto 0);
       variable sign_value : std_logic := '0'; -- MS: register for saving the result signess
       variable sign_a_bit : std_logic;
       variable sign_b_bit : std_logic;
@@ -274,17 +275,19 @@ begin
          
                     end if; --count
                 -- MS: Convert WARNING: VERY SLOW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                if signed_mul = '1' AND finished = '1' then  
-                    if sign_a_bit = '1' OR sign_b_bit = '1' then
-                        resultBig  := bv_negate(resultH & resultL);
+                if  finished = '1' then  
+                    if signed_mul = '1' AND sign_value = '1' then
+                        tmpResultBig := resultH & resultL;
+                        resultBig  := bv_negate(tmpResultBig);
+                        resultLFin <= resultBig(a'range);
+                        resultHFin <= resultBig(63 downto 32);
+                    else 
+                        resultLFin <= resultL;
+                        resultHFin <= resultH;    
                     end if;
-                    resultLFin <= resultBig(a'range);
-                    resultHFin <= resultBig(63 downto 32);
-                elsif finished = '1' then
-                    resultLFin <= resultL;
-                    resultHFin <= resultH;
                 end if;
             end case;
+            
         end if;
    end process;
 end; --architecture logic
