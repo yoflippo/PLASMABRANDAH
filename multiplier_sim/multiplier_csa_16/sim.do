@@ -11,6 +11,11 @@ vcom -quiet  -93  -work work   tb_multiplier.vhd
 vcom -quiet  -93  -work work   TxtUtil_pkg.vhd
 
 vsim -voptargs=+acc work.multiplier_tb
+
+--add wave -position insertpoint -group TB sim:/multiplier_tb/*
+--add wave -position insertpoint -group TB -divider VAR sim:/multiplier_tb/prStimuli/*
+--add wave -position insertpoint -group UUT sim:/multiplier_tb/UUT/*
+--add wave -position insertpoint -group UUT -divider VAR sim:/multiplier_tb/UUT/pMulProcess/*
 do wave.do
 
 config wave -signalnamewidth 2

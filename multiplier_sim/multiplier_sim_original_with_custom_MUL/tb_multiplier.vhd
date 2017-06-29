@@ -122,6 +122,7 @@ begin
       b         <= std_logic_vector(to_unsigned(v_ib, b'length));
       mult_func <= MULT_MULT; 		-- MS: choose type of multiplication
  	   wait until rising_edge(Clk);
+      wait until rising_edge(Clk);
       mult_func <= MULT_READ_LO;
  	   wait until falling_edge(pause_out);
       wait until rising_edge(Clk);

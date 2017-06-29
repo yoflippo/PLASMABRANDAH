@@ -7,6 +7,12 @@ add wave -noupdate -expand -group TB /multiplier_tb/multiplier
 add wave -noupdate -expand -group TB /multiplier_tb/multiplicand
 add wave -noupdate -expand -group TB /multiplier_tb/resultH
 add wave -noupdate -expand -group TB /multiplier_tb/resultL
+add wave -noupdate -expand -group TB /multiplier_tb/finished
+add wave -noupdate -expand -group TB -divider VAR
+add wave -noupdate -expand -group TB /multiplier_tb/prStimuli/vSimResult
+add wave -noupdate -expand -group TB /multiplier_tb/prStimuli/ia
+add wave -noupdate -expand -group TB /multiplier_tb/prStimuli/ib
+add wave -noupdate -expand -group TB /multiplier_tb/prStimuli/vresult
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/iclk
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/ireset
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/iMultiplier
@@ -24,19 +30,24 @@ add wave -noupdate -expand -group UUT /multiplier_tb/UUT/oldsum
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/oldcar
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/sum
 add wave -noupdate -expand -group UUT /multiplier_tb/UUT/car
-add wave -noupdate -expand -group UUT /multiplier_tb/UUT/MulPliOld
-add wave -noupdate -expand -group UUT /multiplier_tb/UUT/MulCanOld
-add wave -noupdate /multiplier_tb/UUT/pMulProcess/vCounter
-add wave -noupdate /multiplier_tb/UUT/pMulProcess/vcar_out_bv
-add wave -noupdate /multiplier_tb/UUT/pMulProcess/vBv_adder_out
-add wave -noupdate /multiplier_tb/UUT/pMulProcess/vResult
-add wave -noupdate /multiplier_tb/UUT/pMulProcess/vStarted
-add wave -noupdate /multiplier_tb/UUT/pMulProcess/vAlmostFinished
+add wave -noupdate -expand -group UUT /multiplier_tb/UUT/part_vResult
+add wave -noupdate -expand -group UUT -divider VAR
+add wave -noupdate -expand -group UUT /multiplier_tb/UUT/pMulProcess/vCounter
+add wave -noupdate -expand -group UUT /multiplier_tb/UUT/pMulProcess/vcar_out_bv
+add wave -noupdate -expand -group UUT /multiplier_tb/UUT/pMulProcess/vBv_adder_out
+add wave -noupdate -expand -group UUT /multiplier_tb/UUT/pMulProcess/vResult
+add wave -noupdate -expand -group UUT /multiplier_tb/UUT/pMulProcess/vStarted
+add wave -noupdate -expand -group UUT /multiplier_tb/UUT/pMulProcess/vAlmostFinished
+add wave -noupdate -expand -group UUT /multiplier_tb/UUT/pMulProcess/vFinished
+add wave -noupdate -expand -group UUT /multiplier_tb/UUT/pMulProcess/resultH
+add wave -noupdate -expand -group UUT /multiplier_tb/UUT/pMulProcess/vTmpResultH
+add wave -noupdate -expand -group UUT /multiplier_tb/UUT/pMulProcess/vMulPliOld
+add wave -noupdate -expand -group UUT /multiplier_tb/UUT/pMulProcess/vMulCanOld
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {131 ns} 0}
+WaveRestoreCursors {{Cursor 1} {598 ns} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 254
-configure wave -valuecolwidth 104
+configure wave -namecolwidth 249
+configure wave -valuecolwidth 160
 configure wave -justifyvalue left
 configure wave -signalnamewidth 2
 configure wave -snapdistance 10
@@ -49,4 +60,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {2068 ns} {2148 ns}
+WaveRestoreZoom {470 ns} {770 ns}

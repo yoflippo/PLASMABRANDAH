@@ -60,7 +60,7 @@ architecture logic of mult is
     constant ONE       : std_logic_vector := x"00000001";
     signal mode_reg    : std_logic;
     signal negate_reg  : std_logic;
-    signal sign_reg    : std_logic;
+    signal sign_reg   : std_logic;
     signal sign2_reg   : std_logic;
     signal count_reg   : std_logic_vector(5 downto 0);
     signal aa_reg      : std_logic_vector(31 downto 0);
@@ -71,14 +71,15 @@ architecture logic of mult is
     signal lower_reg   : std_logic_vector(31 downto 0);
 
     signal a_neg       : std_logic_vector(31 downto 0);
-    signal b_neg       : std_logic_vector(31 downto 0);
-    signal a_neg2      : std_logic_vector(32 downto 0);
-    signal b_neg2      : std_logic_vector(32 downto 0);   
+    signal b_neg       : std_logic_vector(31 downto 0);  
     signal sum         : std_logic_vector(32 downto 0);
     
     signal finished : std_logic;
     signal resultL : std_logic_vector(31 downto 0);
     signal resultH : std_logic_vector(31 downto 0);
+    signal resultLFin : std_logic_vector(31 downto 0); 
+    signal resultHFin : std_logic_vector(31 downto 0);
+
     component adder Port (
         a, b   : In std_logic_vector(31 Downto 0);
         do_add : In std_logic;
@@ -110,8 +111,8 @@ begin
     sum     <= bv_adder(upper_reg, aa_reg, mode_reg);
 
     -- Result
-    c_mult2 <=  resultL               when mult_func = MULT_READ_LO and finished = '1' else
-                resultH               when mult_func = MULT_READ_HI and finished = '1' else
+    c_mult2 <=  resultLFin               when mult_func = MULT_READ_LO and finished = '1' else
+                resultHFin               when mult_func = MULT_READ_HI and finished = '1' else
                 (others => '0');
 
     c_mult <=   lower_reg               when mult_func = MULT_READ_LO and negate_reg = '0' else
@@ -124,8 +125,7 @@ begin
     -- ABS and remainder signals
     a_neg   <= bv_negate(a);
     b_neg   <= bv_negate(b);
-    a_neg2   <= bv_adder(a_neg,ONE,'1');
-    b_neg2   <= bv_adder(b_neg,ONE,'1');
+
 
     --multiplication/division unit
     mult_proc: process(clk, reset_in, a, b, mult_func,
@@ -133,14 +133,22 @@ begin
       count_reg, aa_reg, bb_reg, upper_reg, lower_reg)
       
       variable count : std_logic_vector(2 downto 0);
-      
+      variable resultBig : std_logic_vector(63 downto 0);
+      variable sign_value : std_logic := '0'; -- MS: register for saving the result signess
+      variable sign_a_bit : std_logic;
+      variable sign_b_bit : std_logic;
+      variable signed_mul : std_logic;
     begin
         count := "001";
         if reset_in = '1' then
             mode_reg <= '0';
             negate_reg <= '0';
             sign_reg <= '0';
+            sign_value := '0';
             sign2_reg <= '0';
+            sign_b_bit := '0';
+            sign_a_bit := '0';
+            signed_mul := '0';
             count_reg <= "000000";
             aa_reg <= ZERO;
             bb_reg <= ZERO;
@@ -165,21 +173,27 @@ begin
                     negate_reg <= '0';
                     sign_reg <= '0';
                     sign2_reg <= '0';
-
+                    sign_value := '0';
                     aa_reg2 <= a;
                     bb_reg2 <= b;
+                    signed_mul := '0';
                 when MULT_SIGNED_MULT =>
                     mode_reg <= MODE_MULT;
+                    signed_mul := '1';
                     if b(31) = '0' then
                         aa_reg <= a;
                         bb_reg <= b;
+                        sign_a_bit := a(31);
+                        sign_b_bit := b(31);
                     else
                         aa_reg <= a_neg;
                         bb_reg <= b_neg;
                     end if;
                     if a /= ZERO then
-                        sign_reg <= a(31) xor b(31);
+                        sign_value  := a(31) xor b(31);
+                        sign_reg <= sign_value;
                     else
+                        sign_value := '0';
                         sign_reg <= '0';
                     end if;
                     sign2_reg <= '0';
@@ -187,12 +201,13 @@ begin
                     count_reg <= "100000";
                     negate_reg <= '0';
                     
-                    -- MS: Convert
-                    if a(31) = '1' then
-                      aa_reg2 <= a_neg2(aa_reg2'range);
+                    -- MS: 2's complement when one of operands is negative
+                    if (a(31) = '1')  then  
+                      aa_reg2 <= a_neg;
                     end if;
-                    if b(31) = '1' then
-                      bb_reg2 <= b_neg2(aa_reg2'range);
+
+                    if (b(31) = '1') then
+                      bb_reg2  <= b_neg;
                     end if;
 
                 when MULT_DIVIDE =>
@@ -256,15 +271,20 @@ begin
                         end if;
                     count_reg <= count_reg - count; -- MS: decrease the count_reg with one
                     else
-                        if sign_reg = '1' then
-
-                        end if;
+         
                     end if; --count
-
+                -- MS: Convert WARNING: VERY SLOW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                if signed_mul = '1' AND finished = '1' then  
+                    if sign_a_bit = '1' OR sign_b_bit = '1' then
+                        resultBig  := bv_negate(resultH & resultL);
+                    end if;
+                    resultLFin <= resultBig(a'range);
+                    resultHFin <= resultBig(63 downto 32);
+                elsif finished = '1' then
+                    resultLFin <= resultL;
+                    resultHFin <= resultH;
+                end if;
             end case;
-
-      end if;
-
+        end if;
    end process;
-
 end; --architecture logic
