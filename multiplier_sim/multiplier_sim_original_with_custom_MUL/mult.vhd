@@ -277,17 +277,18 @@ begin
                 -- MS: Convert WARNING: VERY SLOW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 if  finished = '1' then  
                     if signed_mul = '1' AND sign_value = '1' then
-                        tmpResultBig := resultH & resultL;
-                        resultBig  := bv_negate(tmpResultBig);
+                        --tmpResultBig := resultH & resultL;
+                        --resultBig  := bv_negate(tmpResultBig);
+                        resultBig  := bv_twos_complement(resultL,resultH);
                         resultLFin <= resultBig(a'range);
-                        resultHFin <= resultBig(63 downto 32);
+                        resultHFin <= resultBig(resultBig'high downto resultL'length);
                     else 
                         resultLFin <= resultL;
                         resultHFin <= resultH;    
                     end if;
                 end if;
             end case;
-            
+
         end if;
    end process;
 end; --architecture logic

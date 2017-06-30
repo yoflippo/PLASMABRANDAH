@@ -8,6 +8,9 @@
 --    Software 'as is' without warranty.  Author liable for nothing.
 -- DESCRIPTION:
 --    Data types, constants, and add functions needed for the Plasma CPU.
+
+-- MS: version 0.2 : added some functions with regards to 2 complement
+-- conversion
 ---------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -114,8 +117,16 @@ package mlite_pack is
     
     function bv_increment(  a : in std_logic_vector(31 downto 2))
     return std_logic_vector;
+
+    function bv_negate_carries(a : in std_logic_vector;
+                               ci: in std_logic) 
+    return std_logic_vector;
     
     function bv_inc(a : in std_logic_vector) 
+    return std_logic_vector;
+
+    function bv_twos_complement(low : in std_logic_vector;
+                                hig : in std_logic_vector) 
     return std_logic_vector;
 
 -- MS: in order for custom component to be used they have to be
@@ -594,6 +605,57 @@ begin
         result(index) := not_a(index) xor carry_in;
         carry_in := carry_in and not_a(index);
     end loop;
+    return result;
+end; --function
+
+-- MS: a negation 2's complement function but with functionality to get/specify 
+-- the carry. Please note, that the carry out is concatenated with the output
+function bv_negate_carries(a : in std_logic_vector;
+                           ci: in std_logic) return std_logic_vector is
+
+    variable carry_in : std_logic;
+    variable not_a    : std_logic_vector(a'length-1 downto 0);
+    variable result   : std_logic_vector(a'length-1 downto 0);
+begin
+    not_a := not a;
+    carry_in := ci;
+    for index in a'reverse_range loop
+        result(index) := not_a(index) xor carry_in;
+        carry_in      := carry_in and not_a(index);
+    end loop;
+    return carry_in & result;
+end; --function
+
+--MS : this function calculates the two complement of a large vector that consists
+-- of a High/Low register. It is basically a complement-select function
+function bv_twos_complement(low : in std_logic_vector;
+                            hig : in std_logic_vector) 
+        return std_logic_vector is
+
+    variable res_low     : std_logic_vector(low'length downto 0);
+    variable res_hig1    : std_logic_vector(hig'length downto 0);
+    variable res_hig0    : std_logic_vector(hig'length downto 0);
+    variable res_part_l  : std_logic_vector(low'range);
+    variable res_part_h  : std_logic_vector(hig'range);
+    variable result      : std_logic_vector((low'length*2)-1 downto 0);
+begin
+    -- MS: calculate 2 complement
+    res_low  := bv_negate_carries(low,'1');
+    -- MS: calculate 2 complement of hig reg with ci = 1 & 0
+    res_hig0 := bv_negate_carries(hig,'0');
+    res_hig1 := bv_negate_carries(hig,'1');
+
+    res_part_l := res_low(res_part_l'range);
+    -- MS: if the carry_out of the low reg is '1' then select that
+    -- result
+    if res_low(res_low'high) = '1' then
+        res_part_h := res_hig1(res_part_h'range);
+    else
+        res_part_h := res_hig0(res_part_h'range);
+    end if;
+    
+    result := res_part_h & res_part_l;
+
     return result;
 end; --function
 
