@@ -101,7 +101,7 @@ begin
 
 
  
-        pMulProcess  : process (iclk, ireset)
+        pMulProcess  : process (iclk, ireset, iMultiplier)
             variable vCounter      : integer := 0;
             variable vcar_out_bv   : std_logic := '0';
             variable vBv_adder_out : std_logic_vector(4 downto 0);
@@ -128,19 +128,17 @@ begin
                 part_vResult    <= (others => '0');
                 vBv_adder_out   := (others => '0');
                 vcar_out_bv     := '0'; 
+            -- MS: logic for when the multiplier and multiplicand are changed
+            elsif vMulPliOld /= iMultiplier or vMulCanOld /= iMultiplicand then
+                vMulPliOld      := iMultiplier;
+                vMulCanOld      := iMultiplicand;
+                vFinished       := '0';
+                oFinished       <= vFinished;
+                vCounter        :=  0;
+                vStarted        := '1';
+                vCarH           := (others => '0');
+                vSumH           := (others => '0');
             elsif rising_edge(iclk) then
-
-                -- MS: logic for when the multiplier and multiplicand are changed
-                if vMulPliOld /= iMultiplier or vMulCanOld /= iMultiplicand then
-                    vMulPliOld      := iMultiplier;
-                    vMulCanOld      := iMultiplicand;
-                    vFinished       := '0';
-                    vCounter        :=  0;
-                    vStarted        := '1';
-                    vCarH           := (others => '0');
-                    vSumH           := (others => '0');
-                end if;
-
                 -- MS: only do multiplication when new values are received
                 if vStarted = '1' then
                     if vCounter < 8 then
@@ -180,6 +178,7 @@ begin
                         vCounter := (vCounter + 1);
                     else
                         vFinished := '1';
+                        oFinished <= vFinished;
                         -- MS: output the low register
                         for i in 0 to 6 loop
                             oResultL((3 + (i * 4)) downto (i * 4)) <= vResult(i + 1);
@@ -204,6 +203,5 @@ begin
                     end if; -- counter
                 end if; -- started
             end if; -- rising edge
-            oFinished <= vFinished;
         end process;
 end; --architecture logic
