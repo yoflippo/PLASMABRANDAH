@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------
--- TITLE: Multiplication and Division Unit
+-- TITLE: Multiplication AND Division Unit
 -- AUTHORS: Steve Rhoads (rhoadss@yahoo.com)
 -- DATE CREATED: 1/31/01
 -- FILENAME: mult.vhd
@@ -7,7 +7,7 @@
 -- COPYRIGHT: Software placed into the public domain by the author.
 --    Software 'as is' without warranty.  Author liable for nothing.
 -- DESCRIPTION:
---    Implements the multiplication and division unit in 32 clocks.
+--    Implements the multiplication AND division unit in 32 clocks.
 --
 -- MULTIPLICATION
 -- long64 answer = 0;
@@ -54,23 +54,28 @@ end; --entity mult
 
 architecture logic of mult is
 
-    constant MODE_MULT : std_logic := '1';
-    constant MODE_DIV  : std_logic := '0';
-
-    signal mode_reg    : std_logic;
-    signal negate_reg  : std_logic;
-    signal sign_reg    : std_logic;
-    signal sign2_reg   : std_logic;
-    signal count_reg   : std_logic_vector(5 downto 0);
-    signal aa_reg      : std_logic_vector(31 downto 0);
-    signal bb_reg      : std_logic_vector(31 downto 0);
-    signal upper_reg   : std_logic_vector(31 downto 0);
-    signal lower_reg   : std_logic_vector(31 downto 0);
-
-    signal a_neg       : std_logic_vector(31 downto 0);
-    signal b_neg       : std_logic_vector(31 downto 0);
-    signal sum         : std_logic_vector(32 downto 0);
-    signal sum_cust_add: std_logic_vector(32 downto 0);
+    constant MODE_MULT         : std_logic := '1';
+    constant MODE_DIV          : std_logic := '0';
+    constant ONE               : std_logic_vector := x"00000001";
+    signal mode_reg            : std_logic;
+    signal negate_reg          : std_logic;
+    signal sign_reg            : std_logic;
+    signal sign2_reg           : std_logic;
+    signal count_reg           : std_logic_vector(5 downto 0);
+    signal aa_reg              : std_logic_vector(31 downto 0);
+    signal bb_reg              : std_logic_vector(31 downto 0);
+    signal mul_plier_cus       : std_logic_vector(31 downto 0);
+    signal mul_cand_cus        : std_logic_vector(31 downto 0);
+    signal upper_reg           : std_logic_vector(31 downto 0);
+    signal lower_reg           : std_logic_vector(31 downto 0);
+    signal a_neg               : std_logic_vector(31 downto 0);
+    signal b_neg               : std_logic_vector(31 downto 0);  
+    signal sum                 : std_logic_vector(32 downto 0);    
+    signal custom_mul_finished : std_logic;
+    signal resultL             : std_logic_vector(31 downto 0);
+    signal resultH             : std_logic_vector(31 downto 0);
+    signal resultLFin          : std_logic_vector(31 downto 0); 
+    signal resultHFin          : std_logic_vector(31 downto 0);
 
     component adder Port (
         a, b   : In std_logic_vector(31 Downto 0);
@@ -78,55 +83,92 @@ architecture logic of mult is
         c      : Out std_logic_vector(32 Downto 0)
     );
     end component;
-
+    
+        -- MS : 
+    component mult_csa
+    port (
+        iclk                       : in std_logic;
+        ireset                     : in std_logic;
+        iMultiplier, iMultiplicand : in std_logic_vector(31 downto 0);
+        oFinished                  : out std_logic;
+        oResultL                   : out std_logic_vector(31 downto 0);
+        oResultH                   : out std_logic_vector(31 downto 0)
+    );
+    end component; -- MS
 
 begin
 
-    
-
-    --sum     <= bv_adder(upper_reg, aa_reg, mode_reg);
-    -- MS: new sum
-    custom_cs_adder :  adder PORT MAP(
-        a       => upper_reg,
-        b       => aa_reg,
-        do_add  => mode_reg,
-        c       => sum
+    CUSTUM_MULT: mult_csa
+     port map(
+         iclk          => clk,
+         ireset        => reset_in,
+         iMultiplier   => mul_plier_cus,
+         iMultiplicand => mul_cand_cus,
+         oFinished     => custom_mul_finished,
+         oResultL      => resultL,
+         oResultH      => resultH     
     );
 
-    -- Result
-    c_mult <=   lower_reg               when mult_func = MULT_READ_LO and negate_reg = '0' else
-                bv_negate(lower_reg)    when mult_func = MULT_READ_LO and negate_reg = '1' else
-                upper_reg               when mult_func = MULT_READ_HI and negate_reg = '0' else
-                bv_negate(upper_reg)    when mult_func = MULT_READ_HI and negate_reg = '1' else ZERO;
-    -- MS: the multiplier only sends the pause_out signal if the results is read prematurely
-    pause_out <= '1' when (count_reg /= "000000") and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else '0';
+    --custom_cs_adder :  adder PORT MAP(
+    --    a       => upper_reg,
+    --    b       => aa_reg,
+    --    do_add  => mode_reg,
+    --    c       => sum
+    --);
 
-    -- ABS and remainder signals
-    a_neg   <= bv_negate(a); -- MS: 2's complement
+    sum     <= bv_adder(upper_reg, aa_reg, mode_reg);
+
+    -- Result
+    c_mult <=   resultLFin               when mult_func = MULT_READ_LO AND custom_mul_finished = '1'    AND mode_reg = MODE_MULT else
+                resultHFin               when mult_func = MULT_READ_HI AND custom_mul_finished = '1'    AND mode_reg = MODE_MULT else
+                lower_reg                when mult_func = MULT_READ_LO AND negate_reg = '0'             AND mode_reg = MODE_DIV else
+                bv_negate(lower_reg)     when mult_func = MULT_READ_LO AND negate_reg = '1'             AND mode_reg = MODE_DIV else
+                upper_reg                when mult_func = MULT_READ_HI AND negate_reg = '0'             AND mode_reg = MODE_DIV else
+                bv_negate(upper_reg)     when mult_func = MULT_READ_HI AND negate_reg = '1'             AND mode_reg = MODE_DIV else ZERO;
+
+    -- MS: the multiplier only sends the pause_out signal if the results is read prematurely
+    pause_out <= '1' when ((count_reg /= "000000")     AND mode_reg = MODE_DIV)  AND (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else
+                 '1' when ((custom_mul_finished = '0') AND mode_reg = MODE_MULT) AND (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else
+                 '0';
+
+    -- ABS AND remainder signals
+    a_neg   <= bv_negate(a);
     b_neg   <= bv_negate(b);
 
     --multiplication/division unit
     mult_proc: process(clk, reset_in, a, b, mult_func,
       a_neg, b_neg, sum, sign_reg, mode_reg, negate_reg,
-      count_reg, aa_reg, bb_reg, upper_reg, lower_reg)
+      count_reg, aa_reg, bb_reg, upper_reg, lower_reg, custom_mul_finished)
       
-      variable count : std_logic_vector(2 downto 0);
-      
+      variable vCount        : std_logic_vector(2 downto 0);
+      variable vResultBig    : std_logic_vector(63 downto 0);
+      variable vSign_value : std_logic := '0'; -- MS: register for saving the result signess
+      variable vSign_a_bit : std_logic;
+      variable vSign_b_bit : std_logic;
+      variable vSigned_mul : std_logic;
     begin
-        count := "001";
+        vCount := "001";
         if reset_in = '1' then
             mode_reg <= '0';
             negate_reg <= '0';
             sign_reg <= '0';
+            vSign_value := '0';
             sign2_reg <= '0';
+            vSign_b_bit := '0';
+            vSign_a_bit := '0';
+            vSigned_mul := '0';
             count_reg <= "000000";
             aa_reg <= ZERO;
             bb_reg <= ZERO;
             upper_reg <= ZERO;
             lower_reg <= ZERO;
+            mul_plier_cus <= ZERO;
+            mul_cand_cus <= ZERO;
+            resultLFin <= (others => '0');
+            resultHFin <= (others => '0');
         elsif rising_edge(clk) then
             case mult_func is
-                when MULT_WRITE_LO => -- MS : why do we need this?
+                when MULT_WRITE_LO =>
                     lower_reg <= a;
                     negate_reg <= '0';
                 when MULT_WRITE_HI =>
@@ -141,26 +183,46 @@ begin
                     negate_reg <= '0';
                     sign_reg <= '0';
                     sign2_reg <= '0';
+                    vSign_value := '0';
+                    mul_plier_cus <= a;
+                    mul_cand_cus <= b;
+                    vSigned_mul := '0';
                 when MULT_SIGNED_MULT =>
                     mode_reg <= MODE_MULT;
+                    vSigned_mul := '1';
                     if b(31) = '0' then
                         aa_reg <= a;
                         bb_reg <= b;
+                        vSign_a_bit := a(31);
+                        vSign_b_bit := b(31);
                     else
                         aa_reg <= a_neg;
                         bb_reg <= b_neg;
                     end if;
-                    
                     if a /= ZERO then
-                        sign_reg <= a(31) xor b(31);
+                        vSign_value  := a(31) xor b(31);
+                        sign_reg <= vSign_value;
                     else
+                        vSign_value := '0';
                         sign_reg <= '0';
                     end if;
-                    
                     sign2_reg <= '0';
                     upper_reg <= ZERO;
                     count_reg <= "100000";
                     negate_reg <= '0';
+                    
+                    -- MS: 2's complement when one of operands is negative
+                    if (a(31) = '1')  then  
+                      mul_plier_cus <= a_neg;
+                    else
+                      mul_plier_cus <= a;
+                    end if;
+
+                    if (b(31) = '1') then
+                      mul_cand_cus  <= b_neg;
+                    else
+                      mul_cand_cus <= b;
+                    end if;
                 when MULT_DIVIDE =>
                     mode_reg <= MODE_DIV;
                     aa_reg <= b(0) & ZERO(30 downto 0);
@@ -187,29 +249,9 @@ begin
                     negate_reg <= a(31) xor b(31);
                 when others =>
                     if count_reg /= "000000" then -- MS: countdown from 31 to 0
-                        if mode_reg = MODE_MULT then
-                            -- Multiplication
-                            if bb_reg(0) = '1' then
-                                upper_reg   <= (sign_reg xor sum(32)) & sum(31 downto 1);
-                                lower_reg   <= sum(0) & lower_reg(31 downto 1);
-                                sign2_reg   <= sign2_reg or sign_reg;
-                                sign_reg    <= '0';
-                                bb_reg      <= '0' & bb_reg(31 downto 1);
-                                -- The following six lines are optional for speedup
-                                --elsif bb_reg(3 downto 0) = "0000" and sign2_reg = '0' and
-                                --      count_reg(5 downto 2) /= "0000" then
-                                --   upper_reg <= "0000" & upper_reg(31 downto 4);
-                                --   lower_reg <=  upper_reg(3 downto 0) & lower_reg(31 downto 4);
-                                --   count := "100";
-                                --   bb_reg <= "0000" & bb_reg(31 downto 4);
-                            else
-                                upper_reg   <= sign2_reg & upper_reg(31 downto 1);
-                                lower_reg   <= upper_reg(0) & lower_reg(31 downto 1);
-                                bb_reg      <= '0' & bb_reg(31 downto 1);
-                            end if;
-                        else
+                        if mode_reg = MODE_DIV then
                             -- Division
-                            if sum(32) = '0' and aa_reg /= ZERO and
+                            if sum(32) = '0' AND aa_reg /= ZERO AND
                                bb_reg(31 downto 1) = ZERO(31 downto 1) then
                                 upper_reg       <= sum(31 downto 0);
                                 lower_reg(0)    <= '1';
@@ -220,13 +262,24 @@ begin
                             lower_reg(31 downto 1)  <= lower_reg(30 downto 0);
                             bb_reg                  <= '0' & bb_reg(31 downto 1);
                         end if;
-                    count_reg <= count_reg - count; -- MS: decrease the count_reg with one
-                    end if; --count
-
+                        count_reg <= count_reg - vCount; -- MS: decrease the count_reg with one
+                    end if; --vCount
             end case;
+        end if; -- clc
 
-      end if;
+        if custom_mul_finished = '1' then  
+            if vSigned_mul = '1' AND vSign_value = '1' then
+                vResultBig := bv_twos_complement(resultL,resultH);
+                resultLFin <= vResultBig(a'range);
+                resultHFin <= vResultBig(vResultBig'high downto resultL'length);
+            else 
+                resultLFin <= resultL;
+                resultHFin <= resultH;    
+            end if;
+        else  
+            resultLFin <= (others => '0');
+            resultHFin <= (others => '0');
+        end if;
 
    end process;
-
 end; --architecture logic
