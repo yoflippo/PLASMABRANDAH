@@ -409,7 +409,8 @@ package mlite_pack is
             write_byte_enable : in std_logic_vector(3 downto 0);
             address           : in std_logic_vector(31 downto 2);
             data_write        : in std_logic_vector(31 downto 0);
-            data_read         : out std_logic_vector(31 downto 0)
+            data_read0        : out std_logic_vector(31 downto 0);
+            data_read1        : out std_logic_vector(31 downto 0)
         );
     end component; --ram
 

@@ -39,7 +39,8 @@ entity cache_ram is
         write_byte_enable : in std_logic_vector(3 downto 0);
         address           : in std_logic_vector(31 downto 2);
         data_write        : in std_logic_vector(31 downto 0);
-        data_read         : out std_logic_vector(31 downto 0)
+        data_read0        : out std_logic_vector(31 downto 0);
+        data_read1        : out std_logic_vector(31 downto 0) --TvE: added output so both data in the sets can be put on output in parallel
     );
 end; --entity ram
 
@@ -58,31 +59,22 @@ architecture logic of cache_ram is
 
     --Block Data Out
     signal block_do: mem32_vector(7 downto 0);
-
-    --Remember which block was selected
-    signal block_sel_buf: std_logic_vector(2 downto 0);
-
+    
 begin
     block_enable<= "00000001" when (enable='1') and (block_sel="000") else
                    "00000010" when (enable='1') and (block_sel="001") else
                    "00000100" when (enable='1') and (block_sel="010") else
-                   "00001000" when (enable='1') and (block_sel="011") else
+                   "00000011" when (enable='1') and (block_sel="011") else --TvE: adjustment for reads
                    "00010000" when (enable='1') and (block_sel="100") else
                    "00100000" when (enable='1') and (block_sel="101") else
                    "01000000" when (enable='1') and (block_sel="110") else
                    "10000000" when (enable='1') and (block_sel="111") else
                    "00000000";
 
-    proc_blocksel: process (clk, block_sel) is
-    begin-- TvE: register to buffer block select
-        if rising_edge(clk) then
-            block_sel_buf <= block_sel;
-        end if;
-    end process;
-
-    proc_do: process (block_do, block_sel_buf) is
+    proc_do: process (block_do) is
     begin
-        data_read <= block_do(conv_integer(block_sel_buf));
+          data_read0 <= block_do(0);
+          data_read1 <= block_do(1);
     end process;
 
     -- BLOCKS generation
@@ -480,7 +472,7 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
       CLK  => clk,
       DI   => data_write(31 downto 24),
       DIP  => ZERO(0 downto 0),
-      EN   => block_enable(1),
+      EN   => block_enable(1),  --TvE: changed so both data are put on outputs
       SSR  => ZERO(0),
       WE   => write_byte_enable(3));
 
@@ -558,7 +550,7 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
       CLK  => clk,
       DI   => data_write(23 downto 16),
       DIP  => ZERO(0 downto 0),
-      EN   => block_enable(1),
+      EN   => block_enable(1),--TvE: changed so both data are put on outputs
       SSR  => ZERO(0),
       WE   => write_byte_enable(2));
 
@@ -636,7 +628,7 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
       CLK  => clk,
       DI   => data_write(15 downto 8),
       DIP  => ZERO(0 downto 0),
-      EN   => block_enable(1),
+      EN   => block_enable(1),  --TvE: changed so both data are put on outputs
       SSR  => ZERO(0),
       WE   => write_byte_enable(1));
 
@@ -714,7 +706,7 @@ INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
       CLK  => clk,
       DI   => data_write(7 downto 0),
       DIP  => ZERO(0 downto 0),
-      EN   => block_enable(1),
+      EN   => block_enable(1),  --TvE: changed so both data are put on outputs
       SSR  => ZERO(0),
       WE   => write_byte_enable(0));
 
