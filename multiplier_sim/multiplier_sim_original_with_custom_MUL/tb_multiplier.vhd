@@ -342,13 +342,13 @@ begin
       --if (v_ch & v_cl) /= x"0000000000000000"  then
       if c_mult /= c_mult2 then
          vSimResult := false;
-         report "Test 10 - SIGNED Failed!!" severity ERROR;
+         report "Test 10 - LOW SIGNED Failed!!" severity ERROR;
       end if;
       mult_func <= MULT_READ_HI;
       wait until rising_edge(Clk);
       if c_mult /= c_mult2 then
          vSimResult := false;
-         report "Test 10 - SIGNED Failed!!" severity ERROR;
+         report "Test 10 - HIGH SIGNED Failed!!" severity ERROR;
       end if;
 
       mult_func <= MULT_MULT;       -- MS: choose type of multiplication
@@ -359,13 +359,54 @@ begin
       --if (v_ch & v_cl) /= x"0000000000000000"  then
       if c_mult /= c_mult2 then
          vSimResult := false;
-         report "Test 10 - SIGNED Failed!!" severity ERROR;
+         report "Test 10 - LOW UNSIGNED Failed!!" severity ERROR;
       end if;
       mult_func <= MULT_READ_HI;
       wait until rising_edge(Clk);
       if c_mult /= c_mult2 then
          vSimResult := false;
-         report "Test 10 - SIGNED Failed!!" severity ERROR;
+         report "Test 10 - HIGH UNSIGNED Failed!!" severity ERROR;
+      end if;
+
+
+
+      a         <= x"00666000"; -- 
+      b         <= x"00066600";
+      v_ia := to_integer(signed(a));
+      v_ib := to_integer(signed(b));
+      mult_func <= MULT_SIGNED_MULT;       -- MS: choose type of multiplication
+      wait until rising_edge(Clk);
+      mult_func <= MULT_READ_LO;
+      wait until falling_edge(pause_out);
+      wait until rising_edge(Clk);
+
+      --if (v_ch & v_cl) /= x"0000000000000000"  then
+      if c_mult /= c_mult2 then
+         vSimResult := false;
+         report "Test 11 - LOW SIGNED Failed!!" severity ERROR;
+      end if;
+      mult_func <= MULT_READ_HI;
+      wait until rising_edge(Clk);
+      if c_mult /= c_mult2 then
+         vSimResult := false;
+         report "Test 11 - HIGH SIGNED Failed!!" severity ERROR;
+      end if;
+
+      mult_func <= MULT_MULT;       -- MS: choose type of multiplication
+      wait until rising_edge(Clk);
+      mult_func <= MULT_READ_LO;
+      wait until falling_edge(pause_out);
+      wait until rising_edge(Clk);
+      --if (v_ch & v_cl) /= x"0000000000000000"  then
+      if c_mult /= c_mult2 then
+         vSimResult := false;
+         report "Test 11 - LOW UNSIGNED Failed!!" severity ERROR;
+      end if;
+      mult_func <= MULT_READ_HI;
+      wait until rising_edge(Clk);
+      if c_mult /= c_mult2 then
+         vSimResult := false;
+         report "Test 11 - HIGH UNSIGNED Failed!!" severity ERROR;
       end if;
 
      -- MS : other cases like division and signed multiplication...

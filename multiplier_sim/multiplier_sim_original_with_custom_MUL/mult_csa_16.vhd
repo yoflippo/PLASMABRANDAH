@@ -76,7 +76,7 @@ architecture logic of mult_csa is
     subtype mulmul_add is integer range 0 to (15 + 2); -- MS: 17 because we have 1 cc extra
     type res is array(mulmul_add) of std_logic_vector(3 downto 0);
  
-
+    signal TMPMUL, TMPCAN : std_logic_vector(31 downto 0);
 begin
     ----------------------------------------------------------------------------------------------
     -- Instantiations
@@ -101,7 +101,7 @@ begin
 
 
  
-        pMulProcess  : process (iclk, ireset, iMultiplier)
+        pMulProcess  : process (iclk, ireset, iMultiplier, iMultiplicand)
             variable vCounter      : integer := 0;
             variable vcar_out_bv   : std_logic := '0';
             variable vBv_adder_out : std_logic_vector(4 downto 0);
@@ -111,8 +111,8 @@ begin
             variable vResultH      : std_logic_vector(sum'high-3 downto 0);
             variable vCarH         : std_logic_vector(sum'high-4 downto 0);
             variable vSumH         : std_logic_vector(sum'high-4 downto 0);
-            variable vMulPliOld    : std_logic_vector(31 downto 0) := (others => '0');
-            variable vMulCanOld    : std_logic_vector(31 downto 0) := (others => '0');
+            variable vMulPliOld    : std_logic_vector(31 downto 0);
+            variable vMulCanOld    : std_logic_vector(31 downto 0);
         begin
             if ireset = '1' then
                 a               <= (others => '0');
@@ -128,8 +128,13 @@ begin
                 part_vResult    <= (others => '0');
                 vBv_adder_out   := (others => '0');
                 vcar_out_bv     := '0'; 
+                vMulPliOld      := (others => '0');
+                vMulCanOld      := (others => '0');
+
+                TMPMUL <= (others => '0');
+                TMPCAN <= (others => '0');
             -- MS: logic for when the multiplier and multiplicand are changed
-            elsif vMulPliOld /= iMultiplier or vMulCanOld /= iMultiplicand then
+            elsif (vMulPliOld /= iMultiplier) or (vMulCanOld /= iMultiplicand) then
                 vMulPliOld      := iMultiplier;
                 vMulCanOld      := iMultiplicand;
                 vFinished       := '0';
@@ -139,6 +144,9 @@ begin
                 vCarH           := (others => '0');
                 vSumH           := (others => '0');
             elsif rising_edge(iclk) then
+                TMPCAN <= iMultiplicand;
+                TMPMUL <= iMultiplier;
+
                 -- MS: only do multiplication when new values are received
                 if vStarted = '1' then
                     if vCounter < 8 then

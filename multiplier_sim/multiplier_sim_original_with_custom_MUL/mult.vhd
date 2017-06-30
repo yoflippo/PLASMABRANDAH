@@ -60,7 +60,7 @@ architecture logic of mult is
     constant ONE       : std_logic_vector := x"00000001";
     signal mode_reg    : std_logic;
     signal negate_reg  : std_logic;
-    signal sign_reg   : std_logic;
+    signal sign_reg    : std_logic;
     signal sign2_reg   : std_logic;
     signal count_reg   : std_logic_vector(5 downto 0);
     signal aa_reg      : std_logic_vector(31 downto 0);
@@ -209,10 +209,14 @@ begin
                     -- MS: 2's complement when one of operands is negative
                     if (a(31) = '1')  then  
                       aa_reg2 <= a_neg;
+                    else
+                      aa_reg2 <= a;
                     end if;
 
                     if (b(31) = '1') then
                       bb_reg2  <= b_neg;
+                    else
+                      bb_reg2 <= b;
                     end if;
                     resultLFin <= (others => '0');
                     resultHFin <= (others => '0');
@@ -297,6 +301,6 @@ begin
                     resultLFin <= (others => '0');
                     resultHFin <= (others => '0');
                 end if;
-                
+
    end process;
 end; --architecture logic
