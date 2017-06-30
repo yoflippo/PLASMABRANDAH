@@ -7,12 +7,20 @@ vcom -quiet  -93  -work grlib  ../simlib/grlib/stdlib/stdlib.vhd
 vcom -quiet  -93  -work grlib  ../simlib/grlib/stdlib/stdio.vhd
 vcom -quiet  -93  -work work   ../simlib/micron/ddr_sdram/mti_pkg.vhd
 vcom -quiet  -93  -work work   ../simlib/micron/ddr_sdram/mt46v16m16.vhd
-vcom -quiet  -93  -work work   ../rtl/mlite_pack.vhd
+--vcom -quiet  -93  -work work   ../rtl/mlite_pack.vhd
+vcom -quiet  -93  -work work   ../rtl/custom_mul/mlite_pack.vhd
+vcom -quiet  -93  -work work   ../rtl/custom_mul/adder.vhd
+vcom -quiet  -93  -work work   ../rtl/custom_mul/csa_adder.vhd
+vcom -quiet  -93  -work work   ../rtl/custom_mul/mult_csa_16.vhd
 vcom -quiet  -93  -work work   ../rtl/alu.vhd
 vcom -quiet  -93  -work work   ../rtl/bus_mux.vhd
 vcom -quiet  -93  -work work   ../rtl/control.vhd
 vcom -quiet  -93  -work work   ../rtl/mem_ctrl.vhd
-vcom -quiet  -93  -work work   ../rtl/mult.vhd
+
+vcom -quiet  -93  -work work   ../rtl/custom_mul/multiplier_tree_radix16_sim/multiplier_tree_radix16.vhd
+--vcom -quiet  -93  -work work   ../rtl/mult.vhd
+vcom -quiet  -93  -work work   ../rtl/custom_mul/mult.vhd
+
 vcom -quiet  -93  -work work   ../rtl/pc_next.vhd
 vcom -quiet  -93  -work work   ../rtl/reg_bank.vhd
 vcom -quiet  -93  -work work   ../rtl/pipeline.vhd
