@@ -276,9 +276,9 @@ begin
                 resultLFin <= resultL;
                 resultHFin <= resultH;    
             end if;
-        else  
-            resultLFin <= (others => '0');
-            resultHFin <= (others => '0');
+        --else  
+        --    resultLFin <= (others => '0');
+        --    resultHFin <= (others => '0');
         end if;
 
    end process;
