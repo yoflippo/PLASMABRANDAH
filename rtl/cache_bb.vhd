@@ -245,7 +245,7 @@ begin
 			WE   => cache_we
 		);
 		 
-	cache_data: cache_ram     -- cache data storage
+	cache_data: cache_ram_bb     -- cache data storage
 	generic map (
 		block_count => 1
 		)

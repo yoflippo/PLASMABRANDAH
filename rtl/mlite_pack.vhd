@@ -414,6 +414,19 @@ package mlite_pack is
         );
     end component; --ram
 
+    component cache_ram_bb
+        generic(
+            block_count : integer := 1
+        );
+        port(
+            clk               : in std_logic;
+            enable            : in std_logic;
+            write_byte_enable : in std_logic_vector(3 downto 0);
+            address           : in std_logic_vector(31 downto 2);
+            data_write        : in std_logic_vector(31 downto 0);
+            data_read        : out std_logic_vector(31 downto 0)
+        );
+    end component; --ram
     component boot_ram
         generic(
             block_count : integer := 1
