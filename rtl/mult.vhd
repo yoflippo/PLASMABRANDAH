@@ -267,16 +267,23 @@ begin
             end case;  
         end if; -- clc
 				
-	if custom_mul_finished = '1' then  
-            if vSigned_mul = '1' AND vSign_value = '1' then
-                vResultBig := bv_twos_complement(resultL,resultH);
-                resultLFin <= vResultBig(a'range);
-                resultHFin <= vResultBig(vResultBig'high downto resultL'length);
-            else 
-                resultLFin <= resultL;
-                resultHFin <= resultH;    
-            end if;
-        end if;
+                -- MS: Convert WARNING: VERY SLOW!!!!!!!!
+                if  custom_mul_finished = '1' then  
+                    if vSigned_mul = '1' AND vSign_value = '1' then
+                        vResultBig := bv_twos_complement(resultL,resultH);
+                        resultLFin <= vResultBig(a'range);
+                        resultHFin <= vResultBig(vResultBig'high downto resultL'length);
+                        --end if; 
+                    elsif vSigned_mul = '0' AND ((a > x"FFFFFF00" AND b > x"FFFFFF00") OR 
+                                                (a >= x"FFFFFF00" AND b > x"FFFFFF00") OR 
+                                                (a > x"FFFFFF00" AND b >= x"FFFFFF00")) then
+                            resultHFin <= bv_inc(resultH);
+                            resultLFin <= resultL;  
+                    else 
+                        resultLFin <= resultL;
+                        resultHFin <= resultH;                 
+                    end if;
+                end if;
 
    end process;
 end; --architecture logic

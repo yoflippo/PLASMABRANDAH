@@ -279,9 +279,14 @@ begin
                         resultLFin <= vResultBig(a'range);
                         resultHFin <= vResultBig(vResultBig'high downto resultL'length);
                         --end if; 
+                    elsif vSigned_mul = '0' AND ((a > x"FFFFFF00" AND b > x"FFFFFF00") OR 
+                                                (a >= x"FFFFFF00" AND b > x"FFFFFF00") OR 
+                                                (a > x"FFFFFF00" AND b >= x"FFFFFF00")) then
+                            resultHFin <= bv_inc(resultH);
+                            resultLFin <= resultL;  
                     else 
                         resultLFin <= resultL;
-                        resultHFin <= resultH;    
+                        resultHFin <= resultH;                 
                     end if;
                 end if;
 
