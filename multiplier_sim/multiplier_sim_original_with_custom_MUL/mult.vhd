@@ -80,14 +80,6 @@ architecture logic of mult is
     signal resultLFin : std_logic_vector(31 downto 0); 
     signal resultHFin : std_logic_vector(31 downto 0);
 
-    component adder Port (
-        a, b   : In std_logic_vector(31 Downto 0);
-        do_add : In std_logic;
-        c      : Out std_logic_vector(32 Downto 0)
-    );
-    end component;
-
-
 begin
 
     CUSTUM_MULT: entity work.mult_csa
@@ -101,19 +93,15 @@ begin
          oResultH      => resultH     
     );
 
-    --custom_cs_adder :  adder PORT MAP(
-    --    a       => upper_reg,
-    --    b       => aa_reg,
-    --    do_add  => mode_reg,
-    --    c       => sum
-    --);
-
     sum     <= bv_adder(upper_reg, aa_reg, mode_reg);
 
     -- Result
-    c_mult2 <=  resultLFin               when mult_func = MULT_READ_LO and custom_mul_finished = '1' else
-                resultHFin               when mult_func = MULT_READ_HI and custom_mul_finished = '1' else
-                (others => '0');
+    c_mult2 <=   resultLFin               when mult_func = MULT_READ_LO AND custom_mul_finished = '1'    AND mode_reg = MODE_MULT else
+                resultHFin               when mult_func = MULT_READ_HI AND custom_mul_finished = '1'    AND mode_reg = MODE_MULT else
+                lower_reg                when mult_func = MULT_READ_LO AND negate_reg = '0'             AND mode_reg = MODE_DIV else
+                bv_negate(lower_reg)     when mult_func = MULT_READ_LO AND negate_reg = '1'             AND mode_reg = MODE_DIV else
+                upper_reg                when mult_func = MULT_READ_HI AND negate_reg = '0'             AND mode_reg = MODE_DIV else
+                bv_negate(upper_reg)     when mult_func = MULT_READ_HI AND negate_reg = '1'             AND mode_reg = MODE_DIV else ZERO;
 
     c_mult <=   lower_reg               when mult_func = MULT_READ_LO and negate_reg = '0' else
                 bv_negate(lower_reg)    when mult_func = MULT_READ_LO and negate_reg = '1' else
@@ -121,6 +109,13 @@ begin
                 bv_negate(upper_reg)    when mult_func = MULT_READ_HI and negate_reg = '1' else ZERO;
     -- MS: the multiplier only sends the pause_out signal if the results is read prematurely
     pause_out <= '1' when (count_reg /= "000000") and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else '0';
+
+
+---- FINAL IMPLEMENTATION
+--    -- MS: the multiplier only sends the pause_out signal if the results is read prematurely
+--    pause_out <= '1' when ((count_reg /= "000000")     AND mode_reg = MODE_DIV)  AND (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else
+--                 '1' when ((custom_mul_finished = '0') AND mode_reg = MODE_MULT) AND (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else
+--                 '0';
 
     -- ABS and remainder signals
     a_neg   <= bv_negate(a);
@@ -132,13 +127,13 @@ begin
       a_neg, b_neg, sum, sign_reg, mode_reg, negate_reg,
       count_reg, aa_reg, bb_reg, upper_reg, lower_reg, custom_mul_finished)
       
-      variable vCount        : std_logic_vector(2 downto 0);
-      variable vResultBig    : std_logic_vector(63 downto 0);
-      variable vTmpResultBig : std_logic_vector(63 downto 0);
+      variable vCount      : std_logic_vector(2 downto 0);
+      variable vResultBig  : std_logic_vector(63 downto 0);
       variable vSign_value : std_logic := '0'; -- MS: register for saving the result signess
       variable vSign_a_bit : std_logic;
       variable vSign_b_bit : std_logic;
       variable vSigned_mul : std_logic;
+      variable vTemp       : std_logic_vector(a'range);
     begin
         vCount := "001";
         if reset_in = '1' then
@@ -183,6 +178,7 @@ begin
                 when MULT_SIGNED_MULT =>
                     mode_reg <= MODE_MULT;
                     vSigned_mul := '1';
+
                     if b(31) = '0' then
                         aa_reg <= a;
                         bb_reg <= b;
@@ -192,6 +188,7 @@ begin
                         aa_reg <= a_neg;
                         bb_reg <= b_neg;
                     end if;
+
                     if a /= ZERO then
                         vSign_value  := a(31) xor b(31);
                         sign_reg <= vSign_value;
@@ -199,6 +196,7 @@ begin
                         vSign_value := '0';
                         sign_reg <= '0';
                     end if;
+
                     sign2_reg <= '0';
                     upper_reg <= ZERO;
                     count_reg <= "100000";
@@ -250,13 +248,6 @@ begin
                                 sign2_reg   <= sign2_reg or sign_reg;
                                 sign_reg    <= '0';
                                 bb_reg      <= '0' & bb_reg(31 downto 1);
-                                -- The following six lines are optional for speedup
-                                --elsif bb_reg(3 downto 0) = "0000" and sign2_reg = '0' and
-                                --      count_reg(5 downto 2) /= "0000" then
-                                --   upper_reg <= "0000" & upper_reg(31 downto 4);
-                                --   lower_reg <=  upper_reg(3 downto 0) & lower_reg(31 downto 4);
-                                --   vCount := "100";
-                                --   bb_reg <= "0000" & bb_reg(31 downto 4);
                             else
                                 upper_reg   <= sign2_reg & upper_reg(31 downto 1);
                                 lower_reg   <= upper_reg(0) & lower_reg(31 downto 1);
@@ -281,21 +272,17 @@ begin
                     end if; --vCount
             end case;
         end if; -- clck
-                        -- MS: Convert WARNING: VERY SLOW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                -- MS: Convert WARNING: VERY SLOW!!!!!!!!
                 if  custom_mul_finished = '1' then  
                     if vSigned_mul = '1' AND vSign_value = '1' then
-                        --vTmpResultBig := resultH & resultL;
-                        --vResultBig  := bv_negate(vTmpResultBig);
                         vResultBig := bv_twos_complement(resultL,resultH);
                         resultLFin <= vResultBig(a'range);
                         resultHFin <= vResultBig(vResultBig'high downto resultL'length);
+                        --end if; 
                     else 
                         resultLFin <= resultL;
                         resultHFin <= resultH;    
                     end if;
-                else  
-                    resultLFin <= (others => '0');
-                    resultHFin <= (others => '0');
                 end if;
 
    end process;

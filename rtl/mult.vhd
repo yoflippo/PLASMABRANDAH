@@ -264,10 +264,10 @@ begin
                         end if;
                         count_reg <= count_reg - vCount; -- MS: decrease the count_reg with one
                     end if; --vCount
-            end case;
+            end case;  
         end if; -- clc
-
-        if custom_mul_finished = '1' then  
+				
+	if custom_mul_finished = '1' then  
             if vSigned_mul = '1' AND vSign_value = '1' then
                 vResultBig := bv_twos_complement(resultL,resultH);
                 resultLFin <= vResultBig(a'range);
@@ -276,9 +276,6 @@ begin
                 resultLFin <= resultL;
                 resultHFin <= resultH;    
             end if;
-        --else  
-        --    resultLFin <= (others => '0');
-        --    resultHFin <= (others => '0');
         end if;
 
    end process;
