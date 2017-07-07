@@ -136,6 +136,7 @@ begin
                         cache_ram_data_r <= cache_ram_data_r1;      --TvE: tag of set 1 was correct so data in set 1 is routed to output
                         LRU_in(0) <= '0';                              --TvE: Data in set 0 was Least Recently Used
                     end if;                    
+                
                     state <= STATE_IDLE;
                 end if;
             when STATE_MISSED =>          --current read cache miss
@@ -185,6 +186,9 @@ begin
                     state_next <= STATE_WAITING;
                 end if;
             else
+                if(cache_ram_byte_we_reg="1111" and cache_ram_byte_we="0000") then  -- Make use of the latched written data to the cache since this cache is implemented as read first
+                    cache_ram_data_r <= cache_ram_data_w_reg;
+                end if;
                 cache_access <= '0';
                 cache_we <= "00";
                 state_next <= STATE_IDLE;
@@ -205,7 +209,7 @@ begin
             state_reg <= STATE_IDLE;
             cache_tag_reg <= ZERO(7 downto 0);  -- TvE: changed to get correct tag length
             cache_ram_address_reg <= "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
-            cache_ram_data_w_reg <= "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";   --TvE:  since we need to check in which set it has to be put in
+            cache_ram_data_w_reg <= "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
             cache_ram_byte_we_reg <= "0000";
         elsif rising_edge(clk) then
             state_reg <= state_next;
