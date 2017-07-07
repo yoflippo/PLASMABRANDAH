@@ -8,6 +8,7 @@ vcom -quiet  -93  -work work   ../simlib/micron/ddr_sdram/mti_pkg.vhd
 vcom -quiet  -93  -work work   ../simlib/micron/ddr_sdram/mt46v16m16.vhd
 vcom -quiet  -93  -work work   ../rtl/mlite_pack.vhd
 vcom -quiet  -93  -work work   ../rtl/cache_ram.vhd
+vcom -quiet  -93  -work work   ../rtl/cache_ram_bb.vhd
 vcom -quiet  -93  -work work   ../rtl/cache_bb.vhd
 vcom -quiet  -93  -work work   ../rtl/cache.vhd
 vcom -quiet  -93  -work work   ../rtl/clk_gen.vhd

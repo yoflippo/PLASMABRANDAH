@@ -61,14 +61,14 @@ end component; --cache
   signal sys_rst_n            :   std_logic := '0';
 
   signal address_next         :   std_logic_vector(31 downto 2);
-  signal byte_we_next         :   std_logic_vector(3 downto 0) := "1111";
+  signal byte_we_next         :   std_logic_vector(3 downto 0);
   signal cpu_address          :   std_logic_vector(31 downto 2);
   signal mem_busy             :   std_logic;
 
   signal cache_ram_enable     :   std_logic;
   signal cache_ram_byte_we    :   std_logic_vector(3 downto 0);
   signal cache_ram_BB_address :   std_logic_vector(31 downto 2);
-  signal cache_ram_set_ass_address:   std_logic_vector(31 downto 2);
+  signal cache_ram_address_dut:   std_logic_vector(31 downto 2);
   signal cache_ram_data_w     :   std_logic_vector(31 downto 0);
   signal cache_ram_data_r     :   std_logic_vector(31 downto 0);
   signal cache_ram_data_r_dut :   std_logic_vector(31 downto 0);
@@ -116,9 +116,9 @@ begin
   cache_ram_enable <= '1';
   cache_ram_byte_we <= byte_we_next;
   cache_ram_BB_address(31 downto 12) <= "00000000000000000000";
-  cache_ram_set_ass_address(31 downto 13) <= "0000000000000000000";
+  cache_ram_address_dut(31 downto 13) <= "0000000000000000000";
   cache_ram_BB_address(11 downto 2) <= address_next(11 downto 2);
-  cache_ram_set_ass_address(12 downto 2) <= address_next(12 downto 2);
+  cache_ram_address_dut(12 downto 2) <= address_next(12 downto 2);
   
 -- State machine for testbench
   statemachine: process(sys_clk)
@@ -150,13 +150,13 @@ begin
         address_next(25 downto 2) <= X"05E4B4"; -- Address that maps to same index as before
         cache_ram_data_w <= X"0F0F0F0F";        -- Dummy data input          
         status <= "0101";
-      when "0101" =>              -- Read overwritten data
+      when "0101" =>              -- Read other index
+        byte_we_next <= "0000"; 
+        address_next(25 downto 2) <= X"05B4B4";
+        status <= "0110";
+      when "0110" =>               -- Read overwritten data
         byte_we_next <= "0000"; 
         address_next(25 downto 2) <= X"05E4B4"; -- Address that maps to set 0 (should)
-        status <= "0110";
-      when "0110" =>              -- Read other index
-        byte_we_next <= "0000"; 
-        address_next(25 downto 2) <= X"05A4B4";
         status <= "0111";
       when "0111" => 
         status <= "1000";
@@ -237,32 +237,6 @@ begin
     cpu_address <= address_next;   
   end if;
   end process;
-
-  --***************************************
-  -- Check all signals in senslist are effective: TODO
-  --***************************************
---    cache_ram_proc: process(cache_access, cache_miss,
---                     address_next, cpu_address,
---                     byte_we_next)
---    begin
---        if cache_access = '1' then    --Check if cache hit or write through
---            cache_ram_enable <= '1';
---            cache_ram_byte_we <= byte_we_next;
---            cache_ram_address(31 downto 2) <= ZERO(31 downto 12) & address_next(11 downto 2);
---            cache_ram_data_w <= X"ECA86420";    -- TvE: Dummy data input
---        elsif cache_miss = '1' then  --Update cache after cache miss
---            cache_ram_enable <= '1';
---            cache_ram_byte_we <= "1111";
---            cache_ram_address(31 downto 2) <= ZERO(31 downto 12) & address_next(11 downto 2);
---           cache_ram_data_w <= X"FDB97531"; -- TvE: Dummy data input
---        else                         --Disable cache ram when Normal non-cache access
---            cache_ram_enable <= '0';
---            cache_ram_byte_we <= byte_we_next;
---            cache_ram_address(31 downto 2) <= address_next(31 downto 2);
---            cache_ram_data_w <= X"0F0F0F0F";  -- TvE: Dummy data input
---       end if;
---    end process;
-      
     
   --***************************************************************************
   -- Cache instantiation
@@ -298,7 +272,7 @@ begin
 
             cache_ram_enable    => cache_ram_enable,    --: in  std_logic;
             cache_ram_byte_we   => cache_ram_byte_we, --: in  std_logic_vector(3 downto 0);
-            cache_ram_address   => cache_ram_set_ass_address, --: in  std_logic_vector(31 downto 2);
+            cache_ram_address   => cache_ram_address_dut, --: in  std_logic_vector(31 downto 2);
             cache_ram_data_w    => cache_ram_data_w,    --: in  std_logic_vector(31 downto 0);
             cache_ram_data_r    => cache_ram_data_r_dut,    --: out std_logic_vector(31 downto 0);
 

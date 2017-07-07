@@ -44,9 +44,12 @@ entity control is
 end; --entity control
 
 architecture logic of control is
+signal op2              : std_logic_vector(5 downto 0);
+signal func2            : std_logic_vector(5 downto 0);
 begin
 
     control_proc: process(opcode, intr_signal)
+        
         variable op, func       : std_logic_vector(5 downto 0);
         variable rs, rt, rd     : std_logic_vector(5 downto 0);
         variable rtx            : std_logic_vector(4 downto 0);
@@ -72,11 +75,13 @@ begin
         branch_function := BRANCH_EQ;
         mem_source := MEM_FETCH;
         op := opcode(31 downto 26);
+        op2 <= opcode(31 downto 26);
         rs := '0' & opcode(25 downto 21);
         rt := '0' & opcode(20 downto 16);
         rtx := opcode(20 downto 16);
         rd := '0' & opcode(15 downto 11);
         func := opcode(5 downto 0);
+        func2 <= opcode(5 downto 0);
         imm := opcode(15 downto 0);
         is_syscall := '0';
 

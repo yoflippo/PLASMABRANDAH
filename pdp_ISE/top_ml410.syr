@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.12 secs
+Total CPU time to Xst completion: 0.08 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.12 secs
+Total CPU time to Xst completion: 0.08 secs
  
 --> 
 Reading design: top_ml410.prj
@@ -110,94 +110,96 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-WARNING:HDLParsers:3607 - Unit work/top_ml410 is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/top_ml410.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/top_ml410.vhd".
-WARNING:HDLParsers:3607 - Unit work/top_ml410/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/top_ml410.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/top_ml410.vhd".
-WARNING:HDLParsers:3607 - Unit work/plasma_top is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma_top.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma_top.vhd".
-WARNING:HDLParsers:3607 - Unit work/plasma_top/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma_top.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma_top.vhd".
-WARNING:HDLParsers:3607 - Unit work/clk_gen is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/clk_gen.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/clk_gen.vhd".
-WARNING:HDLParsers:3607 - Unit work/clk_gen/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/clk_gen.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/clk_gen.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_ctrl_top is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_ctrl_top/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
-WARNING:HDLParsers:3607 - Unit work/plasma is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma.vhd".
-WARNING:HDLParsers:3607 - Unit work/plasma/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma.vhd".
-WARNING:HDLParsers:3607 - Unit work/boot_ram is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/boot_ram.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/boot_ram.vhd".
-WARNING:HDLParsers:3607 - Unit work/boot_ram/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/boot_ram.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/boot_ram.vhd".
-WARNING:HDLParsers:3607 - Unit work/cache is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd".
-WARNING:HDLParsers:3607 - Unit work/cache/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_ctrl is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_ctrl/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_init is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_init.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_init.vhd".
-WARNING:HDLParsers:3607 - Unit work/ddr_init/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_init.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_init.vhd".
-WARNING:HDLParsers:3607 - Unit work/mlite_cpu is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd".
-WARNING:HDLParsers:3607 - Unit work/mlite_cpu/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd".
-WARNING:HDLParsers:3607 - Unit work/uart is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/uart.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/uart.vhd".
-WARNING:HDLParsers:3607 - Unit work/uart/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/uart.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/uart.vhd".
-WARNING:HDLParsers:3607 - Unit work/alu is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/alu.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/alu.vhd".
-WARNING:HDLParsers:3607 - Unit work/alu/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/alu.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/alu.vhd".
-WARNING:HDLParsers:3607 - Unit work/bus_mux is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/bus_mux.vhd".
-WARNING:HDLParsers:3607 - Unit work/bus_mux/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/bus_mux.vhd".
-WARNING:HDLParsers:3607 - Unit work/cache_ram is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache_ram.vhd".
-WARNING:HDLParsers:3607 - Unit work/cache_ram/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache_ram.vhd".
-WARNING:HDLParsers:3607 - Unit work/control is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/control.vhd".
-WARNING:HDLParsers:3607 - Unit work/control/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/control.vhd".
-WARNING:HDLParsers:3607 - Unit work/mem_ctrl is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd".
-WARNING:HDLParsers:3607 - Unit work/mem_ctrl/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd".
-WARNING:HDLParsers:3607 - Unit work/mult is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mult.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mult.vhd".
-WARNING:HDLParsers:3607 - Unit work/mult/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mult.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mult.vhd".
-WARNING:HDLParsers:3607 - Unit work/pc_next is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pc_next.vhd".
-WARNING:HDLParsers:3607 - Unit work/pc_next/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pc_next.vhd".
-WARNING:HDLParsers:3607 - Unit work/pipeline is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pipeline.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pipeline.vhd".
-WARNING:HDLParsers:3607 - Unit work/pipeline/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pipeline.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pipeline.vhd".
-WARNING:HDLParsers:3607 - Unit work/reg_bank is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/reg_bank.vhd".
-WARNING:HDLParsers:3607 - Unit work/reg_bank/ram_block is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/reg_bank.vhd".
-WARNING:HDLParsers:3607 - Unit work/shifter is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/shifter.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/shifter.vhd".
-WARNING:HDLParsers:3607 - Unit work/shifter/logic is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/shifter.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/shifter.vhd".
-WARNING:HDLParsers:3607 - Unit work/mlite_pack is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_pack.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_pack.vhd".
-WARNING:HDLParsers:3607 - Unit work/mlite_pack is now defined in a different file.  It was defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_pack.vhd", and is now defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_pack.vhd".
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_pack.vhd" in Library work.
-Architecture mlite_pack of Entity mlite_pack is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache_ram.vhd" in Library work.
-Architecture logic of Entity cache_ram is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pc_next.vhd" in Library work.
+WARNING:HDLParsers:3607 - Unit work/top_ml410 is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/top_ml410.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/top_ml410.vhd".
+WARNING:HDLParsers:3607 - Unit work/top_ml410/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/top_ml410.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/top_ml410.vhd".
+WARNING:HDLParsers:3607 - Unit work/plasma_top is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma_top.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma_top.vhd".
+WARNING:HDLParsers:3607 - Unit work/plasma_top/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma_top.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma_top.vhd".
+WARNING:HDLParsers:3607 - Unit work/clk_gen is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/clk_gen.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/clk_gen.vhd".
+WARNING:HDLParsers:3607 - Unit work/clk_gen/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/clk_gen.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/clk_gen.vhd".
+WARNING:HDLParsers:3607 - Unit work/ddr_ctrl_top is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
+WARNING:HDLParsers:3607 - Unit work/ddr_ctrl_top/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
+WARNING:HDLParsers:3607 - Unit work/plasma is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma.vhd".
+WARNING:HDLParsers:3607 - Unit work/plasma/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma.vhd".
+WARNING:HDLParsers:3607 - Unit work/boot_ram is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/boot_ram.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/boot_ram.vhd".
+WARNING:HDLParsers:3607 - Unit work/boot_ram/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/boot_ram.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/boot_ram.vhd".
+WARNING:HDLParsers:3607 - Unit work/cache is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd".
+WARNING:HDLParsers:3607 - Unit work/cache/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd".
+WARNING:HDLParsers:3607 - Unit work/ddr_ctrl is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
+WARNING:HDLParsers:3607 - Unit work/ddr_ctrl/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
+WARNING:HDLParsers:3607 - Unit work/ddr_init is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_init.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_init.vhd".
+WARNING:HDLParsers:3607 - Unit work/ddr_init/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_init.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_init.vhd".
+WARNING:HDLParsers:3607 - Unit work/mlite_cpu is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd".
+WARNING:HDLParsers:3607 - Unit work/mlite_cpu/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd".
+WARNING:HDLParsers:3607 - Unit work/uart is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/uart.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/uart.vhd".
+WARNING:HDLParsers:3607 - Unit work/uart/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/uart.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/uart.vhd".
+WARNING:HDLParsers:3607 - Unit work/alu is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/alu.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/alu.vhd".
+WARNING:HDLParsers:3607 - Unit work/alu/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/alu.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/alu.vhd".
+WARNING:HDLParsers:3607 - Unit work/bus_mux is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/bus_mux.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd".
+WARNING:HDLParsers:3607 - Unit work/bus_mux/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/bus_mux.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd".
+WARNING:HDLParsers:3607 - Unit work/cache_ram is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache_ram.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd".
+WARNING:HDLParsers:3607 - Unit work/cache_ram/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache_ram.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd".
+WARNING:HDLParsers:3607 - Unit work/control is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/control.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd".
+WARNING:HDLParsers:3607 - Unit work/control/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/control.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd".
+WARNING:HDLParsers:3607 - Unit work/mem_ctrl is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd".
+WARNING:HDLParsers:3607 - Unit work/mem_ctrl/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd".
+WARNING:HDLParsers:3607 - Unit work/mult is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mult.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mult.vhd".
+WARNING:HDLParsers:3607 - Unit work/mult/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mult.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mult.vhd".
+WARNING:HDLParsers:3607 - Unit work/pc_next is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pc_next.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd".
+WARNING:HDLParsers:3607 - Unit work/pc_next/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pc_next.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd".
+WARNING:HDLParsers:3607 - Unit work/pipeline is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pipeline.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pipeline.vhd".
+WARNING:HDLParsers:3607 - Unit work/pipeline/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pipeline.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/pipeline.vhd".
+WARNING:HDLParsers:3607 - Unit work/reg_bank is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/reg_bank.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd".
+WARNING:HDLParsers:3607 - Unit work/reg_bank/ram_block is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/reg_bank.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd".
+WARNING:HDLParsers:3607 - Unit work/shifter is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/shifter.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/shifter.vhd".
+WARNING:HDLParsers:3607 - Unit work/shifter/logic is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/shifter.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/shifter.vhd".
+WARNING:HDLParsers:3607 - Unit work/mlite_pack is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_pack.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_pack.vhd".
+WARNING:HDLParsers:3607 - Unit work/mlite_pack is now defined in a different file.  It was defined in "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_pack.vhd", and is now defined in "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_pack.vhd".
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_pack.vhd" in Library work.
+Package <mlite_pack> compiled.
+Package body <mlite_pack> compiled.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd" in Library work.
+Entity <cache_ram> compiled.
+Entity <cache_ram> (Architecture <logic>) compiled.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd" in Library work.
 Architecture logic of Entity pc_next is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd" in Library work.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd" in Library work.
 Architecture logic of Entity mem_ctrl is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/control.vhd" in Library work.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd" in Library work.
 Architecture logic of Entity control is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/reg_bank.vhd" in Library work.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd" in Library work.
 Architecture ram_block of Entity reg_bank is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/bus_mux.vhd" in Library work.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd" in Library work.
 Architecture logic of Entity bus_mux is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/alu.vhd" in Library work.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/alu.vhd" in Library work.
 Architecture logic of Entity alu is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/shifter.vhd" in Library work.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/shifter.vhd" in Library work.
 Architecture logic of Entity shifter is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mult.vhd" in Library work.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/mult.vhd" in Library work.
 Architecture logic of Entity mult is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pipeline.vhd" in Library work.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/pipeline.vhd" in Library work.
 Architecture logic of Entity pipeline is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_init.vhd" in Library work.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_init.vhd" in Library work.
 Architecture logic of Entity ddr_init is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd" in Library work.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd" in Library work.
 Architecture logic of Entity ddr_ctrl is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd" in Library work.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd" in Library work.
 Architecture logic of Entity mlite_cpu is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd" in Library work.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd" in Library work.
 Entity <cache> compiled.
 Entity <cache> (Architecture <logic>) compiled.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/boot_ram.vhd" in Library work.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/boot_ram.vhd" in Library work.
 Architecture logic of Entity boot_ram is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/uart.vhd" in Library work.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/uart.vhd" in Library work.
 Architecture logic of Entity uart is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/clk_gen.vhd" in Library work.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/clk_gen.vhd" in Library work.
 Architecture logic of Entity clk_gen is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma.vhd" in Library work.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma.vhd" in Library work.
 Architecture logic of Entity plasma is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd" in Library work.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd" in Library work.
 Architecture logic of Entity ddr_ctrl_top is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma_top.vhd" in Library work.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma_top.vhd" in Library work.
 Architecture logic of Entity plasma_top is up to date.
-Compiling vhdl file "/home/pdp/New_Repository/PLASMABRANDAH/rtl/top_ml410.vhd" in Library work.
+Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/top_ml410.vhd" in Library work.
 Architecture logic of Entity top_ml410 is up to date.
 
 =========================================================================
@@ -455,7 +457,7 @@ Analyzing Entity <reg_bank> in library <work> (Architecture <ram_block>).
 Entity <reg_bank> analyzed. Unit <reg_bank> generated.
 
 Analyzing Entity <bus_mux> in library <work> (Architecture <logic>).
-INFO:Xst:1561 - "/home/pdp/New_Repository/PLASMABRANDAH/rtl/bus_mux.vhd" line 84: Mux is complete : default of case is discarded
+INFO:Xst:1561 - "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd" line 84: Mux is complete : default of case is discarded
 Entity <bus_mux> analyzed. Unit <bus_mux> generated.
 
 Analyzing generic Entity <alu> in library <work> (Architecture <logic>).
@@ -474,18 +476,18 @@ Analyzing Entity <pipeline> in library <work> (Architecture <logic>).
 Entity <pipeline> analyzed. Unit <pipeline> generated.
 
 Analyzing Entity <cache> in library <work> (Architecture <logic>).
-INFO:Xst:1561 - "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd" line 209: Mux is complete : default of case is discarded
-WARNING:Xst:819 - "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd" line 101: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
-   <cache_ram_address>
+INFO:Xst:1561 - "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd" line 170: Mux is complete : default of case is discarded
+WARNING:Xst:819 - "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd" line 100: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <write_toggle>
     Set user-defined property "INIT =  000000FFF" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "INITP_03 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "INITP_04 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "INITP_05 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "INITP_06 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "INITP_07 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "INITP_00 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "INITP_01 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "INITP_02 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "INITP_03 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "INITP_04 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "INITP_05 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "INITP_06 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "INITP_07 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INIT_00 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INIT_01 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INIT_02 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
@@ -551,16 +553,16 @@ WARNING:Xst:819 - "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd" line 10
     Set user-defined property "INIT_3E =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INIT_3F =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "SRVAL =  000000000" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "WRITE_MODE =  READ_FIRST" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INIT =  000000FFF" for instance <cache_tag2> in unit <cache>.
-    Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag2> in unit <cache>.
-    Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag2> in unit <cache>.
-    Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag2> in unit <cache>.
-    Set user-defined property "INITP_03 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag2> in unit <cache>.
-    Set user-defined property "INITP_04 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag2> in unit <cache>.
-    Set user-defined property "INITP_05 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag2> in unit <cache>.
-    Set user-defined property "INITP_06 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag2> in unit <cache>.
-    Set user-defined property "INITP_07 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INITP_00 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INITP_01 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INITP_02 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INITP_03 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INITP_04 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INITP_05 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INITP_06 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INITP_07 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
     Set user-defined property "INIT_00 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
     Set user-defined property "INIT_01 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
     Set user-defined property "INIT_02 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
@@ -626,30 +628,87 @@ WARNING:Xst:819 - "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd" line 10
     Set user-defined property "INIT_3E =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
     Set user-defined property "INIT_3F =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
     Set user-defined property "SRVAL =  000000000" for instance <cache_tag2> in unit <cache>.
-    Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <cache_tag2> in unit <cache>.
-INFO:Xst:2679 - Register <cache_ram_address_temp<31>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <cache_ram_address_temp<30>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <cache_ram_address_temp<29>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <cache_ram_address_temp<28>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <cache_ram_address_temp<27>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <cache_ram_address_temp<26>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <cache_ram_address_temp<25>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <cache_ram_address_temp<24>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <cache_ram_address_temp<23>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <cache_ram_address_temp<22>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <cache_ram_address_temp<21>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <cache_ram_address_temp<20>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <cache_ram_address_temp<19>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <cache_ram_address_temp<18>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <cache_ram_address_temp<17>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <cache_ram_address_temp<16>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <cache_ram_address_temp<15>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <cache_ram_address_temp<14>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
+    Set user-defined property "WRITE_MODE =  READ_FIRST" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INIT =  000000FFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INITP_00 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INITP_01 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INITP_02 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INITP_03 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INITP_04 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INITP_05 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INITP_06 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INITP_07 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_00 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_01 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_02 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_03 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_04 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_05 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_06 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_07 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_08 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_09 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_0A =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_0B =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_0C =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_0D =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_0E =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_0F =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_10 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_11 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_12 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_13 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_14 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_15 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_16 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_17 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_18 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_19 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_1A =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_1B =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_1C =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_1D =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_1E =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_1F =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_20 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_21 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_22 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_23 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_24 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_25 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_26 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_27 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_28 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_29 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_2A =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_2B =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_2C =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_2D =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_2E =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_2F =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_30 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_31 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_32 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_33 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_34 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_35 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_36 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_37 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_38 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_39 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_3A =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_3B =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_3C =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_3D =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_3E =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_3F =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "SRVAL =  000000000" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <cache_LRU> in unit <cache>.
+INFO:Xst:2679 - Register <cache_ram_write_address_temp<14>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
 Entity <cache> analyzed. Unit <cache> generated.
 
 Analyzing generic Entity <cache_ram> in library <work> (Architecture <logic>).
 	block_count = 2
-    Set user-defined property "INIT =  000000000" for instance <block0.ram_byte3> in unit <cache_ram>.
     Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte3> in unit <cache_ram>.
     Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte3> in unit <cache_ram>.
     Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte3> in unit <cache_ram>.
@@ -722,9 +781,13 @@ Analyzing generic Entity <cache_ram> in library <work> (Architecture <logic>).
     Set user-defined property "INIT_3D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte3> in unit <cache_ram>.
     Set user-defined property "INIT_3E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte3> in unit <cache_ram>.
     Set user-defined property "INIT_3F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte3> in unit <cache_ram>.
-    Set user-defined property "SRVAL =  000000000" for instance <block0.ram_byte3> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <block0.ram_byte3> in unit <cache_ram>.
-    Set user-defined property "INIT =  000000000" for instance <block0.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_A =  000000000" for instance <block0.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_B =  000000000" for instance <block0.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "SIM_COLLISION_CHECK =  ALL" for instance <block0.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "SRVAL_A =  000000000" for instance <block0.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "SRVAL_B =  000000000" for instance <block0.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_A =  READ_FIRST" for instance <block0.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_B =  READ_FIRST" for instance <block0.ram_byte3> in unit <cache_ram>.
     Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte2> in unit <cache_ram>.
     Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte2> in unit <cache_ram>.
     Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte2> in unit <cache_ram>.
@@ -797,9 +860,13 @@ Analyzing generic Entity <cache_ram> in library <work> (Architecture <logic>).
     Set user-defined property "INIT_3D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte2> in unit <cache_ram>.
     Set user-defined property "INIT_3E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte2> in unit <cache_ram>.
     Set user-defined property "INIT_3F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte2> in unit <cache_ram>.
-    Set user-defined property "SRVAL =  000000000" for instance <block0.ram_byte2> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <block0.ram_byte2> in unit <cache_ram>.
-    Set user-defined property "INIT =  000000000" for instance <block0.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_A =  000000000" for instance <block0.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_B =  000000000" for instance <block0.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "SIM_COLLISION_CHECK =  ALL" for instance <block0.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "SRVAL_A =  000000000" for instance <block0.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "SRVAL_B =  000000000" for instance <block0.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_A =  READ_FIRST" for instance <block0.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_B =  READ_FIRST" for instance <block0.ram_byte2> in unit <cache_ram>.
     Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte1> in unit <cache_ram>.
     Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte1> in unit <cache_ram>.
     Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte1> in unit <cache_ram>.
@@ -872,9 +939,13 @@ Analyzing generic Entity <cache_ram> in library <work> (Architecture <logic>).
     Set user-defined property "INIT_3D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte1> in unit <cache_ram>.
     Set user-defined property "INIT_3E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte1> in unit <cache_ram>.
     Set user-defined property "INIT_3F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte1> in unit <cache_ram>.
-    Set user-defined property "SRVAL =  000000000" for instance <block0.ram_byte1> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <block0.ram_byte1> in unit <cache_ram>.
-    Set user-defined property "INIT =  000000000" for instance <block0.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_A =  000000000" for instance <block0.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_B =  000000000" for instance <block0.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "SIM_COLLISION_CHECK =  ALL" for instance <block0.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "SRVAL_A =  000000000" for instance <block0.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "SRVAL_B =  000000000" for instance <block0.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_A =  READ_FIRST" for instance <block0.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_B =  READ_FIRST" for instance <block0.ram_byte1> in unit <cache_ram>.
     Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte0> in unit <cache_ram>.
     Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte0> in unit <cache_ram>.
     Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte0> in unit <cache_ram>.
@@ -947,9 +1018,13 @@ Analyzing generic Entity <cache_ram> in library <work> (Architecture <logic>).
     Set user-defined property "INIT_3D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte0> in unit <cache_ram>.
     Set user-defined property "INIT_3E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte0> in unit <cache_ram>.
     Set user-defined property "INIT_3F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte0> in unit <cache_ram>.
-    Set user-defined property "SRVAL =  000000000" for instance <block0.ram_byte0> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <block0.ram_byte0> in unit <cache_ram>.
-    Set user-defined property "INIT =  000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_A =  000000000" for instance <block0.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_B =  000000000" for instance <block0.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "SIM_COLLISION_CHECK =  ALL" for instance <block0.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "SRVAL_A =  000000000" for instance <block0.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "SRVAL_B =  000000000" for instance <block0.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_A =  READ_FIRST" for instance <block0.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_B =  READ_FIRST" for instance <block0.ram_byte0> in unit <cache_ram>.
     Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
     Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
     Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
@@ -1022,9 +1097,13 @@ Analyzing generic Entity <cache_ram> in library <work> (Architecture <logic>).
     Set user-defined property "INIT_3D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
     Set user-defined property "INIT_3E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
     Set user-defined property "INIT_3F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
-    Set user-defined property "SRVAL =  000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <block1.ram_byte3> in unit <cache_ram>.
-    Set user-defined property "INIT =  000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_A =  000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "INIT_B =  000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "SIM_COLLISION_CHECK =  ALL" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "SRVAL_A =  000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "SRVAL_B =  000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_A =  READ_FIRST" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_B =  READ_FIRST" for instance <block1.ram_byte3> in unit <cache_ram>.
     Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
     Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
     Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
@@ -1097,9 +1176,13 @@ Analyzing generic Entity <cache_ram> in library <work> (Architecture <logic>).
     Set user-defined property "INIT_3D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
     Set user-defined property "INIT_3E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
     Set user-defined property "INIT_3F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
-    Set user-defined property "SRVAL =  000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <block1.ram_byte2> in unit <cache_ram>.
-    Set user-defined property "INIT =  000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_A =  000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "INIT_B =  000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "SIM_COLLISION_CHECK =  ALL" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "SRVAL_A =  000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "SRVAL_B =  000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_A =  READ_FIRST" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_B =  READ_FIRST" for instance <block1.ram_byte2> in unit <cache_ram>.
     Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
     Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
     Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
@@ -1172,9 +1255,13 @@ Analyzing generic Entity <cache_ram> in library <work> (Architecture <logic>).
     Set user-defined property "INIT_3D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
     Set user-defined property "INIT_3E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
     Set user-defined property "INIT_3F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
-    Set user-defined property "SRVAL =  000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <block1.ram_byte1> in unit <cache_ram>.
-    Set user-defined property "INIT =  000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_A =  000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "INIT_B =  000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "SIM_COLLISION_CHECK =  ALL" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "SRVAL_A =  000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "SRVAL_B =  000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_A =  READ_FIRST" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_B =  READ_FIRST" for instance <block1.ram_byte1> in unit <cache_ram>.
     Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
     Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
     Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
@@ -1247,8 +1334,13 @@ Analyzing generic Entity <cache_ram> in library <work> (Architecture <logic>).
     Set user-defined property "INIT_3D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
     Set user-defined property "INIT_3E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
     Set user-defined property "INIT_3F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
-    Set user-defined property "SRVAL =  000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_A =  000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "INIT_B =  000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "SIM_COLLISION_CHECK =  ALL" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "SRVAL_A =  000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "SRVAL_B =  000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_A =  READ_FIRST" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_B =  READ_FIRST" for instance <block1.ram_byte0> in unit <cache_ram>.
 Entity <cache_ram> analyzed. Unit <cache_ram> generated.
 
 Analyzing generic Entity <boot_ram> in library <work> (Architecture <logic>).
@@ -1573,7 +1665,7 @@ Entity <ddr_init> analyzed. Unit <ddr_init> generated.
 Analyzing generic Entity <ddr_ctrl> in library <work> (Architecture <logic>).
 	DDR_DLL = "DISABLE"
 	memory_size = 32
-WARNING:Xst:795 - "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd" line 328: Size of operands are different : result is <false>.
+WARNING:Xst:795 - "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd" line 328: Size of operands are different : result is <false>.
 Entity <ddr_ctrl> analyzed. Unit <ddr_ctrl> generated.
 
 
@@ -1584,7 +1676,7 @@ Entity <ddr_ctrl> analyzed. Unit <ddr_ctrl> generated.
 Performing bidirectional port resolution...
 
 Synthesizing Unit <uart>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/uart.vhd".
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/uart.vhd".
     Found 4-bit down counter for signal <bits_read_reg>.
     Found 4-bit down counter for signal <bits_write_reg>.
     Found 8-bit register for signal <data_read_reg>.
@@ -1602,44 +1694,44 @@ Unit <uart> synthesized.
 
 
 Synthesizing Unit <pc_next>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pc_next.vhd".
-    Found 1-bit xor2 for signal <pc_inc$xor0000> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0001> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0002> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0003> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0004> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0005> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0006> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0007> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0008> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0009> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0010> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0011> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0012> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0013> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0014> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0015> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0016> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0017> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0018> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0019> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0020> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0021> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0022> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0023> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0024> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0025> created at line 559.
-    Found 1-bit xor2 for signal <pc_inc$xor0026> created at line 559.
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd".
+    Found 1-bit xor2 for signal <pc_inc$xor0000> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0001> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0002> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0003> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0004> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0005> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0006> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0007> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0008> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0009> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0010> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0011> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0012> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0013> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0014> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0015> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0016> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0017> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0018> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0019> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0020> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0021> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0022> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0023> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0024> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0025> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0026> created at line 575.
     Found 30-bit register for signal <pc_reg>.
-    Found 1-bit xor2 for signal <result_12$xor0000> created at line 559.
-    Found 1-bit xor2 for signal <result_22$xor0000> created at line 559.
+    Found 1-bit xor2 for signal <result_12$xor0000> created at line 575.
+    Found 1-bit xor2 for signal <result_22$xor0000> created at line 575.
     Summary:
 	inferred  30 D-type flip-flop(s).
 Unit <pc_next> synthesized.
 
 
 Synthesizing Unit <mem_ctrl>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd".
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd".
     Found 30-bit register for signal <address_reg>.
     Found 4-bit register for signal <byte_we_reg>.
     Found 1-bit 4-to-1 multiplexer for signal <data_read_var_7$mux0000> created at line 94.
@@ -1654,7 +1746,7 @@ Unit <mem_ctrl> synthesized.
 
 
 Synthesizing Unit <control>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/control.vhd".
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd".
     Found 16x4-bit ROM for signal <mem_source_out$mux0000>.
     Found 32x2-bit ROM for signal <b_source_out$mux0000>.
     Summary:
@@ -1663,7 +1755,7 @@ Unit <control> synthesized.
 
 
 Synthesizing Unit <bus_mux>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/bus_mux.vhd".
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd".
     Found 32-bit 4-to-1 multiplexer for signal <b_out>.
     Found 1-bit 8-to-1 multiplexer for signal <take_branch>.
     Found 32-bit 4-to-1 multiplexer for signal <a_out>.
@@ -1675,41 +1767,41 @@ Unit <bus_mux> synthesized.
 
 
 Synthesizing Unit <alu>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/alu.vhd".
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/alu.vhd".
     Found 32-bit xor2 for signal <c_alu$xor0000> created at line 40.
     Found 1-bit xor2 for signal <less_than$xor0000> created at line 36.
-    Found 1-bit xor3 for signal <result_11$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result_14$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result_17$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result_2$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result_20$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result_23$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result_26$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result_29$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result_5$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result_8$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0001> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0002> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0003> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0004> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0005> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0006> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0007> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0008> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0009> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0010> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0011> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0012> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0013> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0014> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0015> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0016> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0017> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0018> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0019> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0020> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0021> created at line 528.
+    Found 1-bit xor3 for signal <result_11$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <result_14$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <result_17$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <result_2$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <result_20$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <result_23$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <result_26$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <result_29$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <result_5$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <result_8$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0001> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0002> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0003> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0004> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0005> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0006> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0007> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0008> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0009> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0010> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0011> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0012> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0013> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0014> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0015> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0016> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0017> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0018> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0019> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0020> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0021> created at line 544.
     Found 1-bit xor2 for signal <sum$xor0022>.
     Summary:
 	inferred  32 Xor(s).
@@ -1717,7 +1809,7 @@ Unit <alu> synthesized.
 
 
 Synthesizing Unit <shifter>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/shifter.vhd".
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/shifter.vhd".
     Found 32-bit 4-to-1 multiplexer for signal <c_shift>.
     Summary:
 	inferred  32 Multiplexer(s).
@@ -1725,173 +1817,173 @@ Unit <shifter> synthesized.
 
 
 Synthesizing Unit <mult>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mult.vhd".
-    Found 1-bit xor2 for signal <a_neg$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0001> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0002> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0003> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0004> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0005> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0006> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0007> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0008> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0009> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0010> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0011> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0012> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0013> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0014> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0015> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0016> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0017> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0018> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0019> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0020> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0021> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0022> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0023> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0024> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0025> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0026> created at line 545.
-    Found 1-bit xor2 for signal <a_neg$xor0027> created at line 545.
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/mult.vhd".
+    Found 1-bit xor2 for signal <a_neg$xor0000> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0001> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0002> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0003> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0004> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0005> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0006> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0007> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0008> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0009> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0010> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0011> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0012> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0013> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0014> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0015> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0016> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0017> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0018> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0019> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0020> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0021> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0022> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0023> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0024> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0025> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0026> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0027> created at line 561.
     Found 32-bit register for signal <aa_reg>.
-    Found 1-bit xor2 for signal <b_neg$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0001> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0002> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0003> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0004> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0005> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0006> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0007> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0008> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0009> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0010> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0011> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0012> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0013> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0014> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0015> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0016> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0017> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0018> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0019> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0020> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0021> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0022> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0023> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0024> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0025> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0026> created at line 545.
-    Found 1-bit xor2 for signal <b_neg$xor0027> created at line 545.
+    Found 1-bit xor2 for signal <b_neg$xor0000> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0001> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0002> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0003> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0004> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0005> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0006> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0007> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0008> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0009> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0010> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0011> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0012> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0013> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0014> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0015> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0016> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0017> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0018> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0019> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0020> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0021> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0022> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0023> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0024> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0025> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0026> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0027> created at line 561.
     Found 32-bit register for signal <bb_reg>.
-    Found 1-bit xor2 for signal <c_mult$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0001> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0002> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0003> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0004> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0005> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0006> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0007> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0008> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0009> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0010> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0011> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0012> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0013> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0014> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0015> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0016> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0017> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0018> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0019> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0020> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0021> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0022> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0023> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0024> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0025> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0026> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0027> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0028> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0029> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0030> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0031> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0032> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0033> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0034> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0035> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0036> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0037> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0038> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0039> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0040> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0041> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0042> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0043> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0044> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0045> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0046> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0047> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0048> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0049> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0050> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0051> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0052> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0053> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0054> created at line 545.
-    Found 1-bit xor2 for signal <c_mult$xor0055> created at line 545.
+    Found 1-bit xor2 for signal <c_mult$xor0000> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0001> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0002> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0003> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0004> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0005> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0006> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0007> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0008> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0009> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0010> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0011> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0012> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0013> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0014> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0015> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0016> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0017> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0018> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0019> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0020> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0021> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0022> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0023> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0024> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0025> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0026> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0027> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0028> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0029> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0030> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0031> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0032> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0033> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0034> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0035> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0036> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0037> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0038> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0039> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0040> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0041> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0042> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0043> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0044> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0045> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0046> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0047> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0048> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0049> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0050> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0051> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0052> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0053> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0054> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0055> created at line 561.
     Found 6-bit register for signal <count_reg>.
     Found 6-bit subtractor for signal <count_reg$addsub0000> created at line 203.
     Found 32-bit register for signal <lower_reg>.
     Found 1-bit register for signal <mode_reg>.
     Found 1-bit register for signal <negate_reg>.
-    Found 1-bit xor2 for signal <result0_10$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result0_20$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result0_30$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result1_10$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result1_20$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result1_30$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result2_10$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result2_20$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result2_30$xor0000> created at line 545.
-    Found 1-bit xor3 for signal <result3_11$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result3_14$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result3_17$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result3_2$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result3_20$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result3_23$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result3_26$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result3_29$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result3_5$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <result3_8$xor0000> created at line 528.
-    Found 1-bit xor2 for signal <result_10$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result_20$xor0000> created at line 545.
-    Found 1-bit xor2 for signal <result_30$xor0000> created at line 545.
+    Found 1-bit xor2 for signal <result0_10$xor0000> created at line 561.
+    Found 1-bit xor2 for signal <result0_20$xor0000> created at line 561.
+    Found 1-bit xor2 for signal <result0_30$xor0000> created at line 561.
+    Found 1-bit xor2 for signal <result1_10$xor0000> created at line 561.
+    Found 1-bit xor2 for signal <result1_20$xor0000> created at line 561.
+    Found 1-bit xor2 for signal <result1_30$xor0000> created at line 561.
+    Found 1-bit xor2 for signal <result2_10$xor0000> created at line 561.
+    Found 1-bit xor2 for signal <result2_20$xor0000> created at line 561.
+    Found 1-bit xor2 for signal <result2_30$xor0000> created at line 561.
+    Found 1-bit xor3 for signal <result3_11$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <result3_14$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <result3_17$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <result3_2$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <result3_20$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <result3_23$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <result3_26$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <result3_29$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <result3_5$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <result3_8$xor0000> created at line 544.
+    Found 1-bit xor2 for signal <result_10$xor0000> created at line 561.
+    Found 1-bit xor2 for signal <result_20$xor0000> created at line 561.
+    Found 1-bit xor2 for signal <result_30$xor0000> created at line 561.
     Found 1-bit register for signal <sign2_reg>.
     Found 1-bit register for signal <sign_reg>.
     Found 1-bit xor2 for signal <sign_reg$xor0000> created at line 136.
-    Found 1-bit xor3 for signal <sum$xor0000> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0001> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0002> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0003> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0004> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0005> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0006> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0007> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0008> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0009> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0010> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0011> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0012> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0013> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0014> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0015> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0016> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0017> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0018> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0019> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0020> created at line 528.
-    Found 1-bit xor3 for signal <sum$xor0021> created at line 528.
+    Found 1-bit xor3 for signal <sum$xor0000> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0001> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0002> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0003> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0004> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0005> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0006> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0007> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0008> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0009> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0010> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0011> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0012> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0013> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0014> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0015> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0016> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0017> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0018> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0019> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0020> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0021> created at line 544.
     Found 1-bit xor2 for signal <sum$xor0022>.
     Found 32-bit register for signal <upper_reg>.
     Found 1-bit xor2 for signal <upper_reg$xor0000> created at line 173.
@@ -1903,7 +1995,7 @@ Unit <mult> synthesized.
 
 
 Synthesizing Unit <pipeline>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/pipeline.vhd".
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/pipeline.vhd".
     Found 2-bit register for signal <shift_funcD>.
     Found 32-bit register for signal <a_busD>.
     Found 4-bit register for signal <alu_funcD>.
@@ -1922,7 +2014,7 @@ Unit <pipeline> synthesized.
 
 
 Synthesizing Unit <ddr_init>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_init.vhd".
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_init.vhd".
     Using one-hot encoding for signal <init_step>.
 INFO:Xst:2117 - HDL ADVISOR - Mux Selector <init_step> of Case statement line 65 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
    	- add an 'INIT' attribute on signal <init_step> (optimization is then done without any risk)
@@ -1956,7 +2048,7 @@ Unit <ddr_init> synthesized.
 
 
 Synthesizing Unit <ddr_ctrl>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd".
 WARNING:Xst:647 - Input <address<26:25>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found finite state machine <FSM_0> for signal <state_prev>.
     -----------------------------------------------------------------------
@@ -2002,7 +2094,7 @@ Unit <ddr_ctrl> synthesized.
 
 
 Synthesizing Unit <clk_gen>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/clk_gen.vhd".
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/clk_gen.vhd".
     Found 1-bit register for signal <clk_bufg_in>.
     Summary:
 	inferred   1 D-type flip-flop(s).
@@ -2010,13 +2102,13 @@ Unit <clk_gen> synthesized.
 
 
 Synthesizing Unit <ddr_ctrl_top>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd".
 WARNING:Xst:646 - Signal <address_ddr<27>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 Unit <ddr_ctrl_top> synthesized.
 
 
 Synthesizing Unit <boot_ram>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/boot_ram.vhd".
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/boot_ram.vhd".
 WARNING:Xst:647 - Input <address<31:16>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:646 - Signal <block_enable<7:1>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1781 - Signal <block_do<7:1>> is used but never assigned. Tied to default value.
@@ -2029,7 +2121,7 @@ Unit <boot_ram> synthesized.
 
 
 Synthesizing Unit <reg_bank>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/reg_bank.vhd".
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd".
 WARNING:Xst:646 - Signal <no_connect> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found 1-bit register for signal <intr_enable_reg>.
     Summary:
@@ -2038,20 +2130,16 @@ Unit <reg_bank> synthesized.
 
 
 Synthesizing Unit <cache_ram>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache_ram.vhd".
-WARNING:Xst:647 - Input <address<31:16>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd".
+WARNING:Xst:647 - Input <write_address<31:16>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <read_address<31:13>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:646 - Signal <block_enable<7:2>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1781 - Signal <block_do<7:2>> is used but never assigned. Tied to default value.
-    Found 32-bit 8-to-1 multiplexer for signal <data_read>.
-    Found 3-bit register for signal <block_sel_buf>.
-    Summary:
-	inferred   3 D-type flip-flop(s).
-	inferred  32 Multiplexer(s).
+WARNING:Xst:1780 - Signal <block_do<7:2>> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 Unit <cache_ram> synthesized.
 
 
 Synthesizing Unit <mlite_cpu>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd".
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd".
     Found 1-bit register for signal <intr_signal>.
     Found 4-bit up counter for signal <reset_reg>.
     Summary:
@@ -2061,109 +2149,80 @@ Unit <mlite_cpu> synthesized.
 
 
 Synthesizing Unit <cache>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/cache.vhd".
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd".
 WARNING:Xst:647 - Input <cpu_address<31:13>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <address_next<31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <cache_ram_address<31:13>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:646 - Signal <cache_FIFO_flag_reg> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-    Using one-hot encoding for signal <state_reg>.
+WARNING:Xst:646 - Signal <cache_ram_address_reg<14:13>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:737 - Found 32-bit latch for signal <cache_ram_data_r>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <write_toggle>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
     Using one-hot encoding for signal <state>.
-WARNING:Xst:737 - Found 1-bit latch for signal <cache_ram_address_temp_3>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+    Using one-hot encoding for signal <state_reg>.
+WARNING:Xst:737 - Found 1-bit latch for signal <LRU_in_0>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <cache_ram_address_temp_4>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <cache_ram_write_address_temp_13>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <cache_ram_address_temp_5>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <cache_ram_address_temp_6>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <cache_ram_address_temp_7>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <cache_ram_address_temp_8>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <cache_ram_address_temp_9>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 2-bit latch for signal <cache_FIFO_flag_in>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <cache_checking>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 2-bit latch for signal <FIFO_flag>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <cache_miss>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <cache_ram_address_temp_10>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <cache_ram_address_temp_11>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <cache_ram_address_temp_12>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <cache_ram_address_temp_13>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <write_cycle_set_ass>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <cache_ram_address_temp_2>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-    Found 8-bit comparator equal for signal <cache_ram_address_temp_13$cmp_eq0000> created at line 134.
-    Found 8-bit comparator not equal for signal <cache_ram_address_temp_3$cmp_ne0000> created at line 124.
-    Found 8-bit comparator not equal for signal <cache_ram_address_temp_3$cmp_ne0001> created at line 124.
-    Found 4-bit register for signal <cache_ram_byte_we_temp>.
-    Found 32-bit register for signal <cache_ram_data_w_temp>.
-    Found 1-bit register for signal <cache_ram_enable_temp>.
+    Found 8-bit comparator not equal for signal <cache_miss$cmp_ne0000> created at line 115.
+    Found 8-bit comparator not equal for signal <cache_miss$cmp_ne0001> created at line 115.
+    Found 30-bit register for signal <cache_ram_address_reg>.
+    Found 4-bit register for signal <cache_ram_byte_we_reg>.
+    Found 8-bit comparator equal for signal <cache_ram_data_r$cmp_eq0001> created at line 132.
+    Found 32-bit register for signal <cache_ram_data_w_reg>.
+    Found 8-bit comparator equal for signal <cache_ram_write_address_temp_13$cmp_eq0000> created at line 115.
     Found 8-bit register for signal <cache_tag_reg>.
-    Found 8-bit comparator equal for signal <FIFO_flag$cmp_eq0000> created at line 124.
-    Found 5-bit register for signal <state_reg>.
+    Found 4-bit register for signal <state_reg>.
     Summary:
-	inferred  45 D-type flip-flop(s).
+	inferred  74 D-type flip-flop(s).
 	inferred   4 Comparator(s).
 Unit <cache> synthesized.
 
 
 Synthesizing Unit <plasma>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma.vhd".
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma.vhd".
 WARNING:Xst:646 - Signal <cpu_address<1:0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found 32-bit 4-to-1 multiplexer for signal <cache_ram_data_w>.
     Found 8-bit register for signal <counter_hi_reg>.
     Found 40-bit register for signal <counter_reg>.
-    Found 1-bit xor2 for signal <counter_reg$xor0000> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0001> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0002> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0003> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0004> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0005> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0006> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0007> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0008> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0009> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0010> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0011> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0012> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0013> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0014> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0015> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0016> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0017> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0018> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0019> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0020> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0021> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0022> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0023> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0024> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0025> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0026> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0027> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0028> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0029> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0030> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0031> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0032> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0033> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0034> created at line 573.
-    Found 1-bit xor2 for signal <counter_reg$xor0035> created at line 573.
+    Found 1-bit xor2 for signal <counter_reg$xor0000> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0001> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0002> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0003> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0004> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0005> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0006> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0007> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0008> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0009> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0010> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0011> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0012> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0013> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0014> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0015> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0016> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0017> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0018> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0019> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0020> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0021> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0022> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0023> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0024> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0025> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0026> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0027> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0028> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0029> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0030> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0031> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0032> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0033> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0034> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0035> created at line 589.
     Found 32-bit register for signal <gpio0_reg>.
     Found 8-bit register for signal <irq_mask_reg>.
-    Found 1-bit xor2 for signal <result_10$xor0000> created at line 573.
-    Found 1-bit xor2 for signal <result_20$xor0000> created at line 573.
-    Found 1-bit xor2 for signal <result_30$xor0000> created at line 573.
+    Found 1-bit xor2 for signal <result_10$xor0000> created at line 589.
+    Found 1-bit xor2 for signal <result_20$xor0000> created at line 589.
+    Found 1-bit xor2 for signal <result_30$xor0000> created at line 589.
     Summary:
 	inferred  88 D-type flip-flop(s).
 	inferred  32 Multiplexer(s).
@@ -2171,13 +2230,13 @@ Unit <plasma> synthesized.
 
 
 Synthesizing Unit <plasma_top>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/plasma_top.vhd".
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/plasma_top.vhd".
 WARNING:Xst:646 - Signal <gpio0_out<31:8>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 Unit <plasma_top> synthesized.
 
 
 Synthesizing Unit <top_ml410>.
-    Related source file is "/home/pdp/New_Repository/PLASMABRANDAH/rtl/top_ml410.vhd".
+    Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/top_ml410.vhd".
 WARNING:Xst:647 - Input <fpga_0_RS232_Uart_1_ctsN_pin> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <fpga_0_DDR_CLK_FB> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 Unit <top_ml410> synthesized.
@@ -2201,36 +2260,35 @@ Macro Statistics
  4-bit up counter                                      : 1
  7-bit updown counter                                  : 1
  8-bit up counter                                      : 1
-# Registers                                            : 222
- 1-bit register                                        : 186
+# Registers                                            : 221
+ 1-bit register                                        : 185
  10-bit register                                       : 1
  12-bit register                                       : 1
  13-bit register                                       : 4
  2-bit register                                        : 1
- 3-bit register                                        : 4
- 30-bit register                                       : 2
+ 3-bit register                                        : 3
+ 30-bit register                                       : 3
  32-bit register                                       : 9
- 4-bit register                                        : 4
+ 4-bit register                                        : 5
  40-bit register                                       : 1
- 5-bit register                                        : 1
  6-bit register                                        : 2
  8-bit register                                        : 5
  9-bit register                                        : 1
-# Latches                                              : 17
- 1-bit latch                                           : 15
- 2-bit latch                                           : 2
+# Latches                                              : 4
+ 1-bit latch                                           : 3
+ 32-bit latch                                          : 1
 # Comparators                                          : 9
  13-bit comparator not equal                           : 1
  32-bit comparator equal                               : 1
  6-bit comparator not equal                            : 2
  8-bit comparator equal                                : 3
  8-bit comparator not equal                            : 2
-# Multiplexers                                         : 42
+# Multiplexers                                         : 41
  1-bit 4-to-1 multiplexer                              : 34
  1-bit 8-to-1 multiplexer                              : 1
  13-bit 4-to-1 multiplexer                             : 1
  32-bit 4-to-1 multiplexer                             : 4
- 32-bit 8-to-1 multiplexer                             : 2
+ 32-bit 8-to-1 multiplexer                             : 1
 # Tristates                                            : 5
  1-bit tristate buffer                                 : 4
  16-bit tristate buffer                                : 1
@@ -2260,11 +2318,29 @@ Optimizing FSM <u1_plasma_top/u2_ddr/u2_ddr/state_prev/FSM> on signal <state_pre
  0111  | 000000100
  1000  | 100000000
 --------------------
-WARNING:Xst:1710 - FF/Latch <block_sel_buf_1> (without init value) has a constant value of 0 in block <cache_data>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <block_sel_buf_2> (without init value) has a constant value of 0 in block <cache_data>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <address_reg_25> of sequential type is unconnected in block <u2_mem_ctrl>.
 WARNING:Xst:2677 - Node <address_reg_26> of sequential type is unconnected in block <u2_mem_ctrl>.
 WARNING:Xst:2677 - Node <address_reg_27> of sequential type is unconnected in block <u2_mem_ctrl>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_13> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_14> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_16> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_17> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_18> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_19> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_20> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_21> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_22> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_23> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_24> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_25> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_26> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_27> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_28> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_29> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_30> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_31> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_13> of sequential type is unconnected in block <cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_14> of sequential type is unconnected in block <cache>.
 
 =========================================================================
 Advanced HDL Synthesis Report
@@ -2285,23 +2361,23 @@ Macro Statistics
  4-bit up counter                                      : 1
  7-bit updown counter                                  : 1
  8-bit up counter                                      : 1
-# Registers                                            : 744
- Flip-Flops                                            : 744
-# Latches                                              : 17
- 1-bit latch                                           : 15
- 2-bit latch                                           : 2
+# Registers                                            : 767
+ Flip-Flops                                            : 767
+# Latches                                              : 4
+ 1-bit latch                                           : 3
+ 32-bit latch                                          : 1
 # Comparators                                          : 9
  13-bit comparator not equal                           : 1
  32-bit comparator equal                               : 1
  6-bit comparator not equal                            : 2
  8-bit comparator equal                                : 3
  8-bit comparator not equal                            : 2
-# Multiplexers                                         : 42
+# Multiplexers                                         : 41
  1-bit 4-to-1 multiplexer                              : 34
  1-bit 8-to-1 multiplexer                              : 1
  13-bit 4-to-1 multiplexer                             : 1
  32-bit 4-to-1 multiplexer                             : 4
- 32-bit 8-to-1 multiplexer                             : 2
+ 32-bit 8-to-1 multiplexer                             : 1
 # Xors                                                 : 262
  1-bit xor2                                            : 197
  1-bit xor3                                            : 64
@@ -2312,24 +2388,24 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-INFO:Xst:2261 - The FF/Latch <block_sel_buf_1> in Unit <cache_ram> is equivalent to the following FF/Latch, which will be removed : <block_sel_buf_2> 
-WARNING:Xst:1710 - FF/Latch <block_sel_buf_1> (without init value) has a constant value of 0 in block <cache_ram>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:2677 - Node <state_reg_0> of sequential type is unconnected in block <cache>.
 INFO:Xst:1901 - Instance block0.ram_byte3 in unit boot_ram of type RAMB16_S9 has been replaced by RAMB16
 INFO:Xst:1901 - Instance block0.ram_byte2 in unit boot_ram of type RAMB16_S9 has been replaced by RAMB16
 INFO:Xst:1901 - Instance block0.ram_byte1 in unit boot_ram of type RAMB16_S9 has been replaced by RAMB16
 INFO:Xst:1901 - Instance block0.ram_byte0 in unit boot_ram of type RAMB16_S9 has been replaced by RAMB16
-INFO:Xst:1901 - Instance block0.ram_byte3 in unit cache_ram of type RAMB16_S9 has been replaced by RAMB16
-INFO:Xst:1901 - Instance block0.ram_byte2 in unit cache_ram of type RAMB16_S9 has been replaced by RAMB16
-INFO:Xst:1901 - Instance block0.ram_byte1 in unit cache_ram of type RAMB16_S9 has been replaced by RAMB16
-INFO:Xst:1901 - Instance block0.ram_byte0 in unit cache_ram of type RAMB16_S9 has been replaced by RAMB16
-INFO:Xst:1901 - Instance block1.ram_byte3 in unit cache_ram of type RAMB16_S9 has been replaced by RAMB16
-INFO:Xst:1901 - Instance block1.ram_byte2 in unit cache_ram of type RAMB16_S9 has been replaced by RAMB16
-INFO:Xst:1901 - Instance block1.ram_byte1 in unit cache_ram of type RAMB16_S9 has been replaced by RAMB16
-INFO:Xst:1901 - Instance block1.ram_byte0 in unit cache_ram of type RAMB16_S9 has been replaced by RAMB16
+INFO:Xst:1901 - Instance block0.ram_byte3 in unit cache_ram of type RAMB16_S9_S9 has been replaced by RAMB16
+INFO:Xst:1901 - Instance block0.ram_byte2 in unit cache_ram of type RAMB16_S9_S9 has been replaced by RAMB16
+INFO:Xst:1901 - Instance block0.ram_byte1 in unit cache_ram of type RAMB16_S9_S9 has been replaced by RAMB16
+INFO:Xst:1901 - Instance block0.ram_byte0 in unit cache_ram of type RAMB16_S9_S9 has been replaced by RAMB16
+INFO:Xst:1901 - Instance block1.ram_byte3 in unit cache_ram of type RAMB16_S9_S9 has been replaced by RAMB16
+INFO:Xst:1901 - Instance block1.ram_byte2 in unit cache_ram of type RAMB16_S9_S9 has been replaced by RAMB16
+INFO:Xst:1901 - Instance block1.ram_byte1 in unit cache_ram of type RAMB16_S9_S9 has been replaced by RAMB16
+INFO:Xst:1901 - Instance block1.ram_byte0 in unit cache_ram of type RAMB16_S9_S9 has been replaced by RAMB16
 INFO:Xst:1901 - Instance cache_tag1 in unit cache of type RAMB16_S9 has been replaced by RAMB16
 INFO:Xst:1901 - Instance cache_tag2 in unit cache of type RAMB16_S9 has been replaced by RAMB16
+INFO:Xst:1901 - Instance cache_LRU in unit cache of type RAMB16_S9 has been replaced by RAMB16
 INFO:Xst:1901 - Instance u1_plasma_top/u0_clk/DCM_BASE0 in unit top_ml410 of type DCM_BASE has been replaced by DCM_ADV
+WARNING:Xst:2170 - Unit cache : the following signal(s) form a combinatorial loop: cache_we_mux0001<0>, cache_we<0>.
+WARNING:Xst:2170 - Unit cache : the following signal(s) form a combinatorial loop: cache_we_mux0001<1>, cache_we<1>.
 
 Optimizing unit <top_ml410> ...
 
@@ -2364,6 +2440,22 @@ Optimizing unit <mlite_cpu> ...
 Optimizing unit <cache> ...
 
 Optimizing unit <plasma> ...
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_16> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_17> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_18> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_19> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_20> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_21> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_22> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_23> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_24> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_25> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_26> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_27> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_28> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_29> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_30> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_31> of sequential type is unconnected in block <top_ml410>.
 WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_27> of sequential type is unconnected in block <top_ml410>.
 WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_26> of sequential type is unconnected in block <top_ml410>.
 WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_25> of sequential type is unconnected in block <top_ml410>.
@@ -2371,17 +2463,16 @@ WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_
 Mapping all equations...
 Building and optimizing final netlist ...
 Found area constraint ratio of 100 (+ 5) on block top_ml410, actual ratio is 8.
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_11 has been replicated 2 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_1 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_26 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_27 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_28 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_29 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_30 has been replicated 2 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_30 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_0 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_1 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u2_ddr/u1_ddr_init/init_step_10 has been replicated 2 time(s)
-FlipFlop u1_plasma_top/u2_ddr/u1_ddr_init/init_step_5 has been replicated 2 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_2 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_3 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u2_ddr/u2_ddr/clk_p has been replicated 3 time(s) to handle iob=true attribute.
 
 Final Macro Processing ...
@@ -2390,8 +2481,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 805
- Flip-Flops                                            : 805
+# Registers                                            : 810
+ Flip-Flops                                            : 810
 
 =========================================================================
 
@@ -2420,39 +2511,40 @@ Design Statistics
 # IOs                              : 77
 
 Cell Usage :
-# BELS                             : 4063
+# BELS                             : 3928
 #      GND                         : 1
-#      INV                         : 23
+#      INV                         : 22
 #      LUT1                        : 8
-#      LUT2                        : 181
-#      LUT2_D                      : 53
-#      LUT2_L                      : 20
-#      LUT3                        : 730
-#      LUT3_D                      : 99
-#      LUT3_L                      : 62
-#      LUT4                        : 2091
-#      LUT4_D                      : 179
-#      LUT4_L                      : 201
+#      LUT2                        : 197
+#      LUT2_D                      : 35
+#      LUT2_L                      : 10
+#      LUT3                        : 803
+#      LUT3_D                      : 105
+#      LUT3_L                      : 64
+#      LUT4                        : 1976
+#      LUT4_D                      : 162
+#      LUT4_L                      : 159
 #      MUXCY                       : 39
-#      MUXF5                       : 357
+#      MUXF5                       : 328
 #      VCC                         : 1
 #      XORCY                       : 18
-# FlipFlops/Latches                : 824
-#      FD                          : 4
-#      FDC                         : 242
+# FlipFlops/Latches                : 845
+#      FD                          : 3
+#      FDC                         : 241
 #      FDC_1                       : 39
-#      FDCE                        : 367
+#      FDCE                        : 362
 #      FDCE_1                      : 18
-#      FDE                         : 125
-#      FDP                         : 1
+#      FDE                         : 136
+#      FDP                         : 2
 #      FDPE                        : 9
-#      LD                          : 17
-#      LD_1                        : 2
-# RAMS                             : 142
+#      LD                          : 2
+#      LD_1                        : 1
+#      LDE                         : 32
+# RAMS                             : 143
 #      RAM16X1D                    : 128
-#      RAMB16                      : 14
-# Clock Buffers                    : 3
-#      BUFG                        : 3
+#      RAMB16                      : 15
+# Clock Buffers                    : 4
+#      BUFG                        : 4
 # IO Buffers                       : 75
 #      IBUF                        : 3
 #      IOBUF                       : 16
@@ -2467,17 +2559,17 @@ Device utilization summary:
 
 Selected Device : 4vfx60ff1152-11 
 
- Number of Slices:                     2169  out of  25280     8%  
- Number of Slice Flip Flops:            821  out of  50560     1%  
- Number of 4 input LUTs:               3903  out of  50560     7%  
-    Number used as logic:              3647
+ Number of Slices:                     2111  out of  25280     8%  
+ Number of Slice Flip Flops:            842  out of  50560     1%  
+ Number of 4 input LUTs:               3797  out of  50560     7%  
+    Number used as logic:              3541
     Number used as RAMs:                256
  Number of IOs:                          77
  Number of bonded IOBs:                  75  out of    576    13%  
     IOB Flip Flops:                       3
- Number of FIFO16/RAMB16s:               14  out of    232     6%  
-    Number used as RAMB16s:              14
- Number of GCLKs:                         3  out of     32     9%  
+ Number of FIFO16/RAMB16s:               15  out of    232     6%  
+    Number used as RAMB16s:              15
+ Number of GCLKs:                         4  out of     32    12%  
  Number of DCM_ADVs:                      1  out of     12     8%  
 
 ---------------------------
@@ -2498,18 +2590,17 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+-------+
-Clock Signal                                                                                                                                               | Clock buffer(FF name)                                                       | Load  |
------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+-------+
-sys_clk_pin                                                                                                                                                | u1_plasma_top/u0_clk/DCM_BASE0:CLKFX                                        | 97    |
-u1_plasma_top/u0_clk/clk_bufg_in                                                                                                                           | BUFG                                                                        | 850   |
-u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_cycle_set_ass_or0000(u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_cycle_set_ass_or00001:O)            | NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_cycle_set_ass)     | 1     |
-u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_reg_4                                                                                                     | NONE(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss)                 | 2     |
-u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_3_not0001(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_3_not00011:O)| NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_2)| 12    |
-u1_plasma_top/u1_plasma/opt_cache2.u_cache/FIFO_flag_not0001(u1_plasma_top/u1_plasma/opt_cache2.u_cache/FIFO_flag_not00012:O)                              | NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/FIFO_flag_0)             | 2     |
-u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_FIFO_flag_in_not0001(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_FIFO_flag_in_not00011:O)            | NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_FIFO_flag_in_0)    | 2     |
------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+-------+
-(*) These 4 clock signal(s) are generated by combinatorial logic,
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------+
+Clock Signal                                                                                                                                                              | Clock buffer(FF name)                                                              | Load  |
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------+
+sys_clk_pin                                                                                                                                                               | u1_plasma_top/u0_clk/DCM_BASE0:CLKFX                                               | 97    |
+u1_plasma_top/u0_clk/clk_bufg_in                                                                                                                                          | BUFG                                                                               | 856   |
+u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_not0001(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_not000132:O)| NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13)| 1     |
+u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_or0000(u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_or00001:O)                                                 | NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0)                       | 1     |
+u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_reg_3                                                                                                                    | NONE(u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_toggle)                      | 1     |
+u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_reg_11                                                                                                                   | BUFG                                                                               | 32    |
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------+
+(*) These 2 clock signal(s) are generated by combinatorial logic,
 and XST is not able to identify which are the primary clock signals.
 Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
@@ -2519,9 +2610,9 @@ Asynchronous Control Signals Information:
 -----------------------------------------------------------------------------------+----------------------------------------------------------+-------+
 Control Signal                                                                     | Buffer(FF name)                                          | Load  |
 -----------------------------------------------------------------------------------+----------------------------------------------------------+-------+
-u1_plasma_top/u1_plasma/u1_cpu/reset(u1_plasma_top/u1_plasma/u1_cpu/reset_or0000:O)| NONE(u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_reg_10)| 392   |
+u1_plasma_top/u1_plasma/u1_cpu/reset(u1_plasma_top/u1_plasma/u1_cpu/reset_or0000:O)| NONE(u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_reg_10)| 391   |
 u1_plasma_top/reset_cpu(u1_plasma_top/reset_cpu1:O)                                | NONE(u1_plasma_top/u1_plasma/counter_hi_reg_32)          | 175   |
-u1_plasma_top/reset(u1_plasma_top/reset1:O)                                        | NONE(u1_plasma_top/u2_ddr/u1_ddr_init/init_step_0)       | 108   |
+u1_plasma_top/reset(u1_plasma_top/reset1:O)                                        | NONE(u1_plasma_top/u2_ddr/u1_ddr_init/init_step_0)       | 104   |
 u1_plasma_top/reset_in(u1_plasma_top/reset_in1_INV_0:O)                            | NONE(u1_plasma_top/u0_clk/clk_bufg_in)                   | 1     |
 -----------------------------------------------------------------------------------+----------------------------------------------------------+-------+
 
@@ -2529,9 +2620,9 @@ Timing Summary:
 ---------------
 Speed Grade: -11
 
-   Minimum period: 12.353ns (Maximum Frequency: 80.952MHz)
-   Minimum input arrival time before clock: 9.745ns
-   Maximum output required time after clock: 11.834ns
+   Minimum period: 13.733ns (Maximum Frequency: 72.817MHz)
+   Minimum input arrival time before clock: 10.784ns
+   Maximum output required time after clock: 11.503ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -2563,52 +2654,61 @@ Delay:               2.491ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Clock period: 12.353ns (frequency: 80.952MHz)
-  Total number of paths / destination ports: 56444495 / 2693
+  Clock period: 13.733ns (frequency: 72.817MHz)
+  Total number of paths / destination ports: 101760779 / 2892
 -------------------------------------------------------------------------
-Delay:               12.353ns (Levels of Logic = 22)
-  Source:            u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 (FF)
-  Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_byte_we_temp_0 (FF)
+Delay:               13.733ns (Levels of Logic = 31)
+  Source:            u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_4 (FF)
+  Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1 (RAM)
   Source Clock:      u1_plasma_top/u0_clk/clk_bufg_in rising
   Destination Clock: u1_plasma_top/u0_clk/clk_bufg_in rising
 
-  Data Path: u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_byte_we_temp_0
+  Data Path: u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_4 to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCE:C->Q             6   0.307   0.670  u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 (u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1)
-     LUT4_D:I0->O          8   0.166   0.526  u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>19_1 (u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>191)
-     LUT4_D:I3->O          5   0.166   0.525  u1_plasma_top/u2_ddr/u1_ddr_init/initiating1_1 (u1_plasma_top/u2_ddr/u1_ddr_init/initiating1)
-     LUT4:I2->O           17   0.166   0.643  u1_plasma_top/u2_ddr/address_ddr<10>1 (fpga_0_DDR_SDRAM_32Mx64_DDR_BankAddr_pin_0_OBUF)
-     LUT3:I2->O            1   0.166   0.505  u1_plasma_top/u2_ddr/u2_ddr/Mmux_address_row_mux0000_2_f5_3 (u1_plasma_top/u2_ddr/u2_ddr/address_row_mux0000<1>)
-     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<0> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<0>)
-     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<0> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<0>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<1> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<1>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<3> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<3>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<4> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<4>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<5> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<5>)
-     MUXCY:CI->O           6   0.315   0.484  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6>)
-     LUT4:I3->O           15   0.166   0.794  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<0>50 (fpga_0_DDR_SDRAM_32Mx64_DDR_WEn_pin_OBUF)
-     LUT4:I1->O           21   0.166   0.755  u1_plasma_top/u2_ddr/u2_ddr/pause_and000039 (u1_plasma_top/pause)
-     LUT4:I3->O           19   0.166   0.715  u1_plasma_top/u1_plasma/cpu_pause (u1_plasma_top/u1_plasma/cpu_pause)
-     LUT4_D:I2->O         10   0.166   0.563  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_1 (u1_plasma_top/u1_plasma/u1_cpu/pause_any1)
-     LUT4:I3->O            1   0.166   0.505  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<20>16_SW0_SW0 (N1099)
-     LUT4:I2->O            2   0.166   0.520  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<20>16 (u1_plasma_top/u1_plasma/address_next<22>)
-     LUT4:I2->O            1   0.166   0.452  u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_next<1>1107_SW0_SW0 (N937)
-     LUT4:I3->O            4   0.166   0.517  u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_next<1>1126_SW0_SW0_SW0_SW0_SW0 (N1622)
-     LUT4_D:I2->O          9   0.166   0.547  u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_next<1>1213 (u1_plasma_top/u1_plasma/cache_access)
-     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/Mmux_cache_ram_data_w221 (u1_plasma_top/u1_plasma/cache_ram_data_w<19>)
-     FDE:D                     0.018          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_w_temp_19
+     FDCE:C->Q            15   0.307   0.794  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_4 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_4)
+     LUT4:I1->O            1   0.166   0.505  u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000_SW0_SW0 (N657)
+     LUT4_D:I2->O        140   0.166   1.313  u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000 (u1_plasma_top/u1_plasma/u1_cpu/exception_sig)
+     LUT4_D:I3->O          1   0.166   0.452  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/addr_read1<3>1_SW0 (N941)
+     LUT4:I3->O           16   0.166   0.516  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/addr_read1<3>1_1 (u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/addr_read1<3>1)
+     RAM16X1D:DPRA3->DPO    1   0.165   0.638  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_loop[3].reg_bit1a (u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/data_out1A<3>)
+     LUT4:I0->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<3>1 (u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<3>)
+     MUXF5:I1->O           2   0.319   0.520  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<3>_f5 (u1_plasma_top/u1_plasma/u1_cpu/reg_source<3>)
+     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_lut<1> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_lut<1>)
+     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<1> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<1>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<2> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<2>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<3> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<3>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<4> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<4>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<5> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<5>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<6> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<6>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<7> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<7>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<8> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<8>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<9> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<9>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<10> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<10>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<11> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<11>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<12> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<12>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<13> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<13>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<14> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<14>)
+     MUXCY:CI->O          11   0.315   0.574  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<15> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<15>)
+     LUT4_D:I3->O          6   0.166   0.537  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mmux_take_branch_5_f5 (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mmux_take_branch_5_f5)
+     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<29>11_F (N2124)
+     MUXF5:I0->O          13   0.325   0.597  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<29>11 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N01)
+     LUT4:I3->O            1   0.166   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>13 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>13)
+     LUT4:I3->O            3   0.166   0.465  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>31 (u1_plasma_top/u1_plasma/address_next<23>)
+     LUT4:I3->O            5   0.166   0.525  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000116_SW0 (N655)
+     LUT4:I2->O            2   0.166   0.467  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1>_SW1 (N375)
+     LUT4:I3->O            5   0.166   0.333  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1>)
+     RAMB16:WEA0               0.650          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag2
     ----------------------------------------
-    Total                     12.353ns (3.632ns logic, 8.721ns route)
-                                       (29.4% logic, 70.6% route)
+    Total                     13.733ns (5.045ns logic, 8.688ns route)
+                                       (36.7% logic, 63.3% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'sys_clk_pin'
   Total number of paths / destination ports: 68 / 68
 -------------------------------------------------------------------------
-Offset:              4.189ns (Levels of Logic = 3)
+Offset:              4.175ns (Levels of Logic = 3)
   Source:            sys_rst_pin (PAD)
   Destination:       u1_plasma_top/u2_ddr/u2_ddr/data_read_29 (FF)
   Destination Clock: sys_clk_pin rising 0.8X
@@ -2618,68 +2718,43 @@ Offset:              4.189ns (Levels of Logic = 3)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O            10   0.867   0.616  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
-     LUT2:I0->O          110   0.166   1.397  u1_plasma_top/reset1 (u1_plasma_top/reset)
+     LUT2:I0->O          106   0.166   1.383  u1_plasma_top/reset1 (u1_plasma_top/reset)
      LUT4:I0->O           16   0.166   0.516  u1_plasma_top/u2_ddr/u2_ddr/data_read_29_and00001 (u1_plasma_top/u2_ddr/u2_ddr/data_read_29_and0000)
      FDE:CE                    0.461          u1_plasma_top/u2_ddr/u2_ddr/data_read_29
     ----------------------------------------
-    Total                      4.189ns (1.660ns logic, 2.529ns route)
-                                       (39.6% logic, 60.4% route)
+    Total                      4.175ns (1.660ns logic, 2.515ns route)
+                                       (39.8% logic, 60.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Total number of paths / destination ports: 1323 / 268
+  Total number of paths / destination ports: 1980 / 387
 -------------------------------------------------------------------------
-Offset:              9.745ns (Levels of Logic = 12)
+Offset:              10.784ns (Levels of Logic = 13)
   Source:            sys_rst_pin (PAD)
-  Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_byte_we_temp_0 (FF)
+  Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1 (RAM)
   Destination Clock: u1_plasma_top/u0_clk/clk_bufg_in rising
 
-  Data Path: sys_rst_pin to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_byte_we_temp_0
+  Data Path: sys_rst_pin to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O            10   0.867   0.704  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
-     LUT4_L:I1->LO         1   0.166   0.192  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N130)
-     LUT4:I2->O          425   0.166   2.282  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
-     LUT4:I3->O            2   0.166   0.653  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW0 (N1244)
-     LUT4_D:I0->O          1   0.166   0.505  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27>_SW0_SW0_SW1_SW0 (N1676)
-     LUT4:I2->O            3   0.166   0.465  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27>_SW0_SW0_SW1 (N1411)
-     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27>_SW0_SW0_F (N1869)
-     MUXF5:I0->O           1   0.325   0.505  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27>_SW0_SW0 (N1600)
-     LUT3:I1->O            1   0.166   0.505  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27>_SW1 (N1261)
-     LUT4:I2->O            4   0.166   0.517  u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_next<1>1126_SW0_SW0_SW0_SW0_SW0 (N1622)
-     LUT4_D:I2->O          9   0.166   0.547  u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_next<1>1213 (u1_plasma_top/u1_plasma/cache_access)
-     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/Mmux_cache_ram_data_w221 (u1_plasma_top/u1_plasma/cache_ram_data_w<19>)
-     FDE:D                     0.018          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_w_temp_19
+     LUT4_L:I1->LO         1   0.166   0.192  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N150)
+     LUT4:I2->O          415   0.166   2.248  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
+     LUT4:I3->O            1   0.166   0.638  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW0 (N957)
+     LUT4:I0->O           24   0.166   0.901  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N14)
+     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<26>_SW0_SW0_SW0_G (N1433)
+     MUXF5:I1->O           1   0.319   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<26>_SW0_SW0_SW0 (N1077)
+     LUT4_L:I3->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<26>_SW0_SW0 (N1228)
+     LUT4:I3->O            8   0.166   0.526  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<26> (u1_plasma_top/u1_plasma/address_next<28>)
+     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000203_SW1_F (N1378)
+     MUXF5:I0->O           1   0.325   0.505  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000203_SW1 (N688)
+     LUT4_L:I2->LO         1   0.166   0.325  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1>_SW0 (N374)
+     LUT4:I0->O            5   0.166   0.333  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1>)
+     RAMB16:WEA0               0.650          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag2
     ----------------------------------------
-    Total                      9.745ns (2.870ns logic, 6.875ns route)
-                                       (29.5% logic, 70.5% route)
-
-=========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_3_not0001'
-  Total number of paths / destination ports: 11 / 11
--------------------------------------------------------------------------
-Offset:              7.582ns (Levels of Logic = 8)
-  Source:            sys_rst_pin (PAD)
-  Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_9 (LATCH)
-  Destination Clock: u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_3_not0001 falling
-
-  Data Path: sys_rst_pin to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_9
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IBUF:I->O            10   0.867   0.704  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
-     LUT4_L:I1->LO         1   0.166   0.192  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N130)
-     LUT4:I2->O          425   0.166   2.282  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
-     LUT4:I3->O            2   0.166   0.653  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW0 (N1244)
-     LUT4_D:I0->O         19   0.166   0.715  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N14)
-     LUT4_D:I2->O          1   0.166   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<7>13 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<7>13)
-     LUT4:I3->O            6   0.166   0.537  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<7>14 (u1_plasma_top/u1_plasma/address_next<9>)
-     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_9_mux00001 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_9_mux0000)
-     LD:D                      0.018          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_temp_9
-    ----------------------------------------
-    Total                      7.582ns (2.047ns logic, 5.535ns route)
-                                       (27.0% logic, 73.0% route)
+    Total                     10.784ns (3.821ns logic, 6.963ns route)
+                                       (35.4% logic, 64.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'sys_clk_pin'
@@ -2703,21 +2778,21 @@ Offset:              4.839ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Total number of paths / destination ports: 64362 / 49
+  Total number of paths / destination ports: 58950 / 49
 -------------------------------------------------------------------------
-Offset:              11.834ns (Levels of Logic = 17)
-  Source:            u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 (FF)
-  Destination:       fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<7> (PAD)
+Offset:              11.503ns (Levels of Logic = 16)
+  Source:            u1_plasma_top/u2_ddr/u1_ddr_init/init_step_8 (FF)
+  Destination:       fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<12> (PAD)
   Source Clock:      u1_plasma_top/u0_clk/clk_bufg_in rising
 
-  Data Path: u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 to fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<7>
+  Data Path: u1_plasma_top/u2_ddr/u1_ddr_init/init_step_8 to fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<12>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCE:C->Q             6   0.307   0.670  u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 (u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1)
-     LUT4_D:I0->O          8   0.166   0.526  u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>19_1 (u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>191)
-     LUT4_D:I3->O          5   0.166   0.525  u1_plasma_top/u2_ddr/u1_ddr_init/initiating1_1 (u1_plasma_top/u2_ddr/u1_ddr_init/initiating1)
-     LUT4:I2->O           17   0.166   0.643  u1_plasma_top/u2_ddr/address_ddr<10>1 (fpga_0_DDR_SDRAM_32Mx64_DDR_BankAddr_pin_0_OBUF)
+     FDCE:C->Q             3   0.307   0.651  u1_plasma_top/u2_ddr/u1_ddr_init/init_step_8 (u1_plasma_top/u2_ddr/u1_ddr_init/init_step_8)
+     LUT4_D:I0->O          9   0.166   0.600  u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>14 (u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>14)
+     LUT4:I2->O            4   0.166   0.517  u1_plasma_top/u2_ddr/u1_ddr_init/initiating1_1 (u1_plasma_top/u2_ddr/u1_ddr_init/initiating1)
+     LUT4:I2->O           16   0.166   0.655  u1_plasma_top/u2_ddr/address_ddr<10>1 (fpga_0_DDR_SDRAM_32Mx64_DDR_BankAddr_pin_0_OBUF)
      LUT3:I2->O            1   0.166   0.505  u1_plasma_top/u2_ddr/u2_ddr/Mmux_address_row_mux0000_2_f5_3 (u1_plasma_top/u2_ddr/u2_ddr/address_row_mux0000<1>)
      LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<0> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<0>)
      MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<0> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<0>)
@@ -2726,55 +2801,27 @@ Offset:              11.834ns (Levels of Logic = 17)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<3> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<3>)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<4> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<4>)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<5> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<5>)
-     MUXCY:CI->O           6   0.315   0.484  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6>)
-     LUT4:I3->O           20   0.166   0.842  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<1>79 (fpga_0_DDR_SDRAM_32Mx64_DDR_CASn_pin_OBUF)
-     LUT3_D:I0->O         16   0.166   0.655  u1_plasma_top/u2_ddr/u2_ddr/address_row_0_and000021 (N22)
-     LUT3:I2->O            1   0.166   0.452  u1_plasma_top/u2_ddr/u2_ddr/SD_A<7>_SW1 (N2121)
-     LUT4:I3->O            1   0.166   0.313  u1_plasma_top/u2_ddr/u2_ddr/SD_A<7> (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_7_OBUF)
-     OBUF:I->O                 3.601          fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_7_OBUF (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<7>)
+     MUXCY:CI->O           7   0.315   0.501  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6>)
+     LUT4:I3->O           23   0.166   0.924  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<1>79 (fpga_0_DDR_SDRAM_32Mx64_DDR_CASn_pin_OBUF)
+     LUT3:I0->O           17   0.166   0.784  u1_plasma_top/u2_ddr/u2_ddr/address_row_0_and000021 (N22)
+     LUT4:I1->O            1   0.166   0.313  u1_plasma_top/u2_ddr/u2_ddr/SD_A<12>1 (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_12_OBUF)
+     OBUF:I->O                 3.601          fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_12_OBUF (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<12>)
     ----------------------------------------
-    Total                     11.834ns (6.219ns logic, 5.615ns route)
+    Total                     11.503ns (6.053ns logic, 5.450ns route)
                                        (52.6% logic, 47.4% route)
 
 =========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_reg_4'
-  Total number of paths / destination ports: 124 / 16
--------------------------------------------------------------------------
-Offset:              10.639ns (Levels of Logic = 9)
-  Source:            u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_checking (LATCH)
-  Destination:       fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<7> (PAD)
-  Source Clock:      u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_reg_4 rising
-
-  Data Path: u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_checking to fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<7>
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     LD_1:G->Q            72   0.358   1.223  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_checking (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_checking)
-     LUT3:I0->O            1   0.166   0.638  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<2>5 (u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<2>5)
-     LUT4:I0->O            2   0.166   0.653  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<2>26 (u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<2>26)
-     LUT4:I0->O            1   0.166   0.000  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<2>21_SW0_F (N1799)
-     MUXF5:I0->O           1   0.325   0.505  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<2>21_SW0 (N979)
-     LUT4:I2->O           20   0.166   0.754  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<2>62 (fpga_0_DDR_SDRAM_32Mx64_DDR_RASn_pin_OBUF)
-     LUT3_D:I1->O         16   0.166   0.655  u1_plasma_top/u2_ddr/u2_ddr/address_row_0_and000021 (N22)
-     LUT3:I2->O            1   0.166   0.452  u1_plasma_top/u2_ddr/u2_ddr/SD_A<7>_SW1 (N2121)
-     LUT4:I3->O            1   0.166   0.313  u1_plasma_top/u2_ddr/u2_ddr/SD_A<7> (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_7_OBUF)
-     OBUF:I->O                 3.601          fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_7_OBUF (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<7>)
-    ----------------------------------------
-    Total                     10.639ns (5.446ns logic, 5.193ns route)
-                                       (51.2% logic, 48.8% route)
-
-=========================================================================
 
 
-Total REAL time to Xst completion: 166.00 secs
-Total CPU time to Xst completion: 134.13 secs
+Total REAL time to Xst completion: 100.00 secs
+Total CPU time to Xst completion: 93.79 secs
  
 --> 
 
 
-Total memory usage is 668432 kilobytes
+Total memory usage is 666736 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   90 (   0 filtered)
-Number of infos    :   59 (   0 filtered)
+Number of warnings :  111 (   0 filtered)
+Number of infos    :   27 (   0 filtered)
 

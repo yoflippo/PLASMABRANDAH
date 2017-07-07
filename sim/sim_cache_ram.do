@@ -12,7 +12,7 @@ vcom -quiet  -93  -work work   ../rtl/clk_gen.vhd
 vcom -quiet  -93  -work work   sim_tb_2port_ram.vhd
 
 
-vsim -t ps -novopt -L unisim work.sim_2port_ram
+vsim -t ps -novopt -L unisim work.sim_tb_2port_ram
 
 onerror {resume}
 #Log all the objects in design. These will appear in .wlf file#
@@ -21,7 +21,8 @@ log -r /*
 
 add wave -position insertpoint  \
 sim:/sim_tb_2port_ram/status
-add wave -r -group cache_ram1_all sim:/sim_tb_2port_ram/cache_ram1/*
+add wave -position -group cache_ram1 insertpoint sim:/sim_tb_2port_ram/cache_ram1/*
+
 config wave -signalnamewidth 1
 
 #Change radix to Hexadecimal#

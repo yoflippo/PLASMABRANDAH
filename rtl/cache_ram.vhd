@@ -38,7 +38,7 @@ entity cache_ram is
         enable            : in std_logic;
         write_byte_enable : in std_logic_vector(3 downto 0);
         read_address      : in std_logic_vector(31 downto 2);	--TvE: Added 2 port blockrams so 1 port can be used for reads and one for writes
-				write_address     : in std_logic_vector(31 downto 2);
+		write_address     : in std_logic_vector(31 downto 2);
         data_write        : in std_logic_vector(31 downto 0);
         data_read0        : out std_logic_vector(31 downto 0);
         data_read1        : out std_logic_vector(31 downto 0) --TvE: added output so both data in the sets can be put on output in parallel
@@ -53,7 +53,7 @@ architecture logic of cache_ram is
     alias block_sel: std_logic_vector(2 downto 0) is write_address(15 downto 13);
 
     --Address within a 8KB block (without lower two bits)
-		alias read_addr : std_logic_vector(10 downto 0) is read_address(12 downto 2);
+	alias read_addr : std_logic_vector(10 downto 0) is read_address(12 downto 2);
     alias write_addr : std_logic_vector(10 downto 0) is write_address(12 downto 2);
 
     --Block enable with 1 bit per memory block
@@ -66,7 +66,7 @@ begin
     block_enable<= "00000001" when (enable='1') and (block_sel="000") else
                    "00000010" when (enable='1') and (block_sel="001") else
                    "00000100" when (enable='1') and (block_sel="010") else
-                   "00000011" when (enable='1') and (block_sel="011") else --TvE: adjustment for reads
+                   "00001000" when (enable='1') and (block_sel="011") else --TvE: adjustment for reads
                    "00010000" when (enable='1') and (block_sel="100") else
                    "00100000" when (enable='1') and (block_sel="101") else
                    "01000000" when (enable='1') and (block_sel="110") else
@@ -88,18 +88,12 @@ begin
 	-- Virtex-4 FPGA User Guide
 	ram_byte3 : RAMB16_S9_S9
 	generic map (
-		DOA_REG => 0, -- Optional output registers on the A port (0 or 1)
-		DOB_REG => 0, -- Optional output registers on the B port (0 or 1)
-		INIT_A => X"000000000", -- Initial values on A output port
-		INIT_B => X"000000000", -- Initial values on B output port
-		INVERT_CLK_DOA_REG => FALSE, -- Invert clock on A port output registers (TRUE or FALSE)
-		INVERT_CLK_DOB_REG => FALSE, -- Invert clock on B port output registers (TRUE or FALSE)
-		RAM_EXTENSION_A => "NONE", -- "UPPER", "LOWER" or "NONE" when cascaded
-		RAM_EXTENSION_B => "NONE", -- "UPPER", "LOWER" or "NONE" when cascaded
-		SRVAL_A => X"000000000", -- Port A ouput value upon SSR assertion
-		SRVAL_B => X"000000000", -- Port B ouput value upon SSR assertion
-		WRITE_MODE_A => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
-		WRITE_MODE_B => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		INIT_A => X"000", -- Initial values on A output port
+		INIT_B => X"000", -- Initial values on B output port
+		SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
+		SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
+		WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_B => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
 		--In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
 		--In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
 		--In NO_CHANGE mode, the output latches remain unchanged during a write operation
@@ -179,48 +173,36 @@ begin
 		)
 	port map (
 		-- Port A is "read" port-----------------------------------------------------------------
-		CASCADEOUTA => open, -- 1-bit cascade output 					TvE: No cascading
 		DOA => block_do(0)(31 downto 24), -- 8-bit A port Data Output  TvE: the read output port
 		DOPA => open, -- 1-bit A port Parity Output						TvE: Parity unused
 		ADDRA => read_addr, -- 11-bit A port Address Input				TvE: Read address
-		CASCADEINA => ZERO(0 downto 0), -- 1-bit cascade A input		TvE: No cascading
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
 		ENA => '1', -- 1-bit A port Enable Input						TvE: "Read" port always enabled
-		REGCEA => '0', -- 1-bit A port register enable input			TvE: Unused
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
-		WEA => ZERO(0 downto 0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
+		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
 		-- Port B is "write" port----------------------------------------------------------------
-		CASCADEOUTB => open, -- 1-bit cascade output 					TvE: No cascading
 		DOB => open, -- 8-bit B port Data Output						TvE: no reads from the "write" port
 		DOPB => open, -- 1-bit B port Parity Output						TvE: Parity unused
 		ADDRB => write_addr, -- 11-bit B port Address Input				TvE: Write address
-		CASCADEINB => ZERO(0 downto 0), -- 1-bit cascade B input		TvE: No cascading
 		CLKB => clk, -- Port B Clock
 		DIB => data_write(31 downto 24), -- 8-bit B port Data Input		TvE: Data input
 		DIPB => ZERO(0 downto 0), -- 1-bit B port parity Input			TvE: Parity unused
 		ENB => block_enable(0), -- 1-bit B port Enable Input			TvE: Enable based on higher bits of the write_address
-		REGCEB => '0', -- 1-bit B port register enable input			TvE: Unused
 		SSRB => ZERO(0), -- 1-bit B port Synchronous Set/Reset Input	TvE: Unused
 		WEB => write_byte_enable(3) -- 1-bit B port Write Enable Input  TvE: "Write" port enable based on byte_enable
 	);
 
     ram_byte2 : RAMB16_S9_S9
 	generic map (
-		DOA_REG => 0, -- Optional output registers on the A port (0 or 1)
-		DOB_REG => 0, -- Optional output registers on the B port (0 or 1)
-		INIT_A => X"000000000", -- Initial values on A output port
-		INIT_B => X"000000000", -- Initial values on B output port
-		INVERT_CLK_DOA_REG => FALSE, -- Invert clock on A port output registers (TRUE or FALSE)
-		INVERT_CLK_DOB_REG => FALSE, -- Invert clock on B port output registers (TRUE or FALSE)
-		RAM_EXTENSION_A => "NONE", -- "UPPER", "LOWER" or "NONE" when cascaded
-		RAM_EXTENSION_B => "NONE", -- "UPPER", "LOWER" or "NONE" when cascaded
-		SRVAL_A => X"000000000", -- Port A ouput value upon SSR assertion
-		SRVAL_B => X"000000000", -- Port B ouput value upon SSR assertion
-		WRITE_MODE_A => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
-		WRITE_MODE_B => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		INIT_A => X"000", -- Initial values on A output port
+		INIT_B => X"000", -- Initial values on B output port
+		SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
+		SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
+		WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_B => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
 		--In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
 		--In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
 		--In NO_CHANGE mode, the output latches remain unchanged during a write operation
@@ -300,48 +282,36 @@ begin
 		)
 	port map (
 		-- Port A is "read" port-----------------------------------------------------------------
-		CASCADEOUTA => open, -- 1-bit cascade output 					TvE: No cascading
 		DOA => block_do(0)(23 downto 16), -- 8-bit A port Data Output  TvE: the read output port
 		DOPA => open, -- 1-bit A port Parity Output						TvE: Parity unused
 		ADDRA => read_addr, -- 11-bit A port Address Input				TvE: Read address
-		CASCADEINA => ZERO(0 downto 0), -- 1-bit cascade A input		TvE: No cascading
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
 		ENA => '1', -- 1-bit A port Enable Input						TvE: "Read" port always enabled
-		REGCEA => '0', -- 1-bit A port register enable input			TvE: Unused
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
-		WEA => ZERO(0 downto 0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
+		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
 		-- Port B is "write" port----------------------------------------------------------------
-		CASCADEOUTB => open, -- 1-bit cascade output 					TvE: No cascading
 		DOB => open, -- 8-bit B port Data Output						TvE: no reads from the "write" port
 		DOPB => open, -- 1-bit B port Parity Output						TvE: Parity unused
 		ADDRB => write_addr, -- 11-bit B port Address Input				TvE: Write address
-		CASCADEINB => ZERO(0 downto 0), -- 1-bit cascade B input		TvE: No cascading
 		CLKB => clk, -- Port B Clock
 		DIB => data_write(23 downto 16), -- 8-bit B port Data Input		TvE: Data input
 		DIPB => ZERO(0 downto 0), -- 1-bit B port parity Input			TvE: Parity unused
 		ENB => block_enable(0), -- 1-bit B port Enable Input			TvE: Enable based on higher bits of the write_address
-		REGCEB => '0', -- 1-bit B port register enable input			TvE: Unused
 		SSRB => ZERO(0), -- 1-bit B port Synchronous Set/Reset Input	TvE: Unused
 		WEB => write_byte_enable(2) -- 1-bit B port Write Enable Input  TvE: "Write" port enable based on byte_enable
 	);
 
     ram_byte1 : RAMB16_S9_S9
 	generic map (
-		DOA_REG => 0, -- Optional output registers on the A port (0 or 1)
-		DOB_REG => 0, -- Optional output registers on the B port (0 or 1)
-		INIT_A => X"000000000", -- Initial values on A output port
-		INIT_B => X"000000000", -- Initial values on B output port
-		INVERT_CLK_DOA_REG => FALSE, -- Invert clock on A port output registers (TRUE or FALSE)
-		INVERT_CLK_DOB_REG => FALSE, -- Invert clock on B port output registers (TRUE or FALSE)
-		RAM_EXTENSION_A => "NONE", -- "UPPER", "LOWER" or "NONE" when cascaded
-		RAM_EXTENSION_B => "NONE", -- "UPPER", "LOWER" or "NONE" when cascaded
-		SRVAL_A => X"000000000", -- Port A ouput value upon SSR assertion
-		SRVAL_B => X"000000000", -- Port B ouput value upon SSR assertion
-		WRITE_MODE_A => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
-		WRITE_MODE_B => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		INIT_A => X"000", -- Initial values on A output port
+		INIT_B => X"000", -- Initial values on B output port
+		SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
+		SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
+		WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_B => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
 		--In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
 		--In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
 		--In NO_CHANGE mode, the output latches remain unchanged during a write operation
@@ -421,48 +391,36 @@ begin
 		)
 	port map (
 		-- Port A is "read" port-----------------------------------------------------------------
-		CASCADEOUTA => open, -- 1-bit cascade output 					TvE: No cascading
 		DOA => block_do(0)(15 downto 8), -- 8-bit A port Data Output  TvE: the read output port
 		DOPA => open, -- 1-bit A port Parity Output						TvE: Parity unused
 		ADDRA => read_addr, -- 11-bit A port Address Input				TvE: Read address
-		CASCADEINA => ZERO(0 downto 0), -- 1-bit cascade A input		TvE: No cascading
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
 		ENA => '1', -- 1-bit A port Enable Input						TvE: "Read" port always enabled
-		REGCEA => '0', -- 1-bit A port register enable input			TvE: Unused
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
-		WEA => ZERO(0 downto 0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
+		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
 		-- Port B is "write" port----------------------------------------------------------------
-		CASCADEOUTB => open, -- 1-bit cascade output 					TvE: No cascading
 		DOB => open, -- 8-bit B port Data Output						TvE: no reads from the "write" port
 		DOPB => open, -- 1-bit B port Parity Output						TvE: Parity unused
 		ADDRB => write_addr, -- 11-bit B port Address Input				TvE: Write address
-		CASCADEINB => ZERO(0 downto 0), -- 1-bit cascade B input		TvE: No cascading
 		CLKB => clk, -- Port B Clock
 		DIB => data_write(15 downto 8), -- 8-bit B port Data Input		TvE: Data input
 		DIPB => ZERO(0 downto 0), -- 1-bit B port parity Input			TvE: Parity unused
 		ENB => block_enable(0), -- 1-bit B port Enable Input			TvE: Enable based on higher bits of the write_address
-		REGCEB => '0', -- 1-bit B port register enable input			TvE: Unused
 		SSRB => ZERO(0), -- 1-bit B port Synchronous Set/Reset Input	TvE: Unused
 		WEB => write_byte_enable(1) -- 1-bit B port Write Enable Input  TvE: "Write" port enable based on byte_enable
 	);
 
     ram_byte0 : RAMB16_S9_S9
 	generic map (
-		DOA_REG => 0, -- Optional output registers on the A port (0 or 1)
-		DOB_REG => 0, -- Optional output registers on the B port (0 or 1)
-		INIT_A => X"000000000", -- Initial values on A output port
-		INIT_B => X"000000000", -- Initial values on B output port
-		INVERT_CLK_DOA_REG => FALSE, -- Invert clock on A port output registers (TRUE or FALSE)
-		INVERT_CLK_DOB_REG => FALSE, -- Invert clock on B port output registers (TRUE or FALSE)
-		RAM_EXTENSION_A => "NONE", -- "UPPER", "LOWER" or "NONE" when cascaded
-		RAM_EXTENSION_B => "NONE", -- "UPPER", "LOWER" or "NONE" when cascaded
-		SRVAL_A => X"000000000", -- Port A ouput value upon SSR assertion
-		SRVAL_B => X"000000000", -- Port B ouput value upon SSR assertion
-		WRITE_MODE_A => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
-		WRITE_MODE_B => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		INIT_A => X"000", -- Initial values on A output port
+		INIT_B => X"000", -- Initial values on B output port
+		SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
+		SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
+		WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_B => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
 		--In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
 		--In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
 		--In NO_CHANGE mode, the output latches remain unchanged during a write operation
@@ -542,30 +500,24 @@ begin
 		)
 	port map (
 		-- Port A is "read" port-----------------------------------------------------------------
-		CASCADEOUTA => open, -- 1-bit cascade output 					TvE: No cascading
 		DOA => block_do(0)(7 downto 0), -- 8-bit A port Data Output  TvE: the read output port
 		DOPA => open, -- 1-bit A port Parity Output						TvE: Parity unused
 		ADDRA => read_addr, -- 11-bit A port Address Input				TvE: Read address
-		CASCADEINA => ZERO(0 downto 0), -- 1-bit cascade A input		TvE: No cascading
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
 		ENA => '1', -- 1-bit A port Enable Input						TvE: "Read" port always enabled
-		REGCEA => '0', -- 1-bit A port register enable input			TvE: Unused
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
-		WEA => ZERO(0 downto 0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
+		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
 		-- Port B is "write" port----------------------------------------------------------------
-		CASCADEOUTB => open, -- 1-bit cascade output 					TvE: No cascading
 		DOB => open, -- 8-bit B port Data Output						TvE: no reads from the "write" port
 		DOPB => open, -- 1-bit B port Parity Output						TvE: Parity unused
 		ADDRB => write_addr, -- 11-bit B port Address Input				TvE: Write address
-		CASCADEINB => ZERO(0 downto 0), -- 1-bit cascade B input		TvE: No cascading
 		CLKB => clk, -- Port B Clock
 		DIB => data_write(7 downto 0), -- 8-bit B port Data Input		TvE: Data input
 		DIPB => ZERO(0 downto 0), -- 1-bit B port parity Input			TvE: Parity unused
 		ENB => block_enable(0), -- 1-bit B port Enable Input			TvE: Enable based on higher bits of the write_address
-		REGCEB => '0', -- 1-bit B port register enable input			TvE: Unused
 		SSRB => ZERO(0), -- 1-bit B port Synchronous Set/Reset Input	TvE: Unused
 		WEB => write_byte_enable(0) -- 1-bit B port Write Enable Input  TvE: "Write" port enable based on byte_enable
 	); 
@@ -576,18 +528,12 @@ begin
 
 	ram_byte3 : RAMB16_S9_S9
 	generic map (
-		DOA_REG => 0, -- Optional output registers on the A port (0 or 1)
-		DOB_REG => 0, -- Optional output registers on the B port (0 or 1)
-		INIT_A => X"000000000", -- Initial values on A output port
-		INIT_B => X"000000000", -- Initial values on B output port
-		INVERT_CLK_DOA_REG => FALSE, -- Invert clock on A port output registers (TRUE or FALSE)
-		INVERT_CLK_DOB_REG => FALSE, -- Invert clock on B port output registers (TRUE or FALSE)
-		RAM_EXTENSION_A => "NONE", -- "UPPER", "LOWER" or "NONE" when cascaded
-		RAM_EXTENSION_B => "NONE", -- "UPPER", "LOWER" or "NONE" when cascaded
-		SRVAL_A => X"000000000", -- Port A ouput value upon SSR assertion
-		SRVAL_B => X"000000000", -- Port B ouput value upon SSR assertion
-		WRITE_MODE_A => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
-		WRITE_MODE_B => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		INIT_A => X"000", -- Initial values on A output port
+		INIT_B => X"000", -- Initial values on B output port
+		SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
+		SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
+		WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_B => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
 		--In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
 		--In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
 		--In NO_CHANGE mode, the output latches remain unchanged during a write operation
@@ -667,48 +613,36 @@ begin
 		)
 	port map (
 		-- Port A is "read" port-----------------------------------------------------------------
-		CASCADEOUTA => open, -- 1-bit cascade output 					TvE: No cascading
 		DOA => block_do(1)(31 downto 24), -- 8-bit A port Data Output  TvE: the read output port
 		DOPA => open, -- 1-bit A port Parity Output						TvE: Parity unused
 		ADDRA => read_addr, -- 11-bit A port Address Input				TvE: Read address
-		CASCADEINA => ZERO(0 downto 0), -- 1-bit cascade A input		TvE: No cascading
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
 		ENA => '1', -- 1-bit A port Enable Input						TvE: "Read" port always enabled
-		REGCEA => '0', -- 1-bit A port register enable input			TvE: Unused
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
-		WEA => ZERO(0 downto 0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
+		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
 		-- Port B is "write" port----------------------------------------------------------------
-		CASCADEOUTB => open, -- 1-bit cascade output 					TvE: No cascading
 		DOB => open, -- 8-bit B port Data Output						TvE: no reads from the "write" port
 		DOPB => open, -- 1-bit B port Parity Output						TvE: Parity unused
 		ADDRB => write_addr, -- 11-bit B port Address Input				TvE: Write address
-		CASCADEINB => ZERO(0 downto 0), -- 1-bit cascade B input		TvE: No cascading
 		CLKB => clk, -- Port B Clock
 		DIB => data_write(31 downto 24), -- 8-bit B port Data Input		TvE: Data input
 		DIPB => ZERO(0 downto 0), -- 1-bit B port parity Input			TvE: Parity unused
 		ENB => block_enable(1), -- 1-bit B port Enable Input			TvE: Enable based on higher bits of the write_address
-		REGCEB => '0', -- 1-bit B port register enable input			TvE: Unused
 		SSRB => ZERO(0), -- 1-bit B port Synchronous Set/Reset Input	TvE: Unused
 		WEB => write_byte_enable(3) -- 1-bit B port Write Enable Input  TvE: "Write" port enable based on byte_enable
 	);
 
     ram_byte2 : RAMB16_S9_S9
 	generic map (
-		DOA_REG => 0, -- Optional output registers on the A port (0 or 1)
-		DOB_REG => 0, -- Optional output registers on the B port (0 or 1)
-		INIT_A => X"000000000", -- Initial values on A output port
-		INIT_B => X"000000000", -- Initial values on B output port
-		INVERT_CLK_DOA_REG => FALSE, -- Invert clock on A port output registers (TRUE or FALSE)
-		INVERT_CLK_DOB_REG => FALSE, -- Invert clock on B port output registers (TRUE or FALSE)
-		RAM_EXTENSION_A => "NONE", -- "UPPER", "LOWER" or "NONE" when cascaded
-		RAM_EXTENSION_B => "NONE", -- "UPPER", "LOWER" or "NONE" when cascaded
-		SRVAL_A => X"000000000", -- Port A ouput value upon SSR assertion
-		SRVAL_B => X"000000000", -- Port B ouput value upon SSR assertion
-		WRITE_MODE_A => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
-		WRITE_MODE_B => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		INIT_A => X"000", -- Initial values on A output port
+		INIT_B => X"000", -- Initial values on B output port
+		SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
+		SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
+		WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_B => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
 		--In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
 		--In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
 		--In NO_CHANGE mode, the output latches remain unchanged during a write operation
@@ -788,48 +722,36 @@ begin
 		)
 	port map (
 		-- Port A is "read" port-----------------------------------------------------------------
-		CASCADEOUTA => open, -- 1-bit cascade output 					TvE: No cascading
 		DOA => block_do(1)(23 downto 16), -- 8-bit A port Data Output  TvE: the read output port
 		DOPA => open, -- 1-bit A port Parity Output						TvE: Parity unused
 		ADDRA => read_addr, -- 11-bit A port Address Input				TvE: Read address
-		CASCADEINA => ZERO(0 downto 0), -- 1-bit cascade A input		TvE: No cascading
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
 		ENA => '1', -- 1-bit A port Enable Input						TvE: "Read" port always enabled
-		REGCEA => '0', -- 1-bit A port register enable input			TvE: Unused
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
-		WEA => ZERO(0 downto 0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
+		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
 		-- Port B is "write" port----------------------------------------------------------------
-		CASCADEOUTB => open, -- 1-bit cascade output 					TvE: No cascading
 		DOB => open, -- 8-bit B port Data Output						TvE: no reads from the "write" port
 		DOPB => open, -- 1-bit B port Parity Output						TvE: Parity unused
 		ADDRB => write_addr, -- 11-bit B port Address Input				TvE: Write address
-		CASCADEINB => ZERO(0 downto 0), -- 1-bit cascade B input		TvE: No cascading
 		CLKB => clk, -- Port B Clock
 		DIB => data_write(23 downto 16), -- 8-bit B port Data Input		TvE: Data input
 		DIPB => ZERO(0 downto 0), -- 1-bit B port parity Input			TvE: Parity unused
 		ENB => block_enable(1), -- 1-bit B port Enable Input			TvE: Enable based on higher bits of the write_address
-		REGCEB => '0', -- 1-bit B port register enable input			TvE: Unused
 		SSRB => ZERO(0), -- 1-bit B port Synchronous Set/Reset Input	TvE: Unused
 		WEB => write_byte_enable(2) -- 1-bit B port Write Enable Input  TvE: "Write" port enable based on byte_enable
 	);
 
     ram_byte1 : RAMB16_S9_S9
 	generic map (
-		DOA_REG => 0, -- Optional output registers on the A port (0 or 1)
-		DOB_REG => 0, -- Optional output registers on the B port (0 or 1)
-		INIT_A => X"000000000", -- Initial values on A output port
-		INIT_B => X"000000000", -- Initial values on B output port
-		INVERT_CLK_DOA_REG => FALSE, -- Invert clock on A port output registers (TRUE or FALSE)
-		INVERT_CLK_DOB_REG => FALSE, -- Invert clock on B port output registers (TRUE or FALSE)
-		RAM_EXTENSION_A => "NONE", -- "UPPER", "LOWER" or "NONE" when cascaded
-		RAM_EXTENSION_B => "NONE", -- "UPPER", "LOWER" or "NONE" when cascaded
-		SRVAL_A => X"000000000", -- Port A ouput value upon SSR assertion
-		SRVAL_B => X"000000000", -- Port B ouput value upon SSR assertion
-		WRITE_MODE_A => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
-		WRITE_MODE_B => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		INIT_A => X"000", -- Initial values on A output port
+		INIT_B => X"000", -- Initial values on B output port
+		SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
+		SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
+		WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_B => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
 		--In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
 		--In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
 		--In NO_CHANGE mode, the output latches remain unchanged during a write operation
@@ -909,48 +831,36 @@ begin
 		)
 	port map (
 		-- Port A is "read" port-----------------------------------------------------------------
-		CASCADEOUTA => open, -- 1-bit cascade output 					TvE: No cascading
 		DOA => block_do(1)(15 downto 8), -- 8-bit A port Data Output  TvE: the read output port
 		DOPA => open, -- 1-bit A port Parity Output						TvE: Parity unused
 		ADDRA => read_addr, -- 11-bit A port Address Input				TvE: Read address
-		CASCADEINA => ZERO(0 downto 0), -- 1-bit cascade A input		TvE: No cascading
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
 		ENA => '1', -- 1-bit A port Enable Input						TvE: "Read" port always enabled
-		REGCEA => '0', -- 1-bit A port register enable input			TvE: Unused
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
-		WEA => ZERO(0 downto 0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
+		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
 		-- Port B is "write" port----------------------------------------------------------------
-		CASCADEOUTB => open, -- 1-bit cascade output 					TvE: No cascading
 		DOB => open, -- 8-bit B port Data Output						TvE: no reads from the "write" port
 		DOPB => open, -- 1-bit B port Parity Output						TvE: Parity unused
 		ADDRB => write_addr, -- 11-bit B port Address Input				TvE: Write address
-		CASCADEINB => ZERO(0 downto 0), -- 1-bit cascade B input		TvE: No cascading
 		CLKB => clk, -- Port B Clock
 		DIB => data_write(15 downto 8), -- 8-bit B port Data Input		TvE: Data input
 		DIPB => ZERO(0 downto 0), -- 1-bit B port parity Input			TvE: Parity unused
 		ENB => block_enable(1), -- 1-bit B port Enable Input			TvE: Enable based on higher bits of the write_address
-		REGCEB => '0', -- 1-bit B port register enable input			TvE: Unused
 		SSRB => ZERO(0), -- 1-bit B port Synchronous Set/Reset Input	TvE: Unused
 		WEB => write_byte_enable(1) -- 1-bit B port Write Enable Input  TvE: "Write" port enable based on byte_enable
 	);
 
     ram_byte0 : RAMB16_S9_S9
 	generic map (
-		DOA_REG => 0, -- Optional output registers on the A port (0 or 1)
-		DOB_REG => 0, -- Optional output registers on the B port (0 or 1)
-		INIT_A => X"000000000", -- Initial values on A output port
-		INIT_B => X"000000000", -- Initial values on B output port
-		INVERT_CLK_DOA_REG => FALSE, -- Invert clock on A port output registers (TRUE or FALSE)
-		INVERT_CLK_DOB_REG => FALSE, -- Invert clock on B port output registers (TRUE or FALSE)
-		RAM_EXTENSION_A => "NONE", -- "UPPER", "LOWER" or "NONE" when cascaded
-		RAM_EXTENSION_B => "NONE", -- "UPPER", "LOWER" or "NONE" when cascaded
-		SRVAL_A => X"000000000", -- Port A ouput value upon SSR assertion
-		SRVAL_B => X"000000000", -- Port B ouput value upon SSR assertion
-		WRITE_MODE_A => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
-		WRITE_MODE_B => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		INIT_A => X"000", -- Initial values on A output port
+		INIT_B => X"000", -- Initial values on B output port
+		SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
+		SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
+		WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_B => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
 		--In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
 		--In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
 		--In NO_CHANGE mode, the output latches remain unchanged during a write operation
@@ -1030,1941 +940,1935 @@ begin
 		)
 	port map (
 		-- Port A is "read" port-----------------------------------------------------------------
-		CASCADEOUTA => open, -- 1-bit cascade output 					TvE: No cascading
 		DOA => block_do(1)(7 downto 0), -- 8-bit A port Data Output  TvE: the read output port
 		DOPA => open, -- 1-bit A port Parity Output						TvE: Parity unused
 		ADDRA => read_addr, -- 11-bit A port Address Input				TvE: Read address
-		CASCADEINA => ZERO(0 downto 0), -- 1-bit cascade A input		TvE: No cascading
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
 		ENA => '1', -- 1-bit A port Enable Input						TvE: "Read" port always enabled
-		REGCEA => '0', -- 1-bit A port register enable input			TvE: Unused
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
-		WEA => ZERO(0 downto 0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
+		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
 		-- Port B is "write" port----------------------------------------------------------------
-		CASCADEOUTB => open, -- 1-bit cascade output 					TvE: No cascading
 		DOB => open, -- 8-bit B port Data Output						TvE: no reads from the "write" port
 		DOPB => open, -- 1-bit B port Parity Output						TvE: Parity unused
 		ADDRB => write_addr, -- 11-bit B port Address Input				TvE: Write address
-		CASCADEINB => ZERO(0 downto 0), -- 1-bit cascade B input		TvE: No cascading
 		CLKB => clk, -- Port B Clock
 		DIB => data_write(7 downto 0), -- 8-bit B port Data Input		TvE: Data input
 		DIPB => ZERO(0 downto 0), -- 1-bit B port parity Input			TvE: Parity unused
 		ENB => block_enable(1), -- 1-bit B port Enable Input			TvE: Enable based on higher bits of the write_address
-		REGCEB => '0', -- 1-bit B port register enable input			TvE: Unused
 		SSRB => ZERO(0), -- 1-bit B port Synchronous Set/Reset Input	TvE: Unused
 		WEB => write_byte_enable(0) -- 1-bit B port Write Enable Input  TvE: "Write" port enable based on byte_enable
 	);
 	end generate;--block 1
 
 
-   block2: if (block_count > 2) generate
-    begin
-
-    ram_byte3 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(2)(31 downto 24),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(31 downto 24),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(2),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(3));
-
-    ram_byte2 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(2)(23 downto 16),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(23 downto 16),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(2),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(2));
-
-    ram_byte1 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(2)(15 downto 8),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(15 downto 8),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(2),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(1));
-
-    ram_byte0 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(2)(7 downto 0),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(7 downto 0),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(2),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(0));
-
-   end generate; --block2
-
-
-   block3: if (block_count > 3) generate
-    begin
-
-    ram_byte3 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(3)(31 downto 24),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(31 downto 24),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(3),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(3));
-
-    ram_byte2 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(3)(23 downto 16),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(23 downto 16),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(3),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(2));
-
-    ram_byte1 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(3)(15 downto 8),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(15 downto 8),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(3),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(1));
-
-    ram_byte0 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(3)(7 downto 0),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(7 downto 0),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(3),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(0));
-
-   end generate; --block3
-
-
-   block4: if (block_count > 4) generate
-    begin
-
-    ram_byte3 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(4)(31 downto 24),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(31 downto 24),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(4),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(3));
-
-    ram_byte2 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(4)(23 downto 16),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(23 downto 16),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(4),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(2));
-
-    ram_byte1 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(4)(15 downto 8),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(15 downto 8),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(4),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(1));
-
-    ram_byte0 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(4)(7 downto 0),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(7 downto 0),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(4),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(0));
-
-   end generate; --block4
-
-
-   block5: if (block_count > 5) generate
-    begin
-
-    ram_byte3 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(5)(31 downto 24),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(31 downto 24),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(5),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(3));
-
-    ram_byte2 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(5)(23 downto 16),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(23 downto 16),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(5),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(2));
-
-    ram_byte1 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(5)(15 downto 8),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(15 downto 8),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(5),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(1));
-
-    ram_byte0 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(5)(7 downto 0),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(7 downto 0),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(5),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(0));
-
-   end generate; --block5
-
-
-   block6: if (block_count > 6) generate
-    begin
-
-    ram_byte3 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(6)(31 downto 24),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(31 downto 24),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(6),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(3));
-
-    ram_byte2 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(6)(23 downto 16),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(23 downto 16),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(6),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(2));
-
-    ram_byte1 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(6)(15 downto 8),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(15 downto 8),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(6),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(1));
-
-    ram_byte0 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(6)(7 downto 0),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(7 downto 0),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(6),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(0));
-
-   end generate; --block6
-
-
-   block7: if (block_count > 7) generate
-    begin
-
-    ram_byte3 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(7)(31 downto 24),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(31 downto 24),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(7),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(3));
-
-    ram_byte2 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(7)(23 downto 16),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(23 downto 16),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(7),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(2));
-
-    ram_byte1 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(7)(15 downto 8),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(15 downto 8),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(7),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(1));
-
-    ram_byte0 : RAMB16_S9
-   generic map (
-INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
-INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
-)
-    port map (
-      DO   => block_do(7)(7 downto 0),
-      DOP  => open,
-      ADDR => block_addr,
-      CLK  => clk,
-      DI   => data_write(7 downto 0),
-      DIP  => ZERO(0 downto 0),
-      EN   => block_enable(7),
-      SSR  => ZERO(0),
-      WE   => write_byte_enable(0));
-
-   end generate; --block7
+--   block2: if (block_count > 2) generate
+--    begin
+--
+--    ram_byte3 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(2)(31 downto 24),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(31 downto 24),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(2),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(3));
+--
+--    ram_byte2 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(2)(23 downto 16),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(23 downto 16),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(2),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(2));
+--
+--    ram_byte1 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(2)(15 downto 8),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(15 downto 8),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(2),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(1));
+--
+--    ram_byte0 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(2)(7 downto 0),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(7 downto 0),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(2),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(0));
+--
+--   end generate; --block2
+--
+--
+--   block3: if (block_count > 3) generate
+--    begin
+--
+--    ram_byte3 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(3)(31 downto 24),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(31 downto 24),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(3),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(3));
+--
+--    ram_byte2 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(3)(23 downto 16),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(23 downto 16),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(3),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(2));
+--
+--    ram_byte1 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(3)(15 downto 8),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(15 downto 8),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(3),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(1));
+--
+--    ram_byte0 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(3)(7 downto 0),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(7 downto 0),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(3),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(0));
+--
+--   end generate; --block3
+--
+--
+--   block4: if (block_count > 4) generate
+--    begin
+--
+--    ram_byte3 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(4)(31 downto 24),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(31 downto 24),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(4),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(3));
+--
+--    ram_byte2 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(4)(23 downto 16),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(23 downto 16),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(4),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(2));
+--
+--    ram_byte1 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(4)(15 downto 8),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(15 downto 8),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(4),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(1));
+--
+--    ram_byte0 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(4)(7 downto 0),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(7 downto 0),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(4),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(0));
+--
+--   end generate; --block4
+--
+--
+--   block5: if (block_count > 5) generate
+--    begin
+--
+--    ram_byte3 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(5)(31 downto 24),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(31 downto 24),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(5),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(3));
+--
+--    ram_byte2 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(5)(23 downto 16),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(23 downto 16),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(5),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(2));
+--
+--    ram_byte1 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(5)(15 downto 8),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(15 downto 8),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(5),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(1));
+--
+--    ram_byte0 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(5)(7 downto 0),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(7 downto 0),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(5),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(0));
+--
+--   end generate; --block5
+--
+--
+--   block6: if (block_count > 6) generate
+--    begin
+--
+--    ram_byte3 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(6)(31 downto 24),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(31 downto 24),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(6),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(3));
+--
+--    ram_byte2 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(6)(23 downto 16),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(23 downto 16),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(6),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(2));
+--
+--    ram_byte1 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(6)(15 downto 8),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(15 downto 8),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(6),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(1));
+--
+--    ram_byte0 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(6)(7 downto 0),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(7 downto 0),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(6),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(0));
+--
+--   end generate; --block6
+--
+--
+--   block7: if (block_count > 7) generate
+--    begin
+--
+--    ram_byte3 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(7)(31 downto 24),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(31 downto 24),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(7),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(3));
+--
+--    ram_byte2 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(7)(23 downto 16),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(23 downto 16),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(7),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(2));
+--
+--    ram_byte1 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(7)(15 downto 8),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(15 downto 8),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(7),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(1));
+--
+--    ram_byte0 : RAMB16_S9
+--   generic map (
+--INIT_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_01 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_03 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_04 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_05 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_06 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_07 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_08 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_09 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_0F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_10 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_11 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_12 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_13 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_14 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_15 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_16 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_17 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_18 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_19 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_1F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_20 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_21 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_22 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_23 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_24 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_25 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_26 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_27 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_28 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_29 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_2F => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_30 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_31 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_32 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_33 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_34 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_35 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_36 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_37 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_38 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_39 => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3A => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3B => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3C => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3D => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3E => X"0000000000000000000000000000000000000000000000000000000000000000",
+--INIT_3F => X"0000000000000000000000000000000000000000000000000000000000000000"
+--)
+--    port map (
+--      DO   => block_do(7)(7 downto 0),
+--      DOP  => open,
+--      ADDR => block_addr,
+--      CLK  => clk,
+--      DI   => data_write(7 downto 0),
+--      DIP  => ZERO(0 downto 0),
+--      EN   => block_enable(7),
+--      SSR  => ZERO(0),
+--      WE   => write_byte_enable(0));
+--
+--   end generate; --block7
 
 end; --architecture logic

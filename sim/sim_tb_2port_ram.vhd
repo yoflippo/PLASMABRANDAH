@@ -1,4 +1,3 @@
-					data_read0        
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -6,11 +5,11 @@ use ieee.numeric_std.all;
 library unisim;
 use unisim.vcomponents.all;
 
-entity sim_tb_cache is
+entity sim_tb_2port_ram is
 
-end entity sim_tb_cache;
+end entity sim_tb_2port_ram;
 
-architecture arch of sim_tb_cache is
+architecture arch of sim_tb_2port_ram is
     
   constant CLK_PERIOD_NS      : real := 10000.0 / 1000.0;
   constant TCYC_SYS           : real := CLK_PERIOD_NS/2.0;
@@ -37,13 +36,14 @@ architecture arch of sim_tb_cache is
 	signal data_write        :  std_logic_vector(31 downto 0);
 	signal data_read0        :  std_logic_vector(31 downto 0);
 	signal data_read1        :  std_logic_vector(31 downto 0);
-	
+	signal rst		           :   std_logic:='0';
+	signal status 		       :   std_logic_vector(3 downto 0):="0000";
 	signal sys_clk           :   std_logic := '0';
 	signal sys_rst_n         :   std_logic := '0';
 
 begin
   read_address(31 downto 30) <= "00";
-	write_address(31 downto 30) <= "00";
+  write_address(31 downto 30) <= "00";
   --***************************************************************************
   -- Clock generation and reset
   --***************************************************************************
@@ -79,75 +79,115 @@ begin
     case status is 
       when "0000" =>              
         read_address(29 downto 2) <= X"0000000"; -- TvE: Should always output the data on the address of both sets
-				write_address(29 downto 2) <= X"FFFFFF0";
+				write_address(29 downto 2) <= X"00004B4";
 				write_byte_enable <= "1111";
 				enable <= '1';
         data_write <= X"ECA86420";        -- Dummy data input
         status <= "0001";
       when "0001" =>             
 			  read_address(29 downto 2) <= X"0000001"; -- TvE: Should always output the data on the address of both sets
-				write_address(29 downto 2) <= X"FFFFFF1";
+				write_address(29 downto 2) <= X"00004B5";
 				write_byte_enable <= "1111";
 				enable <= '1';
         data_write <= X"FDB97531";        -- Dummy data input
         status <= "0010";
       when "0010" =>              
 				read_address(29 downto 2) <= X"0000002"; -- TvE: Should always output the data on the address of both sets
-				write_address(29 downto 2) <= X"FFFFFF2";
+				write_address(29 downto 2) <= X"00004B6";
 				write_byte_enable <= "1111";
 				enable <= '1';
         data_write <= X"0F0F0F0F";        -- Dummy data input
         status <= "0011";
       when "0011" =>              
 				read_address(29 downto 2) <= X"0000003"; -- TvE: Should always output the data on the address of both sets
-				write_address(29 downto 2) <= X"FFFFFF3";
+				write_address(29 downto 2) <= X"00004B7";
 				write_byte_enable <= "1111";
 				enable <= '1';
         data_write <= X"11111111";        -- Dummy data input
         status <= "0100";
       when "0100" =>    
-				read_address(29 downto 2) <= X"FFFFFF0"; -- TvE: Should always output the data on the address of both sets
-				write_address(29 downto 2) <= X"00000000";
-				write_byte_enable <= "0000";
-				enable <= '0';
-        data_write <= X"00000000";        -- Dummy data input
+				read_address(29 downto 2) <= X"00004B4"; -- TvE: Should always output the data on the address of both sets
+				write_address(29 downto 2) <= X"0000CB4";
+				write_byte_enable <= "1111";
+				enable <= '1';
+        data_write <= X"00001111";        -- Dummy data input
         status <= "0101";
       when "0101" =>   
-				read_address(29 downto 2) <= X"FFFFFF1"; -- TvE: Should always output the data on the address of both sets
-				write_address(29 downto 2) <= X"00000000";
-				write_byte_enable <= "0000";
-				enable <= '0';
-        data_write <= X"00000000";        -- Dummy data input			
+				read_address(29 downto 2) <= X"00004B5"; -- TvE: Should always output the data on the address of both sets
+				write_address(29 downto 2) <= X"0000CB5";
+				write_byte_enable <= "1111";
+				enable <= '1';
+        data_write <= X"11110000";        -- Dummy data input			
         status <= "0110";
       when "0110" =>             
-				read_address(29 downto 2) <= X"FFFFFF2"; -- TvE: Should always output the data on the address of both sets
-				write_address(29 downto 2) <= X"00000000";
-				write_byte_enable <= "0000";
-				enable <= '0';
-        data_write <= X"00000000";        -- Dummy data input
+				read_address(29 downto 2) <= X"00004B6"; -- TvE: Should always output the data on the address of both sets
+				write_address(29 downto 2) <= X"0000CB6";
+				write_byte_enable <= "1111";
+				enable <= '1';
+        data_write <= X"11001100";        -- Dummy data input
         status <= "0111";
       when "0111" => 
-				read_address(29 downto 2) <= X"FFFFFF3"; -- TvE: Should always output the data on the address of both sets
-				write_address(29 downto 2) <= X"00000000";
-				write_byte_enable <= "0000";
-				enable <= '0';
-        data_write <= X"00000000";        -- Dummy data input
+				read_address(29 downto 2) <= X"00004B7"; -- TvE: Should always output the data on the address of both sets
+				write_address(29 downto 2) <= X"0000CB7";
+				write_byte_enable <= "1111";
+				enable <= '1';
+        data_write <= X"00110011";        -- Dummy data input
         status <= "1000";
-      when "1000" =>              
+      when "1000" =>     
+        read_address(29 downto 2) <= X"00004B4"; -- TvE: Should always output the data on the address of both sets
+        write_address(29 downto 2) <= X"0000000";
+        write_byte_enable <= "0000";
+        enable <= '0';
+        data_write <= X"00000000";        -- Dummy data input         
         status <= "1001";
-      when "1001" =>              
+      when "1001" =>
+        read_address(29 downto 2) <= X"00004B5"; -- TvE: Should always output the data on the address of both sets
+        write_address(29 downto 2) <= X"0000000";
+        write_byte_enable <= "0000";
+        enable <= '0';
+        data_write <= X"00000000";        -- Dummy data input              
         status <= "1010";
-      when "1010" =>              
+      when "1010" =>
+        read_address(29 downto 2) <= X"00004B6"; -- TvE: Should always output the data on the address of both sets
+        write_address(29 downto 2) <= X"0000000";
+        write_byte_enable <= "0000";
+        enable <= '0';
+        data_write <= X"00000000";        -- Dummy data input                
         status <= "1011";
       when "1011" => 
+        read_address(29 downto 2) <= X"00004B7"; -- TvE: Should always output the data on the address of both sets
+        write_address(29 downto 2) <= X"0000000";
+        write_byte_enable <= "0000";
+        enable <= '0';
+        data_write <= X"00000000";        -- Dummy data input  
         status <= "1100";
-      when "1100" =>              
+      when "1100" =>
+        read_address(29 downto 2) <= X"000ACB4"; -- TvE: Should always output the data on the address of both sets
+        write_address(29 downto 2) <= X"0000000";
+        write_byte_enable <= "0000";
+        enable <= '0';
+        data_write <= X"00000000";        -- Dummy data input                
         status <= "1101";
-      when "1101" =>              
+      when "1101" => 
+        read_address(29 downto 2) <= X"000ACB5"; -- TvE: Should always output the data on the address of both sets
+        write_address(29 downto 2) <= X"0000000";
+        write_byte_enable <= "0000";
+        enable <= '0';
+        data_write <= X"00000000";        -- Dummy data input              
         status <= "1110";
-      when "1110" =>              
+      when "1110" =>   
+        read_address(29 downto 2) <= X"000ACB6"; -- TvE: Should always output the data on the address of both sets
+        write_address(29 downto 2) <= X"0000000";
+        write_byte_enable <= "0000";
+        enable <= '0';
+        data_write <= X"00000000";        -- Dummy data input                         
         status <= "1111";
-      when "1111" =>              
+      when "1111" => 
+        read_address(29 downto 2) <= X"000ACB7"; -- TvE: Should always output the data on the address of both sets
+        write_address(29 downto 2) <= X"0000000";
+        write_byte_enable <= "0000";
+        enable <= '0';
+        data_write <= X"00000000";        -- Dummy data input                           
         status <= "0000";     
       when others =>
         status <= "0000";
@@ -207,7 +247,7 @@ begin
   if sys_rst_n = '1' then
     
   elsif rising_edge(sys_clk) then
-    cpu_address <= address_next;   
+ 
   end if;
   end process;
 
