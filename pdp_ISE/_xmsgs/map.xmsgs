@@ -5,15 +5,15 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="info" file="LIT" num="243" delta="old" >Logical network <arg fmt="%s" index="1">fpga_0_RS232_Uart_1_ctsN_pin_IBUF</arg> has no load.
+<msg type="info" file="LIT" num="243" delta="new" >Logical network <arg fmt="%s" index="1">u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mtridata_cache_ram_address_reg&lt;11&gt;</arg> has no load.
 </msg>
 
-<msg type="info" file="LIT" num="395" delta="old" >The above <arg fmt="%s" index="1">info</arg> message is repeated <arg fmt="%d" index="2">129</arg> more times for the following (max. 5 shown):
-<arg fmt="%s" index="3">fpga_0_DDR_CLK_FB_IBUF,
-u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_loop[31].reg_bit2b/SPO,
-u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_loop[31].reg_bit2a/SPO,
-u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_loop[31].reg_bit1b/SPO,
-u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_loop[31].reg_bit1a/SPO</arg>
+<msg type="info" file="LIT" num="395" delta="new" >The above <arg fmt="%s" index="1">info</arg> message is repeated <arg fmt="%d" index="2">147</arg> more times for the following (max. 5 shown):
+<arg fmt="%s" index="3">u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mtridata_cache_ram_address_reg&lt;12&gt;,
+u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mtridata_cache_ram_address_reg&lt;14&gt;,
+u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mtridata_cache_ram_address_reg&lt;15&gt;,
+u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mtridata_cache_ram_address_reg&lt;16&gt;,
+u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mtridata_cache_ram_address_reg&lt;17&gt;</arg>
 To see the details of these <arg fmt="%s" index="4">info</arg> messages, please use the -detail switch.
 </msg>
 
@@ -48,13 +48,13 @@ Pin CE of u1_plasma_top/u2_ddr/u2_ddr/data_write2_3</arg>
 <msg type="warning" file="Pack" num="266" delta="old" >The function generator <arg fmt="%s" index="1">u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out&lt;2&gt;1</arg> failed to merge with F5 multiplexer <arg fmt="%s" index="2">u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out&lt;5&gt;_f5</arg>.  <arg fmt="%z" index="3">There is more than one F5MUX.</arg>  The design will exhibit suboptimal timing.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="372" delta="new" >Gated clock. Clock net <arg fmt="%s" index="1">u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_or0000</arg> is sourced by a combinatorial pin. This is not good design practice. Use the CE pin to control the loading of data into the flip-flop.
+<msg type="warning" file="PhysDesignRules" num="372" delta="old" >Gated clock. Clock net <arg fmt="%s" index="1">u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_or0000</arg> is sourced by a combinatorial pin. This is not good design practice. Use the CE pin to control the loading of data into the flip-flop.
 </msg>
 
 <msg type="warning" file="PhysDesignRules" num="372" delta="old" >Gated clock. Clock net <arg fmt="%s" index="1">DCM_AUTOCALIBRATION_u1_plasma_top/u0_clk/DCM_BASE0/u1_plasma_top/u0_clk/DCM_BASE0/CLKOUT</arg> is sourced by a combinatorial pin. This is not good design practice. Use the CE pin to control the loading of data into the flip-flop.
 </msg>
 
-<msg type="warning" file="PhysDesignRules" num="372" delta="new" >Gated clock. Clock net <arg fmt="%s" index="1">u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_not0001</arg> is sourced by a combinatorial pin. This is not good design practice. Use the CE pin to control the loading of data into the flip-flop.
+<msg type="warning" file="PhysDesignRules" num="372" delta="old" >Gated clock. Clock net <arg fmt="%s" index="1">u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_not0001</arg> is sourced by a combinatorial pin. This is not good design practice. Use the CE pin to control the loading of data into the flip-flop.
 </msg>
 
 <msg type="warning" file="PhysDesignRules" num="372" delta="old" >Gated clock. Clock net <arg fmt="%s" index="1">DCM_AUTOCALIBRATION_u1_plasma_top/u0_clk/DCM_BASE0/u1_plasma_top/u0_clk/DCM_BASE0/cd/CLK&lt;1&gt;</arg> is sourced by a combinatorial pin. This is not good design practice. Use the CE pin to control the loading of data into the flip-flop.
