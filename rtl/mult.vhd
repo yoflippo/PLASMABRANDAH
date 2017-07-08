@@ -117,10 +117,10 @@ begin
 
 	-- Result
    c_mult <= resultLFin             when mult_func = MULT_READ_LO AND mode_reg = MODE_MULT AND baseline = '0' else
-    			 resultHFin             when mult_func = MULT_READ_HI AND mode_reg = MODE_MULT AND baseline = '0' else
-             lower_reg 					when mult_func = MULT_READ_LO and negate_reg = '0' AND baseline = '1' else
+    		 resultHFin             when mult_func = MULT_READ_HI AND mode_reg = MODE_MULT AND baseline = '0' else
+             lower_reg 				when mult_func = MULT_READ_LO and negate_reg = '0' AND baseline = '1' else
              bv_negate(lower_reg) 	when mult_func = MULT_READ_LO and negate_reg = '1' AND baseline = '1' else
-             upper_reg 					when mult_func = MULT_READ_HI and negate_reg = '0' AND baseline = '1' else 
+             upper_reg 				when mult_func = MULT_READ_HI and negate_reg = '0' AND baseline = '1' else 
              bv_negate(upper_reg) 	when mult_func = MULT_READ_HI and negate_reg = '1' AND baseline = '1' else
 																													ZERO;
 	pause_out <= '1' when (count_reg /= "000000") and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else '0';
@@ -167,13 +167,13 @@ begin
                 when MULT_WRITE_LO =>
                     lower_reg <= a;
                     negate_reg <= '0';
-						  baseline <= '1';
+					baseline <= '1';
                 when MULT_WRITE_HI =>
                     upper_reg <= a;
                     negate_reg <= '0';
-						  baseline <= '1';
+					baseline <= '1';
                 when MULT_MULT =>
-					     baseline <= '1'; -- MAKE THIS zero when using custom
+					baseline <= '1'; -- MAKE THIS zero when using custom
                     mode_reg <= MODE_MULT;
                     aa_reg <= a;        -- MS : copy value port a to signal aa_reg
                     bb_reg <= b;
@@ -187,7 +187,7 @@ begin
                     vSigned_mul := '0';
 						  count_reg <= "100000";
                 when MULT_SIGNED_MULT =>
-					     			     baseline <= '1'; -- MAKE THIS zero when using custom
+					baseline <= '1'; -- MAKE THIS zero when using custom
                     mode_reg <= MODE_MULT;
                     vSigned_mul := '1';
                     if b(31) = '0' then
@@ -281,23 +281,23 @@ begin
             end case;  
         end if; -- clc
 				
-                -- MS: Convert WARNING: VERY SLOW!!!!!!!!
-                if  custom_mul_finished = '1' and mode_reg = MODE_MULT and baseline = '0' then  
-                    if vSigned_mul = '1' AND vSign_value = '1' then
-                        vResultBig := bv_twos_complement(resultL,resultH);
-                        resultLFin <= vResultBig(a'range);
-                        resultHFin <= vResultBig(vResultBig'high downto resultL'length);
-                        --end if; 
-                    elsif vSigned_mul = '0' AND ((a > x"FFFFFF00" AND b > x"FFFFFF00") OR 
-                                                (a >= x"FFFFFF00" AND b > x"FFFFFF00") OR 
-                                                (a > x"FFFFFF00" AND b >= x"FFFFFF00")) then
-                            resultHFin <= bv_inc(resultH);
-                            resultLFin <= resultL;  
-                    else 
-                        resultLFin <= resultL;
-                        resultHFin <= resultH;                 
-                    end if;
-                end if;
+        if  custom_mul_finished = '1' and mode_reg = MODE_MULT and baseline = '0' then  
+            if vSigned_mul = '1' AND vSign_value = '1' then
+                vResultBig := bv_twos_complement(resultL,resultH);
+                resultLFin <= vResultBig(a'range);
+                resultHFin <= vResultBig(vResultBig'high downto resultL'length);
+            -- MS: test for specific situations where csa-multiplier gives errors
+            -- this is established based on trial-and-error
+            elsif vSigned_mul = '0' AND ((a > x"FFFFFF00"  AND b >  x"FFFFFF00") OR 
+                                         (a >= x"FFFFFF00" AND b >  x"FFFFFF00") OR 
+                                         (a > x"FFFFFF00"  AND b >= x"FFFFFF00")) then
+                    resultHFin <= bv_inc(resultH); -- only increment high result with one
+                    resultLFin <= resultL;  
+            else 
+                resultLFin <= resultL;
+                resultHFin <= resultH;                 
+            end if;
+        end if;
 
    end process;
 end; --architecture logic
