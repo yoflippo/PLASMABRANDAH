@@ -96,8 +96,11 @@ begin
     sum     <= bv_adder(upper_reg, aa_reg, mode_reg);
 
     -- Result
-    c_mult2 <=   resultLFin               when mult_func = MULT_READ_LO AND custom_mul_finished = '1'    AND mode_reg = MODE_MULT else
-                resultHFin               when mult_func = MULT_READ_HI AND custom_mul_finished = '1'    AND mode_reg = MODE_MULT else
+    c_mult2 <=  resultLFin when mult_func = MULT_READ_LO AND custom_mul_finished = '1' AND mode_reg = MODE_MULT else
+                resultHFin when mult_func = MULT_READ_HI AND custom_mul_finished = '1' AND mode_reg = MODE_MULT else
+                lower_reg  when mult_func = MULT_READ_LO AND custom_mul_finished = '1' AND negate_reg = '0'    AND mode_reg = MODE_MULT else
+                upper_reg  when mult_func = MULT_READ_HI AND custom_mul_finished = '1' AND negate_reg = '0'    AND mode_reg = MODE_MULT else
+                
                 lower_reg                when mult_func = MULT_READ_LO AND negate_reg = '0'             AND mode_reg = MODE_DIV else
                 bv_negate(lower_reg)     when mult_func = MULT_READ_LO AND negate_reg = '1'             AND mode_reg = MODE_DIV else
                 upper_reg                when mult_func = MULT_READ_HI AND negate_reg = '0'             AND mode_reg = MODE_DIV else
@@ -156,10 +159,12 @@ begin
             resultHFin <= (others => '0');
         elsif rising_edge(clk) then
             case mult_func is
-                when MULT_WRITE_LO =>
+                when MULT_WRITE_LO => --used for restoring CPU state after switch
                     lower_reg <= a;
+                    resultLFin <= a;
                     negate_reg <= '0';
                 when MULT_WRITE_HI =>
+                    resultHFin <= a;
                     upper_reg <= a;
                     negate_reg <= '0';
                 when MULT_MULT =>
@@ -272,23 +277,22 @@ begin
                     end if; --vCount
             end case;
         end if; -- clck
-                -- MS: Convert WARNING: VERY SLOW!!!!!!!!
-                if  custom_mul_finished = '1' then  
-                    if vSigned_mul = '1' AND vSign_value = '1' then
-                        vResultBig := bv_twos_complement(resultL,resultH);
-                        resultLFin <= vResultBig(a'range);
-                        resultHFin <= vResultBig(vResultBig'high downto resultL'length);
-                        --end if; 
-                    elsif vSigned_mul = '0' AND ((a > x"FFFFFF00" AND b > x"FFFFFF00") OR 
-                                                (a >= x"FFFFFF00" AND b > x"FFFFFF00") OR 
-                                                (a > x"FFFFFF00" AND b >= x"FFFFFF00")) then
-                            resultHFin <= bv_inc(resultH);
-                            resultLFin <= resultL;  
-                    else 
-                        resultLFin <= resultL;
-                        resultHFin <= resultH;                 
-                    end if;
-                end if;
+        -- MS: Convert WARNING: VERY SLOW!!!!!!!!
+        if  custom_mul_finished = '1' then  
+            if vSigned_mul = '1' AND vSign_value = '1' then
+                vResultBig := bv_twos_complement(resultL,resultH);
+                resultLFin <= vResultBig(a'range);
+                resultHFin <= vResultBig(vResultBig'high downto resultL'length);
+            elsif   vSigned_mul = '0' AND ((a >  x"FFFFFF00"  AND b >  x"FFFFFF00") OR 
+                                           (a >= x"FFFFFF00"  AND b >  x"FFFFFF00") OR 
+                                           (a >  x"FFFFFF00"  AND b >= x"FFFFFF00")) then
+                resultHFin <= bv_inc(resultH);
+                resultLFin <= resultL;  
+            else 
+                resultLFin <= resultL;
+                resultHFin <= resultH;                 
+            end if;
+        end if;
 
    end process;
 end; --architecture logic

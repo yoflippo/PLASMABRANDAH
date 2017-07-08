@@ -868,6 +868,7 @@ begin
             report "Test: " & integer'image(i) & "_" & integer'image(j);
             a         <= v_ia2;
             b         <= v_ib2;
+
             mult_func <= MULT_MULT;       -- MS: choose type of multiplication
             wait until rising_edge(Clk);
             mult_func <= MULT_READ_LO; err <= '0';
@@ -876,14 +877,13 @@ begin
 
             if c_mult /= c_mult2 then
                vSimResult := false; err <= '1';
-               
-               report "Test - LOW UNSIGNED Failed!!" severity ERROR;
+               report "Test MULTIPLIER- LOW UNSIGNED Failed!!" severity ERROR;
             end if;
             mult_func <= MULT_READ_HI;
             wait until rising_edge(Clk);
             if c_mult /= c_mult2 then
                vSimResult := false; err <= '1';
-               report "Test - HIGH UNSIGNED Failed!!" severity ERROR;
+               report "Test MULTIPLIER- HIGH UNSIGNED Failed!!" severity ERROR;
             end if;
 
             mult_func <= MULT_SIGNED_MULT;       -- MS: choose type of multiplication
@@ -894,15 +894,51 @@ begin
 
             if c_mult /= c_mult2 then
                vSimResult := false; err <= '1';
-               report "Test- LOW SIGNED Failed!!" severity ERROR;
+               report "Test MULTIPLIER - LOW SIGNED Failed!!" severity ERROR;
             end if;
             
             mult_func <= MULT_READ_HI;
             wait until rising_edge(Clk);
             if c_mult /= c_mult2 then
                vSimResult := false; err <= '1';
-               report "Test - HIGH SIGNED Failed!!" severity ERROR;
+               report "Test MULTIPLIER- HIGH SIGNED Failed!!" severity ERROR;
             end if;
+-- DIVIDE.. this is actually a silly test because c_mult and c_mult2 should be directly connected
+            mult_func <= MULT_DIVIDE;       -- MS: choose type of multiplication
+            wait until rising_edge(Clk);
+            mult_func <= MULT_READ_LO; err <= '0';
+            wait until falling_edge(pause_out);
+            wait until rising_edge(Clk);
+
+            if c_mult /= c_mult2 then
+               vSimResult := false; err <= '1';
+               report "Test DIVIDER - LOW UNSIGNED Failed!!" severity ERROR;
+            end if;
+            mult_func <= MULT_READ_HI;
+            wait until rising_edge(Clk);
+            if c_mult /= c_mult2 then
+               vSimResult := false; err <= '1';
+               report "Test DIVIDER - HIGH UNSIGNED Failed!!" severity ERROR;
+            end if;
+
+            mult_func <= MULT_SIGNED_DIVIDE;       -- MS: choose type of multiplication
+            wait until rising_edge(Clk);
+            mult_func <= MULT_READ_LO; err <= '0';
+            wait until falling_edge(pause_out);
+            wait until rising_edge(Clk);
+
+            if c_mult /= c_mult2 then
+               vSimResult := false; err <= '1';
+               report "Test DIVIDER - LOW SIGNED Failed!!" severity ERROR;
+            end if;
+            
+            mult_func <= MULT_READ_HI;
+            wait until rising_edge(Clk);
+            if c_mult /= c_mult2 then
+               vSimResult := false; err <= '1';
+               report "Test DIVIDER - HIGH SIGNED Failed!!" severity ERROR;
+            end if;
+
 
             v_ia2 :=  bv_inc(v_ia2);
          end loop;
