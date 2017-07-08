@@ -863,8 +863,8 @@ begin
       v_ia2         := x"FFFFFF80"; -- 
       v_ib2         := x"FFFFFF80";
       
-      for i in 0 to 255 loop
-         for j in 0 to 255 loop
+      for i in 0 to 511 loop
+         for j in 0 to 511 loop
             report "Test: " & integer'image(i) & "_" & integer'image(j);
             a         <= v_ia2;
             b         <= v_ib2;
