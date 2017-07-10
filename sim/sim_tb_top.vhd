@@ -19,7 +19,7 @@ architecture arch of sim_tb_top is
 	--   "UNUSED";
    "output.txt";
    
-  constant sdramfile : string := "ddr_content/divide.srec";
+  constant sdramfile : string := "ddr_content/opcodes.srec";
   
   component plasma_top
        generic(log_file     : string := "UNUSED";

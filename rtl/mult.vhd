@@ -173,7 +173,7 @@ begin
                     negate_reg <= '0';
 					baseline <= '1';
                 when MULT_MULT =>
-					baseline <= '1'; -- MAKE THIS zero when using custom
+					baseline <= '0'; -- MAKE THIS zero when using custom
                     mode_reg <= MODE_MULT;
                     aa_reg <= a;        -- MS : copy value port a to signal aa_reg
                     bb_reg <= b;
@@ -187,7 +187,7 @@ begin
                     vSigned_mul := '0';
 						  count_reg <= "100000";
                 when MULT_SIGNED_MULT =>
-					baseline <= '1'; -- MAKE THIS zero when using custom
+					baseline <= '0'; -- MAKE THIS zero when using custom
                     mode_reg <= MODE_MULT;
                     vSigned_mul := '1';
                     if b(31) = '0' then

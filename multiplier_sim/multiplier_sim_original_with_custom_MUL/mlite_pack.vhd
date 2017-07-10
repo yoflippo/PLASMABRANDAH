@@ -355,6 +355,14 @@ End COMPONENT; --entity adder
         );
     end component;
 
+    component rand_gen is --MS: added random generator
+       port(
+           clk       : in std_logic;
+           reset_in  : in std_logic;
+           rand_num  : out integer
+       );
+    end component;
+
     component pipeline
         port(
             clk            : in  std_logic;
