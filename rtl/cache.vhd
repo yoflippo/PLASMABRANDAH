@@ -69,10 +69,11 @@ architecture logic of cache is
 
     ---------------------------------------------------------------------------------------
     -----2-way set adjustment signals------------------------------
-    signal LRU_in   : std_logic_vector(0 downto 0);
-    signal LRU_out  : std_logic_vector(0 downto 0);
-    --signal LRU_reg  : std_logic_vector(0 downto 0);
-    --signal LRU_we   : std_logic;
+    signal LRU_in           : std_logic_vector(0 downto 0);
+    signal LRU_out          : std_logic_vector(0 downto 0);
+    signal LRU_reg          : std_logic_vector(0 downto 0);
+    signal LRU_we           : std_logic;
+    signal LRU_write_addr   : std_logic_vector(10 downto 0);
 
     signal cache_ram_data_r0            :  std_logic_vector(31 downto 0);
     signal cache_ram_data_r1            :  std_logic_vector(31 downto 0);
@@ -82,8 +83,12 @@ architecture logic of cache is
     signal cache_ram_data_w_reg         :  std_logic_vector(31 downto 0);
     signal cache_ram_byte_we_temp 	    :  std_logic_vector(3 downto 0);
     signal cache_ram_byte_we_reg 	    :  std_logic_vector(3 downto 0);
+    signal cache_ram_byte_we_reg2       :  std_logic_vector(3 downto 0);
     signal write_toggle                 :  std_logic:='0';
     signal cache_ram_address_reg        :  std_logic_vector(31 downto 2);    
+    signal cache_ram_address_reg2       :  std_logic_vector(31 downto 2);    
+    signal miss_state_prev              :  std_logic:='0';
+    signal miss_state_prev_reg          :  std_logic:='0';
 
 
     -------------------------------------------------------
@@ -97,10 +102,26 @@ begin
     cache_ram_data_w_temp <= cache_ram_data_w_reg;      --TvE: when a write occurs the data must be latched because we have to wait to see in which set it must be placed
     cache_ram_byte_we_temp <= cache_ram_byte_we_reg;    --TvE: when a write occurs the byte_we must be latched because we have to wait to see in which set it must be placed
 
-    cache_proc: process(clk, reset, mem_busy, cache_address, cache_ram_data_r0, cache_ram_data_r1, LRU_out,
+    LRU_write_addr(10 downto 0) <= cpu_address(12 downto 2); -- TvE: To make sure the LRU is updated in the right line.
+
+    --read_proc: process(cache_ram_data_r0, cache_ram_data_r1, cache_tag_out, cache_tag_reg)
+    --begin
+    --    if cache_tag_out(0) = cache_tag_reg then
+    --        cache_ram_data_r <= cache_ram_data_r0;      --TvE: tag of set 0 was correct so data in set 0 is routed to output
+    --        LRU_in(0) <= '1';                            --TvE: Data in set 1 was Least Recently Used
+    --    elsif cache_tag_out(1) = cache_tag_reg then
+    --        cache_ram_data_r <= cache_ram_data_r1;      --TvE: tag of set 1 was correct so data in set 1 is routed to output
+    --        LRU_in(0) <= '0';                              --TvE: Data in set 0 was Least Recently Used
+    --    else        -- TvE: Do nothing
+--
+--    --    end if;   
+--
+    --end process;
+
+    cache_proc: process(clk, reset, mem_busy, cache_address, LRU_out, cache_ram_data_r0, cache_ram_data_r1,
         state_reg, state, state_next,
         address_next, byte_we_next, cache_tag_in, --Stage1
-        cache_tag_reg, cache_tag_out,           --Stage2 TvE:
+        cache_tag_reg, cache_tag_out,            --Stage2 TvE:
         cpu_address) --Stage3
     begin
         
@@ -111,16 +132,20 @@ begin
                 state <= STATE_IDLE;
             when STATE_CHECKING =>        --current read in cached range, check if match
                 cache_checking <= '1';
-                --LRU_we <= '1';            --TvE: hardcoded 1
+                LRU_we <= '1';            --TvE: hardcoded 1
+                write_toggle <= '0';
+                --LRU_write_addr <= cpu_address; -- TvE: To make sure the LRU is updated in the right line.
                 if (cache_tag_out(1) /= cache_tag_reg and cache_tag_out(0) /= cache_tag_reg) or
                    (cache_tag_out(1) = ONES(7 downto 0) and cache_tag_out(0) = ONES(7 downto 0)) then 
                     
                     cache_miss <= '1';
                     if LRU_out(0) = '1' then
-	                    cache_ram_write_address_temp(14 downto 13) <= "01";    --TvE: Enables data set 1 to write to MIGHT BE CPU_ADDRESS! SINCE ITS A CLOCKCYCLE LATER
+                        cache_ram_data_r <= cache_ram_data_r0;      --TvE: data_r must be set in every case.
+	                    cache_ram_write_address_temp(14 downto 13) <= "01";    --TvE: Enables data set 1 to write to 
 	                    cache_we <= "10";								--TvE: Enable cache tag block 1 to write tag to
 	                    LRU_in(0) <= '0';									--TvE: LRU after write to set 1 is set 0
 	                else
+                        cache_ram_data_r <= cache_ram_data_r1;      --TvE: data_r must be set in every case.
 	                    cache_ram_write_address_temp(14 downto 13) <= "00";    --TvE: Enables data set 0 to write to
 	                    cache_we <= "01";								--TvE: Enable cache tag block 0 to write tag to
 	                    LRU_in(0) <= '1';									--TvE: LRU after write to set 0 is set 1
@@ -129,19 +154,28 @@ begin
                 else
                     cache_we <= "00";
                     cache_miss <= '0';
-                    if cache_tag_out(0) = cache_tag_reg then
-                        cache_ram_data_r <= cache_ram_data_r0;      --TvE: tag of set 0 was correct so data in set 0 is routed to output
-                        LRU_in(0) <= '1';                              --TvE: Data in set 1 was Least Recently Used
+                    if(cache_ram_byte_we_reg2="1111" and cache_ram_byte_we_reg="0000" and cache_ram_address_reg2=cache_ram_address_reg) then  -- Make use of the latched written data to the cache since this cache is implemented as read first
+                        cache_ram_data_r <= cache_ram_data_w_reg;
                     else
-                        cache_ram_data_r <= cache_ram_data_r1;      --TvE: tag of set 1 was correct so data in set 1 is routed to output
-                        LRU_in(0) <= '0';                              --TvE: Data in set 0 was Least Recently Used
-                    end if;                    
+                        if cache_tag_out(0) = cache_tag_reg then
+                            cache_ram_data_r <= cache_ram_data_r0;      --TvE: tag of set 0 was correct so data in set 0 is routed to output
+                            LRU_in(0) <= '1';                            --TvE: Data in set 1 was Least Recently Used
+                        elsif cache_tag_out(1) = cache_tag_reg then
+                            cache_ram_data_r <= cache_ram_data_r1;      --TvE: tag of set 1 was correct so data in set 1 is routed to output
+                            LRU_in(0) <= '0';                              --TvE: Data in set 0 was Least Recently Used
+                        else        -- TvE: Do nothing
+
+                        end if;
+                    end if;                 
                 
                     state <= STATE_IDLE;
                 end if;
             when STATE_MISSED =>          --current read cache miss
                 cache_checking <= '0';
                 cache_miss <= '1';
+                LRU_we <= '0';
+                cache_we <= "00";
+                miss_state_prev <= '1';     --TvE: signal to detect if the miss state was previous then no addresses or LRU's have to be checked again
                 if mem_busy = '1' then
                     state <= STATE_MISSED;
                 else
@@ -150,25 +184,31 @@ begin
             when STATE_WAITING =>         --waiting for memory access to complete
                 cache_checking <= '0';
                 cache_miss <= '0';
-                if write_toggle = '0' then                           --TvE: To make sure that when cache is waiting until DDR is also updated that it doesnt toggle the LRU continuously
-                    --LRU_we <= '1';                                --TvE: Hardcoded 1
-                    if LRU_out(0) = '1' then
-                        cache_ram_write_address_temp(14 downto 13) <= "01";    --TvE: Enables data set 1 to write to
-                        cache_we <= "10";								--TvE: Enable cache tag block 1 to write tag to
-                        LRU_in(0) <= '0';									--TvE: LRU after write to set 1 is set 0
-                    else
-                        cache_ram_write_address_temp(14 downto 13) <= "00";    --TvE: Enables data set 0 to write to
-                        cache_we <= "01";								--TvE: Enable cache tag block 0 to write tag to
-                        LRU_in(0) <= '1';									--TvE: LRU after write to set 0 is set 1
+
+                if miss_state_prev_reg = '1' then
+                    miss_state_prev <= '0';         --TvE: signal to detect if the miss state was previous then no addresses or LRU's have to be checked again
+                else
+                    if write_toggle = '0' then                           --TvE: To make sure that when cache is waiting until DDR is also updated that it doesnt toggle the LRU continuously
+                        LRU_we <= '1';                                
+                        --LRU_write_addr <= cpu_address; -- TvE: To make sure the LRU is updated in the right line.
+                        if LRU_out(0) = '1' then
+                            cache_ram_write_address_temp(14 downto 13) <= "01";    --TvE: Enables data set 1 to write to
+                            cache_we <= "10";								--TvE: Enable cache tag block 1 to write tag to
+                            LRU_in(0) <= '0';									--TvE: LRU after write to set 1 is set 0
+                        else
+                            cache_ram_write_address_temp(14 downto 13) <= "00";    --TvE: Enables data set 0 to write to
+                            cache_we <= "01";								--TvE: Enable cache tag block 0 to write tag to
+                            LRU_in(0) <= '1';									--TvE: LRU after write to set 0 is set 1
+                        end if;
                     end if;
                 end if;
                                 
+
                 if mem_busy = '1' then
                     state <= STATE_WAITING;
                     write_toggle <= '1';
                 else
                     state <= STATE_IDLE;
-                    write_toggle <= '0';
                 end if;
             when others =>
                 cache_checking <= '0';
@@ -178,17 +218,18 @@ begin
 
         if state = STATE_IDLE then    --check if next access in cached range
             cache_address <= address_next(12 downto 2); 
+--            LRU_we <= '0';
+
             if address_next(30 downto 21) = "0010000000" then  --first 2MB of DDR, MS: first and only 1 is for activating DDR
                 cache_access <= '1';
                 if byte_we_next = "0000" then     --read cycle
                     state_next <= STATE_CHECKING;  --need to check if match
                 else
+                    write_toggle <= '0';
                     state_next <= STATE_WAITING;
                 end if;
             else
-                if(cache_ram_byte_we_reg="1111" and cache_ram_byte_we="0000") then  -- Make use of the latched written data to the cache since this cache is implemented as read first
-                    cache_ram_data_r <= cache_ram_data_w_reg;
-                end if;
+                LRU_we <= '0';
                 cache_access <= '0';
                 cache_we <= "00";
                 state_next <= STATE_IDLE;
@@ -214,8 +255,11 @@ begin
         elsif rising_edge(clk) then
             state_reg <= state_next;
             cache_ram_address_reg <= cache_ram_address;
+            cache_ram_address_reg2 <= cache_ram_address_reg;
             cache_ram_data_w_reg <= cache_ram_data_w;   --TvE:  since we need to check in which set it has to be put in
             cache_ram_byte_we_reg <= cache_ram_byte_we;
+            cache_ram_byte_we_reg2 <= cache_ram_byte_we_reg;
+            miss_state_prev_reg <= miss_state_prev;
             
             if state = STATE_IDLE and state_reg /= STATE_MISSED then
                 cache_tag_reg <= cache_tag_in;
@@ -229,7 +273,7 @@ begin
         generic map (
             INIT => X"FFF", -- Value of output RAM registers at startup
             SRVAL => X"000", -- Ouput value upon SSR assertion
-            WRITE_MODE => "READ_FIRST", -- WRITE_FIRST, READ_FIRST or NO_CHANGE
+            WRITE_MODE => "WRITE_FIRST", -- WRITE_FIRST, READ_FIRST or NO_CHANGE
             -- The following INIT_xx declarations specify the initial contents of the RAM
             -- Address 0 to 511
             INIT_00 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
@@ -329,7 +373,7 @@ begin
         generic map (
             INIT => X"FFF", -- Value of output RAM registers at startup
             SRVAL => X"000", -- Ouput value upon SSR assertion
-            WRITE_MODE => "READ_FIRST", -- WRITE_FIRST, READ_FIRST or NO_CHANGE
+            WRITE_MODE => "WRITE_FIRST", -- WRITE_FIRST, READ_FIRST or NO_CHANGE
             -- The following INIT_xx declarations specify the initial contents of the RAM
             -- Address 0 to 511
             INIT_00 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
@@ -425,13 +469,18 @@ begin
             WE   => cache_we(1)
         );
 
-        cache_LRU: RAMB16_S9  --Xilinx specific
+        cache_LRU: RAMB16_S9_S9  --Xilinx specific
         generic map (
-            INIT => X"FFF", -- Value of output RAM registers at startup
-            SRVAL => X"000", -- Ouput value upon SSR assertion
-            --WRITE_MODE => "WRITE_FIRST", -- WRITE_FIRST, READ_FIRST or NO_CHANGE
-            -- The following INIT_xx declarations specify the initial contents of the RAM
-            -- Address 0 to 511
+            INIT_A => X"FFF", -- Initial values on A output port
+            INIT_B => X"FFF", -- Initial values on B output port
+            SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
+            SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
+            WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+            WRITE_MODE_B => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+            --In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
+            --In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
+            --In NO_CHANGE mode, the output latches remain unchanged during a write operation
+
             INIT_00 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
             INIT_01 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
             INIT_02 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
@@ -514,15 +563,27 @@ begin
             INITP_07 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
         )
         port map (
-            DO   => open,                --TvE: changed cache_tag_out to cache_tag_out
-            DOP  => LRU_out,
-            ADDR => cache_address,             --registered
-            CLK  => clk,
-            DI   => "00000000",  --registered
-            DIP  => LRU_in,
-            EN   => '1',        --TvE: Changed from '1'
-            SSR  => ZERO(0),
-            WE   => '1'
+            -- Port A is "read" port-----------------------------------------------------------------
+            DOA => open, -- 8-bit A port Data Output  TvE: the read output port
+            DOPA => LRU_out, -- 1-bit A port Parity Output                     TvE: Parity unused
+            ADDRA => cache_address, -- 11-bit A port Address Input              TvE: Read address
+            CLKA => clk, -- Port A Clock
+            DIA => ZERO(7 downto 0), -- 8-bit A port Data Input             TvE: No writes on the "read" port
+            DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input          TvE: Parity unused
+            ENA => '1', -- 1-bit A port Enable Input                        TvE: "Read" port always enabled
+            SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input    TvE: Unused
+            WEA => ZERO(0), -- 1-bit A port Write Enable Input      TvE: "Read" port can never be written on
+            
+            -- Port B is "write" port----------------------------------------------------------------
+            DOB => open, -- 8-bit B port Data Output                        TvE: no reads from the "write" port
+            DOPB => open, -- 1-bit B port Parity Output                     TvE: Parity unused
+            ADDRB => LRU_write_addr, -- 11-bit B port Address Input             TvE: Write address
+            CLKB => clk, -- Port B Clock
+            DIB => ZERO(7 downto 0), -- 8-bit B port Data Input     TvE: Data input
+            DIPB => LRU_in, -- 1-bit B port parity Input          TvE: Parity unused
+            ENB => '1', -- 1-bit B port Enable Input            TvE: Enable based on higher bits of the write_address
+            SSRB => ZERO(0), -- 1-bit B port Synchronous Set/Reset Input    TvE: Unused
+            WEB => LRU_we -- 1-bit B port Write Enable Input  TvE: "Write" port enable based on byte_enable
         );
 
 
