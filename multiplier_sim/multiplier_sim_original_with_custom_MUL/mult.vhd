@@ -65,8 +65,8 @@ architecture logic of mult is
     signal count_reg   : std_logic_vector(5 downto 0);
     signal aa_reg      : std_logic_vector(31 downto 0);
     signal bb_reg      : std_logic_vector(31 downto 0);
-    signal aa_reg2     : std_logic_vector(31 downto 0);
-    signal bb_reg2     : std_logic_vector(31 downto 0);
+    signal mul_plier_cus     : std_logic_vector(31 downto 0);
+    signal mul_cand_cus     : std_logic_vector(31 downto 0);
     signal upper_reg   : std_logic_vector(31 downto 0);
     signal lower_reg   : std_logic_vector(31 downto 0);
 
@@ -75,10 +75,11 @@ architecture logic of mult is
     signal sum         : std_logic_vector(32 downto 0);
     
     signal custom_mul_finished : std_logic;
-    signal resultL : std_logic_vector(31 downto 0);
-    signal resultH : std_logic_vector(31 downto 0);
-    signal resultLFin : std_logic_vector(31 downto 0); 
-    signal resultHFin : std_logic_vector(31 downto 0);
+    signal resultL             : std_logic_vector(31 downto 0);
+    signal resultH             : std_logic_vector(31 downto 0);
+    signal resultLFin          : std_logic_vector(31 downto 0); 
+    signal resultHFin          : std_logic_vector(31 downto 0);
+    signal baseline            : std_logic;
 
 begin
 
@@ -86,25 +87,22 @@ begin
      port map(
          iclk          => clk,
          ireset        => reset_in,
-         iMultiplier   => aa_reg2,
-         iMultiplicand => bb_reg2,
+         iMultiplier   => mul_plier_cus,
+         iMultiplicand => mul_cand_cus,
          oFinished     => custom_mul_finished,
          oResultL      => resultL,
          oResultH      => resultH     
     );
 
-    sum     <= bv_adder(upper_reg, aa_reg, mode_reg);
+
 
     -- Result
-    c_mult2 <=  resultLFin when mult_func = MULT_READ_LO AND custom_mul_finished = '1' AND mode_reg = MODE_MULT else
-                resultHFin when mult_func = MULT_READ_HI AND custom_mul_finished = '1' AND mode_reg = MODE_MULT else
-                lower_reg  when mult_func = MULT_READ_LO AND custom_mul_finished = '1' AND negate_reg = '0'    AND mode_reg = MODE_MULT else
-                upper_reg  when mult_func = MULT_READ_HI AND custom_mul_finished = '1' AND negate_reg = '0'    AND mode_reg = MODE_MULT else
-                
-                lower_reg                when mult_func = MULT_READ_LO AND negate_reg = '0'             AND mode_reg = MODE_DIV else
-                bv_negate(lower_reg)     when mult_func = MULT_READ_LO AND negate_reg = '1'             AND mode_reg = MODE_DIV else
-                upper_reg                when mult_func = MULT_READ_HI AND negate_reg = '0'             AND mode_reg = MODE_DIV else
-                bv_negate(upper_reg)     when mult_func = MULT_READ_HI AND negate_reg = '1'             AND mode_reg = MODE_DIV else ZERO;
+    c_mult2 <= resultLFin             when mult_func = MULT_READ_LO AND mode_reg = MODE_MULT AND baseline = '0' else
+               resultHFin             when mult_func = MULT_READ_HI AND mode_reg = MODE_MULT AND baseline = '0' else
+               lower_reg              when mult_func = MULT_READ_LO and negate_reg = '0'     AND baseline = '1' else
+               bv_negate(lower_reg)   when mult_func = MULT_READ_LO and negate_reg = '1'     AND baseline = '1' else
+               upper_reg              when mult_func = MULT_READ_HI and negate_reg = '0'     AND baseline = '1' else 
+               bv_negate(upper_reg)   when mult_func = MULT_READ_HI and negate_reg = '1'     AND baseline = '1' else ZERO;
 
     c_mult <=   lower_reg               when mult_func = MULT_READ_LO and negate_reg = '0' else
                 bv_negate(lower_reg)    when mult_func = MULT_READ_LO and negate_reg = '1' else
@@ -123,67 +121,70 @@ begin
     -- ABS and remainder signals
     a_neg   <= bv_negate(a);
     b_neg   <= bv_negate(b);
+    sum     <= bv_adder(upper_reg, aa_reg, mode_reg);
 
 
-    --multiplication/division unit
+     --multiplication/division unit
     mult_proc: process(clk, reset_in, a, b, mult_func,
-      a_neg, b_neg, sum, sign_reg, mode_reg, negate_reg,
+      a_neg, b_neg, sum, sign_reg, mode_reg, baseline, negate_reg,
       count_reg, aa_reg, bb_reg, upper_reg, lower_reg, custom_mul_finished)
       
-      variable vCount      : std_logic_vector(2 downto 0);
-      variable vResultBig  : std_logic_vector(63 downto 0);
+      variable vCount        : std_logic_vector(2 downto 0);
+      variable vResultBig    : std_logic_vector(63 downto 0);
       variable vSign_value : std_logic := '0'; -- MS: register for saving the result signess
       variable vSign_a_bit : std_logic;
       variable vSign_b_bit : std_logic;
       variable vSigned_mul : std_logic;
-      variable vTemp       : std_logic_vector(a'range);
     begin
         vCount := "001";
         if reset_in = '1' then
-            mode_reg <= '0';
-            negate_reg <= '0';
-            sign_reg <= '0';
             vSign_value := '0';
-            sign2_reg <= '0';
             vSign_b_bit := '0';
             vSign_a_bit := '0';
             vSigned_mul := '0';
-            count_reg <= "000000";
-            aa_reg <= ZERO;
-            bb_reg <= ZERO;
-            upper_reg <= ZERO;
-            lower_reg <= ZERO;
-            aa_reg2 <= ZERO;
-            bb_reg2 <= ZERO;
-            resultLFin <= (others => '0');
-            resultHFin <= (others => '0');
+            
+            baseline      <= '1'; -- MS: default use baseline
+            mode_reg      <= '0';
+            negate_reg    <= '0';
+            sign_reg      <= '0';      
+            sign2_reg     <= '0';
+            count_reg     <= "000000";
+            aa_reg        <= ZERO;
+            bb_reg        <= ZERO;
+            upper_reg     <= ZERO;
+            lower_reg     <= ZERO;
+            mul_plier_cus <= ZERO;
+            mul_cand_cus  <= ZERO;
+            resultLFin    <= (others => '0');
+            resultHFin    <= (others => '0');
         elsif rising_edge(clk) then
             case mult_func is
-                when MULT_WRITE_LO => --used for restoring CPU state after switch
-                    lower_reg <= a;
-                    resultLFin <= a;
-                    negate_reg <= '0';
+                when MULT_WRITE_LO =>
+                    lower_reg   <= a;
+                    negate_reg  <= '0';
+                    baseline    <= '1';
                 when MULT_WRITE_HI =>
-                    resultHFin <= a;
-                    upper_reg <= a;
-                    negate_reg <= '0';
+                    upper_reg   <= a;
+                    negate_reg  <= '0';
+                    baseline    <= '1';
                 when MULT_MULT =>
-                    mode_reg <= MODE_MULT;
-                    aa_reg <= a;        -- MS : copy value port a to signal aa_reg
-                    bb_reg <= b;
-                    upper_reg <= ZERO;
-                    count_reg <= "100000";
-                    negate_reg <= '0';
-                    sign_reg <= '0';
-                    sign2_reg <= '0';
-                    vSign_value := '0';
-                    aa_reg2 <= a;
-                    bb_reg2 <= b;
-                    vSigned_mul := '0';
+                    baseline    <= '0'; -- MAKE THIS zero when using custom
+                    mode_reg    <= MODE_MULT;
+                    aa_reg      <= a;        -- MS : copy value port a to signal aa_reg
+                    bb_reg      <= b;
+                    upper_reg   <= ZERO;
+                    negate_reg  <= '0';
+                    sign_reg    <= '0';
+                    sign2_reg   <= '0';
+                    vSign_value     := '0';
+                    mul_plier_cus   <= a;
+                    mul_cand_cus    <= b;
+                    vSigned_mul     := '0';
+                    count_reg       <= "100000";
                 when MULT_SIGNED_MULT =>
+                    baseline <= '0'; -- MAKE THIS zero when using custom
                     mode_reg <= MODE_MULT;
                     vSigned_mul := '1';
-
                     if b(31) = '0' then
                         aa_reg <= a;
                         bb_reg <= b;
@@ -193,7 +194,6 @@ begin
                         aa_reg <= a_neg;
                         bb_reg <= b_neg;
                     end if;
-
                     if a /= ZERO then
                         vSign_value  := a(31) xor b(31);
                         sign_reg <= vSign_value;
@@ -201,25 +201,24 @@ begin
                         vSign_value := '0';
                         sign_reg <= '0';
                     end if;
-
                     sign2_reg <= '0';
                     upper_reg <= ZERO;
-                    count_reg <= "100000";
                     negate_reg <= '0';
-                    
+                    count_reg <= "100000";
                     -- MS: 2's complement when one of operands is negative
                     if (a(31) = '1')  then  
-                      aa_reg2 <= a_neg;
+                      mul_plier_cus <= a_neg;
                     else
-                      aa_reg2 <= a;
+                      mul_plier_cus <= a;
                     end if;
 
                     if (b(31) = '1') then
-                      bb_reg2  <= b_neg;
+                      mul_cand_cus  <= b_neg;
                     else
-                      bb_reg2 <= b;
+                      mul_cand_cus <= b;
                     end if;
                 when MULT_DIVIDE =>
+                          baseline <= '1';
                     mode_reg <= MODE_DIV;
                     aa_reg <= b(0) & ZERO(30 downto 0);
                     bb_reg <= b;
@@ -227,6 +226,7 @@ begin
                     count_reg <= "100000";
                     negate_reg <= '0';
                 when MULT_SIGNED_DIVIDE =>
+                         baseline <= '1';
                     mode_reg <= MODE_DIV;
                     if b(31) = '0' then         -- MS: check MSB bit for signedness
                         aa_reg(31) <= b(0);     -- MS: if UNsigned
@@ -245,7 +245,7 @@ begin
                     negate_reg <= a(31) xor b(31);
                 when others =>
                     if count_reg /= "000000" then -- MS: countdown from 31 to 0
-                        if mode_reg = MODE_MULT then
+                       if mode_reg = MODE_MULT then
                             -- Multiplication
                             if bb_reg(0) = '1' then
                                 upper_reg   <= (sign_reg xor sum(32)) & sum(31 downto 1);
@@ -260,7 +260,7 @@ begin
                             end if;
                         else
                             -- Division
-                            if sum(32) = '0' and aa_reg /= ZERO and
+                            if sum(32) = '0' AND aa_reg /= ZERO AND
                                bb_reg(31 downto 1) = ZERO(31 downto 1) then
                                 upper_reg       <= sum(31 downto 0);
                                 lower_reg(0)    <= '1';
@@ -271,23 +271,23 @@ begin
                             lower_reg(31 downto 1)  <= lower_reg(30 downto 0);
                             bb_reg                  <= '0' & bb_reg(31 downto 1);
                         end if;
-                    count_reg <= count_reg - vCount; -- MS: decrease the count_reg with one
-                    else
-         
+                        count_reg <= count_reg - vCount; -- MS: decrease the count_reg with one
                     end if; --vCount
-            end case;
-        end if; -- clck
-        -- MS: Convert WARNING: VERY SLOW!!!!!!!!
-        if  custom_mul_finished = '1' then  
+            end case;  
+        end if; -- clc
+                
+        if  custom_mul_finished = '1' and mode_reg = MODE_MULT and baseline = '0' then  
             if vSigned_mul = '1' AND vSign_value = '1' then
                 vResultBig := bv_twos_complement(resultL,resultH);
                 resultLFin <= vResultBig(a'range);
                 resultHFin <= vResultBig(vResultBig'high downto resultL'length);
-            elsif   vSigned_mul = '0' AND ((a >  x"FFFFFF00"  AND b >  x"FFFFFF00") OR 
-                                           (a >= x"FFFFFF00"  AND b >  x"FFFFFF00") OR 
-                                           (a >  x"FFFFFF00"  AND b >= x"FFFFFF00")) then
-                resultHFin <= bv_inc(resultH);
-                resultLFin <= resultL;  
+            -- MS: test for specific situations where csa-multiplier gives errors
+            -- this is established based on trial-and-error
+            elsif vSigned_mul = '0' AND ((a > x"FFFFFF00"  AND b >  x"FFFFFF00") OR 
+                                         (a >= x"FFFFFF00" AND b >  x"FFFFFF00") OR 
+                                         (a > x"FFFFFF00"  AND b >= x"FFFFFF00")) then
+                    resultHFin <= bv_inc(resultH); -- only increment high result with one
+                    resultLFin <= resultL;  
             else 
                 resultLFin <= resultL;
                 resultHFin <= resultH;                 

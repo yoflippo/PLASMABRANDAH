@@ -1,3 +1,6 @@
+-- MS: got this random generator from : http://vhdlguru.blogspot.nl/2013/08/generating-random-numbers-in-vhdl.html
+
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
@@ -26,8 +29,8 @@ begin
 		if reset_in = '1' then
 			rand_num <= 0;
 	    elsif rising_edge(clk) then
-	    	uniform(seed1, seed2, rand);   -- generate random number
-	    	rand_num <= integer(rand*range_of_rand);  -- rescale to 0..1000, convert integer part 
+	    	uniform(seed1, seed2, rand);   				-- generate random number
+	    	rand_num <= integer(rand*range_of_rand);  	-- rescale to 0..1000, convert integer part 
 	    end if;
 	
 	end process;

@@ -121,8 +121,7 @@ begin
              lower_reg 				when mult_func = MULT_READ_LO and negate_reg = '0' AND baseline = '1' else
              bv_negate(lower_reg) 	when mult_func = MULT_READ_LO and negate_reg = '1' AND baseline = '1' else
              upper_reg 				when mult_func = MULT_READ_HI and negate_reg = '0' AND baseline = '1' else 
-             bv_negate(upper_reg) 	when mult_func = MULT_READ_HI and negate_reg = '1' AND baseline = '1' else
-																													ZERO;
+             bv_negate(upper_reg) 	when mult_func = MULT_READ_HI and negate_reg = '1' AND baseline = '1' else ZERO;
 	pause_out <= '1' when (count_reg /= "000000") and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else '0';
 				 
     -- ABS AND remainder signals
@@ -173,7 +172,7 @@ begin
                     negate_reg <= '0';
 					baseline <= '1';
                 when MULT_MULT =>
-					baseline <= '0'; -- MAKE THIS zero when using custom
+					baseline <= '1'; -- MAKE THIS zero when using custom
                     mode_reg <= MODE_MULT;
                     aa_reg <= a;        -- MS : copy value port a to signal aa_reg
                     bb_reg <= b;
@@ -187,7 +186,7 @@ begin
                     vSigned_mul := '0';
 						  count_reg <= "100000";
                 when MULT_SIGNED_MULT =>
-					baseline <= '0'; -- MAKE THIS zero when using custom
+					baseline <= '1'; -- MAKE THIS zero when using custom
                     mode_reg <= MODE_MULT;
                     vSigned_mul := '1';
                     if b(31) = '0' then
