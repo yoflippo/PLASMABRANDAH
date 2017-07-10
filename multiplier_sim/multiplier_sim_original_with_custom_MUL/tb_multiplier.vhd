@@ -128,6 +128,7 @@ begin
 
    begin
       Rst   <= '0';
+      err <= '0';
       wait until rising_edge(Clk);
       Rst   <= '1';
       mult_func <= MULT_MULT;
@@ -142,9 +143,10 @@ begin
       v_ib2         := x"FFFFFF80";
 
       vsequence     := 0;
-      for i in 0 to 511 loop
-         for j in 0 to 511 loop
-            report "Test: " & integer'image(i) & "_" & integer'image(j);
+      --for i in 0 to 44444444444 loop
+      while err = '0' loop -- MS: endless loop
+         for j in 0 to 15 loop
+            report "Test: " & integer'image(0) & "_" & integer'image(j);
             a         <= v_ia2;
             b         <= v_ib2;
             

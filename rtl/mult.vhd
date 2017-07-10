@@ -116,11 +116,11 @@ begin
 --                 '0';
 
 	-- Result
-   c_mult <= resultLFin             when mult_func = MULT_READ_LO AND mode_reg = MODE_MULT AND baseline = '0' else
-    		 resultHFin             when mult_func = MULT_READ_HI AND mode_reg = MODE_MULT AND baseline = '0' else
-             lower_reg 				when mult_func = MULT_READ_LO and negate_reg = '0' AND baseline = '1' else
+   c_mult <= resultLFin             when mult_func = MULT_READ_LO                      AND baseline = '0' else
+    		    resultHFin             when mult_func = MULT_READ_HI                      AND baseline = '0' else
+             lower_reg 				   when mult_func = MULT_READ_LO and negate_reg = '0' AND baseline = '1' else
              bv_negate(lower_reg) 	when mult_func = MULT_READ_LO and negate_reg = '1' AND baseline = '1' else
-             upper_reg 				when mult_func = MULT_READ_HI and negate_reg = '0' AND baseline = '1' else 
+             upper_reg 				   when mult_func = MULT_READ_HI and negate_reg = '0' AND baseline = '1' else 
              bv_negate(upper_reg) 	when mult_func = MULT_READ_HI and negate_reg = '1' AND baseline = '1' else ZERO;
 	pause_out <= '1' when (count_reg /= "000000") and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else '0';
 				 
@@ -143,15 +143,15 @@ begin
     begin
         vCount := "001";
         if reset_in = '1' then
-		      baseline <= '1'; -- MS: default use baseline
-            mode_reg <= '0';
-            negate_reg <= '0';
-            sign_reg <= '0';
             vSign_value := '0';
-            sign2_reg <= '0';
             vSign_b_bit := '0';
             vSign_a_bit := '0';
             vSigned_mul := '0';
+            baseline <= '1'; -- MS: default use baseline
+            mode_reg <= '0';
+            negate_reg <= '0';
+            sign_reg <= '0';
+            sign2_reg <= '0';
             count_reg <= "000000";
             aa_reg <= ZERO;
             bb_reg <= ZERO;
@@ -164,29 +164,29 @@ begin
         elsif rising_edge(clk) then
             case mult_func is
                 when MULT_WRITE_LO =>
-                    lower_reg <= a;
-                    negate_reg <= '0';
+					lower_reg <= a;
+					negate_reg <= '0';
 					baseline <= '1';
                 when MULT_WRITE_HI =>
-                    upper_reg <= a;
-                    negate_reg <= '0';
+					upper_reg <= a;
+					negate_reg <= '0';
 					baseline <= '1';
                 when MULT_MULT =>
-					baseline <= '1'; -- MAKE THIS zero when using custom
-                    mode_reg <= MODE_MULT;
-                    aa_reg <= a;        -- MS : copy value port a to signal aa_reg
-                    bb_reg <= b;
-                    upper_reg <= ZERO;
-                    negate_reg <= '0';
-                    sign_reg <= '0';
-                    sign2_reg <= '0';
-                    vSign_value := '0';
-                    mul_plier_cus <= a;
-                    mul_cand_cus <= b;
-                    vSigned_mul := '0';
-						  count_reg <= "100000";
+					baseline <= '0'; -- MAKE THIS zero when using custom 666
+					mode_reg <= MODE_MULT;
+					aa_reg <= a;        -- MS : copy value port a to signal aa_reg
+					bb_reg <= b;
+					upper_reg <= ZERO;
+					negate_reg <= '0';
+					sign_reg <= '0';
+					sign2_reg <= '0';
+					vSign_value := '0';
+					mul_plier_cus <= a;
+					mul_cand_cus <= b;
+					vSigned_mul := '0';
+					count_reg <= "100000";
                 when MULT_SIGNED_MULT =>
-					baseline <= '1'; -- MAKE THIS zero when using custom
+							baseline <= '0'; -- MAKE THIS zero when using custom
                     mode_reg <= MODE_MULT;
                     vSigned_mul := '1';
                     if b(31) = '0' then
