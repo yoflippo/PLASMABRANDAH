@@ -35,7 +35,9 @@ entity mem_ctrl is
         address      : out std_logic_vector(31 downto 2);
         byte_we      : out std_logic_vector(3 downto 0);
         data_w       : out std_logic_vector(31 downto 0);
-        data_r       : in std_logic_vector(31 downto 0)
+        data_r       : in std_logic_vector(31 downto 0);
+
+        opcode_out_pc: out std_logic_vector(31 downto 0)
     );
 end; --entity mem_ctrl
 
@@ -43,7 +45,9 @@ architecture logic of mem_ctrl is
     --"00" = big_endian; "11" = little_endian
     constant ENDIAN_MODE   : std_logic_vector(1 downto 0) := "00";
     signal opcode_reg      : std_logic_vector(31 downto 0);
+    signal opcode_reg_pc   : std_logic_vector(31 downto 0);
     signal next_opcode_reg : std_logic_vector(31 downto 0);
+    signal next_opcode_reg_pc : std_logic_vector(31 downto 0);
     signal address_reg     : std_logic_vector(31 downto 2);
     signal byte_we_reg     : std_logic_vector(3 downto 0);
 
@@ -55,11 +59,12 @@ begin
 
     mem_proc: process(clk, reset_in, pause_in, nullify_op,
                   address_pc, address_in, mem_source, data_write,
-                  data_r, opcode_reg, next_opcode_reg, mem_state_reg,
+                  data_r, opcode_reg_pc, next_opcode_reg_pc, next_opcode_reg, mem_state_reg,
                   address_reg, byte_we_reg)
         variable address_var    : std_logic_vector(31 downto 2);
         variable data_read_var  : std_logic_vector(31 downto 0);
         variable data_write_var : std_logic_vector(31 downto 0);
+        variable opcode_next_pc : std_logic_vector(31 downto 0); --MV om het pcnext gedeelte helemaal te scheiden van control
         variable opcode_next    : std_logic_vector(31 downto 0);
         variable byte_we_var    : std_logic_vector(3 downto 0);
         variable mem_state_next : std_logic;
@@ -71,6 +76,7 @@ begin
         data_read_var := ZERO;
         data_write_var := ZERO;
         mem_state_next := mem_state_reg;
+        opcode_next_pc := opcode_reg_pc;
         opcode_next := opcode_reg;
 
         case mem_source is
@@ -135,6 +141,7 @@ begin
 
         if mem_source = MEM_FETCH then --opcode fetch
             address_var := address_pc;
+            opcode_next_pc := data_r;
             opcode_next := data_r;
             mem_state_next := STATE_ADDR;
         else
@@ -150,6 +157,7 @@ begin
             else  --STATE_ACCESS
                 if pause_in = '0' then
                     address_var := address_pc;
+                    opcode_next_pc := next_opcode_reg_pc;
                     opcode_next := next_opcode_reg;
                     mem_state_next := STATE_ADDR;
                     byte_we_var := "0000";
@@ -161,12 +169,15 @@ begin
         end if;
 
         if nullify_op = '1' and pause_in = '0' then
-            opcode_next := ZERO;  --NOP after beql
+            opcode_next_pc := ZERO;  --NOP after beql
+            opcode_next := ZERO;
         end if;
 
         if reset_in = '1' then
             mem_state_reg <= STATE_ADDR;
+            opcode_reg_pc <= ZERO;
             opcode_reg <= ZERO;
+            next_opcode_reg_pc <= ZERO;
             next_opcode_reg <= ZERO;
             address_reg <= ZERO(31 downto 2);
             byte_we_reg <= "0000";
@@ -175,14 +186,26 @@ begin
                 address_reg <= address_var;
                 byte_we_reg <= byte_we_var;
                 mem_state_reg <= mem_state_next;
+                opcode_reg_pc <= opcode_next_pc;  --PC next opcode remains clocked in memctrl
                 opcode_reg <= opcode_next;
+                --opcode_out <= opcode_next;
                 if mem_state_reg = STATE_ADDR then
+                    next_opcode_reg_pc <= data_r;
                     next_opcode_reg <= data_r;
                 end if;
             end if;
         end if;
 
-        opcode_out <= opcode_reg;
+        --opcode_out <= opcode_reg; MV move to control 
+        --opcode_out for pcnext will remain the same
+        --Only output when pause_in = 0 (?)
+        if pause_in = '0' then
+            opcode_out <= opcode_next; 
+        end if;
+
+        -- output for pcnext
+        opcode_out_pc <= opcode_reg_pc;
+
         data_read <= data_read_var;
         pause_out <= pause_var;
 

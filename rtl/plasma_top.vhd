@@ -19,7 +19,7 @@ use unisim.vcomponents.all;
 entity plasma_top is
     generic(
         log_file    : string := "UNUSED";
-        use_cache   : std_logic := '0'
+        use_cache   : std_logic := '1'
     );
     port(
         SYS_CLK       : in std_logic;
@@ -65,7 +65,7 @@ architecture logic of plasma_top is
         generic(
             log_file      : string := "UNUSED";
             CPU_CLOCK_MHZ : real := 39.58;
-            use_cache     : std_logic := '0');
+            use_cache     : std_logic := '1');
         port(
             clk          : in std_logic;
             reset        : in std_logic;
@@ -227,4 +227,3 @@ begin  --architecture
         );   --low_data_strobe
 
 end; --architecture logic
-

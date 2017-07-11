@@ -76,6 +76,7 @@ architecture logic of mlite_cpu is
    --When using a three stage pipeline "sigD <= sig when rising_edge(clk)",
    --  so sigD is delayed by one clock cycle.
    signal opcode         : std_logic_vector(31 downto 0);
+   signal opcode_pc      : std_logic_vector(31 downto 0);
    signal rs_index       : std_logic_vector(5 downto 0);
    signal rt_index       : std_logic_vector(5 downto 0);
    signal rd_index       : std_logic_vector(5 downto 0);
@@ -164,7 +165,7 @@ begin  --architecture
         take_branch  => take_branch,
         pause_in     => pause_any,
         pc_new       => c_bus(31 downto 2),
-        opcode25_0   => opcode(25 downto 0),
+        opcode25_0   => opcode_pc(25 downto 0),
         pc_source    => pc_source,
         pc_future    => pc_future,
         pc_current   => pc_current,
@@ -192,11 +193,16 @@ begin  --architecture
             address      => address,
             byte_we      => byte_we,
             data_w       => data_w,
-            data_r       => data_r
+            data_r       => data_r,
+
+            opcode_out_pc=> opcode_pc
         );
 
     u3_control: control
         PORT MAP (
+            clk          => clk,
+            reset_in     => reset,
+            pause_in     => pause_non_ctrl,
             opcode       => opcode,
             intr_signal  => intr_signal,
             rs_index     => rs_index,
