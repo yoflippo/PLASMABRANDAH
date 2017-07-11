@@ -46,16 +46,19 @@ onerror {resume}
 log -r /*
 #View sim_tb_top signals in waveform#
 #add wave -group sim_top sim:/sim_tb_top/*
+
 add wave -group plasma_top sim:/sim_tb_top/u1_plasma_top/*
 add wave -group ddr sim:/sim_tb_top/u1_plasma_top/u2_ddr/*
 
-add wave sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/*
+add wave -group cache sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/*
+add wave -group cache sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/block0/ram_byte3/*
+add wave -group cache sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_tag/*
 
-add wave sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/*
+add wave -group multiplier -position insertpoint sim:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u8_mult/*
+add wave -group multiplier -divider variables -position insertpoint sim:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u8_mult/mult_proc/*
 
-add wave sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/block0/ram_byte3/*
+--do wave.do
 
-add wave sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_tag/*
 
 config wave -signalnamewidth 3
 
@@ -70,5 +73,5 @@ radix hex
 set NumericStdNoWarnings 1
 set StdArithNoWarnings 1
 
-run 1000us
+run 50ms
 stop
