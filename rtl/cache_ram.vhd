@@ -36,9 +36,10 @@ entity cache_ram is
     port(
         clk               : in std_logic;
         enable            : in std_logic;
+        read_enable       : in std_logic;
         write_byte_enable : in std_logic_vector(3 downto 0);
         read_address      : in std_logic_vector(31 downto 2);	--TvE: Added 2 port blockrams so 1 port can be used for reads and one for writes
-		write_address     : in std_logic_vector(31 downto 2);
+		    write_address     : in std_logic_vector(31 downto 2);
         data_write        : in std_logic_vector(31 downto 0);
         data_read0        : out std_logic_vector(31 downto 0);
         data_read1        : out std_logic_vector(31 downto 0) --TvE: added output so both data in the sets can be put on output in parallel
@@ -61,6 +62,10 @@ architecture logic of cache_ram is
 
     --Block Data Out
     signal block_do: mem32_vector(7 downto 0);
+    signal block_r_do: mem32_vector(7 downto 0);
+    signal block_w_do: mem32_vector(7 downto 0);
+    signal flag : std_logic := '0';
+    signal read_enable_reg : std_logic := '0';
     
 begin
     block_enable<= "00000001" when (enable='1') and (block_sel="000") else
@@ -73,10 +78,36 @@ begin
                    "10000000" when (enable='1') and (block_sel="111") else
                    "00000000";
 
-    proc_do: process (block_do) is
+    proc_do: process (block_r_do, read_enable, block_w_do) is
+    
     begin
-          data_read0 <= block_do(0);
-          data_read1 <= block_do(1);
+      if (read_enable = '1' and flag = '1') or (read_enable_reg = '1') then
+        data_read0 <= block_r_do(0);
+        data_read1 <= block_r_do(1);
+      else
+        data_read0 <= block_w_do(0);
+        data_read1 <= block_w_do(1);
+      end if;
+      
+      if rising_edge(clk) then
+        read_enable_reg <= read_enable;
+      end if;
+
+      if read_enable = '1' then
+        flag <= '1';
+      else
+        flag <= '0';
+      end if;
+    end process;
+
+
+    proc_reg: process (read_enable, clk) is
+    variable vRead_enable : std_logic;
+    begin
+      vRead_enable := read_enable;
+      if rising_edge(clk) then
+        read_enable_reg <= vRead_enable;
+      end if;
     end process;
 
     -- BLOCKS generation
@@ -92,8 +123,8 @@ begin
 		INIT_B => X"000", -- Initial values on B output port
 		SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
 		SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
-		WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
-		WRITE_MODE_B => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_A => "WRITE_FIRST",  -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_B => "WRITE_FIRST",  -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
 		--In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
 		--In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
 		--In NO_CHANGE mode, the output latches remain unchanged during a write operation
@@ -173,18 +204,18 @@ begin
 		)
 	port map (
 		-- Port A is "read" port-----------------------------------------------------------------
-		DOA => block_do(0)(31 downto 24), -- 8-bit A port Data Output  TvE: the read output port
+		DOA => block_r_do(0)(31 downto 24), -- 8-bit A port Data Output  TvE: the read output port
 		DOPA => open, -- 1-bit A port Parity Output						TvE: Parity unused
 		ADDRA => read_addr, -- 11-bit A port Address Input				TvE: Read address
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
-		ENA => '1', -- 1-bit A port Enable Input						TvE: "Read" port always enabled
+		ENA => read_enable, -- 1-bit A port Enable Input						TvE: "Read" port always enabled
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
 		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
 		-- Port B is "write" port----------------------------------------------------------------
-		DOB => open, -- 8-bit B port Data Output						TvE: no reads from the "write" port
+		DOB => block_w_do(0)(31 downto 24), -- 8-bit B port Data Output						
 		DOPB => open, -- 1-bit B port Parity Output						TvE: Parity unused
 		ADDRB => write_addr, -- 11-bit B port Address Input				TvE: Write address
 		CLKB => clk, -- Port B Clock
@@ -201,8 +232,8 @@ begin
 		INIT_B => X"000", -- Initial values on B output port
 		SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
 		SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
-		WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
-		WRITE_MODE_B => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_A => "WRITE_FIRST",  -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_B => "WRITE_FIRST",  -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
 		--In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
 		--In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
 		--In NO_CHANGE mode, the output latches remain unchanged during a write operation
@@ -282,18 +313,18 @@ begin
 		)
 	port map (
 		-- Port A is "read" port-----------------------------------------------------------------
-		DOA => block_do(0)(23 downto 16), -- 8-bit A port Data Output  TvE: the read output port
+		DOA => block_r_do(0)(23 downto 16), -- 8-bit A port Data Output  TvE: the read output port
 		DOPA => open, -- 1-bit A port Parity Output						TvE: Parity unused
 		ADDRA => read_addr, -- 11-bit A port Address Input				TvE: Read address
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
-		ENA => '1', -- 1-bit A port Enable Input						TvE: "Read" port always enabled
+		ENA => read_enable, -- 1-bit A port Enable Input						TvE: "Read" port always enabled
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
 		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
 		-- Port B is "write" port----------------------------------------------------------------
-		DOB => open, -- 8-bit B port Data Output						TvE: no reads from the "write" port
+		DOB => block_w_do(0)(23 downto 16), -- 8-bit B port Data Output						
 		DOPB => open, -- 1-bit B port Parity Output						TvE: Parity unused
 		ADDRB => write_addr, -- 11-bit B port Address Input				TvE: Write address
 		CLKB => clk, -- Port B Clock
@@ -310,8 +341,8 @@ begin
 		INIT_B => X"000", -- Initial values on B output port
 		SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
 		SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
-		WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
-		WRITE_MODE_B => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_A => "WRITE_FIRST",  -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_B => "WRITE_FIRST",  -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
 		--In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
 		--In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
 		--In NO_CHANGE mode, the output latches remain unchanged during a write operation
@@ -391,18 +422,18 @@ begin
 		)
 	port map (
 		-- Port A is "read" port-----------------------------------------------------------------
-		DOA => block_do(0)(15 downto 8), -- 8-bit A port Data Output  TvE: the read output port
+		DOA => block_r_do(0)(15 downto 8), -- 8-bit A port Data Output  TvE: the read output port
 		DOPA => open, -- 1-bit A port Parity Output						TvE: Parity unused
 		ADDRA => read_addr, -- 11-bit A port Address Input				TvE: Read address
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
-		ENA => '1', -- 1-bit A port Enable Input						TvE: "Read" port always enabled
+		ENA => read_enable, -- 1-bit A port Enable Input						TvE: "Read" port always enabled
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
 		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
 		-- Port B is "write" port----------------------------------------------------------------
-		DOB => open, -- 8-bit B port Data Output						TvE: no reads from the "write" port
+		DOB => block_w_do(0)(15 downto 8), -- 8-bit B port Data Output						
 		DOPB => open, -- 1-bit B port Parity Output						TvE: Parity unused
 		ADDRB => write_addr, -- 11-bit B port Address Input				TvE: Write address
 		CLKB => clk, -- Port B Clock
@@ -419,8 +450,8 @@ begin
 		INIT_B => X"000", -- Initial values on B output port
 		SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
 		SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
-		WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
-		WRITE_MODE_B => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_A => "WRITE_FIRST",  -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_B => "WRITE_FIRST",  -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
 		--In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
 		--In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
 		--In NO_CHANGE mode, the output latches remain unchanged during a write operation
@@ -500,18 +531,18 @@ begin
 		)
 	port map (
 		-- Port A is "read" port-----------------------------------------------------------------
-		DOA => block_do(0)(7 downto 0), -- 8-bit A port Data Output  TvE: the read output port
+		DOA => block_r_do(0)(7 downto 0), -- 8-bit A port Data Output  TvE: the read output port
 		DOPA => open, -- 1-bit A port Parity Output						TvE: Parity unused
 		ADDRA => read_addr, -- 11-bit A port Address Input				TvE: Read address
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
-		ENA => '1', -- 1-bit A port Enable Input						TvE: "Read" port always enabled
+		ENA => read_enable, -- 1-bit A port Enable Input						TvE: "Read" port always enabled
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
 		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
 		-- Port B is "write" port----------------------------------------------------------------
-		DOB => open, -- 8-bit B port Data Output						TvE: no reads from the "write" port
+		DOB => block_w_do(0)(7 downto 0), -- 8-bit B port Data Output						
 		DOPB => open, -- 1-bit B port Parity Output						TvE: Parity unused
 		ADDRB => write_addr, -- 11-bit B port Address Input				TvE: Write address
 		CLKB => clk, -- Port B Clock
@@ -532,8 +563,8 @@ begin
 		INIT_B => X"000", -- Initial values on B output port
 		SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
 		SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
-		WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
-		WRITE_MODE_B => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_A => "WRITE_FIRST",  -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_B => "WRITE_FIRST",  -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
 		--In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
 		--In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
 		--In NO_CHANGE mode, the output latches remain unchanged during a write operation
@@ -613,18 +644,18 @@ begin
 		)
 	port map (
 		-- Port A is "read" port-----------------------------------------------------------------
-		DOA => block_do(1)(31 downto 24), -- 8-bit A port Data Output  TvE: the read output port
+		DOA => block_r_do(1)(31 downto 24), -- 8-bit A port Data Output  TvE: the read output port
 		DOPA => open, -- 1-bit A port Parity Output						TvE: Parity unused
 		ADDRA => read_addr, -- 11-bit A port Address Input				TvE: Read address
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
-		ENA => '1', -- 1-bit A port Enable Input						TvE: "Read" port always enabled
+		ENA => read_enable, -- 1-bit A port Enable Input						TvE: "Read" port always enabled
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
 		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
 		-- Port B is "write" port----------------------------------------------------------------
-		DOB => open, -- 8-bit B port Data Output						TvE: no reads from the "write" port
+		DOB => block_w_do(1)(31 downto 24), -- 8-bit B port Data Output						
 		DOPB => open, -- 1-bit B port Parity Output						TvE: Parity unused
 		ADDRB => write_addr, -- 11-bit B port Address Input				TvE: Write address
 		CLKB => clk, -- Port B Clock
@@ -641,8 +672,8 @@ begin
 		INIT_B => X"000", -- Initial values on B output port
 		SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
 		SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
-		WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
-		WRITE_MODE_B => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_A => "WRITE_FIRST",  -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_B => "WRITE_FIRST",  -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
 		--In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
 		--In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
 		--In NO_CHANGE mode, the output latches remain unchanged during a write operation
@@ -722,18 +753,18 @@ begin
 		)
 	port map (
 		-- Port A is "read" port-----------------------------------------------------------------
-		DOA => block_do(1)(23 downto 16), -- 8-bit A port Data Output  TvE: the read output port
+		DOA => block_r_do(1)(23 downto 16), -- 8-bit A port Data Output  TvE: the read output port
 		DOPA => open, -- 1-bit A port Parity Output						TvE: Parity unused
 		ADDRA => read_addr, -- 11-bit A port Address Input				TvE: Read address
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
-		ENA => '1', -- 1-bit A port Enable Input						TvE: "Read" port always enabled
+		ENA => read_enable, -- 1-bit A port Enable Input						TvE: "Read" port always enabled
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
 		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
 		-- Port B is "write" port----------------------------------------------------------------
-		DOB => open, -- 8-bit B port Data Output						TvE: no reads from the "write" port
+		DOB => block_w_do(1)(23 downto 16), -- 8-bit B port Data Output						
 		DOPB => open, -- 1-bit B port Parity Output						TvE: Parity unused
 		ADDRB => write_addr, -- 11-bit B port Address Input				TvE: Write address
 		CLKB => clk, -- Port B Clock
@@ -750,8 +781,8 @@ begin
 		INIT_B => X"000", -- Initial values on B output port
 		SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
 		SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
-		WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
-		WRITE_MODE_B => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_A => "WRITE_FIRST",  -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_B => "WRITE_FIRST",  -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
 		--In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
 		--In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
 		--In NO_CHANGE mode, the output latches remain unchanged during a write operation
@@ -831,18 +862,18 @@ begin
 		)
 	port map (
 		-- Port A is "read" port-----------------------------------------------------------------
-		DOA => block_do(1)(15 downto 8), -- 8-bit A port Data Output  TvE: the read output port
+		DOA => block_r_do(1)(15 downto 8), -- 8-bit A port Data Output  TvE: the read output port
 		DOPA => open, -- 1-bit A port Parity Output						TvE: Parity unused
 		ADDRA => read_addr, -- 11-bit A port Address Input				TvE: Read address
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
-		ENA => '1', -- 1-bit A port Enable Input						TvE: "Read" port always enabled
+		ENA => read_enable, -- 1-bit A port Enable Input						TvE: "Read" port always enabled
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
 		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
 		-- Port B is "write" port----------------------------------------------------------------
-		DOB => open, -- 8-bit B port Data Output						TvE: no reads from the "write" port
+		DOB => block_w_do(1)(15 downto 8), -- 8-bit B port Data Output						
 		DOPB => open, -- 1-bit B port Parity Output						TvE: Parity unused
 		ADDRB => write_addr, -- 11-bit B port Address Input				TvE: Write address
 		CLKB => clk, -- Port B Clock
@@ -859,8 +890,8 @@ begin
 		INIT_B => X"000", -- Initial values on B output port
 		SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
 		SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
-		WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
-		WRITE_MODE_B => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_A => "WRITE_FIRST",  -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+		WRITE_MODE_B => "WRITE_FIRST",  -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
 		--In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
 		--In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
 		--In NO_CHANGE mode, the output latches remain unchanged during a write operation
@@ -940,18 +971,18 @@ begin
 		)
 	port map (
 		-- Port A is "read" port-----------------------------------------------------------------
-		DOA => block_do(1)(7 downto 0), -- 8-bit A port Data Output  TvE: the read output port
+		DOA => block_r_do(1)(7 downto 0), -- 8-bit A port Data Output  TvE: the read output port
 		DOPA => open, -- 1-bit A port Parity Output						TvE: Parity unused
 		ADDRA => read_addr, -- 11-bit A port Address Input				TvE: Read address
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
-		ENA => '1', -- 1-bit A port Enable Input						TvE: "Read" port always enabled
+		ENA => read_enable, -- 1-bit A port Enable Input						TvE: "Read" port always enabled
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
 		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
 		-- Port B is "write" port----------------------------------------------------------------
-		DOB => open, -- 8-bit B port Data Output						TvE: no reads from the "write" port
+		DOB => block_w_do(1)(7 downto 0), -- 8-bit B port Data Output						
 		DOPB => open, -- 1-bit B port Parity Output						TvE: Parity unused
 		ADDRB => write_addr, -- 11-bit B port Address Input				TvE: Write address
 		CLKB => clk, -- Port B Clock

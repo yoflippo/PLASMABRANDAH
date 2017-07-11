@@ -406,6 +406,7 @@ package mlite_pack is
         port(
 			clk               : in std_logic;
 			enable            : in std_logic;
+            read_enable       : in std_logic;
 			write_byte_enable : in std_logic_vector(3 downto 0);
 			read_address      : in std_logic_vector(31 downto 2);	--TvE: Added 2 port blockrams so 1 port can be used for reads and one for writes
 			write_address     : in std_logic_vector(31 downto 2);

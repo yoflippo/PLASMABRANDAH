@@ -30,6 +30,14 @@ sim:/sim_tb_cache/status
 add wave -r -group cache_set_ass_all sim:/sim_tb_cache/cache_set_ass/*
 add wave -group Cache_BB1 sim:/sim_tb_cache/cache_BB1/*
 add wave -group cache_set_ass sim:/sim_tb_cache/cache_set_ass/*
+add wave -position insertpoint  \
+sim:/sim_tb_cache/cache_set_ass/cache_data/block_r_do(1) \
+sim:/sim_tb_cache/cache_set_ass/cache_data/block_r_do(0)
+add wave -position insertpoint  \
+sim:/sim_tb_cache/cache_set_ass/cache_data/block_w_do(1) \
+sim:/sim_tb_cache/cache_set_ass/cache_data/block_w_do(0)
+add wave -position insertpoint  \
+sim:/sim_tb_cache/cache_set_ass/cache_data/flag
 config wave -signalnamewidth 1
 
 #Change radix to Hexadecimal#

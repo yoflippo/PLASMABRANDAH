@@ -152,7 +152,7 @@ begin
         status <= "0101";
       when "0101" =>              -- Read other index
         byte_we_next <= "0000"; 
-        address_next(25 downto 2) <= X"05B4B4";
+        address_next(25 downto 2) <= X"05A4B4";
         status <= "0110";
       when "0110" =>               -- Read overwritten data
         byte_we_next <= "0000"; 

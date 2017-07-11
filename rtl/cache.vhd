@@ -71,24 +71,28 @@ architecture logic of cache is
     -----2-way set adjustment signals------------------------------
     signal LRU_in           : std_logic_vector(0 downto 0);
     signal LRU_out          : std_logic_vector(0 downto 0);
+    signal LRU_r_out        : std_logic_vector(0 downto 0);
+    signal LRU_w_out        : std_logic_vector(0 downto 0);
     signal LRU_reg          : std_logic_vector(0 downto 0);
     signal LRU_we           : std_logic;
+    signal LRU_enable       : std_logic;
     signal LRU_write_addr   : std_logic_vector(10 downto 0);
 
-    signal cache_ram_data_r0            :  std_logic_vector(31 downto 0);
-    signal cache_ram_data_r1            :  std_logic_vector(31 downto 0);
-    signal cache_ram_read_address_temp  :  std_logic_vector(31 downto 2);
-    signal cache_ram_write_address_temp :  std_logic_vector(31 downto 2);
-    signal cache_ram_data_w_temp        :  std_logic_vector(31 downto 0);
-    signal cache_ram_data_w_reg         :  std_logic_vector(31 downto 0);
-    signal cache_ram_byte_we_temp 	    :  std_logic_vector(3 downto 0);
-    signal cache_ram_byte_we_reg 	    :  std_logic_vector(3 downto 0);
-    signal cache_ram_byte_we_reg2       :  std_logic_vector(3 downto 0);
-    signal write_toggle                 :  std_logic:='0';
-    signal cache_ram_address_reg        :  std_logic_vector(31 downto 2);    
-    signal cache_ram_address_reg2       :  std_logic_vector(31 downto 2);    
-    signal miss_state_prev              :  std_logic:='0';
-    signal miss_state_prev_reg          :  std_logic:='0';
+    signal cache_ram_data_r0            : std_logic_vector(31 downto 0);
+    signal cache_ram_data_r1            : std_logic_vector(31 downto 0);
+    signal cache_ram_read_address_temp  : std_logic_vector(31 downto 2);
+    signal cache_ram_write_address_temp : std_logic_vector(31 downto 2);
+    signal cache_ram_data_w_temp        : std_logic_vector(31 downto 0);
+    signal cache_ram_data_w_reg         : std_logic_vector(31 downto 0);
+    signal cache_ram_byte_we_temp 	    : std_logic_vector(3 downto 0);
+    signal cache_ram_byte_we_reg 	    : std_logic_vector(3 downto 0);
+    signal cache_ram_byte_we_reg2       : std_logic_vector(3 downto 0);
+    signal write_toggle                 : std_logic:='0';
+    signal cache_ram_address_reg        : std_logic_vector(31 downto 2);    
+    signal cache_ram_address_reg2       : std_logic_vector(31 downto 2);    
+    signal miss_state_prev              : std_logic:='0';
+    signal miss_state_prev_reg          : std_logic:='0';
+    signal read_enable                  : std_logic:='1';
 
 
     -------------------------------------------------------
@@ -118,6 +122,26 @@ begin
 --
     --end process;
 
+    LRU_read_proc: process(LRU_w_out, LRU_r_out, LRU_enable)    -- TvE: Process to determine which output of the 2 port LRU block has to be on the LRU_out
+    begin
+        if LRU_enable = '1' then
+            LRU_out <= LRU_r_out;
+        else       
+            LRU_out <= LRU_w_out;
+        end if;         
+    end process;
+
+    read_ram_proc: process(address_next, cpu_address)       --TvE: process that tracks the current and previous accessed address.
+    begin                                                   -- When they match the read port of both LRU and cache_ram must be disabled
+        if address_next(12 downto 2) = cpu_address(12 downto 2) then                  -- And the output from the write port should be propagated out
+            read_enable <= '0';
+            LRU_enable <= '0';
+        else       
+            read_enable <= '1';
+            LRU_enable <= '1';
+        end if;
+    end process;
+
     cache_proc: process(clk, reset, mem_busy, cache_address, LRU_out, cache_ram_data_r0, cache_ram_data_r1,
         state_reg, state, state_next,
         address_next, byte_we_next, cache_tag_in, --Stage1
@@ -132,7 +156,7 @@ begin
                 state <= STATE_IDLE;
             when STATE_CHECKING =>        --current read in cached range, check if match
                 cache_checking <= '1';
-                LRU_we <= '1';            --TvE: hardcoded 1
+                LRU_we <= '1';            
                 write_toggle <= '0';
                 --LRU_write_addr <= cpu_address; -- TvE: To make sure the LRU is updated in the right line.
                 if (cache_tag_out(1) /= cache_tag_reg and cache_tag_out(0) /= cache_tag_reg) or
@@ -154,9 +178,9 @@ begin
                 else
                     cache_we <= "00";
                     cache_miss <= '0';
-                    if(cache_ram_byte_we_reg2="1111" and cache_ram_byte_we_reg="0000" and cache_ram_address_reg2=cache_ram_address_reg) then  -- Make use of the latched written data to the cache since this cache is implemented as read first
-                        cache_ram_data_r <= cache_ram_data_w_reg;
-                    else
+                    --if(cache_ram_byte_we_reg2="1111" and cache_ram_byte_we_reg="0000" and cache_ram_address_reg2=cache_ram_address_reg) then  -- Make use of the latched written data to the cache since this cache is implemented as read first
+                        --cache_ram_data_r <= cache_ram_data_w_reg;
+                    --else
                         if cache_tag_out(0) = cache_tag_reg then
                             cache_ram_data_r <= cache_ram_data_r0;      --TvE: tag of set 0 was correct so data in set 0 is routed to output
                             LRU_in(0) <= '1';                            --TvE: Data in set 1 was Least Recently Used
@@ -166,7 +190,7 @@ begin
                         else        -- TvE: Do nothing
 
                         end if;
-                    end if;                 
+                   -- end if;                 
                 
                     state <= STATE_IDLE;
                 end if;
@@ -475,8 +499,8 @@ begin
             INIT_B => X"FFF", -- Initial values on B output port
             SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
             SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
-            WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
-            WRITE_MODE_B => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+            WRITE_MODE_A => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+            WRITE_MODE_B => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
             --In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
             --In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
             --In NO_CHANGE mode, the output latches remain unchanged during a write operation
@@ -565,18 +589,18 @@ begin
         port map (
             -- Port A is "read" port-----------------------------------------------------------------
             DOA => open, -- 8-bit A port Data Output  TvE: the read output port
-            DOPA => LRU_out, -- 1-bit A port Parity Output                     TvE: Parity unused
+            DOPA => LRU_r_out, -- 1-bit A port Parity Output                     TvE: Parity unused
             ADDRA => cache_address, -- 11-bit A port Address Input              TvE: Read address
             CLKA => clk, -- Port A Clock
             DIA => ZERO(7 downto 0), -- 8-bit A port Data Input             TvE: No writes on the "read" port
             DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input          TvE: Parity unused
-            ENA => '1', -- 1-bit A port Enable Input                        TvE: "Read" port always enabled
+            ENA => LRU_enable, -- 1-bit A port Enable Input                        TvE: "Read" port always enabled
             SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input    TvE: Unused
             WEA => ZERO(0), -- 1-bit A port Write Enable Input      TvE: "Read" port can never be written on
             
             -- Port B is "write" port----------------------------------------------------------------
             DOB => open, -- 8-bit B port Data Output                        TvE: no reads from the "write" port
-            DOPB => open, -- 1-bit B port Parity Output                     TvE: Parity unused
+            DOPB => LRU_w_out, -- 1-bit B port Parity Output                     TvE: Parity unused
             ADDRB => LRU_write_addr, -- 11-bit B port Address Input             TvE: Write address
             CLKB => clk, -- Port B Clock
             DIB => ZERO(7 downto 0), -- 8-bit B port Data Input     TvE: Data input
@@ -591,6 +615,7 @@ begin
         port map (
             clk               => clk,
             enable            => cache_ram_enable,
+            read_enable       => read_enable,
             write_byte_enable => cache_ram_byte_we_temp,
             read_address      => cache_ram_read_address_temp,
             write_address     => cache_ram_write_address_temp,
