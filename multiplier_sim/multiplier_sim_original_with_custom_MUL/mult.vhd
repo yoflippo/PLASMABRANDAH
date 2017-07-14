@@ -279,7 +279,7 @@ begin
                 
         if  custom_mul_finished = '1' and mode_reg = MODE_MULT and baseline = '0' then  
             if vSigned_mul = '1' AND vSign_value = '1' then
-                vResultBig := bv_adder(resultL,resultH,'1');--bv_twos_complement(resultL,resultH);
+                vResultBig := bv_twos_complement(resultL,resultH); --bv_adder(resultL,resultH,'1');
                 resultLFin <= vResultBig(a'range);
                 resultHFin <= vResultBig(vResultBig'high downto resultL'length);
             -- MS: test for specific situations where csa-multiplier gives errors
