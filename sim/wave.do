@@ -91,17 +91,6 @@ add wave -noupdate -group cache /sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u
 add wave -noupdate -group cache /sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_tag_reg
 add wave -noupdate -group cache /sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_tag_out
 add wave -noupdate -group cache /sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_we
-add wave -noupdate -group cache /sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/clk
-add wave -noupdate -group cache /sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/enable
-add wave -noupdate -group cache /sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/write_byte_enable
-add wave -noupdate -group cache /sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/address
-add wave -noupdate -group cache /sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/data_write
-add wave -noupdate -group cache /sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/data_read
-add wave -noupdate -group cache /sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/block_enable
-add wave -noupdate -group cache /sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/block_do
-add wave -noupdate -group cache /sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/block_sel_buf
-add wave -noupdate -group cache /sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/block_addr
-add wave -noupdate -group cache /sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/block_sel
 add wave -noupdate -group cache /sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/block0/ram_byte3/DO
 add wave -noupdate -group cache /sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/block0/ram_byte3/DOP
 add wave -noupdate -group cache /sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/block0/ram_byte3/ADDR
@@ -153,12 +142,11 @@ add wave -noupdate -expand -group multiplier /sim_tb_top/u1_plasma_top/u1_plasma
 add wave -noupdate -expand -group multiplier /sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u8_mult/mult_proc/vSign_a_bit
 add wave -noupdate -expand -group multiplier /sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u8_mult/mult_proc/vSign_b_bit
 add wave -noupdate -expand -group multiplier /sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u8_mult/mult_proc/vSigned_mul
-add wave -noupdate /sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u8_mult/USE_BASELINE_MUL
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {982826745 ps} 0}
-quietly wave cursor active 1
-configure wave -namecolwidth 304
-configure wave -valuecolwidth 125
+WaveRestoreCursors {{Cursor 1} {0 ps} 0}
+quietly wave cursor active 0
+configure wave -namecolwidth 262
+configure wave -valuecolwidth 105
 configure wave -justifyvalue left
 configure wave -signalnamewidth 3
 configure wave -snapdistance 10
@@ -171,4 +159,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {981111523 ps} {986238477 ps}
+WaveRestoreZoom {0 ps} {7823 ps}

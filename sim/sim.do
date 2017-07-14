@@ -47,17 +47,17 @@ log -r /*
 #View sim_tb_top signals in waveform#
 #add wave -group sim_top sim:/sim_tb_top/*
 
-add wave -group plasma_top sim:/sim_tb_top/u1_plasma_top/*
-add wave -group ddr sim:/sim_tb_top/u1_plasma_top/u2_ddr/*
+--add wave -group plasma_top sim:/sim_tb_top/u1_plasma_top/*
+--add wave -group ddr sim:/sim_tb_top/u1_plasma_top/u2_ddr/*
 
-add wave -group cache sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/*
-add wave -group cache sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/block0/ram_byte3/*
-add wave -group cache sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_tag/*
+--add wave -group cache sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/*
+--add wave -group cache sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/block0/ram_byte3/*
+--add wave -group cache sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_tag/*
 
-add wave -group multiplier -position insertpoint sim:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u8_mult/*
-add wave -group multiplier -divider variables -position insertpoint sim:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u8_mult/mult_proc/*
+--add wave -group multiplier -position insertpoint sim:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u8_mult/*
+--add wave -group multiplier -divider variables -position insertpoint sim:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u8_mult/mult_proc/*
 
---do wave.do
+do wave.do
 
 
 config wave -signalnamewidth 3
@@ -73,5 +73,5 @@ radix hex
 set NumericStdNoWarnings 1
 set StdArithNoWarnings 1
 
-run 50ms
+run 30ms
 stop

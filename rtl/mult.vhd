@@ -5,7 +5,6 @@
 -- FILENAME: mult.vhd
 -- PROJECT: Plasma CPU core
 -- COPYRIGHT: Software placed into the public domain by the author.
--- Software 'as is' without warranty. Author liable for nothing.
 -- DESCRIPTION:
 -- Implements the multiplication AND division unit in 32 clocks.
 --
@@ -15,6 +14,7 @@
 -- {
 -- answer = (answer >> 1) + (((b&1)?a:0) << 31);
 -- b = b >> 1;
+-- Software 'as is' without warranty. Author liable for nothing.
 -- }
 --
 -- DIVISION
@@ -123,12 +123,13 @@ begin
               upper_reg             when mult_func = MULT_READ_HI and negate_reg = '0'  and baseline = '1' else
               bv_negate(upper_reg)  when mult_func = MULT_READ_HI and negate_reg = '1'  and baseline = '1' else
               ZERO;
-    --pause_out <= '1' when (count_reg /= "000000") and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else '0';
+              
+    pause_out <= '1' when (count_reg /= "000000") and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else '0';
 
-    -- MS: the multiplier only sends the pause_out signal if the results is read prematurely
-    pause_out <= '1' when (count_reg /= "000000")       and baseline = '1' and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else
-                 '1' when (custom_mul_finished = '0')   and baseline = '0' and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else
-                 '0';
+    ---- MS: the multiplier only sends the pause_out signal if the results is read prematurely
+    --pause_out <= '1' when (count_reg /= "000000")       and baseline = '1' and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else
+    --             '1' when (custom_mul_finished = '0')   and baseline = '0' and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else
+    --             '0';
  
     -- ABS AND remainder signals
     a_neg <= bv_negate(a);
@@ -195,6 +196,7 @@ begin
                     baseline <= USE_BASELINE_MUL; -- MAKE THIS zero when using custom
                     mode_reg <= MODE_MULT;
                     vSigned_mul := '1';
+
                     if b(31) = '0' then
                         aa_reg <= a;
                         bb_reg <= b;
@@ -204,6 +206,7 @@ begin
                         aa_reg <= a_neg;
                         bb_reg <= b_neg;
                     end if;
+
                     if a /= ZERO then
                         vSign_value := a(31) xor b(31);
                         sign_reg <= vSign_value;
@@ -211,6 +214,7 @@ begin
                         vSign_value := '0';
                         sign_reg <= '0';
                     end if;
+                    
                     sign2_reg  <= '0';
                     upper_reg  <= ZERO;
                     negate_reg <= '0';

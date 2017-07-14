@@ -260,6 +260,7 @@ begin
                             end if;
                         else
                             -- Division
+                            baseline <= '1';
                             if sum(32) = '0' AND aa_reg /= ZERO AND
                                bb_reg(31 downto 1) = ZERO(31 downto 1) then
                                 upper_reg       <= sum(31 downto 0);
