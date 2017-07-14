@@ -39,7 +39,7 @@ entity cache_ram is
         read_enable       : in std_logic;
         write_byte_enable : in std_logic_vector(3 downto 0);
         read_address      : in std_logic_vector(31 downto 2);	--TvE: Added 2 port blockrams so 1 port can be used for reads and one for writes
-		    write_address     : in std_logic_vector(31 downto 2);
+		write_address     : in std_logic_vector(31 downto 2);
         data_write        : in std_logic_vector(31 downto 0);
         data_read0        : out std_logic_vector(31 downto 0);
         data_read1        : out std_logic_vector(31 downto 0) --TvE: added output so both data in the sets can be put on output in parallel
@@ -64,7 +64,6 @@ architecture logic of cache_ram is
     signal block_do: mem32_vector(7 downto 0);
     signal block_r_do: mem32_vector(7 downto 0);
     signal block_w_do: mem32_vector(7 downto 0);
-    signal flag : std_logic := '0';
     signal read_enable_reg : std_logic := '0';
     
 begin
@@ -81,22 +80,12 @@ begin
     proc_do: process (block_r_do, read_enable, block_w_do) is
     
     begin
-      if (read_enable = '1' and flag = '1') or (read_enable_reg = '1') then
+      if (read_enable_reg = '1') then
         data_read0 <= block_r_do(0);
         data_read1 <= block_r_do(1);
       else
         data_read0 <= block_w_do(0);
         data_read1 <= block_w_do(1);
-      end if;
-      
-      if rising_edge(clk) then
-        read_enable_reg <= read_enable;
-      end if;
-
-      if read_enable = '1' then
-        flag <= '1';
-      else
-        flag <= '0';
       end if;
     end process;
 
@@ -104,10 +93,10 @@ begin
     proc_reg: process (read_enable, clk) is
     variable vRead_enable : std_logic;
     begin
-      vRead_enable := read_enable;
       if rising_edge(clk) then
         read_enable_reg <= vRead_enable;
       end if;
+      vRead_enable := read_enable;
     end process;
 
     -- BLOCKS generation

@@ -200,6 +200,7 @@ begin
                 LRU_we <= '0';
                 cache_we <= "00";
                 miss_state_prev <= '1';     --TvE: signal to detect if the miss state was previous then no addresses or LRU's have to be checked again
+                cache_ram_data_r <= cache_ram_data_w_reg; --TvE: Output written data the a clockcycle later.
                 if mem_busy = '1' then
                     state <= STATE_MISSED;
                 else
@@ -208,6 +209,7 @@ begin
             when STATE_WAITING =>         --waiting for memory access to complete
                 cache_checking <= '0';
                 cache_miss <= '0';
+                cache_ram_data_r <= cache_ram_data_w_reg; --TvE: Output written data the a clockcycle later.
 
                 if miss_state_prev_reg = '1' then
                     miss_state_prev <= '0';         --TvE: signal to detect if the miss state was previous then no addresses or LRU's have to be checked again
@@ -273,9 +275,10 @@ begin
         if reset = '1' then
             state_reg <= STATE_IDLE;
             cache_tag_reg <= ZERO(7 downto 0);  -- TvE: changed to get correct tag length
-            cache_ram_address_reg <= "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
+            cache_ram_address_reg <= ZERO(31 downto 2);
             cache_ram_data_w_reg <= "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
             cache_ram_byte_we_reg <= "0000";
+            cache_ram_data_r <= cache_ram_data_r0;
         elsif rising_edge(clk) then
             state_reg <= state_next;
             cache_ram_address_reg <= cache_ram_address;
