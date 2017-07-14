@@ -191,7 +191,7 @@ begin
                         -- MS: the last part of the high reg, must be calculated separately
                         vCarH     := car(car'high downto 4);
                         vSumH     := sum(sum'high downto 4);
-                        vResultH  := bv_adder(vSumH, vCarH, do_add);
+                        vResultH  := bv_real_adder(vSumH, vCarH, do_add, vBv_adder_out(4));
                         oResultH  <= vResultH(oResultH'range);
 
                         -- MS: we went through all the 8 cycles so the input should be zero

@@ -73,5 +73,5 @@ radix hex
 set NumericStdNoWarnings 1
 set StdArithNoWarnings 1
 
-run 30ms
+run 10ms
 stop

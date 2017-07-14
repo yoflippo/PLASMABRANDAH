@@ -125,9 +125,9 @@ package mlite_pack is
     function bv_inc(a : in std_logic_vector) 
     return std_logic_vector;
 
-    function bv_twos_complement(low : in std_logic_vector;
-                                hig : in std_logic_vector) 
-    return std_logic_vector;
+function bv_twos_complement(lo : in std_logic_vector;
+                            hi : in std_logic_vector) 
+        return std_logic_vector;
 
 -- MS: in order for custom component to be used they have to be
 --     added to the package
@@ -353,6 +353,14 @@ End COMPONENT; --entity adder
             c_mult    : out std_logic_vector(31 downto 0);
             pause_out : out std_logic
         );
+    end component;
+
+    component rand_gen is --MS: added random generator
+       port(
+           clk       : in std_logic;
+           reset_in  : in std_logic;
+           rand_num  : out integer
+       );
     end component;
 
     component pipeline
@@ -619,6 +627,7 @@ function bv_negate_carries(a : in std_logic_vector;
 begin
     not_a := not a;
     carry_in := ci;
+    -- MS: TvE noticed a possible speed up
     for index in a'reverse_range loop
         result(index) := not_a(index) xor carry_in;
         carry_in      := carry_in and not_a(index);
@@ -628,30 +637,30 @@ end; --function
 
 --MS : this function calculates the two complement of a large vector that consists
 -- of a High/Low register. It is basically a complement-select function
-function bv_twos_complement(low : in std_logic_vector;
-                            hig : in std_logic_vector) 
+function bv_twos_complement(lo : in std_logic_vector;
+                            hi : in std_logic_vector) 
         return std_logic_vector is
 
-    variable res_low     : std_logic_vector(low'length downto 0);
-    variable res_hig1    : std_logic_vector(hig'length downto 0);
-    variable res_hig0    : std_logic_vector(hig'length downto 0);
-    variable res_part_l  : std_logic_vector(low'range);
-    variable res_part_h  : std_logic_vector(hig'range);
-    variable result      : std_logic_vector((low'length*2)-1 downto 0);
+    variable res_low     : std_logic_vector(lo'length downto 0);
+    variable res_hi1    : std_logic_vector(hi'length downto 0);
+    variable res_hi0    : std_logic_vector(hi'length downto 0);
+    variable res_part_l  : std_logic_vector(lo'range);
+    variable res_part_h  : std_logic_vector(hi'range);
+    variable result      : std_logic_vector((lo'length*2)-1 downto 0);
 begin
     -- MS: calculate 2 complement
-    res_low  := bv_negate_carries(low,'1');
-    -- MS: calculate 2 complement of hig reg with ci = 1 & 0
-    res_hig0 := bv_negate_carries(hig,'0');
-    res_hig1 := bv_negate_carries(hig,'1');
+    res_low  := bv_negate_carries(lo,'1');
+    -- MS: calculate 2 complement of hi reg with ci = 1 & 0
+    res_hi0 := bv_negate_carries(hi,'0');
+    res_hi1 := bv_negate_carries(hi,'1');
 
-    res_part_l := res_low(res_part_l'range);
+    res_part_l := res_low(res_part_l'range); -- Ms: select everything but MSB
     -- MS: if the carry_out of the low reg is '1' then select that
     -- result
     if res_low(res_low'high) = '1' then
-        res_part_h := res_hig1(res_part_h'range);
+        res_part_h := res_hi1(res_part_h'range);
     else
-        res_part_h := res_hig0(res_part_h'range);
+        res_part_h := res_hi0(res_part_h'range);
     end if;
     
     result := res_part_h & res_part_l;

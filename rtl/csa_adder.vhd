@@ -6,7 +6,7 @@ use ieee.std_logic_unsigned.all;
 use IEEE.std_logic_arith.all;
 
 library work;
-use work.mlite_pack.all;
+--use work.mlite_pack.all;
 
 entity csa_adder is
     port (

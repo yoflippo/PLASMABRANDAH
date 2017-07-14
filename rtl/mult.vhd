@@ -56,7 +56,7 @@ architecture logic of mult is
 
     constant MODE_MULT         : std_logic := '1';
     constant MODE_DIV          : std_logic := '0';
-    constant USE_BASELINE_MUL  : std_logic := '0'; -- Zero means using custom multiplier
+    constant USE_BASELINE_MUL  : std_logic := '1'; -- Zero means using custom multiplier
     constant ONE               : std_logic_vector := x"00000001";
     signal mode_reg            : std_logic;
     signal negate_reg          : std_logic;
@@ -299,11 +299,11 @@ begin
                     resultHFin <= vResultBig(vResultBig'HIGH downto resultL'length);
                     -- MS: test for specific situations where csa-multiplier gives errors
                     -- this is established based on trial-and-error
-                elsif vSigned_mul = '0' and ((a >  x"FFFFFF00" and b >  x"FFFFFF00") or
-                                            ( a >= x"FFFFFF00" and b >  x"FFFFFF00") or
-                                            ( a >  x"FFFFFF00" and b >= x"FFFFFF00")) then
-                        resultHFin <= bv_inc(resultH); -- only increment high result with one
-                        resultLFin <= resultL; 
+                --elsif vSigned_mul = '0' and ((a >  x"FFFFFF00" and b >  x"FFFFFF00") or
+                --                            ( a >= x"FFFFFF00" and b >  x"FFFFFF00") or
+                --                            ( a >  x"FFFFFF00" and b >= x"FFFFFF00")) then
+                --        resultHFin <= bv_inc(resultH); -- only increment high result with one
+                --        resultLFin <= resultL; 
                 else
                     resultLFin <= resultL;
                     resultHFin <= resultH; 
