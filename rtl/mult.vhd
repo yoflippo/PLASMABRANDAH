@@ -56,7 +56,7 @@ architecture logic of mult is
 
     constant MODE_MULT         : std_logic := '1';
     constant MODE_DIV          : std_logic := '0';
-    constant USE_BASELINE_MUL  : std_logic := '1'; -- Zero means using custom multiplier
+    constant USE_BASELINE_MUL  : std_logic := '0'; -- Zero means using custom multiplier
     constant ONE               : std_logic_vector := x"00000001";
     signal mode_reg            : std_logic;
     signal negate_reg          : std_logic;

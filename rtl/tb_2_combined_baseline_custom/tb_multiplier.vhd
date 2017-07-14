@@ -419,6 +419,49 @@ begin
        end if;
 
 
+  ----------------------------------------------------------------------------
+       wait until rising_edge(Clk);
+       err <= '0';
+       a         <= x"00000550"; -- 
+       b         <= x"00000003";
+       mult_func <= MULT_MULT;       -- MS: choose type of multiplication
+       wait until rising_edge(Clk);
+       mult_func <= MULT_READ_LO;  
+       wait until falling_edge(pause_out);
+       wait until rising_edge(Clk);
+      
+       if c_mult /= c_mult2 then
+          vSimResult := false; err <= '1';
+          report "RSA Test odd number very low LOW UNSIGNED Failed!!" severity ERROR;
+       end if;
+       mult_func <= MULT_READ_HI;
+       wait until rising_edge(Clk);
+       if c_mult /= c_mult2 then
+          vSimResult := false; err <= '1';
+          report "RSA Test odd number very low HIGH UNSIGNED Failed!!" severity ERROR;
+       end if;
+
+       wait until rising_edge(Clk);
+       err <= '0';
+       v_ia := to_integer(signed(a));
+       v_ib := to_integer(signed(b));
+       mult_func <= MULT_SIGNED_MULT;       -- MS: choose type of multiplication
+       wait until rising_edge(Clk);
+       mult_func <= MULT_READ_LO;  
+       wait until falling_edge(pause_out);
+       wait until rising_edge(Clk);
+
+       if c_mult /= c_mult2 then
+          vSimResult := false; err <= '1';
+          report "RSA Test odd number very low LOW SIGNED Failed!!" severity ERROR;
+       end if;
+       mult_func <= MULT_READ_HI;
+       wait until rising_edge(Clk);
+       if c_mult /= c_mult2 then
+          vSimResult := false; err <= '1';
+          report "RSA Test odd number very low HIGH SIGNED Failed!!" severity ERROR;
+       end if;
+
        v_ia2         := x"00000095"; -- 
        v_ib2         := x"F0000080";
 

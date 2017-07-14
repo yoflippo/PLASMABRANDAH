@@ -48,7 +48,7 @@ entity mult is
         a, b      : in std_logic_vector(31 downto 0);
         mult_func : in mult_function_type;
         c_mult    : out std_logic_vector(31 downto 0);
-        c_mult2    : out std_logic_vector(31 downto 0);
+        c_mult2   : out std_logic_vector(31 downto 0);
         pause_out : out std_logic
     );
 end; --entity mult
@@ -57,7 +57,7 @@ architecture logic of mult is
 
     constant MODE_MULT : std_logic := '1';
     constant MODE_DIV  : std_logic := '0';
-    constant ONE       : std_logic_vector := x"00000001";
+    constant USE_BASELINE_MUL  : std_logic := '0'; -- Zero means using custom multiplier
     signal mode_reg    : std_logic;
     signal negate_reg  : std_logic;
     signal sign_reg    : std_logic;
@@ -69,11 +69,9 @@ architecture logic of mult is
     signal mul_cand_cus     : std_logic_vector(31 downto 0);
     signal upper_reg   : std_logic_vector(31 downto 0);
     signal lower_reg   : std_logic_vector(31 downto 0);
-
     signal a_neg       : std_logic_vector(31 downto 0);
     signal b_neg       : std_logic_vector(31 downto 0);  
-    signal sum         : std_logic_vector(32 downto 0);
-    
+    signal sum         : std_logic_vector(32 downto 0);   
     signal custom_mul_finished : std_logic;
     signal resultL             : std_logic_vector(31 downto 0);
     signal resultH             : std_logic_vector(31 downto 0);
@@ -97,8 +95,8 @@ begin
 
 
     -- Result
-    c_mult2 <= resultLFin             when mult_func = MULT_READ_LO AND mode_reg = MODE_MULT AND baseline = '0' else
-               resultHFin             when mult_func = MULT_READ_HI AND mode_reg = MODE_MULT AND baseline = '0' else
+    c_mult2 <= resultLFin             when mult_func = MULT_READ_LO                          AND baseline = '0' else
+               resultHFin             when mult_func = MULT_READ_HI                          AND baseline = '0' else
                lower_reg              when mult_func = MULT_READ_LO and negate_reg = '0'     AND baseline = '1' else
                bv_negate(lower_reg)   when mult_func = MULT_READ_LO and negate_reg = '1'     AND baseline = '1' else
                upper_reg              when mult_func = MULT_READ_HI and negate_reg = '0'     AND baseline = '1' else 
@@ -284,11 +282,11 @@ begin
                 resultHFin <= vResultBig(vResultBig'high downto resultL'length);
             -- MS: test for specific situations where csa-multiplier gives errors
             -- this is established based on trial-and-error
-            elsif vSigned_mul = '0' AND ((a > x"FFFFFF00"  AND b >  x"FFFFFF00") OR 
-                                         (a >= x"FFFFFF00" AND b >  x"FFFFFF00") OR 
-                                         (a > x"FFFFFF00"  AND b >= x"FFFFFF00")) then
-                    resultHFin <= bv_inc(resultH); -- only increment high result with one
-                    resultLFin <= resultL;  
+            --elsif vSigned_mul = '0' AND ((a > x"FFFFFF00"  AND b >  x"FFFFFF00") OR 
+            --                             (a >= x"FFFFFF00" AND b >  x"FFFFFF00") OR 
+            --                             (a > x"FFFFFF00"  AND b >= x"FFFFFF00")) then
+            --        resultHFin <= bv_inc(resultH); -- only increment high result with one
+            --        resultLFin <= resultL;  
             else 
                 resultLFin <= resultL;
                 resultHFin <= resultH;                 
