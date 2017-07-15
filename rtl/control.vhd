@@ -68,7 +68,9 @@ architecture logic of control is
 
 begin
 
-    control_proc: process(opcode, intr_signal, clk, reset_in, pause_in) -- MV added clock and reset
+    control_proc: process(opcode, intr_signal, clk, reset_in, pause_in, rs_index_reg, rt_index_reg, 
+    	rd_index_reg, imm_out_reg, alu_func_reg, shift_func_reg, mult_func_reg, branch_func_reg, 
+    	a_source_out_reg, b_source_out_reg, c_source_out_reg, pc_source_out_reg, mem_source_out_reg) -- MV added clock and reset
         variable op, func       : std_logic_vector(5 downto 0);
         variable rs, rt, rd     : std_logic_vector(5 downto 0);
         variable rtx            : std_logic_vector(4 downto 0);
@@ -101,6 +103,22 @@ begin
         func := opcode(5 downto 0);
         imm := opcode(15 downto 0);
         is_syscall := '0';
+
+        -- init regs
+
+   		--	rs_index_reg 		<= ZERO(5 downto 0);
+         --   rt_index_reg 		<= ZERO(5 downto 0);
+         --   rd_index_reg 		<= ZERO(5 downto 0);
+         --   imm_out_reg 		<= ZERO(15 downto 0);
+        --	alu_func_reg 		<= ALU_NOTHING;
+        --	shift_func_reg 	 	<= SHIFT_LEFT_UNSIGNED;
+		--	mult_func_reg     	<= MULT_NOTHING;
+		--	branch_func_reg   	<= BRANCH_EQ;
+		--	a_source_out_reg  	<= A_FROM_IMM10_6;
+		--	b_source_out_reg  	<= B_FROM_REG_TARGET;
+		--	c_source_out_reg  	<= C_FROM_ALU;
+		--	pc_source_out_reg 	<= FROM_INC4;
+		--	mem_source_out_reg	<= MEM_FETCH;
 
         case op is
             when "000000" =>   --SPECIAL

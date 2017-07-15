@@ -54,12 +54,13 @@ architecture logic of mem_ctrl is
     signal mem_state_reg   : std_logic;
     constant STATE_ADDR    : std_logic := '0';
     constant STATE_ACCESS  : std_logic := '1';
+    signal opcode_next2     : std_logic_vector(31 downto 0);
 
 begin
 
     mem_proc: process(clk, reset_in, pause_in, nullify_op,
                   address_pc, address_in, mem_source, data_write,
-                  data_r, opcode_reg_pc, next_opcode_reg_pc, next_opcode_reg, mem_state_reg,
+                  data_r, opcode_reg_pc, opcode_reg, next_opcode_reg_pc, next_opcode_reg, mem_state_reg,
                   address_reg, byte_we_reg)
         variable address_var    : std_logic_vector(31 downto 2);
         variable data_read_var  : std_logic_vector(31 downto 0);
@@ -70,6 +71,7 @@ begin
         variable mem_state_next : std_logic;
         variable pause_var      : std_logic;
         variable bits           : std_logic_vector(1 downto 0);
+        variable data_temp_r    : std_logic_vector(31 downto 0);
     begin
         byte_we_var := "0000";
         pause_var := '0';
@@ -78,6 +80,7 @@ begin
         mem_state_next := mem_state_reg;
         opcode_next_pc := opcode_reg_pc;
         opcode_next := opcode_reg;
+        opcode_next2 <= opcode_next;
 
         case mem_source is
             when MEM_READ32 =>
@@ -181,6 +184,7 @@ begin
             next_opcode_reg <= ZERO;
             address_reg <= ZERO(31 downto 2);
             byte_we_reg <= "0000";
+            opcode_next := ZERO;
         elsif rising_edge(clk) then
             if pause_in = '0' then
                 address_reg <= address_var;
@@ -194,14 +198,18 @@ begin
                     next_opcode_reg <= data_r;
                 end if;
             end if;
+        elsif falling_edge(clk) then
+            if pause_in = '0' then
+                opcode_out <= opcode_next; 
+            end if;
         end if;
 
         --opcode_out <= opcode_reg; MV move to control 
         --opcode_out for pcnext will remain the same
         --Only output when pause_in = 0 (?)
-        if pause_in = '0' then
-            opcode_out <= opcode_next; 
-        end if;
+        --if pause_in = '0' then
+            --opcode_out <= opcode_next; 
+        --end if;
 
         -- output for pcnext
         opcode_out_pc <= opcode_reg_pc;
