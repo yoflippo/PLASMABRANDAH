@@ -185,6 +185,7 @@ begin
             address_reg <= ZERO(31 downto 2);
             byte_we_reg <= "0000";
             opcode_next := ZERO;
+            opcode_out <= ZERO(31 downto 0);
         elsif rising_edge(clk) then
             if pause_in = '0' then
                 address_reg <= address_var;
