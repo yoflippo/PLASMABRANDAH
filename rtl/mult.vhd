@@ -57,7 +57,6 @@ architecture logic of mult is
     constant MODE_MULT         : std_logic := '1';
     constant MODE_DIV          : std_logic := '0';
     constant USE_BASELINE_MUL  : std_logic := '0'; -- Zero means using custom multiplier
-    constant ONE               : std_logic_vector := x"00000001";
     signal mode_reg            : std_logic;
     signal negate_reg          : std_logic;
     signal sign_reg            : std_logic;
@@ -124,12 +123,12 @@ begin
               bv_negate(upper_reg)  when mult_func = MULT_READ_HI and negate_reg = '1'  and baseline = '1' else
               ZERO;
               
-    pause_out <= '1' when (count_reg /= "000000") and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else '0';
+    --pause_out <= '1' when (count_reg /= "000000") and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else '0';
 
-    ---- MS: the multiplier only sends the pause_out signal if the results is read prematurely
-    --pause_out <= '1' when (count_reg /= "000000")       and baseline = '1' and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else
-    --             '1' when (custom_mul_finished = '0')   and baseline = '0' and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else
-    --             '0';
+    -- MS: the multiplier only sends the pause_out signal if the results is read prematurely
+    pause_out <= '1' when (count_reg /= "000000")       and baseline = '1' and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else
+                 '1' when (custom_mul_finished = '0')   and baseline = '0' and (mult_func = MULT_READ_LO or mult_func = MULT_READ_HI) else
+                 '0';
  
     -- ABS AND remainder signals
     a_neg <= bv_negate(a);
@@ -154,6 +153,7 @@ begin
             vSign_b_bit := '0';
             vSign_a_bit := '0';
             vSigned_mul := '0';
+
             baseline      <= '1'; -- MS: default use baseline
             mode_reg      <= '0';
             negate_reg    <= '0';
@@ -179,7 +179,7 @@ begin
                     negate_reg <= '0';
                     baseline   <= '1';
                 when MULT_MULT => 
-                    baseline <= USE_BASELINE_MUL; --- MAKE THIS zero when using custom 666
+                    baseline   <= USE_BASELINE_MUL; --- MAKE THIS zero when using custom 666
                     mode_reg   <= MODE_MULT;
                     aa_reg     <= a; -- MS : copy value port a to signal aa_reg
                     bb_reg     <= b;
@@ -261,7 +261,6 @@ begin
                     if count_reg /= "000000" then -- MS: countdown from 31 to 0
                         if mode_reg = MODE_MULT then
                             -- Multiplication
-                            --baseline <= USE_BASELINE_MUL;
                             if bb_reg(0) = '1' then
                                 upper_reg <= (sign_reg xor sum(32)) & sum(31 downto 1);
                                 lower_reg <= sum(0) & lower_reg(31 downto 1);
@@ -292,18 +291,11 @@ begin
                 end case; 
             end if; -- clc
  
-            if custom_mul_finished = '1' and mode_reg = MODE_MULT and baseline = '0' then 
+            if custom_mul_finished = '1' and mode_reg = MODE_MULT then 
                 if vSigned_mul = '1' and vSign_value = '1' then
                     vResultBig := bv_twos_complement(resultL, resultH);
                     resultLFin <= vResultBig(a'range);
                     resultHFin <= vResultBig(vResultBig'HIGH downto resultL'length);
-                    -- MS: test for specific situations where csa-multiplier gives errors
-                    -- this is established based on trial-and-error
-                --elsif vSigned_mul = '0' and ((a >  x"FFFFFF00" and b >  x"FFFFFF00") or
-                --                            ( a >= x"FFFFFF00" and b >  x"FFFFFF00") or
-                --                            ( a >  x"FFFFFF00" and b >= x"FFFFFF00")) then
-                --        resultHFin <= bv_inc(resultH); -- only increment high result with one
-                --        resultLFin <= resultL; 
                 else
                     resultLFin <= resultL;
                     resultHFin <= resultH; 

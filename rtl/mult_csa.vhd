@@ -139,6 +139,12 @@ begin
                 vStarted        := '1';
                 vCarH           := (others => '0');
                 vSumH           := (others => '0');
+                a               <= (others => '0');
+                a2              <= (others => '0');
+                a4              <= (others => '0');
+                a8              <= (others => '0');
+                oldcar          <= (others => '0'); 
+                oldsum          <= (others => '0');
             elsif rising_edge(iclk) then
                 -- MS: only do multiplication when new values are received
                 if vStarted = '1' then
@@ -178,6 +184,14 @@ begin
                     if vCounter < 8 then -- MS: this test case is repeated up top
                         vCounter := (vCounter + 1);
                     else
+                                            -- MS: we went through all the 8 cycles so the input should be zero
+                        oldcar <= (others => '0'); 
+                        oldsum <= (others => '0');
+                        a      <= (others => '0');
+                        a2     <= (others => '0');
+                        a4     <= (others => '0');
+                        a8     <= (others => '0');
+                        
                         vFinished := '1';
                         oFinished <= vFinished;
                         -- MS: output the low register
@@ -193,14 +207,6 @@ begin
                         vSumH     := sum(sum'high downto 4);
                         vResultH  := bv_real_adder(vSumH, vCarH, do_add, vBv_adder_out(4));
                         oResultH  <= vResultH(oResultH'range);
-
-                        -- MS: we went through all the 8 cycles so the input should be zero
-                        oldcar <= (others => '0'); 
-                        oldsum <= (others => '0');
-                        a      <= (others => '0');
-                        a2     <= (others => '0');
-                        a4     <= (others => '0');
-                        a8     <= (others => '0');
                     end if; -- counter
                 end if; -- started
             end if; -- rising edge

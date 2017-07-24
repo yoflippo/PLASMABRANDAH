@@ -443,6 +443,17 @@ begin
 
        wait until rising_edge(Clk);
        err <= '0';
+       v_ia := 0;
+       v_ib := 0;
+       a         <= x"00000000"; -- 
+       b         <= x"00000000";
+       mult_func <= MULT_SIGNED_MULT; 
+       wait until rising_edge(Clk);
+
+       wait until rising_edge(Clk);
+       err <= '0';
+       a         <= x"00000550"; -- 
+       b         <= x"00000003";
        v_ia := to_integer(signed(a));
        v_ib := to_integer(signed(b));
        mult_func <= MULT_SIGNED_MULT;       -- MS: choose type of multiplication
