@@ -61,23 +61,39 @@ architecture logic of cache_ram is
     signal block_enable: std_logic_vector(7 downto 0);
 
     --Block Data Out
-    signal block_do: mem32_vector(7 downto 0);
     signal block_r_do: mem32_vector(7 downto 0);
     signal block_w_do: mem32_vector(7 downto 0);
     signal read_enable_reg : std_logic := '0';
     
 begin
-    block_enable<= "00000001" when (enable='1') and (block_sel="000") else
-                   "00000010" when (enable='1') and (block_sel="001") else
-                   "00000100" when (enable='1') and (block_sel="010") else
-                   "00001000" when (enable='1') and (block_sel="011") else --TvE: adjustment for reads
-                   "00010000" when (enable='1') and (block_sel="100") else
-                   "00100000" when (enable='1') and (block_sel="101") else
-                   "01000000" when (enable='1') and (block_sel="110") else
-                   "10000000" when (enable='1') and (block_sel="111") else
-                   "00000000";
+	proc_block_enable: process(block_sel, write_byte_enable, enable) is
+	begin
+	if write_byte_enable = "0000" then
+		block_enable<= "00000011";
+	else
+		if (enable='1') and (block_sel="000") then
+			block_enable<= "00000001";
+		elsif (enable='1') and (block_sel="001") then
+			block_enable<= "00000010";
+		elsif (enable='1') and (block_sel="010") then
+			block_enable<= "00000100";
+		elsif (enable='1') and (block_sel="011") then
+			block_enable<= "00001000";
+		elsif (enable='1') and (block_sel="100") then
+			block_enable<= "00010000";
+		elsif (enable='1') and (block_sel="101") then
+			block_enable<= "00100000";
+		elsif (enable='1') and (block_sel="110") then
+			block_enable<= "01000000";
+		elsif (enable='1') and (block_sel="111") then
+			block_enable<= "10000000";
+		else
+			block_enable<= "00000000";
+	   	end if;																					
+    end if;
+    end process;
 
-    proc_do: process (block_r_do, read_enable, block_w_do) is
+    proc_do: process (block_r_do, read_enable_reg, block_w_do) is
     
     begin
       if (read_enable_reg = '1') then
@@ -199,7 +215,7 @@ begin
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
-		ENA => read_enable, -- 1-bit A port Enable Input						TvE: "Read" port always enabled
+		ENA => read_enable, -- 1-bit A port Enable Input						
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
 		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
@@ -308,7 +324,7 @@ begin
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
-		ENA => read_enable, -- 1-bit A port Enable Input						TvE: "Read" port always enabled
+		ENA => read_enable, -- 1-bit A port Enable Input				
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
 		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
@@ -417,7 +433,7 @@ begin
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
-		ENA => read_enable, -- 1-bit A port Enable Input						TvE: "Read" port always enabled
+		ENA => read_enable, -- 1-bit A port Enable Input						
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
 		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
@@ -526,7 +542,7 @@ begin
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
-		ENA => read_enable, -- 1-bit A port Enable Input						TvE: "Read" port always enabled
+		ENA => read_enable, -- 1-bit A port Enable Input						
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
 		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
@@ -639,7 +655,7 @@ begin
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
-		ENA => read_enable, -- 1-bit A port Enable Input						TvE: "Read" port always enabled
+		ENA => read_enable, -- 1-bit A port Enable Input						
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
 		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
@@ -748,7 +764,7 @@ begin
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
-		ENA => read_enable, -- 1-bit A port Enable Input						TvE: "Read" port always enabled
+		ENA => read_enable, -- 1-bit A port Enable Input						
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
 		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
@@ -857,7 +873,7 @@ begin
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
-		ENA => read_enable, -- 1-bit A port Enable Input						TvE: "Read" port always enabled
+		ENA => read_enable, -- 1-bit A port Enable Input						
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
 		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		
@@ -966,7 +982,7 @@ begin
 		CLKA => clk, -- Port A Clock
 		DIA => ZERO(7 downto 0), -- 8-bit A port Data Input				TvE: No writes on the "read" port
 		DIPA => ZERO(0 downto 0), -- 1-bit A port parity Input			TvE: Parity unused
-		ENA => read_enable, -- 1-bit A port Enable Input						TvE: "Read" port always enabled
+		ENA => read_enable, -- 1-bit A port Enable Input						
 		SSRA => ZERO(0), -- 1-bit A port Synchronous Set/Reset Input	TvE: Unused
 		WEA => ZERO(0), -- 1-bit A port Write Enable Input		TvE: "Read" port can never be written on
 		

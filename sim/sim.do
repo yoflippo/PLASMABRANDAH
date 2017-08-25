@@ -43,10 +43,12 @@ add wave -group ddr sim:/sim_tb_top/u1_plasma_top/u2_ddr/*
 add wave -group Cache sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/*
 add wave sim:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u3_control/op2
 add wave sim:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u3_control/func2
-dataset open /home/pdp/pdp/sim/vsim.wlf vsim
+add wave sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/*
+dataset open /home/pdp/pdp/sim/baseline.wlf vsim
 compare start vsim sim
 compare options -track
 compare add -wave -tolL {0 ns} -tolT {0 ns} vsim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache
+compare add -wave -tolL {0 ns} -tolT {0 ns} vsim:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u3_control/is_syscall2
 compare run
 
 config wave -signalnamewidth 1

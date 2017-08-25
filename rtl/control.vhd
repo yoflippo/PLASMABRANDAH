@@ -46,6 +46,7 @@ end; --entity control
 architecture logic of control is
 signal op2              : std_logic_vector(5 downto 0);
 signal func2            : std_logic_vector(5 downto 0);
+signal is_syscall2      : std_logic;
 begin
 
     control_proc: process(opcode, intr_signal)
@@ -84,6 +85,7 @@ begin
         func2 <= opcode(5 downto 0);
         imm := opcode(15 downto 0);
         is_syscall := '0';
+        is_syscall2 <= is_syscall;
 
         case op is
             when "000000" =>   --SPECIAL
@@ -131,10 +133,11 @@ begin
 
                     when "001100" =>   --SYSCALL
                         is_syscall := '1';
+                        is_syscall2 <= is_syscall;
 
                     when "001101" =>   --BREAK s->wakeup=1;
                         is_syscall := '1';
-
+                        is_syscall2 <= is_syscall;
                     --when "001111" =>   --SYNC  s->wakeup=1;
 
                     when "010000" =>   --MFHI  r[rd]=s->hi;

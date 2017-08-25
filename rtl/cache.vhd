@@ -93,6 +93,7 @@ architecture logic of cache is
     signal miss_state_prev              : std_logic:='0';
     signal miss_state_prev_reg          : std_logic:='0';
     signal read_enable                  : std_logic:='1';
+    signal cache_ram_enable_reg         : std_logic;
 
 
     -------------------------------------------------------
@@ -281,13 +282,13 @@ begin
             cache_ram_data_r <= cache_ram_data_r0;
         elsif rising_edge(clk) then
             state_reg <= state_next;
+            cache_ram_enable_reg <= cache_ram_enable; --TvE: WAS THIS THE PROBLEM?!?!?!?
             cache_ram_address_reg <= cache_ram_address;
             cache_ram_address_reg2 <= cache_ram_address_reg;
             cache_ram_data_w_reg <= cache_ram_data_w;   --TvE:  since we need to check in which set it has to be put in
             cache_ram_byte_we_reg <= cache_ram_byte_we;
             cache_ram_byte_we_reg2 <= cache_ram_byte_we_reg;
             miss_state_prev_reg <= miss_state_prev;
-            
             if state = STATE_IDLE and state_reg /= STATE_MISSED then
                 cache_tag_reg <= cache_tag_in;
             end if;
@@ -617,7 +618,7 @@ begin
     cache_data: cache_ram     -- cache data storage
         port map (
             clk               => clk,
-            enable            => cache_ram_enable,
+            enable            => cache_ram_enable_reg,
             read_enable       => read_enable,
             write_byte_enable => cache_ram_byte_we_temp,
             read_address      => cache_ram_read_address_temp,

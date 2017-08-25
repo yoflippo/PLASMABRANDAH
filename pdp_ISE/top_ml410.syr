@@ -4,15 +4,15 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.08 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.08 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 Reading design: top_ml410.prj
@@ -111,7 +111,8 @@ Slice Utilization Ratio Delta      : 5
 *                          HDL Compilation                              *
 =========================================================================
 Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_pack.vhd" in Library work.
-Architecture mlite_pack of Entity mlite_pack is up to date.
+Package <mlite_pack> compiled.
+Package body <mlite_pack> compiled.
 Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd" in Library work.
 Entity <cache_ram> compiled.
 Entity <cache_ram> (Architecture <logic>) compiled.
@@ -120,7 +121,8 @@ Architecture logic of Entity pc_next is up to date.
 Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd" in Library work.
 Architecture logic of Entity mem_ctrl is up to date.
 Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd" in Library work.
-Architecture logic of Entity control is up to date.
+Entity <control> compiled.
+Entity <control> (Architecture <logic>) compiled.
 Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd" in Library work.
 Architecture ram_block of Entity reg_bank is up to date.
 Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd" in Library work.
@@ -431,9 +433,9 @@ Analyzing Entity <pipeline> in library <work> (Architecture <logic>).
 Entity <pipeline> analyzed. Unit <pipeline> generated.
 
 Analyzing Entity <cache> in library <work> (Architecture <logic>).
-INFO:Xst:1561 - "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd" line 211: Mux is complete : default of case is discarded
-WARNING:Xst:819 - "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd" line 121: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
-   <cache_ram_byte_we_reg2>, <cache_ram_byte_we_reg>, <cache_ram_address_reg2>, <cache_ram_address_reg>, <cache_ram_data_w_reg>, <miss_state_prev_reg>
+INFO:Xst:1561 - "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd" line 238: Mux is complete : default of case is discarded
+WARNING:Xst:819 - "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd" line 146: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <cache_ram_data_w_reg>, <miss_state_prev_reg>
     Set user-defined property "INIT =  000000FFF" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INITP_00 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INITP_01 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
@@ -656,13 +658,13 @@ WARNING:Xst:819 - "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd" line 121: O
     Set user-defined property "INIT_3D =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
     Set user-defined property "INIT_3E =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
     Set user-defined property "INIT_3F =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
-    Set user-defined property "INIT_A =  000000000" for instance <cache_LRU> in unit <cache>.
-    Set user-defined property "INIT_B =  000000000" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_A =  000000FFF" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "INIT_B =  000000FFF" for instance <cache_LRU> in unit <cache>.
     Set user-defined property "SIM_COLLISION_CHECK =  ALL" for instance <cache_LRU> in unit <cache>.
     Set user-defined property "SRVAL_A =  000000000" for instance <cache_LRU> in unit <cache>.
     Set user-defined property "SRVAL_B =  000000000" for instance <cache_LRU> in unit <cache>.
-    Set user-defined property "WRITE_MODE_A =  READ_FIRST" for instance <cache_LRU> in unit <cache>.
-    Set user-defined property "WRITE_MODE_B =  READ_FIRST" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "WRITE_MODE_A =  WRITE_FIRST" for instance <cache_LRU> in unit <cache>.
+    Set user-defined property "WRITE_MODE_B =  WRITE_FIRST" for instance <cache_LRU> in unit <cache>.
 INFO:Xst:2679 - Register <cache_ram_write_address_temp<14>> in unit <cache> has a constant value of 0 during circuit operation. The register is replaced by logic.
 Entity <cache> analyzed. Unit <cache> generated.
 
@@ -745,8 +747,8 @@ Analyzing generic Entity <cache_ram> in library <work> (Architecture <logic>).
     Set user-defined property "SIM_COLLISION_CHECK =  ALL" for instance <block0.ram_byte3> in unit <cache_ram>.
     Set user-defined property "SRVAL_A =  000000000" for instance <block0.ram_byte3> in unit <cache_ram>.
     Set user-defined property "SRVAL_B =  000000000" for instance <block0.ram_byte3> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE_A =  READ_FIRST" for instance <block0.ram_byte3> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE_B =  READ_FIRST" for instance <block0.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_A =  WRITE_FIRST" for instance <block0.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_B =  WRITE_FIRST" for instance <block0.ram_byte3> in unit <cache_ram>.
     Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte2> in unit <cache_ram>.
     Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte2> in unit <cache_ram>.
     Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte2> in unit <cache_ram>.
@@ -824,8 +826,8 @@ Analyzing generic Entity <cache_ram> in library <work> (Architecture <logic>).
     Set user-defined property "SIM_COLLISION_CHECK =  ALL" for instance <block0.ram_byte2> in unit <cache_ram>.
     Set user-defined property "SRVAL_A =  000000000" for instance <block0.ram_byte2> in unit <cache_ram>.
     Set user-defined property "SRVAL_B =  000000000" for instance <block0.ram_byte2> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE_A =  READ_FIRST" for instance <block0.ram_byte2> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE_B =  READ_FIRST" for instance <block0.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_A =  WRITE_FIRST" for instance <block0.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_B =  WRITE_FIRST" for instance <block0.ram_byte2> in unit <cache_ram>.
     Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte1> in unit <cache_ram>.
     Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte1> in unit <cache_ram>.
     Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte1> in unit <cache_ram>.
@@ -903,8 +905,8 @@ Analyzing generic Entity <cache_ram> in library <work> (Architecture <logic>).
     Set user-defined property "SIM_COLLISION_CHECK =  ALL" for instance <block0.ram_byte1> in unit <cache_ram>.
     Set user-defined property "SRVAL_A =  000000000" for instance <block0.ram_byte1> in unit <cache_ram>.
     Set user-defined property "SRVAL_B =  000000000" for instance <block0.ram_byte1> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE_A =  READ_FIRST" for instance <block0.ram_byte1> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE_B =  READ_FIRST" for instance <block0.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_A =  WRITE_FIRST" for instance <block0.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_B =  WRITE_FIRST" for instance <block0.ram_byte1> in unit <cache_ram>.
     Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte0> in unit <cache_ram>.
     Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte0> in unit <cache_ram>.
     Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block0.ram_byte0> in unit <cache_ram>.
@@ -982,8 +984,8 @@ Analyzing generic Entity <cache_ram> in library <work> (Architecture <logic>).
     Set user-defined property "SIM_COLLISION_CHECK =  ALL" for instance <block0.ram_byte0> in unit <cache_ram>.
     Set user-defined property "SRVAL_A =  000000000" for instance <block0.ram_byte0> in unit <cache_ram>.
     Set user-defined property "SRVAL_B =  000000000" for instance <block0.ram_byte0> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE_A =  READ_FIRST" for instance <block0.ram_byte0> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE_B =  READ_FIRST" for instance <block0.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_A =  WRITE_FIRST" for instance <block0.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_B =  WRITE_FIRST" for instance <block0.ram_byte0> in unit <cache_ram>.
     Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
     Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
     Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
@@ -1061,8 +1063,8 @@ Analyzing generic Entity <cache_ram> in library <work> (Architecture <logic>).
     Set user-defined property "SIM_COLLISION_CHECK =  ALL" for instance <block1.ram_byte3> in unit <cache_ram>.
     Set user-defined property "SRVAL_A =  000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
     Set user-defined property "SRVAL_B =  000000000" for instance <block1.ram_byte3> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE_A =  READ_FIRST" for instance <block1.ram_byte3> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE_B =  READ_FIRST" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_A =  WRITE_FIRST" for instance <block1.ram_byte3> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_B =  WRITE_FIRST" for instance <block1.ram_byte3> in unit <cache_ram>.
     Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
     Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
     Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
@@ -1140,8 +1142,8 @@ Analyzing generic Entity <cache_ram> in library <work> (Architecture <logic>).
     Set user-defined property "SIM_COLLISION_CHECK =  ALL" for instance <block1.ram_byte2> in unit <cache_ram>.
     Set user-defined property "SRVAL_A =  000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
     Set user-defined property "SRVAL_B =  000000000" for instance <block1.ram_byte2> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE_A =  READ_FIRST" for instance <block1.ram_byte2> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE_B =  READ_FIRST" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_A =  WRITE_FIRST" for instance <block1.ram_byte2> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_B =  WRITE_FIRST" for instance <block1.ram_byte2> in unit <cache_ram>.
     Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
     Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
     Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
@@ -1219,8 +1221,8 @@ Analyzing generic Entity <cache_ram> in library <work> (Architecture <logic>).
     Set user-defined property "SIM_COLLISION_CHECK =  ALL" for instance <block1.ram_byte1> in unit <cache_ram>.
     Set user-defined property "SRVAL_A =  000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
     Set user-defined property "SRVAL_B =  000000000" for instance <block1.ram_byte1> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE_A =  READ_FIRST" for instance <block1.ram_byte1> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE_B =  READ_FIRST" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_A =  WRITE_FIRST" for instance <block1.ram_byte1> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_B =  WRITE_FIRST" for instance <block1.ram_byte1> in unit <cache_ram>.
     Set user-defined property "INITP_00 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
     Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
     Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
@@ -1298,8 +1300,8 @@ Analyzing generic Entity <cache_ram> in library <work> (Architecture <logic>).
     Set user-defined property "SIM_COLLISION_CHECK =  ALL" for instance <block1.ram_byte0> in unit <cache_ram>.
     Set user-defined property "SRVAL_A =  000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
     Set user-defined property "SRVAL_B =  000000000" for instance <block1.ram_byte0> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE_A =  READ_FIRST" for instance <block1.ram_byte0> in unit <cache_ram>.
-    Set user-defined property "WRITE_MODE_B =  READ_FIRST" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_A =  WRITE_FIRST" for instance <block1.ram_byte0> in unit <cache_ram>.
+    Set user-defined property "WRITE_MODE_B =  WRITE_FIRST" for instance <block1.ram_byte0> in unit <cache_ram>.
 Entity <cache_ram> analyzed. Unit <cache_ram> generated.
 
 Analyzing generic Entity <boot_ram> in library <work> (Architecture <logic>).
@@ -1654,36 +1656,36 @@ Unit <uart> synthesized.
 
 Synthesizing Unit <pc_next>.
     Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd".
-    Found 1-bit xor2 for signal <pc_inc$xor0000> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0001> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0002> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0003> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0004> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0005> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0006> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0007> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0008> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0009> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0010> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0011> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0012> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0013> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0014> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0015> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0016> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0017> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0018> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0019> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0020> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0021> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0022> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0023> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0024> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0025> created at line 575.
-    Found 1-bit xor2 for signal <pc_inc$xor0026> created at line 575.
+    Found 1-bit xor2 for signal <pc_inc$xor0000> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0001> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0002> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0003> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0004> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0005> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0006> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0007> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0008> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0009> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0010> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0011> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0012> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0013> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0014> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0015> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0016> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0017> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0018> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0019> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0020> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0021> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0022> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0023> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0024> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0025> created at line 576.
+    Found 1-bit xor2 for signal <pc_inc$xor0026> created at line 576.
     Found 30-bit register for signal <pc_reg>.
-    Found 1-bit xor2 for signal <result_12$xor0000> created at line 575.
-    Found 1-bit xor2 for signal <result_22$xor0000> created at line 575.
+    Found 1-bit xor2 for signal <result_12$xor0000> created at line 576.
+    Found 1-bit xor2 for signal <result_22$xor0000> created at line 576.
     Summary:
 	inferred  30 D-type flip-flop(s).
 Unit <pc_next> synthesized.
@@ -1707,6 +1709,7 @@ Unit <mem_ctrl> synthesized.
 Synthesizing Unit <control>.
     Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd".
 WARNING:Xst:646 - Signal <op2> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <is_syscall2> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <func2> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found 16x4-bit ROM for signal <mem_source_out$mux0000>.
     Found 32x2-bit ROM for signal <b_source_out$mux0000>.
@@ -1731,38 +1734,38 @@ Synthesizing Unit <alu>.
     Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/alu.vhd".
     Found 32-bit xor2 for signal <c_alu$xor0000> created at line 40.
     Found 1-bit xor2 for signal <less_than$xor0000> created at line 36.
-    Found 1-bit xor3 for signal <result_11$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <result_14$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <result_17$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <result_2$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <result_20$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <result_23$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <result_26$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <result_29$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <result_5$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <result_8$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0001> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0002> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0003> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0004> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0005> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0006> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0007> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0008> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0009> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0010> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0011> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0012> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0013> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0014> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0015> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0016> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0017> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0018> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0019> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0020> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0021> created at line 544.
+    Found 1-bit xor3 for signal <result_11$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <result_14$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <result_17$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <result_2$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <result_20$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <result_23$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <result_26$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <result_29$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <result_5$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <result_8$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0001> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0002> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0003> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0004> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0005> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0006> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0007> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0008> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0009> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0010> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0011> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0012> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0013> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0014> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0015> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0016> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0017> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0018> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0019> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0020> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0021> created at line 545.
     Found 1-bit xor2 for signal <sum$xor0022>.
     Summary:
 	inferred  32 Xor(s).
@@ -1779,172 +1782,172 @@ Unit <shifter> synthesized.
 
 Synthesizing Unit <mult>.
     Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/mult.vhd".
-    Found 1-bit xor2 for signal <a_neg$xor0000> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0001> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0002> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0003> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0004> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0005> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0006> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0007> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0008> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0009> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0010> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0011> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0012> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0013> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0014> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0015> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0016> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0017> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0018> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0019> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0020> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0021> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0022> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0023> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0024> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0025> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0026> created at line 561.
-    Found 1-bit xor2 for signal <a_neg$xor0027> created at line 561.
+    Found 1-bit xor2 for signal <a_neg$xor0000> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0001> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0002> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0003> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0004> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0005> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0006> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0007> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0008> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0009> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0010> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0011> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0012> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0013> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0014> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0015> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0016> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0017> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0018> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0019> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0020> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0021> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0022> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0023> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0024> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0025> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0026> created at line 562.
+    Found 1-bit xor2 for signal <a_neg$xor0027> created at line 562.
     Found 32-bit register for signal <aa_reg>.
-    Found 1-bit xor2 for signal <b_neg$xor0000> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0001> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0002> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0003> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0004> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0005> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0006> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0007> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0008> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0009> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0010> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0011> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0012> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0013> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0014> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0015> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0016> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0017> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0018> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0019> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0020> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0021> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0022> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0023> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0024> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0025> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0026> created at line 561.
-    Found 1-bit xor2 for signal <b_neg$xor0027> created at line 561.
+    Found 1-bit xor2 for signal <b_neg$xor0000> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0001> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0002> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0003> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0004> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0005> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0006> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0007> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0008> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0009> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0010> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0011> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0012> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0013> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0014> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0015> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0016> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0017> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0018> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0019> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0020> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0021> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0022> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0023> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0024> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0025> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0026> created at line 562.
+    Found 1-bit xor2 for signal <b_neg$xor0027> created at line 562.
     Found 32-bit register for signal <bb_reg>.
-    Found 1-bit xor2 for signal <c_mult$xor0000> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0001> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0002> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0003> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0004> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0005> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0006> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0007> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0008> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0009> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0010> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0011> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0012> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0013> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0014> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0015> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0016> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0017> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0018> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0019> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0020> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0021> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0022> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0023> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0024> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0025> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0026> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0027> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0028> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0029> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0030> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0031> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0032> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0033> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0034> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0035> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0036> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0037> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0038> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0039> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0040> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0041> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0042> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0043> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0044> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0045> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0046> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0047> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0048> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0049> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0050> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0051> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0052> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0053> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0054> created at line 561.
-    Found 1-bit xor2 for signal <c_mult$xor0055> created at line 561.
+    Found 1-bit xor2 for signal <c_mult$xor0000> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0001> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0002> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0003> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0004> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0005> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0006> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0007> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0008> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0009> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0010> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0011> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0012> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0013> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0014> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0015> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0016> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0017> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0018> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0019> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0020> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0021> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0022> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0023> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0024> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0025> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0026> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0027> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0028> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0029> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0030> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0031> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0032> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0033> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0034> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0035> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0036> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0037> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0038> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0039> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0040> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0041> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0042> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0043> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0044> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0045> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0046> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0047> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0048> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0049> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0050> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0051> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0052> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0053> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0054> created at line 562.
+    Found 1-bit xor2 for signal <c_mult$xor0055> created at line 562.
     Found 6-bit register for signal <count_reg>.
     Found 6-bit subtractor for signal <count_reg$addsub0000> created at line 203.
     Found 32-bit register for signal <lower_reg>.
     Found 1-bit register for signal <mode_reg>.
     Found 1-bit register for signal <negate_reg>.
-    Found 1-bit xor2 for signal <result0_10$xor0000> created at line 561.
-    Found 1-bit xor2 for signal <result0_20$xor0000> created at line 561.
-    Found 1-bit xor2 for signal <result0_30$xor0000> created at line 561.
-    Found 1-bit xor2 for signal <result1_10$xor0000> created at line 561.
-    Found 1-bit xor2 for signal <result1_20$xor0000> created at line 561.
-    Found 1-bit xor2 for signal <result1_30$xor0000> created at line 561.
-    Found 1-bit xor2 for signal <result2_10$xor0000> created at line 561.
-    Found 1-bit xor2 for signal <result2_20$xor0000> created at line 561.
-    Found 1-bit xor2 for signal <result2_30$xor0000> created at line 561.
-    Found 1-bit xor3 for signal <result3_11$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <result3_14$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <result3_17$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <result3_2$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <result3_20$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <result3_23$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <result3_26$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <result3_29$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <result3_5$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <result3_8$xor0000> created at line 544.
-    Found 1-bit xor2 for signal <result_10$xor0000> created at line 561.
-    Found 1-bit xor2 for signal <result_20$xor0000> created at line 561.
-    Found 1-bit xor2 for signal <result_30$xor0000> created at line 561.
+    Found 1-bit xor2 for signal <result0_10$xor0000> created at line 562.
+    Found 1-bit xor2 for signal <result0_20$xor0000> created at line 562.
+    Found 1-bit xor2 for signal <result0_30$xor0000> created at line 562.
+    Found 1-bit xor2 for signal <result1_10$xor0000> created at line 562.
+    Found 1-bit xor2 for signal <result1_20$xor0000> created at line 562.
+    Found 1-bit xor2 for signal <result1_30$xor0000> created at line 562.
+    Found 1-bit xor2 for signal <result2_10$xor0000> created at line 562.
+    Found 1-bit xor2 for signal <result2_20$xor0000> created at line 562.
+    Found 1-bit xor2 for signal <result2_30$xor0000> created at line 562.
+    Found 1-bit xor3 for signal <result3_11$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <result3_14$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <result3_17$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <result3_2$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <result3_20$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <result3_23$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <result3_26$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <result3_29$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <result3_5$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <result3_8$xor0000> created at line 545.
+    Found 1-bit xor2 for signal <result_10$xor0000> created at line 562.
+    Found 1-bit xor2 for signal <result_20$xor0000> created at line 562.
+    Found 1-bit xor2 for signal <result_30$xor0000> created at line 562.
     Found 1-bit register for signal <sign2_reg>.
     Found 1-bit register for signal <sign_reg>.
     Found 1-bit xor2 for signal <sign_reg$xor0000> created at line 136.
-    Found 1-bit xor3 for signal <sum$xor0000> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0001> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0002> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0003> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0004> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0005> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0006> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0007> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0008> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0009> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0010> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0011> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0012> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0013> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0014> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0015> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0016> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0017> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0018> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0019> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0020> created at line 544.
-    Found 1-bit xor3 for signal <sum$xor0021> created at line 544.
+    Found 1-bit xor3 for signal <sum$xor0000> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0001> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0002> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0003> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0004> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0005> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0006> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0007> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0008> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0009> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0010> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0011> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0012> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0013> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0014> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0015> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0016> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0017> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0018> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0019> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0020> created at line 545.
+    Found 1-bit xor3 for signal <sum$xor0021> created at line 545.
     Found 1-bit xor2 for signal <sum$xor0022>.
     Found 32-bit register for signal <upper_reg>.
     Found 1-bit xor2 for signal <upper_reg$xor0000> created at line 173.
@@ -2094,8 +2097,12 @@ Synthesizing Unit <cache_ram>.
     Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd".
 WARNING:Xst:647 - Input <write_address<31:16>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <read_address<31:13>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1780 - Signal <block_w_do<7:2>> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <block_r_do<7:2>> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <block_enable<7:2>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <block_do<7:2>> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit register for signal <read_enable_reg>.
+    Summary:
+	inferred   1 D-type flip-flop(s).
 Unit <cache_ram> synthesized.
 
 
@@ -2113,36 +2120,36 @@ Synthesizing Unit <cache>.
     Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd".
 WARNING:Xst:647 - Input <cpu_address<31:13>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <address_next<31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <cache_ram_byte_we_reg2> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <cache_ram_address_reg2> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <LRU_reg> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:737 - Found 32-bit latch for signal <cache_ram_data_r>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
     Using one-hot encoding for signal <state>.
     Using one-hot encoding for signal <state_reg>.
 WARNING:Xst:737 - Found 1-bit latch for signal <miss_state_prev>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 32-bit latch for signal <cache_ram_data_r>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
 WARNING:Xst:737 - Found 1-bit latch for signal <LRU_in_0>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
 WARNING:Xst:737 - Found 1-bit latch for signal <cache_ram_write_address_temp_13>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-    Found 8-bit comparator not equal for signal <cache_miss$cmp_ne0000> created at line 138.
-    Found 8-bit comparator not equal for signal <cache_miss$cmp_ne0001> created at line 138.
-    Found 30-bit tristate buffer for signal <cache_ram_address_reg>.
-    Found 30-bit register for signal <cache_ram_address_reg2>.
+    Found 8-bit comparator not equal for signal <cache_miss$cmp_ne0000> created at line 163.
+    Found 8-bit comparator not equal for signal <cache_miss$cmp_ne0001> created at line 163.
+    Found 30-bit register for signal <cache_ram_address_reg>.
     Found 4-bit register for signal <cache_ram_byte_we_reg>.
-    Found 4-bit register for signal <cache_ram_byte_we_reg2>.
+    Found 8-bit comparator equal for signal <cache_ram_data_r$cmp_eq0000> created at line 185.
+    Found 8-bit comparator equal for signal <cache_ram_data_r$cmp_eq0001> created at line 187.
     Found 32-bit tristate buffer for signal <cache_ram_data_w_reg>.
+    Found 1-bit register for signal <cache_ram_enable_reg>.
     Found 8-bit register for signal <cache_tag_reg>.
-    Found 30-bit comparator equal for signal <LRU_in_0$cmp_eq0002> created at line 157.
-    Found 8-bit comparator equal for signal <LRU_in_0$cmp_eq0003> created at line 160.
-    Found 8-bit comparator equal for signal <LRU_in_0$cmp_eq0004> created at line 162.
-    Found 30-bit comparator not equal for signal <LRU_in_0$cmp_ne0004> created at line 157.
+    Found 11-bit comparator equal for signal <LRU_enable$cmp_eq0000> created at line 137.
     Found 1-bit register for signal <miss_state_prev_reg>.
-    Found 30-bit register for signal <Mtridata_cache_ram_address_reg> created at line 252.
-    Found 32-bit register for signal <Mtridata_cache_ram_data_w_reg> created at line 253.
+    Found 32-bit register for signal <Mtridata_cache_ram_data_w_reg> created at line 280.
     Found 4-bit register for signal <state_reg>.
     Summary:
-	inferred 109 D-type flip-flop(s).
-	inferred   6 Comparator(s).
-	inferred  62 Tristate(s).
+	inferred  76 D-type flip-flop(s).
+	inferred   5 Comparator(s).
+	inferred  32 Tristate(s).
 Unit <cache> synthesized.
 
 
@@ -2152,47 +2159,47 @@ WARNING:Xst:646 - Signal <cpu_address<1:0>> is assigned but never used. This unc
     Found 32-bit 4-to-1 multiplexer for signal <cache_ram_data_w>.
     Found 8-bit register for signal <counter_hi_reg>.
     Found 40-bit register for signal <counter_reg>.
-    Found 1-bit xor2 for signal <counter_reg$xor0000> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0001> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0002> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0003> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0004> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0005> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0006> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0007> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0008> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0009> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0010> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0011> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0012> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0013> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0014> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0015> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0016> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0017> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0018> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0019> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0020> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0021> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0022> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0023> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0024> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0025> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0026> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0027> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0028> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0029> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0030> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0031> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0032> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0033> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0034> created at line 589.
-    Found 1-bit xor2 for signal <counter_reg$xor0035> created at line 589.
+    Found 1-bit xor2 for signal <counter_reg$xor0000> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0001> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0002> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0003> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0004> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0005> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0006> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0007> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0008> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0009> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0010> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0011> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0012> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0013> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0014> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0015> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0016> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0017> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0018> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0019> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0020> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0021> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0022> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0023> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0024> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0025> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0026> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0027> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0028> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0029> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0030> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0031> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0032> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0033> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0034> created at line 590.
+    Found 1-bit xor2 for signal <counter_reg$xor0035> created at line 590.
     Found 32-bit register for signal <gpio0_reg>.
     Found 8-bit register for signal <irq_mask_reg>.
-    Found 1-bit xor2 for signal <result_10$xor0000> created at line 589.
-    Found 1-bit xor2 for signal <result_20$xor0000> created at line 589.
-    Found 1-bit xor2 for signal <result_30$xor0000> created at line 589.
+    Found 1-bit xor2 for signal <result_10$xor0000> created at line 590.
+    Found 1-bit xor2 for signal <result_20$xor0000> created at line 590.
+    Found 1-bit xor2 for signal <result_30$xor0000> created at line 590.
     Summary:
 	inferred  88 D-type flip-flop(s).
 	inferred  32 Multiplexer(s).
@@ -2231,15 +2238,15 @@ Macro Statistics
  7-bit updown counter                                  : 1
  8-bit up counter                                      : 1
 # Registers                                            : 224
- 1-bit register                                        : 186
+ 1-bit register                                        : 188
  10-bit register                                       : 1
  12-bit register                                       : 1
  13-bit register                                       : 4
  2-bit register                                        : 1
  3-bit register                                        : 3
- 30-bit register                                       : 4
+ 30-bit register                                       : 3
  32-bit register                                       : 9
- 4-bit register                                        : 6
+ 4-bit register                                        : 5
  40-bit register                                       : 1
  6-bit register                                        : 2
  8-bit register                                        : 5
@@ -2247,10 +2254,9 @@ Macro Statistics
 # Latches                                              : 4
  1-bit latch                                           : 3
  32-bit latch                                          : 1
-# Comparators                                          : 11
+# Comparators                                          : 10
+ 11-bit comparator equal                               : 1
  13-bit comparator not equal                           : 1
- 30-bit comparator equal                               : 1
- 30-bit comparator not equal                           : 1
  32-bit comparator equal                               : 1
  6-bit comparator not equal                            : 2
  8-bit comparator equal                                : 3
@@ -2261,10 +2267,9 @@ Macro Statistics
  13-bit 4-to-1 multiplexer                             : 1
  32-bit 4-to-1 multiplexer                             : 4
  32-bit 8-to-1 multiplexer                             : 1
-# Tristates                                            : 7
+# Tristates                                            : 6
  1-bit tristate buffer                                 : 4
  16-bit tristate buffer                                : 1
- 30-bit tristate buffer                                : 1
  32-bit tristate buffer                                : 1
 # Xors                                                 : 262
  1-bit xor2                                            : 197
@@ -2295,6 +2300,26 @@ Optimizing FSM <u1_plasma_top/u2_ddr/u2_ddr/state_prev/FSM> on signal <state_pre
 WARNING:Xst:2677 - Node <address_reg_25> of sequential type is unconnected in block <u2_mem_ctrl>.
 WARNING:Xst:2677 - Node <address_reg_26> of sequential type is unconnected in block <u2_mem_ctrl>.
 WARNING:Xst:2677 - Node <address_reg_27> of sequential type is unconnected in block <u2_mem_ctrl>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_13> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_14> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_16> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_17> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_18> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_19> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_20> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_21> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_22> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_23> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_24> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_25> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_26> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_27> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_28> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_29> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_30> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_31> of sequential type is unconnected in block <opt_cache2.u_cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_13> of sequential type is unconnected in block <cache>.
+WARNING:Xst:2677 - Node <cache_ram_address_reg_14> of sequential type is unconnected in block <cache>.
 
 =========================================================================
 Advanced HDL Synthesis Report
@@ -2315,15 +2340,14 @@ Macro Statistics
  4-bit up counter                                      : 1
  7-bit updown counter                                  : 1
  8-bit up counter                                      : 1
-# Registers                                            : 804
- Flip-Flops                                            : 804
+# Registers                                            : 770
+ Flip-Flops                                            : 770
 # Latches                                              : 4
  1-bit latch                                           : 3
  32-bit latch                                          : 1
-# Comparators                                          : 11
+# Comparators                                          : 10
+ 11-bit comparator equal                               : 1
  13-bit comparator not equal                           : 1
- 30-bit comparator equal                               : 1
- 30-bit comparator not equal                           : 1
  32-bit comparator equal                               : 1
  6-bit comparator not equal                            : 2
  8-bit comparator equal                                : 3
@@ -2360,11 +2384,11 @@ INFO:Xst:1901 - Instance cache_tag1 in unit cache of type RAMB16_S9 has been rep
 INFO:Xst:1901 - Instance cache_tag2 in unit cache of type RAMB16_S9 has been replaced by RAMB16
 INFO:Xst:1901 - Instance cache_LRU in unit cache of type RAMB16_S9_S9 has been replaced by RAMB16
 INFO:Xst:1901 - Instance u1_plasma_top/u0_clk/DCM_BASE0 in unit top_ml410 of type DCM_BASE has been replaced by DCM_ADV
-WARNING:Xst:2170 - Unit cache : the following signal(s) form a combinatorial loop: write_toggle_mux0000, cache_ram_write_address_temp_13_mux0002, write_toggle.
-WARNING:Xst:2170 - Unit cache : the following signal(s) form a combinatorial loop: cache_we<0>, cache_we_mux0002<0>.
+WARNING:Xst:2170 - Unit cache : the following signal(s) form a combinatorial loop: write_toggle_mux0000, write_toggle, cache_ram_write_address_temp_13_mux0002.
+WARNING:Xst:2170 - Unit cache : the following signal(s) form a combinatorial loop: cache_we_mux0002<0>, cache_we<0>.
 WARNING:Xst:2170 - Unit cache : the following signal(s) form a combinatorial loop: cache_we_mux0002<1>, cache_we<1>.
 WARNING:Xst:2170 - Unit cache : the following signal(s) form a combinatorial loop: LRU_we, LRU_we_mux0001.
-WARNING:Xst:2042 - Unit cache: 62 internal tristates are replaced by logic (pull-up yes): cache_ram_address_reg<10>, cache_ram_address_reg<11>, cache_ram_address_reg<12>, cache_ram_address_reg<13>, cache_ram_address_reg<14>, cache_ram_address_reg<15>, cache_ram_address_reg<16>, cache_ram_address_reg<17>, cache_ram_address_reg<18>, cache_ram_address_reg<19>, cache_ram_address_reg<20>, cache_ram_address_reg<21>, cache_ram_address_reg<22>, cache_ram_address_reg<23>, cache_ram_address_reg<24>, cache_ram_address_reg<25>, cache_ram_address_reg<26>, cache_ram_address_reg<27>, cache_ram_address_reg<28>, cache_ram_address_reg<29>, cache_ram_address_reg<2>, cache_ram_address_reg<30>, cache_ram_address_reg<31>, cache_ram_address_reg<3>, cache_ram_address_reg<4>, cache_ram_address_reg<5>, cache_ram_address_reg<6>, cache_ram_address_reg<7>, cache_ram_address_reg<8>, cache_ram_address_reg<9>, cache_ram_data_w_reg<0>, cache_ram_data_w_reg<10>, cache_ram_data_w_reg<11>, cache_ram_data_w_reg<12>, cache_ram_data_w_reg<13>, cache_ram_data_w_reg<14>, cache_ram_data_w_reg<15>, cache_ram_data_w_reg<16>, cache_ram_data_w_reg<17>, cache_ram_data_w_reg<18>, cache_ram_data_w_reg<19>, cache_ram_data_w_reg<1>, cache_ram_data_w_reg<20>, cache_ram_data_w_reg<21>, cache_ram_data_w_reg<22>, cache_ram_data_w_reg<23>, cache_ram_data_w_reg<24>, cache_ram_data_w_reg<25>, cache_ram_data_w_reg<26>, cache_ram_data_w_reg<27>, cache_ram_data_w_reg<28>, cache_ram_data_w_reg<29>, cache_ram_data_w_reg<2>, cache_ram_data_w_reg<30>, cache_ram_data_w_reg<31>, cache_ram_data_w_reg<3>, cache_ram_data_w_reg<4>, cache_ram_data_w_reg<5>, cache_ram_data_w_reg<6>, cache_ram_data_w_reg<7>, cache_ram_data_w_reg<8>, cache_ram_data_w_reg<9>.
+WARNING:Xst:2042 - Unit cache: 32 internal tristates are replaced by logic (pull-up yes): cache_ram_data_w_reg<0>, cache_ram_data_w_reg<10>, cache_ram_data_w_reg<11>, cache_ram_data_w_reg<12>, cache_ram_data_w_reg<13>, cache_ram_data_w_reg<14>, cache_ram_data_w_reg<15>, cache_ram_data_w_reg<16>, cache_ram_data_w_reg<17>, cache_ram_data_w_reg<18>, cache_ram_data_w_reg<19>, cache_ram_data_w_reg<1>, cache_ram_data_w_reg<20>, cache_ram_data_w_reg<21>, cache_ram_data_w_reg<22>, cache_ram_data_w_reg<23>, cache_ram_data_w_reg<24>, cache_ram_data_w_reg<25>, cache_ram_data_w_reg<26>, cache_ram_data_w_reg<27>, cache_ram_data_w_reg<28>, cache_ram_data_w_reg<29>, cache_ram_data_w_reg<2>, cache_ram_data_w_reg<30>, cache_ram_data_w_reg<31>, cache_ram_data_w_reg<3>, cache_ram_data_w_reg<4>, cache_ram_data_w_reg<5>, cache_ram_data_w_reg<6>, cache_ram_data_w_reg<7>, cache_ram_data_w_reg<8>, cache_ram_data_w_reg<9>.
 
 Optimizing unit <top_ml410> ...
 
@@ -2399,6 +2423,22 @@ Optimizing unit <mlite_cpu> ...
 Optimizing unit <cache> ...
 
 Optimizing unit <plasma> ...
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_16> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_17> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_18> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_19> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_20> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_21> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_22> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_23> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_24> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_25> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_26> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_27> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_28> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_29> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_30> of sequential type is unconnected in block <top_ml410>.
+WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg_31> of sequential type is unconnected in block <top_ml410>.
 WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_27> of sequential type is unconnected in block <top_ml410>.
 WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_26> of sequential type is unconnected in block <top_ml410>.
 WARNING:Xst:2677 - Node <u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_reg_25> of sequential type is unconnected in block <top_ml410>.
@@ -2407,17 +2447,25 @@ Mapping all equations...
 Building and optimizing final netlist ...
 Found area constraint ratio of 100 (+ 5) on block top_ml410, actual ratio is 8.
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_1 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_15 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_23 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_26 has been replicated 2 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_27 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_28 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_29 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_30 has been replicated 2 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u8_mult/mode_reg has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/a_busD_0 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/a_busD_1 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/a_busD_2 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_0 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_1 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_2 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_3 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/b_busD_0 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u2_ddr/u1_ddr_init/init_step_3 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u2_ddr/u1_ddr_init/wait_cnt_1 has been replicated 1 time(s)
+FlipFlop u1_plasma_top/u2_ddr/u1_ddr_init/wait_cnt_7 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u2_ddr/u2_ddr/clk_p has been replicated 3 time(s) to handle iob=true attribute.
 
 Final Macro Processing ...
@@ -2426,8 +2474,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 867
- Flip-Flops                                            : 867
+# Registers                                            : 825
+ Flip-Flops                                            : 825
 
 =========================================================================
 
@@ -2456,30 +2504,30 @@ Design Statistics
 # IOs                              : 77
 
 Cell Usage :
-# BELS                             : 4080
+# BELS                             : 4072
 #      GND                         : 1
-#      INV                         : 22
+#      INV                         : 23
 #      LUT1                        : 8
-#      LUT2                        : 187
-#      LUT2_D                      : 38
-#      LUT2_L                      : 12
-#      LUT3                        : 782
-#      LUT3_D                      : 93
-#      LUT3_L                      : 39
-#      LUT4                        : 2156
-#      LUT4_D                      : 154
-#      LUT4_L                      : 159
-#      MUXCY                       : 54
-#      MUXF5                       : 356
+#      LUT2                        : 192
+#      LUT2_D                      : 47
+#      LUT2_L                      : 18
+#      LUT3                        : 750
+#      LUT3_D                      : 89
+#      LUT3_L                      : 43
+#      LUT4                        : 2159
+#      LUT4_D                      : 162
+#      LUT4_L                      : 176
+#      MUXCY                       : 45
+#      MUXF5                       : 340
 #      VCC                         : 1
 #      XORCY                       : 18
-# FlipFlops/Latches                : 902
-#      FD                          : 65
-#      FDC                         : 245
+# FlipFlops/Latches                : 860
+#      FD                          : 36
+#      FDC                         : 260
 #      FDC_1                       : 39
-#      FDCE                        : 366
+#      FDCE                        : 371
 #      FDCE_1                      : 18
-#      FDE                         : 123
+#      FDE                         : 90
 #      FDP                         : 2
 #      FDPE                        : 9
 #      LD                          : 35
@@ -2502,10 +2550,10 @@ Device utilization summary:
 
 Selected Device : 4vfx60ff1152-11 
 
- Number of Slices:                     2173  out of  25280     8%  
- Number of Slice Flip Flops:            899  out of  50560     1%  
- Number of 4 input LUTs:               3906  out of  50560     7%  
-    Number used as logic:              3650
+ Number of Slices:                     2184  out of  25280     8%  
+ Number of Slice Flip Flops:            857  out of  50560     1%  
+ Number of 4 input LUTs:               3923  out of  50560     7%  
+    Number used as logic:              3667
     Number used as RAMs:                256
  Number of IOs:                          77
  Number of bonded IOBs:                  75  out of    576    13%  
@@ -2533,17 +2581,17 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------+
-Clock Signal                                                                                                                                                             | Clock buffer(FF name)                                                              | Load  |
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------+
-sys_clk_pin                                                                                                                                                              | u1_plasma_top/u0_clk/DCM_BASE0:CLKFX                                               | 97    |
-u1_plasma_top/u0_clk/clk_bufg_in                                                                                                                                         | BUFG                                                                               | 913   |
-u1_plasma_top/u1_plasma/opt_cache2.u_cache/miss_state_prev_not0001(u1_plasma_top/u1_plasma/opt_cache2.u_cache/miss_state_prev_not00011:O)                                | NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/miss_state_prev)                | 1     |
-u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_not0001(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_not00011:O)| NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13)| 1     |
-u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_not0001(u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_not00011:O)                                              | NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0)                       | 1     |
-u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_reg_11                                                                                                                  | BUFG                                                                               | 32    |
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------+
-(*) These 3 clock signal(s) are generated by combinatorial logic,
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------+
+Clock Signal                                                                                                                                                            | Clock buffer(FF name)                                                              | Load  |
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------+
+sys_clk_pin                                                                                                                                                             | u1_plasma_top/u0_clk/DCM_BASE0:CLKFX                                               | 97    |
+u1_plasma_top/u0_clk/clk_bufg_in                                                                                                                                        | BUFG                                                                               | 871   |
+u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_not0001(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_not0001:O)| NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13)| 1     |
+u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_not0001(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_not00012_f5:O)                   | NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0)                       | 1     |
+u1_plasma_top/u1_plasma/opt_cache2.u_cache/miss_state_prev_not0001(u1_plasma_top/u1_plasma/opt_cache2.u_cache/miss_state_prev_not00011:O)                               | NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/miss_state_prev)                | 1     |
+u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_not00011(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_not00011:O)                            | BUFG(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_0)             | 32    |
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------+
+(*) These 4 clock signal(s) are generated by combinatorial logic,
 and XST is not able to identify which are the primary clock signals.
 Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
@@ -2553,9 +2601,9 @@ Asynchronous Control Signals Information:
 -----------------------------------------------------------------------------------+----------------------------------------------------------+-------+
 Control Signal                                                                     | Buffer(FF name)                                          | Load  |
 -----------------------------------------------------------------------------------+----------------------------------------------------------+-------+
-u1_plasma_top/u1_plasma/u1_cpu/reset(u1_plasma_top/u1_plasma/u1_cpu/reset_or0000:O)| NONE(u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_reg_10)| 395   |
-u1_plasma_top/reset_cpu(u1_plasma_top/reset_cpu1:O)                                | NONE(u1_plasma_top/u1_plasma/counter_hi_reg_32)          | 179   |
-u1_plasma_top/reset(u1_plasma_top/reset1:O)                                        | NONE(u1_plasma_top/u2_ddr/u1_ddr_init/init_step_0)       | 104   |
+u1_plasma_top/u1_plasma/u1_cpu/reset(u1_plasma_top/u1_plasma/u1_cpu/reset_or0000:O)| NONE(u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_reg_10)| 400   |
+u1_plasma_top/reset_cpu(u1_plasma_top/reset_cpu1:O)                                | NONE(u1_plasma_top/u1_plasma/counter_hi_reg_32)          | 191   |
+u1_plasma_top/reset(u1_plasma_top/reset1:O)                                        | NONE(u1_plasma_top/u2_ddr/u1_ddr_init/init_step_0)       | 107   |
 u1_plasma_top/reset_in(u1_plasma_top/reset_in1_INV_0:O)                            | NONE(u1_plasma_top/u0_clk/clk_bufg_in)                   | 1     |
 -----------------------------------------------------------------------------------+----------------------------------------------------------+-------+
 
@@ -2563,9 +2611,9 @@ Timing Summary:
 ---------------
 Speed Grade: -11
 
-   Minimum period: 14.478ns (Maximum Frequency: 69.070MHz)
-   Minimum input arrival time before clock: 11.840ns
-   Maximum output required time after clock: 11.510ns
+   Minimum period: 14.642ns (Maximum Frequency: 68.297MHz)
+   Minimum input arrival time before clock: 13.120ns
+   Maximum output required time after clock: 11.493ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -2588,7 +2636,7 @@ Delay:               2.491ns (Levels of Logic = 2)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDCE:C->Q             5   0.307   0.613  u1_plasma_top/u2_ddr/u2_ddr/cycle_count_2 (u1_plasma_top/u2_ddr/u2_ddr/cycle_count_2)
-     LUT3:I0->O            1   0.166   0.452  u1_plasma_top/u2_ddr/u2_ddr/cycle_count_not0001_SW0 (N40)
+     LUT3:I0->O            1   0.166   0.452  u1_plasma_top/u2_ddr/u2_ddr/cycle_count_not0001_SW0 (N42)
      LUT4:I3->O            3   0.166   0.326  u1_plasma_top/u2_ddr/u2_ddr/cycle_count_not0001 (u1_plasma_top/u2_ddr/u2_ddr/cycle_count_not0001)
      FDCE:CE                   0.461          u1_plasma_top/u2_ddr/u2_ddr/cycle_count_0
     ----------------------------------------
@@ -2597,10 +2645,10 @@ Delay:               2.491ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Clock period: 14.478ns (frequency: 69.070MHz)
-  Total number of paths / destination ports: 114063709 / 2954
+  Clock period: 14.642ns (frequency: 68.297MHz)
+  Total number of paths / destination ports: 105613408 / 2893
 -------------------------------------------------------------------------
-Delay:               14.478ns (Levels of Logic = 32)
+Delay:               14.642ns (Levels of Logic = 37)
   Source:            u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_3 (FF)
   Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1 (RAM)
   Source Clock:      u1_plasma_top/u0_clk/clk_bufg_in rising
@@ -2611,13 +2659,13 @@ Delay:               14.478ns (Levels of Logic = 32)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDCE:C->Q            19   0.307   0.803  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_3 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_3)
-     LUT4:I1->O            2   0.166   0.520  u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000_SW0_SW0 (N746)
-     LUT4_D:I2->O         12   0.166   0.591  u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000_1 (u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000)
-     LUT4:I3->O           13   0.166   0.597  u1_plasma_top/u1_plasma/u1_cpu/u3_control/rs_index<2>1 (u1_plasma_top/u1_plasma/u1_cpu/rs_index<2>)
-     LUT4:I3->O           16   0.166   0.516  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/addr_read1<2>1_2 (u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/addr_read1<2>1_1)
-     RAM16X1D:DPRA2->DPO    2   0.165   0.653  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_loop[3].reg_bit1b (u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/data_out1B<3>)
-     LUT4:I0->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<3>_F (N2188)
-     MUXF5:I0->O           2   0.325   0.520  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<3> (u1_plasma_top/u1_plasma/u1_cpu/reg_source<3>)
+     LUT4:I1->O            2   0.166   0.520  u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000_SW0_SW0 (N512)
+     LUT4_D:I2->O         13   0.166   0.597  u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000_1 (u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000)
+     LUT4_D:I3->O         10   0.166   0.563  u1_plasma_top/u1_plasma/u1_cpu/u3_control/rs_index<2>1 (u1_plasma_top/u1_plasma/u1_cpu/rs_index<2>)
+     LUT4:I3->O           17   0.166   0.504  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/addr_read1<1>1_2 (u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/addr_read1<1>1_1)
+     RAM16X1D:DPRA1->DPO    1   0.165   0.638  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_loop[3].reg_bit1a (u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/data_out1A<3>)
+     LUT4:I0->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<3>1 (u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<3>)
+     MUXF5:I1->O           2   0.319   0.520  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<3>_f5 (u1_plasma_top/u1_plasma/u1_cpu/reg_source<3>)
      LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_lut<1> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_lut<1>)
      MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<1> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<1>)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<2> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<2>)
@@ -2633,26 +2681,31 @@ Delay:               14.478ns (Levels of Logic = 32)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<12> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<12>)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<13> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<13>)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<14> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<14>)
-     MUXCY:CI->O          17   0.315   0.504  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<15> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<15>)
-     MUXF5:S->O           13   0.449   0.650  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<29>11 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N01)
-     LUT4:I2->O            1   0.166   0.452  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<25>12 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<25>12)
-     LUT4:I3->O            2   0.166   0.467  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<25>51 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<25>)
-     LUT4:I3->O            5   0.166   0.472  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<25>16 (u1_plasma_top/u1_plasma/address_next<27>)
-     LUT4:I3->O            2   0.166   0.520  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000040_SW0 (N1067)
-     LUT4:I2->O            3   0.166   0.518  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000083_1 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000083)
-     LUT4:I2->O            7   0.166   0.501  u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_toggle22 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_toggle)
-     LUT4:I3->O            2   0.166   0.520  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we_mux0002<0>21 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/N5)
-     LUT4:I2->O            5   0.166   0.333  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1>)
+     MUXCY:CI->O          23   0.315   0.783  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<15> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<15>)
+     LUT3:I2->O           13   0.166   0.597  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/branch_func<2> (u1_plasma_top/u1_plasma/u1_cpu/take_branch)
+     LUT4:I3->O            3   0.166   0.326  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<1>36 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<1>36)
+     MUXF5:S->O            1   0.449   0.452  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<1>54_SW1 (N879)
+     LUT4:I3->O           16   0.166   0.655  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<1>16 (u1_plasma_top/u1_plasma/address_next<3>)
+     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_lut<0> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_lut<0>)
+     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<0> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<0>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<1> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<1>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<2> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<2>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<3> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<3>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<4> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<4>)
+     MUXCY:CI->O           5   0.315   0.472  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<5> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<5>)
+     LUT3:I2->O            3   0.166   0.606  u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_out_0_mux00001 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_out)
+     LUT4_L:I1->LO         1   0.166   0.325  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1>_SW0 (N434)
+     LUT4:I0->O            5   0.166   0.333  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1>)
      RAMB16:WEA0               0.650          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag2
     ----------------------------------------
-    Total                     14.478ns (5.341ns logic, 9.137ns route)
-                                       (36.9% logic, 63.1% route)
+    Total                     14.642ns (5.948ns logic, 8.694ns route)
+                                       (40.6% logic, 59.4% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'sys_clk_pin'
   Total number of paths / destination ports: 68 / 68
 -------------------------------------------------------------------------
-Offset:              4.694ns (Levels of Logic = 3)
+Offset:              4.613ns (Levels of Logic = 3)
   Source:            sys_rst_pin (PAD)
   Destination:       u1_plasma_top/u2_ddr/u2_ddr/data_read_29 (FF)
   Destination Clock: sys_clk_pin rising 0.8X
@@ -2661,19 +2714,19 @@ Offset:              4.694ns (Levels of Logic = 3)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            72   0.867   1.135  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
-     LUT2:I0->O          106   0.166   1.383  u1_plasma_top/reset1 (u1_plasma_top/reset)
+     IBUF:I->O            45   0.867   1.043  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
+     LUT2:I0->O          109   0.166   1.394  u1_plasma_top/reset1 (u1_plasma_top/reset)
      LUT4:I0->O           16   0.166   0.516  u1_plasma_top/u2_ddr/u2_ddr/data_read_29_and00001 (u1_plasma_top/u2_ddr/u2_ddr/data_read_29_and0000)
      FDE:CE                    0.461          u1_plasma_top/u2_ddr/u2_ddr/data_read_29
     ----------------------------------------
-    Total                      4.694ns (1.660ns logic, 3.034ns route)
-                                       (35.4% logic, 64.6% route)
+    Total                      4.613ns (1.660ns logic, 2.953ns route)
+                                       (36.0% logic, 64.0% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Total number of paths / destination ports: 2596 / 578
+  Total number of paths / destination ports: 2422 / 412
 -------------------------------------------------------------------------
-Offset:              11.840ns (Levels of Logic = 12)
+Offset:              11.985ns (Levels of Logic = 12)
   Source:            sys_rst_pin (PAD)
   Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1 (RAM)
   Destination Clock: u1_plasma_top/u0_clk/clk_bufg_in rising
@@ -2682,28 +2735,28 @@ Offset:              11.840ns (Levels of Logic = 12)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            72   0.867   1.268  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
-     LUT4_L:I0->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N216)
-     LUT4:I3->O          416   0.166   2.251  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
-     LUT4:I3->O            1   0.166   0.638  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW0 (N1131)
-     LUT4:I0->O           18   0.166   0.516  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N14)
-     MUXF5:S->O            3   0.449   0.606  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<20>16 (u1_plasma_top/u1_plasma/address_next<22>)
-     LUT4:I1->O            1   0.166   0.452  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000015_SW0_SW0_SW0 (N1379)
-     LUT4:I3->O            5   0.166   0.472  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000015_SW0_SW0 (N1002)
-     LUT4:I3->O            3   0.166   0.518  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000083_1 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000083)
+     IBUF:I->O            45   0.867   1.176  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
+     LUT4_L:I0->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N156)
+     LUT4:I3->O          419   0.166   2.262  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
+     LUT4:I3->O            1   0.166   0.638  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW0 (N907)
+     LUT4:I0->O           21   0.166   0.941  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N14)
+     LUT4:I0->O            1   0.166   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<26>_SW0 (N380)
+     LUT4:I3->O            5   0.166   0.525  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<26> (u1_plasma_top/u1_plasma/address_next<28>)
+     LUT4:I2->O            1   0.166   0.505  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000152_SW0_SW0_SW0_SW0 (N1251)
+     LUT4:I2->O           13   0.166   0.650  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000203 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000)
      LUT4:I2->O            7   0.166   0.501  u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_toggle22 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_toggle)
-     LUT4:I3->O            2   0.166   0.520  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we_mux0002<0>21 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/N5)
+     LUT4:I3->O            2   0.166   0.520  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we_mux0002<0>21 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/N4)
      LUT4:I2->O            5   0.166   0.333  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1>)
      RAMB16:WEA0               0.650          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag2
     ----------------------------------------
-    Total                     11.840ns (3.626ns logic, 8.214ns route)
-                                       (30.6% logic, 69.4% route)
+    Total                     11.985ns (3.343ns logic, 8.642ns route)
+                                       (27.9% logic, 72.1% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_not0001'
-  Total number of paths / destination ports: 18 / 1
+  Total number of paths / destination ports: 37 / 1
 -------------------------------------------------------------------------
-Offset:              10.875ns (Levels of Logic = 12)
+Offset:              11.206ns (Levels of Logic = 12)
   Source:            sys_rst_pin (PAD)
   Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13 (LATCH)
   Destination Clock: u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_not0001 falling
@@ -2712,28 +2765,28 @@ Offset:              10.875ns (Levels of Logic = 12)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            72   0.867   1.268  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
-     LUT4_L:I0->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N216)
-     LUT4:I3->O          416   0.166   2.251  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
-     LUT4:I3->O            1   0.166   0.638  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW0 (N1131)
-     LUT4:I0->O           18   0.166   0.516  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N14)
-     MUXF5:S->O            3   0.449   0.606  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<20>16 (u1_plasma_top/u1_plasma/address_next<22>)
-     LUT4:I1->O            1   0.166   0.452  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000015_SW0_SW0_SW0 (N1379)
-     LUT4:I3->O            5   0.166   0.472  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000015_SW0_SW0 (N1002)
-     LUT4:I3->O            3   0.166   0.518  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000083_1 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000083)
+     IBUF:I->O            45   0.867   1.176  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
+     LUT4_L:I0->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N156)
+     LUT4:I3->O          419   0.166   2.262  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
+     LUT4:I3->O            1   0.166   0.638  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW0 (N907)
+     LUT4:I0->O           21   0.166   0.941  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N14)
+     LUT4:I0->O            1   0.166   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<26>_SW0 (N380)
+     LUT4:I3->O            5   0.166   0.525  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<26> (u1_plasma_top/u1_plasma/address_next<28>)
+     LUT4:I2->O            1   0.166   0.505  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000152_SW0_SW0_SW0_SW0 (N1251)
+     LUT4:I2->O           13   0.166   0.650  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000203 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000)
      LUT4:I2->O            7   0.166   0.554  u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_toggle22 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_toggle)
-     LUT4:I2->O            2   0.166   0.467  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we_mux0002<0>11 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/N11)
-     LUT2:I1->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_mux00021 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_mux0002)
+     LUT4:I2->O            2   0.166   0.653  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we_mux0002<0>11 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/N11)
+     LUT4:I0->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_mux00021 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_mux0002)
      LD:D                      0.018          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13
     ----------------------------------------
-    Total                     10.875ns (2.994ns logic, 7.881ns route)
-                                       (27.5% logic, 72.5% route)
+    Total                     11.206ns (2.711ns logic, 8.495ns route)
+                                       (24.2% logic, 75.8% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_not0001'
-  Total number of paths / destination ports: 48 / 1
+  Total number of paths / destination ports: 37 / 1
 -------------------------------------------------------------------------
-Offset:              11.061ns (Levels of Logic = 12)
+Offset:              11.779ns (Levels of Logic = 13)
   Source:            sys_rst_pin (PAD)
   Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0 (LATCH)
   Destination Clock: u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_not0001 falling
@@ -2742,63 +2795,61 @@ Offset:              11.061ns (Levels of Logic = 12)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            72   0.867   1.268  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
-     LUT4_L:I0->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N216)
-     LUT4:I3->O          416   0.166   2.251  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
-     LUT4:I3->O            1   0.166   0.638  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW0 (N1131)
-     LUT4:I0->O           18   0.166   0.516  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N14)
-     MUXF5:S->O            3   0.449   0.606  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<20>16 (u1_plasma_top/u1_plasma/address_next<22>)
-     LUT4:I1->O            1   0.166   0.452  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000015_SW0_SW0_SW0 (N1379)
-     LUT4:I3->O            5   0.166   0.472  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000015_SW0_SW0 (N1002)
-     LUT4:I3->O            3   0.166   0.518  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000083_1 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000083)
+     IBUF:I->O            45   0.867   1.176  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
+     LUT4_L:I0->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N156)
+     LUT4:I3->O          419   0.166   2.262  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
+     LUT4:I3->O            1   0.166   0.638  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW0 (N907)
+     LUT4:I0->O           21   0.166   0.941  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N14)
+     LUT4:I0->O            1   0.166   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<26>_SW0 (N380)
+     LUT4:I3->O            5   0.166   0.525  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<26> (u1_plasma_top/u1_plasma/address_next<28>)
+     LUT4:I2->O            1   0.166   0.505  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000152_SW0_SW0_SW0_SW0 (N1251)
+     LUT4:I2->O           13   0.166   0.650  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000203 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000)
      LUT4:I2->O            7   0.166   0.554  u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_toggle22 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_toggle)
-     LUT4:I2->O            2   0.166   0.653  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we_mux0002<0>11 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/N11)
-     LUT4:I0->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_mux0005 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_mux0005)
+     LUT4:I2->O            2   0.166   0.608  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we_mux0002<0>11 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/N11)
+     LUT4:I1->O            1   0.166   0.452  u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_mux0004_SW1 (N1721)
+     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_mux0004 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_mux0004)
      LD:D                      0.018          u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0
     ----------------------------------------
-    Total                     11.061ns (2.994ns logic, 8.067ns route)
-                                       (27.1% logic, 72.9% route)
+    Total                     11.779ns (2.877ns logic, 8.902ns route)
+                                       (24.4% logic, 75.6% route)
 
 =========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_reg_11'
-  Total number of paths / destination ports: 3872 / 32
+Timing constraint: Default OFFSET IN BEFORE for Clock 'u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_not00011'
+  Total number of paths / destination ports: 1408 / 32
 -------------------------------------------------------------------------
-Offset:              8.581ns (Levels of Logic = 23)
+Offset:              13.120ns (Levels of Logic = 20)
   Source:            sys_rst_pin (PAD)
   Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_0 (LATCH)
-  Destination Clock: u1_plasma_top/u1_plasma/opt_cache2.u_cache/state_reg_11 falling
+  Destination Clock: u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_not00011 falling
 
   Data Path: sys_rst_pin to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            72   0.867   1.223  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
-     LUT4:I1->O           10   0.166   0.704  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg<2>LogicTrst1 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_address_reg<2>)
-     LUT4:I1->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_lut<0> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_lut<0>)
-     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<0> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<0>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<1> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<1>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<2> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<2>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<3> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<3>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<4> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<4>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<5> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<5>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<6> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<6>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<7> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<7>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<8> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<8>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<9> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<9>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<10> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<10>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<11> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<11>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<12> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<12>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<13> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<13>)
-     MUXCY:CI->O           1   0.315   0.593  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<14> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_in_0_cmp_eq0002_cy<14>)
-     LUT3:I0->O           37   0.166   1.104  u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_and000028 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_and0000)
-     LUT4:I1->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<0>11 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<0>1)
-     MUXF5:I1->O          32   0.319   0.999  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<0>1_f5 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/N0)
-     LUT4:I2->O            1   0.166   0.638  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<9>_SW0 (N86)
-     LUT4:I0->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<9> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<9>)
+     IBUF:I->O            45   0.867   1.176  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
+     LUT4_L:I0->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N156)
+     LUT4:I3->O          419   0.166   2.262  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
+     LUT2:I1->O            1   0.166   0.638  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<0>11_SW0 (N926)
+     LUT4:I0->O            3   0.166   0.606  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<1>4_SW1 (N731)
+     LUT4:I1->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<1>54_SW1_F (N1351)
+     MUXF5:I0->O           1   0.325   0.452  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<1>54_SW1 (N879)
+     LUT4:I3->O           16   0.166   0.655  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<1>16 (u1_plasma_top/u1_plasma/address_next<3>)
+     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_lut<0> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_lut<0>)
+     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<0> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<0>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<1> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<1>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<2> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<2>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<3> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<3>)
+     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<4> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<4>)
+     MUXCY:CI->O           5   0.315   0.472  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<5> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<5>)
+     LUT3:I2->O            3   0.166   0.465  u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_out_0_mux00001 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_out)
+     LUT4:I3->O            1   0.166   0.505  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<0>1_SW2 (N1563)
+     LUT4:I2->O           32   0.166   1.132  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<0>1 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/N0)
+     LUT4:I0->O            1   0.166   0.638  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<9>33 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<9>33)
+     LUT4:I0->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<9>35 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<9>)
      LD:D                      0.018          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_9
     ----------------------------------------
-    Total                      8.581ns (3.321ns logic, 5.260ns route)
-                                       (38.7% logic, 61.3% route)
+    Total                     13.120ns (3.981ns logic, 9.139ns route)
+                                       (30.3% logic, 69.7% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'sys_clk_pin'
@@ -2822,50 +2873,48 @@ Offset:              4.839ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Total number of paths / destination ports: 58208 / 49
+  Total number of paths / destination ports: 64114 / 49
 -------------------------------------------------------------------------
-Offset:              11.510ns (Levels of Logic = 16)
-  Source:            u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 (FF)
-  Destination:       fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<12> (PAD)
+Offset:              11.493ns (Levels of Logic = 14)
+  Source:            u1_plasma_top/u2_ddr/u1_ddr_init/init_step_9 (FF)
+  Destination:       fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<8> (PAD)
   Source Clock:      u1_plasma_top/u0_clk/clk_bufg_in rising
 
-  Data Path: u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 to fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<12>
+  Data Path: u1_plasma_top/u2_ddr/u1_ddr_init/init_step_9 to fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<8>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCE:C->Q             5   0.307   0.658  u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1 (u1_plasma_top/u2_ddr/u1_ddr_init/init_step_1)
-     LUT4_D:I0->O          7   0.166   0.501  u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>19 (u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>19)
-     LUT4:I3->O            5   0.166   0.472  u1_plasma_top/u2_ddr/u1_ddr_init/initiating1_1 (u1_plasma_top/u2_ddr/u1_ddr_init/initiating1)
-     LUT4:I3->O           16   0.166   0.516  u1_plasma_top/u2_ddr/address_ddr<10>1 (fpga_0_DDR_SDRAM_32Mx64_DDR_BankAddr_pin_0_OBUF)
-     MUXF5:S->O            1   0.449   0.505  u1_plasma_top/u2_ddr/u2_ddr/Mmux_address_row_mux0000_2_f5_3 (u1_plasma_top/u2_ddr/u2_ddr/address_row_mux0000<1>)
-     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<0> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<0>)
-     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<0> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<0>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<1> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<1>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2>)
+     FDCE:C->Q             4   0.307   0.650  u1_plasma_top/u2_ddr/u1_ddr_init/init_step_9 (u1_plasma_top/u2_ddr/u1_ddr_init/init_step_9)
+     LUT4_D:I0->O          7   0.166   0.501  u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>14 (u1_plasma_top/u2_ddr/u1_ddr_init/wait_cycle<1>14)
+     LUT4:I3->O           14   0.166   0.620  u1_plasma_top/u2_ddr/u1_ddr_init/initiating1_1 (u1_plasma_top/u2_ddr/u1_ddr_init/initiating1)
+     LUT4:I3->O           11   0.166   0.435  u1_plasma_top/u2_ddr/address_ddr<10>1 (fpga_0_DDR_SDRAM_32Mx64_DDR_BankAddr_pin_0_OBUF)
+     MUXF5:S->O            1   0.449   0.505  u1_plasma_top/u2_ddr/u2_ddr/Mmux_address_row_mux0000_2_f5_7 (u1_plasma_top/u2_ddr/u2_ddr/address_row_mux0000<5>)
+     LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<2> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_lut<2>)
+     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<2>)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<3> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<3>)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<4> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<4>)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<5> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<5>)
      MUXCY:CI->O           7   0.315   0.501  u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6> (u1_plasma_top/u2_ddr/u2_ddr/Mcompar_state_prev_cmp_ne0001_cy<6>)
      LUT4:I3->O           23   0.166   0.924  u1_plasma_top/u2_ddr/u2_ddr/command_mux0009<1>79 (fpga_0_DDR_SDRAM_32Mx64_DDR_CASn_pin_OBUF)
      LUT3:I0->O           17   0.166   0.784  u1_plasma_top/u2_ddr/u2_ddr/address_row_0_and000021 (N22)
-     LUT4:I1->O            1   0.166   0.313  u1_plasma_top/u2_ddr/u2_ddr/SD_A<12>1 (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_12_OBUF)
-     OBUF:I->O                 3.601          fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_12_OBUF (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<12>)
+     LUT4:I1->O            1   0.166   0.313  u1_plasma_top/u2_ddr/u2_ddr/SD_A<8> (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_8_OBUF)
+     OBUF:I->O                 3.601          fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin_8_OBUF (fpga_0_DDR_SDRAM_32Mx64_DDR_Addr_pin<8>)
     ----------------------------------------
-    Total                     11.510ns (6.336ns logic, 5.174ns route)
-                                       (55.0% logic, 45.0% route)
+    Total                     11.493ns (6.260ns logic, 5.233ns route)
+                                       (54.5% logic, 45.5% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 100.00 secs
-Total CPU time to Xst completion: 96.83 secs
+Total REAL time to Xst completion: 107.00 secs
+Total CPU time to Xst completion: 96.56 secs
  
 --> 
 
 
-Total memory usage is 669092 kilobytes
+Total memory usage is 670504 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   36 (   0 filtered)
-Number of infos    :   28 (   0 filtered)
+Number of warnings :   76 (   0 filtered)
+Number of infos    :   29 (   0 filtered)
 
