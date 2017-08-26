@@ -84,8 +84,8 @@ architecture logic of cache is
     signal cache_ram_write_address_temp : std_logic_vector(31 downto 2);
     signal cache_ram_data_w_temp        : std_logic_vector(31 downto 0);
     signal cache_ram_data_w_reg         : std_logic_vector(31 downto 0);
-    signal cache_ram_byte_we_temp 	    : std_logic_vector(3 downto 0);
-    signal cache_ram_byte_we_reg 	    : std_logic_vector(3 downto 0);
+    signal cache_ram_byte_we_temp       : std_logic_vector(3 downto 0);
+    signal cache_ram_byte_we_reg        : std_logic_vector(3 downto 0);
     signal cache_ram_byte_we_reg2       : std_logic_vector(3 downto 0);
     signal write_toggle                 : std_logic:='0';
     signal cache_ram_address_reg        : std_logic_vector(31 downto 2);    
@@ -166,16 +166,16 @@ begin
                     cache_miss <= '1';
                     if LRU_out(0) = '1' then
                         cache_ram_data_r <= cache_ram_data_r0;      --TvE: data_r must be set in every case.
-	                    cache_ram_write_address_temp(14 downto 13) <= "01";    --TvE: Enables data set 1 to write to 
-	                    cache_we <= "10";								--TvE: Enable cache tag block 1 to write tag to
-	                    LRU_in(0) <= '0';									--TvE: LRU after write to set 1 is set 0
-	                else
+                        cache_ram_write_address_temp(14 downto 13) <= "01";    --TvE: Enables data set 1 to write to 
+                        cache_we <= "10";                               --TvE: Enable cache tag block 1 to write tag to
+                        LRU_in(0) <= '0';                                   --TvE: LRU after write to set 1 is set 0
+                    else
                         cache_ram_data_r <= cache_ram_data_r1;      --TvE: data_r must be set in every case.
-	                    cache_ram_write_address_temp(14 downto 13) <= "00";    --TvE: Enables data set 0 to write to
-	                    cache_we <= "01";								--TvE: Enable cache tag block 0 to write tag to
-	                    LRU_in(0) <= '1';									--TvE: LRU after write to set 0 is set 1
-	                end if;
-	                state <= STATE_MISSED;
+                        cache_ram_write_address_temp(14 downto 13) <= "00";    --TvE: Enables data set 0 to write to
+                        cache_we <= "01";                               --TvE: Enable cache tag block 0 to write tag to
+                        LRU_in(0) <= '1';                                   --TvE: LRU after write to set 0 is set 1
+                    end if;
+                    state <= STATE_MISSED;
                 else
                     cache_we <= "00";
                     cache_miss <= '0';
@@ -220,12 +220,12 @@ begin
                         --LRU_write_addr <= cpu_address; -- TvE: To make sure the LRU is updated in the right line.
                         if LRU_out(0) = '1' then
                             cache_ram_write_address_temp(14 downto 13) <= "01";    --TvE: Enables data set 1 to write to
-                            cache_we <= "10";								--TvE: Enable cache tag block 1 to write tag to
-                            LRU_in(0) <= '0';									--TvE: LRU after write to set 1 is set 0
+                            cache_we <= "10";                               --TvE: Enable cache tag block 1 to write tag to
+                            LRU_in(0) <= '0';                                   --TvE: LRU after write to set 1 is set 0
                         else
                             cache_ram_write_address_temp(14 downto 13) <= "00";    --TvE: Enables data set 0 to write to
-                            cache_we <= "01";								--TvE: Enable cache tag block 0 to write tag to
-                            LRU_in(0) <= '1';									--TvE: LRU after write to set 0 is set 1
+                            cache_we <= "01";                               --TvE: Enable cache tag block 0 to write tag to
+                            LRU_in(0) <= '1';                                   --TvE: LRU after write to set 0 is set 1
                         end if;
                     end if;
                 end if;
