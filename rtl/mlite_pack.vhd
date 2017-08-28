@@ -224,12 +224,17 @@ package mlite_pack is
             address      : out std_logic_vector(31 downto 2);
             byte_we      : out std_logic_vector(3 downto 0);
             data_w       : out std_logic_vector(31 downto 0);
-            data_r       : in std_logic_vector(31 downto 0)
+            data_r       : in std_logic_vector(31 downto 0);
+
+            opcode_out_pc: out std_logic_vector(31 downto 0)
         );
     end component;
 
-    component control
+    component control 
         port(
+            clk          : in  std_logic;
+            reset_in     : in  std_logic;
+            pause_in     : in  std_logic;
             opcode       : in  std_logic_vector(31 downto 0);
             intr_signal  : in  std_logic;
             rs_index     : out std_logic_vector(5 downto 0);
@@ -450,7 +455,7 @@ package mlite_pack is
     component plasma
         generic(
                 log_file    : string := "UNUSED";
-                use_cache   : std_logic := '0'
+                use_cache   : std_logic := '1'
         );
         port(
             clk          : in std_logic;
@@ -577,5 +582,3 @@ begin
 end; --function
 
 end; --package body
-
-

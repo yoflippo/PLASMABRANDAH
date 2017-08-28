@@ -24,8 +24,11 @@ use work.mlite_pack.all;
 
 entity control is
     port(
+    	clk			  : in  std_logic;
+    	reset_in      : in  std_logic;
         opcode        : in  std_logic_vector(31 downto 0);
         intr_signal   : in  std_logic;
+        pause_in      : in  std_logic;
         rs_index      : out std_logic_vector(5 downto 0);
         rt_index      : out std_logic_vector(5 downto 0);
         rd_index      : out std_logic_vector(5 downto 0);
@@ -38,15 +41,37 @@ entity control is
         b_source_out  : out b_source_type;
         c_source_out  : out c_source_type;
         pc_source_out : out pc_source_type;
-        mem_source_out:out mem_source_type;
+        mem_source_out: out mem_source_type;
         exception_out : out std_logic
     );
 end; --entity control
 
 architecture logic of control is
+
+	-- MV register for all outputs added
+	signal rs_index_reg      : std_logic_vector(5 downto 0);
+    signal rt_index_reg 	 : std_logic_vector(5 downto 0);
+    signal rd_index_reg      : std_logic_vector(5 downto 0);
+    signal imm_out_reg     	 : std_logic_vector(15 downto 0);
+
+   	signal alu_func_reg      : alu_function_type;
+    signal shift_func_reg 	 : shift_function_type;
+    signal mult_func_reg     : mult_function_type;
+    signal branch_func_reg   : branch_function_type;
+    
+    signal a_source_out_reg  : a_source_type;
+    signal b_source_out_reg  : b_source_type;
+    signal c_source_out_reg  : c_source_type;
+    signal pc_source_out_reg : pc_source_type;
+
+    signal mem_source_out_reg: mem_source_type;
+    signal exception_out_reg : std_logic;
+
 begin
 
-    control_proc: process(opcode, intr_signal)
+    control_proc: process(opcode, intr_signal, clk, reset_in, pause_in, rs_index_reg, rt_index_reg, 
+    	rd_index_reg, imm_out_reg, alu_func_reg, shift_func_reg, mult_func_reg, branch_func_reg, 
+    	a_source_out_reg, b_source_out_reg, c_source_out_reg, pc_source_out_reg, mem_source_out_reg, exception_out_reg) -- MV added clock and reset and all regs
         variable op, func       : std_logic_vector(5 downto 0);
         variable rs, rt, rd     : std_logic_vector(5 downto 0);
         variable rtx            : std_logic_vector(4 downto 0);
@@ -61,6 +86,7 @@ begin
         variable branch_function: branch_function_type;
         variable mem_source     : mem_source_type;
         variable is_syscall     : std_logic;
+        variable exception_tmp  : std_logic;
     begin
         alu_function := ALU_NOTHING;
         shift_function := SHIFT_NOTHING;
@@ -79,6 +105,22 @@ begin
         func := opcode(5 downto 0);
         imm := opcode(15 downto 0);
         is_syscall := '0';
+
+        -- init regs
+
+   		--	rs_index_reg 		<= ZERO(5 downto 0);
+         --   rt_index_reg 		<= ZERO(5 downto 0);
+         --   rd_index_reg 		<= ZERO(5 downto 0);
+         --   imm_out_reg 		<= ZERO(15 downto 0);
+        --	alu_func_reg 		<= ALU_NOTHING;
+        --	shift_func_reg 	 	<= SHIFT_LEFT_UNSIGNED;
+		--	mult_func_reg     	<= MULT_NOTHING;
+		--	branch_func_reg   	<= BRANCH_EQ;
+		--	a_source_out_reg  	<= A_FROM_IMM10_6;
+		--	b_source_out_reg  	<= B_FROM_REG_TARGET;
+		--	c_source_out_reg  	<= C_FROM_ALU;
+		--	pc_source_out_reg 	<= FROM_INC4;
+		--	mem_source_out_reg	<= MEM_FETCH;
 
         case op is
             when "000000" =>   --SPECIAL
@@ -444,39 +486,77 @@ begin
             rd := "000000";
         end if;
 
+        -- MV timing van intr_signal 1e instantie gelijk gehouden, 28-8-17 toch aangepast
         if intr_signal = '1' or is_syscall = '1' then
-            rs := "111111";  --interrupt vector
-            rt := "000000";
-            rd := "101110";  --save PC in EPC
-            alu_function := ALU_OR;
-            shift_function := SHIFT_NOTHING;
-            mult_function := MULT_NOTHING;
-            branch_function := BRANCH_YES;
-            a_source := A_FROM_REG_SOURCE;
-            b_source := B_FROM_REG_TARGET;
-            c_source := C_FROM_PC;
-            pc_source := FROM_LBRANCH;
-            mem_source := MEM_FETCH;
-            exception_out <= '1';
+            rs_index 		<= "111111";  --interrupt vector
+            rt_index 		<= "000000";
+            rd_index 		<= "101110";  --save PC in EPC
+            alu_func 	    <= ALU_OR;
+            shift_func 	    <= SHIFT_NOTHING;
+            mult_func 	    <= MULT_NOTHING;
+            branch_func     <= BRANCH_YES;
+            a_source_out    <= A_FROM_REG_SOURCE;
+            b_source_out    <= B_FROM_REG_TARGET;
+            c_source_out    <= C_FROM_PC;
+            pc_source_out   <= FROM_LBRANCH;
+            mem_source_out  <= MEM_FETCH;
+            
+            exception_tmp := '1';
         else
-            exception_out <= '0';
+            exception_tmp := '0';
         end if;
 
-        rs_index <= rs;
-        rt_index <= rt;
-        rd_index <= rd;
-        imm_out <= imm;
-        alu_func <= alu_function;
-        shift_func <= shift_function;
-        mult_func <= mult_function;
-        branch_func <= branch_function;
-        a_source_out <= a_source;
-        b_source_out <= b_source;
-        c_source_out <= c_source;
-        pc_source_out <= pc_source;
-        mem_source_out <= mem_source;
+        -- MV added clock + registers 
+        if reset_in = '1' then
+            rs_index_reg 		<= ZERO(5 downto 0);
+            rt_index_reg 		<= ZERO(5 downto 0);
+            rd_index_reg 		<= ZERO(5 downto 0);
+            imm_out_reg 		<= ZERO(15 downto 0);
+        	alu_func_reg 		<= ALU_NOTHING;
+        	shift_func_reg 	 	<= SHIFT_LEFT_UNSIGNED;
+			mult_func_reg     	<= MULT_NOTHING;
+			branch_func_reg   	<= BRANCH_EQ;
+			a_source_out_reg  	<= A_FROM_IMM10_6;
+			b_source_out_reg  	<= B_FROM_REG_TARGET;
+			c_source_out_reg  	<= C_FROM_ALU;
+			pc_source_out_reg 	<= FROM_INC4;
+			mem_source_out_reg	<= MEM_FETCH;
+            exception_out_reg   <= '0';
+
+        elsif rising_edge(clk) then
+        	if pause_in = '0' then
+	        	rs_index_reg      	<= rs;
+				rt_index_reg 	 	<= rt;
+				rd_index_reg      	<= rd;
+				imm_out_reg     	<= imm; 
+				alu_func_reg      	<= alu_function;
+				shift_func_reg 	 	<= shift_function;
+				mult_func_reg     	<= mult_function;
+				branch_func_reg   	<= branch_function;
+				a_source_out_reg  	<= a_source;
+				b_source_out_reg  	<= b_source;
+				c_source_out_reg  	<= c_source;
+				pc_source_out_reg 	<= pc_source;
+				mem_source_out_reg	<= mem_source;
+                exception_out_reg   <= exception_tmp;
+			end if;
+        end if;
+
+        rs_index 		<= rs_index_reg      ;
+        rt_index 		<= rt_index_reg 	 ;
+        rd_index 		<= rd_index_reg      ;
+        imm_out 		<= imm_out_reg     	 ;
+        alu_func 		<= alu_func_reg      ;
+        shift_func 		<= shift_func_reg 	 ;
+        mult_func 		<= mult_func_reg     ;
+        branch_func 	<= branch_func_reg   ;
+        a_source_out 	<= a_source_out_reg  ;
+        b_source_out 	<= b_source_out_reg  ;
+        c_source_out 	<= c_source_out_reg  ;
+        pc_source_out 	<= pc_source_out_reg ;
+        mem_source_out 	<= mem_source_out_reg;
+        exception_out   <= exception_out_reg ;
 
     end process;
 
 end; --logic
-

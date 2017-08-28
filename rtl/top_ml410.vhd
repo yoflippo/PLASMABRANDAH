@@ -50,7 +50,7 @@ architecture logic of top_ml410 is
     component plasma_top
         generic(
             log_file    : string := "UNUSED";
-            use_cache   : std_logic := '0'
+            use_cache   : std_logic := '1'
         );
         port(
             SYS_CLK            : in std_logic;
