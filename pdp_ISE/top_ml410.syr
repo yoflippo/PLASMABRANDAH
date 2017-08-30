@@ -4,15 +4,15 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.07 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.08 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.07 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.08 secs
  
 --> 
 Reading design: top_ml410.prj
@@ -111,18 +111,15 @@ Slice Utilization Ratio Delta      : 5
 *                          HDL Compilation                              *
 =========================================================================
 Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_pack.vhd" in Library work.
-Package <mlite_pack> compiled.
-Package body <mlite_pack> compiled.
+Architecture mlite_pack of Entity mlite_pack is up to date.
 Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd" in Library work.
-Entity <cache_ram> compiled.
-Entity <cache_ram> (Architecture <logic>) compiled.
+Architecture logic of Entity cache_ram is up to date.
 Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd" in Library work.
 Architecture logic of Entity pc_next is up to date.
 Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd" in Library work.
 Architecture logic of Entity mem_ctrl is up to date.
 Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd" in Library work.
-Entity <control> compiled.
-Entity <control> (Architecture <logic>) compiled.
+Architecture logic of Entity control is up to date.
 Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd" in Library work.
 Architecture ram_block of Entity reg_bank is up to date.
 Compiling vhdl file "/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd" in Library work.
@@ -433,10 +430,9 @@ Analyzing Entity <pipeline> in library <work> (Architecture <logic>).
 Entity <pipeline> analyzed. Unit <pipeline> generated.
 
 Analyzing Entity <cache> in library <work> (Architecture <logic>).
-INFO:Xst:1561 - "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd" line 238: Mux is complete : default of case is discarded
-WARNING:Xst:819 - "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd" line 146: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+INFO:Xst:1561 - "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd" line 233: Mux is complete : default of case is discarded
+WARNING:Xst:819 - "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd" line 149: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
    <cache_ram_data_w_reg>, <miss_state_prev_reg>
-    Set user-defined property "INIT =  000000FFF" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INITP_00 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INITP_01 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INITP_02 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
@@ -509,9 +505,13 @@ WARNING:Xst:819 - "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd" line 146: O
     Set user-defined property "INIT_3D =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INIT_3E =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INIT_3F =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "SRVAL =  000000000" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <cache_tag1> in unit <cache>.
-    Set user-defined property "INIT =  000000FFF" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INIT_A =  000000FFF" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "INIT_B =  000000FFF" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "SIM_COLLISION_CHECK =  ALL" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "SRVAL_A =  000000000" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "SRVAL_B =  000000000" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "WRITE_MODE_A =  WRITE_FIRST" for instance <cache_tag1> in unit <cache>.
+    Set user-defined property "WRITE_MODE_B =  WRITE_FIRST" for instance <cache_tag1> in unit <cache>.
     Set user-defined property "INITP_00 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
     Set user-defined property "INITP_01 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
     Set user-defined property "INITP_02 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
@@ -584,8 +584,13 @@ WARNING:Xst:819 - "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd" line 146: O
     Set user-defined property "INIT_3D =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
     Set user-defined property "INIT_3E =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
     Set user-defined property "INIT_3F =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_tag2> in unit <cache>.
-    Set user-defined property "SRVAL =  000000000" for instance <cache_tag2> in unit <cache>.
-    Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INIT_A =  000000FFF" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "INIT_B =  000000FFF" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "SIM_COLLISION_CHECK =  ALL" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "SRVAL_A =  000000000" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "SRVAL_B =  000000000" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "WRITE_MODE_A =  WRITE_FIRST" for instance <cache_tag2> in unit <cache>.
+    Set user-defined property "WRITE_MODE_B =  WRITE_FIRST" for instance <cache_tag2> in unit <cache>.
     Set user-defined property "INITP_00 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
     Set user-defined property "INITP_01 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
     Set user-defined property "INITP_02 =  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" for instance <cache_LRU> in unit <cache>.
@@ -2120,9 +2125,8 @@ Synthesizing Unit <cache>.
     Related source file is "/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd".
 WARNING:Xst:647 - Input <cpu_address<31:13>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <address_next<31>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:646 - Signal <cache_ram_byte_we_reg2> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <cache_ram_address_reg2> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <LRU_reg> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <cache_ram_address_reg<14:13>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:737 - Found 1-bit latch for signal <tag_read_enable>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
     Using one-hot encoding for signal <state>.
     Using one-hot encoding for signal <state_reg>.
 WARNING:Xst:737 - Found 1-bit latch for signal <miss_state_prev>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
@@ -2133,21 +2137,22 @@ WARNING:Xst:737 - Found 1-bit latch for signal <LRU_in_0>. Latches may be genera
 INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
 WARNING:Xst:737 - Found 1-bit latch for signal <cache_ram_write_address_temp_13>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-    Found 8-bit comparator not equal for signal <cache_miss$cmp_ne0000> created at line 163.
-    Found 8-bit comparator not equal for signal <cache_miss$cmp_ne0001> created at line 163.
+    Found 8-bit comparator not equal for signal <cache_miss$cmp_ne0000> created at line 165.
+    Found 8-bit comparator not equal for signal <cache_miss$cmp_ne0001> created at line 165.
     Found 30-bit register for signal <cache_ram_address_reg>.
     Found 4-bit register for signal <cache_ram_byte_we_reg>.
-    Found 8-bit comparator equal for signal <cache_ram_data_r$cmp_eq0000> created at line 185.
-    Found 8-bit comparator equal for signal <cache_ram_data_r$cmp_eq0001> created at line 187.
+    Found 8-bit comparator equal for signal <cache_ram_data_r$cmp_eq0000> created at line 184.
+    Found 8-bit comparator equal for signal <cache_ram_data_r$cmp_eq0001> created at line 186.
     Found 32-bit tristate buffer for signal <cache_ram_data_w_reg>.
     Found 1-bit register for signal <cache_ram_enable_reg>.
     Found 8-bit register for signal <cache_tag_reg>.
-    Found 11-bit comparator equal for signal <LRU_enable$cmp_eq0000> created at line 137.
+    Found 11-bit comparator equal for signal <LRU_enable$cmp_eq0000> created at line 111.
+    Found 1-bit register for signal <LRU_enable_reg>.
     Found 1-bit register for signal <miss_state_prev_reg>.
-    Found 32-bit register for signal <Mtridata_cache_ram_data_w_reg> created at line 280.
+    Found 32-bit register for signal <Mtridata_cache_ram_data_w_reg> created at line 274.
     Found 4-bit register for signal <state_reg>.
     Summary:
-	inferred  76 D-type flip-flop(s).
+	inferred  77 D-type flip-flop(s).
 	inferred   5 Comparator(s).
 	inferred  32 Tristate(s).
 Unit <cache> synthesized.
@@ -2237,8 +2242,8 @@ Macro Statistics
  4-bit up counter                                      : 1
  7-bit updown counter                                  : 1
  8-bit up counter                                      : 1
-# Registers                                            : 224
- 1-bit register                                        : 188
+# Registers                                            : 225
+ 1-bit register                                        : 189
  10-bit register                                       : 1
  12-bit register                                       : 1
  13-bit register                                       : 4
@@ -2251,8 +2256,8 @@ Macro Statistics
  6-bit register                                        : 2
  8-bit register                                        : 5
  9-bit register                                        : 1
-# Latches                                              : 4
- 1-bit latch                                           : 3
+# Latches                                              : 5
+ 1-bit latch                                           : 4
  32-bit latch                                          : 1
 # Comparators                                          : 10
  11-bit comparator equal                               : 1
@@ -2340,10 +2345,10 @@ Macro Statistics
  4-bit up counter                                      : 1
  7-bit updown counter                                  : 1
  8-bit up counter                                      : 1
-# Registers                                            : 770
- Flip-Flops                                            : 770
-# Latches                                              : 4
- 1-bit latch                                           : 3
+# Registers                                            : 771
+ Flip-Flops                                            : 771
+# Latches                                              : 5
+ 1-bit latch                                           : 4
  32-bit latch                                          : 1
 # Comparators                                          : 10
  11-bit comparator equal                               : 1
@@ -2380,13 +2385,13 @@ INFO:Xst:1901 - Instance block1.ram_byte3 in unit cache_ram of type RAMB16_S9_S9
 INFO:Xst:1901 - Instance block1.ram_byte2 in unit cache_ram of type RAMB16_S9_S9 has been replaced by RAMB16
 INFO:Xst:1901 - Instance block1.ram_byte1 in unit cache_ram of type RAMB16_S9_S9 has been replaced by RAMB16
 INFO:Xst:1901 - Instance block1.ram_byte0 in unit cache_ram of type RAMB16_S9_S9 has been replaced by RAMB16
-INFO:Xst:1901 - Instance cache_tag1 in unit cache of type RAMB16_S9 has been replaced by RAMB16
-INFO:Xst:1901 - Instance cache_tag2 in unit cache of type RAMB16_S9 has been replaced by RAMB16
+INFO:Xst:1901 - Instance cache_tag1 in unit cache of type RAMB16_S9_S9 has been replaced by RAMB16
+INFO:Xst:1901 - Instance cache_tag2 in unit cache of type RAMB16_S9_S9 has been replaced by RAMB16
 INFO:Xst:1901 - Instance cache_LRU in unit cache of type RAMB16_S9_S9 has been replaced by RAMB16
 INFO:Xst:1901 - Instance u1_plasma_top/u0_clk/DCM_BASE0 in unit top_ml410 of type DCM_BASE has been replaced by DCM_ADV
 WARNING:Xst:2170 - Unit cache : the following signal(s) form a combinatorial loop: write_toggle_mux0000, write_toggle, cache_ram_write_address_temp_13_mux0002.
-WARNING:Xst:2170 - Unit cache : the following signal(s) form a combinatorial loop: cache_we_mux0002<0>, cache_we<0>.
-WARNING:Xst:2170 - Unit cache : the following signal(s) form a combinatorial loop: cache_we_mux0002<1>, cache_we<1>.
+WARNING:Xst:2170 - Unit cache : the following signal(s) form a combinatorial loop: cache_we<0>, cache_we_mux0002<0>.
+WARNING:Xst:2170 - Unit cache : the following signal(s) form a combinatorial loop: cache_we<1>, cache_we_mux0002<1>.
 WARNING:Xst:2170 - Unit cache : the following signal(s) form a combinatorial loop: LRU_we, LRU_we_mux0001.
 WARNING:Xst:2042 - Unit cache: 32 internal tristates are replaced by logic (pull-up yes): cache_ram_data_w_reg<0>, cache_ram_data_w_reg<10>, cache_ram_data_w_reg<11>, cache_ram_data_w_reg<12>, cache_ram_data_w_reg<13>, cache_ram_data_w_reg<14>, cache_ram_data_w_reg<15>, cache_ram_data_w_reg<16>, cache_ram_data_w_reg<17>, cache_ram_data_w_reg<18>, cache_ram_data_w_reg<19>, cache_ram_data_w_reg<1>, cache_ram_data_w_reg<20>, cache_ram_data_w_reg<21>, cache_ram_data_w_reg<22>, cache_ram_data_w_reg<23>, cache_ram_data_w_reg<24>, cache_ram_data_w_reg<25>, cache_ram_data_w_reg<26>, cache_ram_data_w_reg<27>, cache_ram_data_w_reg<28>, cache_ram_data_w_reg<29>, cache_ram_data_w_reg<2>, cache_ram_data_w_reg<30>, cache_ram_data_w_reg<31>, cache_ram_data_w_reg<3>, cache_ram_data_w_reg<4>, cache_ram_data_w_reg<5>, cache_ram_data_w_reg<6>, cache_ram_data_w_reg<7>, cache_ram_data_w_reg<8>, cache_ram_data_w_reg<9>.
 
@@ -2454,15 +2459,10 @@ FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_27 has been repli
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_28 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_29 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_30 has been replicated 2 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u8_mult/mode_reg has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/a_busD_0 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/a_busD_1 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/a_busD_2 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_0 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_1 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_2 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/alu_funcD_3 has been replicated 1 time(s)
-FlipFlop u1_plasma_top/u1_plasma/u1_cpu/u9_pipeline/b_busD_0 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u2_ddr/u1_ddr_init/init_step_3 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u2_ddr/u1_ddr_init/wait_cnt_1 has been replicated 1 time(s)
 FlipFlop u1_plasma_top/u2_ddr/u1_ddr_init/wait_cnt_7 has been replicated 1 time(s)
@@ -2474,8 +2474,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 825
- Flip-Flops                                            : 825
+# Registers                                            : 821
+ Flip-Flops                                            : 821
 
 =========================================================================
 
@@ -2504,33 +2504,34 @@ Design Statistics
 # IOs                              : 77
 
 Cell Usage :
-# BELS                             : 4072
+# BELS                             : 4087
 #      GND                         : 1
 #      INV                         : 23
 #      LUT1                        : 8
-#      LUT2                        : 192
+#      LUT2                        : 189
 #      LUT2_D                      : 47
-#      LUT2_L                      : 18
+#      LUT2_L                      : 16
 #      LUT3                        : 750
-#      LUT3_D                      : 89
-#      LUT3_L                      : 43
-#      LUT4                        : 2159
-#      LUT4_D                      : 162
-#      LUT4_L                      : 176
+#      LUT3_D                      : 105
+#      LUT3_L                      : 44
+#      LUT4                        : 2153
+#      LUT4_D                      : 167
+#      LUT4_L                      : 182
 #      MUXCY                       : 45
-#      MUXF5                       : 340
+#      MUXF5                       : 338
 #      VCC                         : 1
 #      XORCY                       : 18
-# FlipFlops/Latches                : 860
+# FlipFlops/Latches                : 857
 #      FD                          : 36
-#      FDC                         : 260
+#      FDC                         : 259
 #      FDC_1                       : 39
-#      FDCE                        : 371
+#      FDCE                        : 367
 #      FDCE_1                      : 18
 #      FDE                         : 90
 #      FDP                         : 2
 #      FDPE                        : 9
-#      LD                          : 35
+#      FDR                         : 1
+#      LD                          : 36
 # RAMS                             : 143
 #      RAM16X1D                    : 128
 #      RAMB16                      : 15
@@ -2550,10 +2551,10 @@ Device utilization summary:
 
 Selected Device : 4vfx60ff1152-11 
 
- Number of Slices:                     2184  out of  25280     8%  
- Number of Slice Flip Flops:            857  out of  50560     1%  
- Number of 4 input LUTs:               3923  out of  50560     7%  
-    Number used as logic:              3667
+ Number of Slices:                     2190  out of  25280     8%  
+ Number of Slice Flip Flops:            854  out of  50560     1%  
+ Number of 4 input LUTs:               3940  out of  50560     7%  
+    Number used as logic:              3684
     Number used as RAMs:                256
  Number of IOs:                          77
  Number of bonded IOBs:                  75  out of    576    13%  
@@ -2585,13 +2586,14 @@ Clock Information:
 Clock Signal                                                                                                                                                            | Clock buffer(FF name)                                                              | Load  |
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------+
 sys_clk_pin                                                                                                                                                             | u1_plasma_top/u0_clk/DCM_BASE0:CLKFX                                               | 97    |
-u1_plasma_top/u0_clk/clk_bufg_in                                                                                                                                        | BUFG                                                                               | 871   |
+u1_plasma_top/u0_clk/clk_bufg_in                                                                                                                                        | BUFG                                                                               | 867   |
+u1_plasma_top/u1_plasma/opt_cache2.u_cache/miss_state_prev_not0001(u1_plasma_top/u1_plasma/opt_cache2.u_cache/miss_state_prev_not00011:O)                               | NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/miss_state_prev)                | 1     |
 u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_not0001(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_not0001:O)| NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13)| 1     |
 u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_not0001(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_not00012_f5:O)                   | NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0)                       | 1     |
-u1_plasma_top/u1_plasma/opt_cache2.u_cache/miss_state_prev_not0001(u1_plasma_top/u1_plasma/opt_cache2.u_cache/miss_state_prev_not00011:O)                               | NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/miss_state_prev)                | 1     |
+u1_plasma_top/u1_plasma/opt_cache2.u_cache/state<0>(u1_plasma_top/u1_plasma/opt_cache2.u_cache/state<0>:O)                                                              | NONE(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_read_enable)                | 1     |
 u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_not00011(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_not00011:O)                            | BUFG(*)(u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_0)             | 32    |
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-------+
-(*) These 4 clock signal(s) are generated by combinatorial logic,
+(*) These 5 clock signal(s) are generated by combinatorial logic,
 and XST is not able to identify which are the primary clock signals.
 Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
@@ -2601,7 +2603,7 @@ Asynchronous Control Signals Information:
 -----------------------------------------------------------------------------------+----------------------------------------------------------+-------+
 Control Signal                                                                     | Buffer(FF name)                                          | Load  |
 -----------------------------------------------------------------------------------+----------------------------------------------------------+-------+
-u1_plasma_top/u1_plasma/u1_cpu/reset(u1_plasma_top/u1_plasma/u1_cpu/reset_or0000:O)| NONE(u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_reg_10)| 400   |
+u1_plasma_top/u1_plasma/u1_cpu/reset(u1_plasma_top/u1_plasma/u1_cpu/reset_or0000:O)| NONE(u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_reg_10)| 395   |
 u1_plasma_top/reset_cpu(u1_plasma_top/reset_cpu1:O)                                | NONE(u1_plasma_top/u1_plasma/counter_hi_reg_32)          | 191   |
 u1_plasma_top/reset(u1_plasma_top/reset1:O)                                        | NONE(u1_plasma_top/u2_ddr/u1_ddr_init/init_step_0)       | 107   |
 u1_plasma_top/reset_in(u1_plasma_top/reset_in1_INV_0:O)                            | NONE(u1_plasma_top/u0_clk/clk_bufg_in)                   | 1     |
@@ -2611,8 +2613,8 @@ Timing Summary:
 ---------------
 Speed Grade: -11
 
-   Minimum period: 14.642ns (Maximum Frequency: 68.297MHz)
-   Minimum input arrival time before clock: 13.120ns
+   Minimum period: 14.272ns (Maximum Frequency: 70.067MHz)
+   Minimum input arrival time before clock: 13.184ns
    Maximum output required time after clock: 11.493ns
    Maximum combinational path delay: No path found
 
@@ -2645,25 +2647,25 @@ Delay:               2.491ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Clock period: 14.642ns (frequency: 68.297MHz)
-  Total number of paths / destination ports: 105613408 / 2893
+  Clock period: 14.272ns (frequency: 70.067MHz)
+  Total number of paths / destination ports: 89670425 / 2907
 -------------------------------------------------------------------------
-Delay:               14.642ns (Levels of Logic = 37)
-  Source:            u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_3 (FF)
+Delay:               14.272ns (Levels of Logic = 32)
+  Source:            u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_31 (FF)
   Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1 (RAM)
   Source Clock:      u1_plasma_top/u0_clk/clk_bufg_in rising
   Destination Clock: u1_plasma_top/u0_clk/clk_bufg_in rising
 
-  Data Path: u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_3 to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1
+  Data Path: u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_31 to u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCE:C->Q            19   0.307   0.803  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_3 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_3)
-     LUT4:I1->O            2   0.166   0.520  u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000_SW0_SW0 (N512)
-     LUT4_D:I2->O         13   0.166   0.597  u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000_1 (u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000)
-     LUT4_D:I3->O         10   0.166   0.563  u1_plasma_top/u1_plasma/u1_cpu/u3_control/rs_index<2>1 (u1_plasma_top/u1_plasma/u1_cpu/rs_index<2>)
-     LUT4:I3->O           17   0.166   0.504  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/addr_read1<1>1_2 (u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/addr_read1<1>1_1)
-     RAM16X1D:DPRA1->DPO    1   0.165   0.638  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_loop[3].reg_bit1a (u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/data_out1A<3>)
+     FDCE:C->Q            20   0.307   0.701  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_31 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/opcode_reg_31)
+     LUT4_D:I3->O         15   0.166   0.653  u1_plasma_top/u1_plasma/u1_cpu/u3_control/alu_func_cmp_eq000011 (u1_plasma_top/u1_plasma/u1_cpu/u3_control/rt_index_and0000)
+     LUT4_D:I3->O         11   0.166   0.574  u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000_1 (u1_plasma_top/u1_plasma/u1_cpu/u3_control/exception_out_or0000)
+     LUT4_D:I3->O          6   0.166   0.537  u1_plasma_top/u1_plasma/u1_cpu/u3_control/rs_index<3> (u1_plasma_top/u1_plasma/u1_cpu/rs_index<3>)
+     LUT4:I2->O           10   0.166   0.424  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/addr_read1<3>1_2 (u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/addr_read1<3>1_1)
+     RAM16X1D:DPRA3->DPO    1   0.165   0.638  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_loop[3].reg_bit1a (u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/data_out1A<3>)
      LUT4:I0->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<3>1 (u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<3>)
      MUXF5:I1->O           2   0.319   0.520  u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/reg_source_out<3>_f5 (u1_plasma_top/u1_plasma/u1_cpu/reg_source<3>)
      LUT4:I2->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_lut<1> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_lut<1>)
@@ -2682,30 +2684,58 @@ Delay:               14.642ns (Levels of Logic = 37)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<13> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<13>)
      MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<14> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<14>)
      MUXCY:CI->O          23   0.315   0.783  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<15> (u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/Mcompar_is_equal_cmp_eq0000_cy<15>)
-     LUT3:I2->O           13   0.166   0.597  u1_plasma_top/u1_plasma/u1_cpu/u5_bus_mux/branch_func<2> (u1_plasma_top/u1_plasma/u1_cpu/take_branch)
-     LUT4:I3->O            3   0.166   0.326  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<1>36 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<1>36)
-     MUXF5:S->O            1   0.449   0.452  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<1>54_SW1 (N879)
-     LUT4:I3->O           16   0.166   0.655  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<1>16 (u1_plasma_top/u1_plasma/address_next<3>)
-     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_lut<0> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_lut<0>)
-     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<0> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<0>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<1> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<1>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<2> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<2>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<3> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<3>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<4> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<4>)
-     MUXCY:CI->O           5   0.315   0.472  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<5> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<5>)
-     LUT3:I2->O            3   0.166   0.606  u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_out_0_mux00001 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_out)
-     LUT4_L:I1->LO         1   0.166   0.325  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1>_SW0 (N434)
-     LUT4:I0->O            5   0.166   0.333  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1>)
-     RAMB16:WEA0               0.650          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag2
+     LUT3:I2->O           10   0.166   0.424  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<29>11 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N01)
+     MUXF5:S->O            1   0.449   0.452  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<29>11_SW0 (N928)
+     LUT4_L:I3->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27>_SW0 (N393)
+     LUT4:I3->O            5   0.166   0.613  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<27> (u1_plasma_top/u1_plasma/address_next<29>)
+     LUT4:I1->O            1   0.166   0.452  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000152_SW0_SW0_SW0 (N1335)
+     LUT4:I3->O           14   0.166   0.673  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000203 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000)
+     LUT4:I2->O            7   0.166   0.501  u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_toggle22 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_toggle)
+     LUT4:I3->O            2   0.166   0.520  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we_mux0002<0>21 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/N4)
+     LUT4:I2->O            5   0.166   0.333  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1>)
+     RAMB16:WEB0               0.650          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag2
     ----------------------------------------
-    Total                     14.642ns (5.948ns logic, 8.694ns route)
-                                       (40.6% logic, 59.4% route)
+    Total                     14.272ns (5.335ns logic, 8.937ns route)
+                                       (37.4% logic, 62.6% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'u1_plasma_top/u1_plasma/opt_cache2.u_cache/state<0>'
+  Clock period: 9.506ns (frequency: 105.199MHz)
+  Total number of paths / destination ports: 1080 / 1
+-------------------------------------------------------------------------
+Delay:               9.506ns (Levels of Logic = 12)
+  Source:            u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_read_enable (LATCH)
+  Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_read_enable (LATCH)
+  Source Clock:      u1_plasma_top/u1_plasma/opt_cache2.u_cache/state<0> falling
+  Destination Clock: u1_plasma_top/u1_plasma/opt_cache2.u_cache/state<0> falling
+
+  Data Path: u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_read_enable to u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_read_enable
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LD:G->Q              20   0.403   0.842  u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_read_enable (u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_read_enable)
+     LUT3_L:I0->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag_out_1_mux0000<7>1 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag_out<1><7>)
+     LUT4:I3->O            1   0.166   0.452  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss_cmp_eq000018 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss_cmp_eq000018)
+     LUT4:I3->O            2   0.166   0.520  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss_cmp_eq000028 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss_cmp_eq0000)
+     LUT4:I2->O           14   0.166   0.620  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss_or00001 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_miss_or0000)
+     LUT4_D:I3->O          6   0.166   0.670  u1_plasma_top/u1_plasma/cpu_pause_SW0 (N286)
+     LUT4:I0->O           12   0.166   0.591  u1_plasma_top/u1_plasma/cpu_pause (u1_plasma_top/u1_plasma/cpu_pause)
+     LUT4:I3->O           37   0.166   1.149  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<0>32 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/N21)
+     LUT4:I0->O            1   0.166   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<22>39_SW0 (N780)
+     LUT4:I3->O            2   0.166   0.467  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<22>39 (u1_plasma_top/u1_plasma/address_next<24>)
+     LUT4:I3->O            3   0.166   0.518  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000116 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000116)
+     LUT4:I2->O           14   0.166   0.673  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000203 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000)
+     LUT2:I0->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_read_enable_mux00021 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_read_enable_mux0002)
+     LD:D                      0.018          u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_read_enable
+    ----------------------------------------
+    Total                      9.506ns (2.413ns logic, 7.093ns route)
+                                       (25.4% logic, 74.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'sys_clk_pin'
   Total number of paths / destination ports: 68 / 68
 -------------------------------------------------------------------------
-Offset:              4.613ns (Levels of Logic = 3)
+Offset:              4.609ns (Levels of Logic = 3)
   Source:            sys_rst_pin (PAD)
   Destination:       u1_plasma_top/u2_ddr/u2_ddr/data_read_29 (FF)
   Destination Clock: sys_clk_pin rising 0.8X
@@ -2714,19 +2744,19 @@ Offset:              4.613ns (Levels of Logic = 3)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            45   0.867   1.043  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
+     IBUF:I->O            44   0.867   1.040  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
      LUT2:I0->O          109   0.166   1.394  u1_plasma_top/reset1 (u1_plasma_top/reset)
      LUT4:I0->O           16   0.166   0.516  u1_plasma_top/u2_ddr/u2_ddr/data_read_29_and00001 (u1_plasma_top/u2_ddr/u2_ddr/data_read_29_and0000)
      FDE:CE                    0.461          u1_plasma_top/u2_ddr/u2_ddr/data_read_29
     ----------------------------------------
-    Total                      4.613ns (1.660ns logic, 2.953ns route)
+    Total                      4.609ns (1.660ns logic, 2.949ns route)
                                        (36.0% logic, 64.0% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Total number of paths / destination ports: 2422 / 412
+  Total number of paths / destination ports: 2853 / 413
 -------------------------------------------------------------------------
-Offset:              11.985ns (Levels of Logic = 12)
+Offset:              13.184ns (Levels of Logic = 16)
   Source:            sys_rst_pin (PAD)
   Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag1 (RAM)
   Destination Clock: u1_plasma_top/u0_clk/clk_bufg_in rising
@@ -2735,28 +2765,32 @@ Offset:              11.985ns (Levels of Logic = 12)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            45   0.867   1.176  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
-     LUT4_L:I0->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N156)
-     LUT4:I3->O          419   0.166   2.262  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
-     LUT4:I3->O            1   0.166   0.638  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW0 (N907)
-     LUT4:I0->O           21   0.166   0.941  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N14)
-     LUT4:I0->O            1   0.166   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<26>_SW0 (N380)
-     LUT4:I3->O            5   0.166   0.525  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<26> (u1_plasma_top/u1_plasma/address_next<28>)
-     LUT4:I2->O            1   0.166   0.505  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000152_SW0_SW0_SW0_SW0 (N1251)
-     LUT4:I2->O           13   0.166   0.650  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000203 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000)
+     IBUF:I->O            44   0.867   1.173  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
+     LUT4_L:I0->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N158)
+     LUT4:I3->O          412   0.166   2.238  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
+     LUT3_L:I2->LO         1   0.166   0.192  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/pause_out1_SW1_SW0 (N1251)
+     LUT4:I2->O            1   0.166   0.505  u1_plasma_top/u1_plasma/cpu_pause_SW0_SW1 (N1228)
+     LUT4_D:I2->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/cpu_pause_SW2 (N2472)
+     LUT4:I3->O            6   0.166   0.670  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11_1 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11)
+     LUT4:I0->O            2   0.166   0.467  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>13 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>13)
+     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>31_SW0_G (N1513)
+     MUXF5:I1->O           1   0.319   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>31_SW0 (N1332)
+     LUT4:I3->O            1   0.166   0.505  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000098_SW0_SW0_SW0_SW0 (N1240)
+     LUT4:I2->O            3   0.166   0.518  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000116 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000116)
+     LUT4:I2->O           14   0.166   0.673  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000203 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000)
      LUT4:I2->O            7   0.166   0.501  u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_toggle22 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_toggle)
      LUT4:I3->O            2   0.166   0.520  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we_mux0002<0>21 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/N4)
      LUT4:I2->O            5   0.166   0.333  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we<1>)
-     RAMB16:WEA0               0.650          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag2
+     RAMB16:WEB0               0.650          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_tag2
     ----------------------------------------
-    Total                     11.985ns (3.343ns logic, 8.642ns route)
-                                       (27.9% logic, 72.1% route)
+    Total                     13.184ns (4.160ns logic, 9.024ns route)
+                                       (31.6% logic, 68.4% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_not0001'
-  Total number of paths / destination ports: 37 / 1
+  Total number of paths / destination ports: 26 / 1
 -------------------------------------------------------------------------
-Offset:              11.206ns (Levels of Logic = 12)
+Offset:              12.405ns (Levels of Logic = 16)
   Source:            sys_rst_pin (PAD)
   Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13 (LATCH)
   Destination Clock: u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_not0001 falling
@@ -2765,28 +2799,32 @@ Offset:              11.206ns (Levels of Logic = 12)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            45   0.867   1.176  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
-     LUT4_L:I0->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N156)
-     LUT4:I3->O          419   0.166   2.262  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
-     LUT4:I3->O            1   0.166   0.638  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW0 (N907)
-     LUT4:I0->O           21   0.166   0.941  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N14)
-     LUT4:I0->O            1   0.166   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<26>_SW0 (N380)
-     LUT4:I3->O            5   0.166   0.525  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<26> (u1_plasma_top/u1_plasma/address_next<28>)
-     LUT4:I2->O            1   0.166   0.505  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000152_SW0_SW0_SW0_SW0 (N1251)
-     LUT4:I2->O           13   0.166   0.650  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000203 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000)
+     IBUF:I->O            44   0.867   1.173  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
+     LUT4_L:I0->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N158)
+     LUT4:I3->O          412   0.166   2.238  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
+     LUT3_L:I2->LO         1   0.166   0.192  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/pause_out1_SW1_SW0 (N1251)
+     LUT4:I2->O            1   0.166   0.505  u1_plasma_top/u1_plasma/cpu_pause_SW0_SW1 (N1228)
+     LUT4_D:I2->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/cpu_pause_SW2 (N2472)
+     LUT4:I3->O            6   0.166   0.670  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11_1 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11)
+     LUT4:I0->O            2   0.166   0.467  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>13 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>13)
+     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>31_SW0_G (N1513)
+     MUXF5:I1->O           1   0.319   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>31_SW0 (N1332)
+     LUT4:I3->O            1   0.166   0.505  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000098_SW0_SW0_SW0_SW0 (N1240)
+     LUT4:I2->O            3   0.166   0.518  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000116 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000116)
+     LUT4:I2->O           14   0.166   0.673  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000203 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000)
      LUT4:I2->O            7   0.166   0.554  u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_toggle22 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_toggle)
-     LUT4:I2->O            2   0.166   0.653  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we_mux0002<0>11 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/N11)
+     LUT4:I2->O            2   0.166   0.653  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we_mux0002<0>11 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/N1)
      LUT4:I0->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_mux00021 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13_mux0002)
      LD:D                      0.018          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_write_address_temp_13
     ----------------------------------------
-    Total                     11.206ns (2.711ns logic, 8.495ns route)
-                                       (24.2% logic, 75.8% route)
+    Total                     12.405ns (3.528ns logic, 8.877ns route)
+                                       (28.4% logic, 71.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_not0001'
-  Total number of paths / destination ports: 37 / 1
+  Total number of paths / destination ports: 26 / 1
 -------------------------------------------------------------------------
-Offset:              11.779ns (Levels of Logic = 13)
+Offset:              13.023ns (Levels of Logic = 17)
   Source:            sys_rst_pin (PAD)
   Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0 (LATCH)
   Destination Clock: u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_not0001 falling
@@ -2795,29 +2833,65 @@ Offset:              11.779ns (Levels of Logic = 13)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            45   0.867   1.176  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
-     LUT4_L:I0->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N156)
-     LUT4:I3->O          419   0.166   2.262  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
-     LUT4:I3->O            1   0.166   0.638  u1_plasma_top/u1_plasma/u1_cpu/pause_any1_SW0 (N907)
-     LUT4:I0->O           21   0.166   0.941  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/N14)
-     LUT4:I0->O            1   0.166   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<26>_SW0 (N380)
-     LUT4:I3->O            5   0.166   0.525  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<26> (u1_plasma_top/u1_plasma/address_next<28>)
-     LUT4:I2->O            1   0.166   0.505  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000152_SW0_SW0_SW0_SW0 (N1251)
-     LUT4:I2->O           13   0.166   0.650  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000203 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000)
+     IBUF:I->O            44   0.867   1.173  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
+     LUT4_L:I0->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N158)
+     LUT4:I3->O          412   0.166   2.238  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
+     LUT3_L:I2->LO         1   0.166   0.192  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/pause_out1_SW1_SW0 (N1251)
+     LUT4:I2->O            1   0.166   0.505  u1_plasma_top/u1_plasma/cpu_pause_SW0_SW1 (N1228)
+     LUT4_D:I2->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/cpu_pause_SW2 (N2472)
+     LUT4:I3->O            6   0.166   0.670  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11_1 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11)
+     LUT4:I0->O            2   0.166   0.467  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>13 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>13)
+     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>31_SW0_G (N1513)
+     MUXF5:I1->O           1   0.319   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>31_SW0 (N1332)
+     LUT4:I3->O            1   0.166   0.505  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000098_SW0_SW0_SW0_SW0 (N1240)
+     LUT4:I2->O            3   0.166   0.518  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000116 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000116)
+     LUT4:I2->O           14   0.166   0.673  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000203 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000)
      LUT4:I2->O            7   0.166   0.554  u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_toggle22 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/write_toggle)
-     LUT4:I2->O            2   0.166   0.608  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we_mux0002<0>11 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/N11)
-     LUT4:I1->O            1   0.166   0.452  u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_mux0004_SW1 (N1721)
+     LUT4:I2->O            2   0.166   0.653  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we_mux0002<0>11 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/N1)
+     LUT4:I0->O            1   0.166   0.452  u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_mux0004_SW1 (N1736)
      LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_mux0004 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_mux0004)
      LD:D                      0.018          u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0
     ----------------------------------------
-    Total                     11.779ns (2.877ns logic, 8.902ns route)
-                                       (24.4% logic, 75.6% route)
+    Total                     13.023ns (3.694ns logic, 9.329ns route)
+                                       (28.4% logic, 71.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'u1_plasma_top/u1_plasma/opt_cache2.u_cache/state<0>'
+  Total number of paths / destination ports: 26 / 1
+-------------------------------------------------------------------------
+Offset:              10.866ns (Levels of Logic = 14)
+  Source:            sys_rst_pin (PAD)
+  Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_read_enable (LATCH)
+  Destination Clock: u1_plasma_top/u1_plasma/opt_cache2.u_cache/state<0> falling
+
+  Data Path: sys_rst_pin to u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_read_enable
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            44   0.867   1.173  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
+     LUT4_L:I0->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N158)
+     LUT4:I3->O          412   0.166   2.238  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
+     LUT3_L:I2->LO         1   0.166   0.192  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/pause_out1_SW1_SW0 (N1251)
+     LUT4:I2->O            1   0.166   0.505  u1_plasma_top/u1_plasma/cpu_pause_SW0_SW1 (N1228)
+     LUT4_D:I2->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/cpu_pause_SW2 (N2472)
+     LUT4:I3->O            6   0.166   0.670  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11_1 (u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_future<10>11)
+     LUT4:I0->O            2   0.166   0.467  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>13 (u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>13)
+     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>31_SW0_G (N1513)
+     MUXF5:I1->O           1   0.319   0.452  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<21>31_SW0 (N1332)
+     LUT4:I3->O            1   0.166   0.505  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq000098_SW0_SW0_SW0_SW0 (N1240)
+     LUT4:I2->O            3   0.166   0.518  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000116 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000116)
+     LUT4:I2->O           14   0.166   0.673  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000203 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_access_cmp_eq0000)
+     LUT2:I0->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_read_enable_mux00021 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_read_enable_mux0002)
+     LD:D                      0.018          u1_plasma_top/u1_plasma/opt_cache2.u_cache/tag_read_enable
+    ----------------------------------------
+    Total                     10.866ns (3.196ns logic, 7.670ns route)
+                                       (29.4% logic, 70.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_not00011'
-  Total number of paths / destination ports: 1408 / 32
+  Total number of paths / destination ports: 128 / 32
 -------------------------------------------------------------------------
-Offset:              13.120ns (Levels of Logic = 20)
+Offset:              6.321ns (Levels of Logic = 6)
   Source:            sys_rst_pin (PAD)
   Destination:       u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_0 (LATCH)
   Destination Clock: u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_not00011 falling
@@ -2826,30 +2900,16 @@ Offset:              13.120ns (Levels of Logic = 20)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            45   0.867   1.176  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
-     LUT4_L:I0->LO         1   0.166   0.139  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000_SW0 (N156)
-     LUT4:I3->O          419   0.166   2.262  u1_plasma_top/u1_plasma/u1_cpu/reset_or0000 (u1_plasma_top/u1_plasma/u1_cpu/reset)
-     LUT2:I1->O            1   0.166   0.638  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<0>11_SW0 (N926)
-     LUT4:I0->O            3   0.166   0.606  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<1>4_SW1 (N731)
-     LUT4:I1->O            1   0.166   0.000  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<1>54_SW1_F (N1351)
-     MUXF5:I0->O           1   0.325   0.452  u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/pc_next_mux0001<1>54_SW1 (N879)
-     LUT4:I3->O           16   0.166   0.655  u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/address_var_mux0003<1>16 (u1_plasma_top/u1_plasma/address_next<3>)
-     LUT4:I3->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_lut<0> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_lut<0>)
-     MUXCY:S->O            1   0.312   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<0> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<0>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<1> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<1>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<2> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<2>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<3> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<3>)
-     MUXCY:CI->O           1   0.038   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<4> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<4>)
-     MUXCY:CI->O           5   0.315   0.472  u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<5> (u1_plasma_top/u1_plasma/opt_cache2.u_cache/Mcompar_LRU_enable_cmp_eq0000_cy<5>)
-     LUT3:I2->O            3   0.166   0.465  u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_out_0_mux00001 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_out)
-     LUT4:I3->O            1   0.166   0.505  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<0>1_SW2 (N1563)
-     LUT4:I2->O           32   0.166   1.132  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<0>1 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/N0)
-     LUT4:I0->O            1   0.166   0.638  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<9>33 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<9>33)
-     LUT4:I0->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<9>35 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<9>)
+     IBUF:I->O            44   0.867   1.040  sys_rst_pin_IBUF (sys_rst_pin_IBUF)
+     LUT3:I1->O          194   0.166   1.638  u1_plasma_top/reset_cpu1 (u1_plasma_top/reset_cpu)
+     LUT4:I1->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<0>42 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<0>41)
+     MUXF5:I0->O          32   0.325   1.132  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<0>4_f5 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/N6)
+     LUT4:I0->O            1   0.166   0.638  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<9>12 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<9>12)
+     LUT4:I0->O            1   0.166   0.000  u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<9>40 (u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_mux0004<9>)
      LD:D                      0.018          u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_ram_data_r_9
     ----------------------------------------
-    Total                     13.120ns (3.981ns logic, 9.139ns route)
-                                       (30.3% logic, 69.7% route)
+    Total                      6.321ns (1.874ns logic, 4.447ns route)
+                                       (29.6% logic, 70.4% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'sys_clk_pin'
@@ -2873,7 +2933,7 @@ Offset:              4.839ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'u1_plasma_top/u0_clk/clk_bufg_in'
-  Total number of paths / destination ports: 64114 / 49
+  Total number of paths / destination ports: 64436 / 49
 -------------------------------------------------------------------------
 Offset:              11.493ns (Levels of Logic = 14)
   Source:            u1_plasma_top/u2_ddr/u1_ddr_init/init_step_9 (FF)
@@ -2906,15 +2966,15 @@ Offset:              11.493ns (Levels of Logic = 14)
 =========================================================================
 
 
-Total REAL time to Xst completion: 107.00 secs
-Total CPU time to Xst completion: 96.56 secs
+Total REAL time to Xst completion: 119.00 secs
+Total CPU time to Xst completion: 106.85 secs
  
 --> 
 
 
-Total memory usage is 670504 kilobytes
+Total memory usage is 670524 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   76 (   0 filtered)
+Number of warnings :   75 (   0 filtered)
 Number of infos    :   29 (   0 filtered)
 

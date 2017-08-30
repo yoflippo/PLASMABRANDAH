@@ -40,6 +40,7 @@ log -r /*
 #add wave -group sim_top sim:/sim_tb_top/*
 add wave -group plasma_top sim:/sim_tb_top/u1_plasma_top/*
 add wave -group ddr sim:/sim_tb_top/u1_plasma_top/u2_ddr/*
+add wave -group ddr sim:/sim_tb_top/u1_plasma_top/u1_plasma/*
 add wave -group Cache sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/*
 add wave sim:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u3_control/op2
 add wave sim:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u3_control/func2
@@ -47,6 +48,7 @@ add wave sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/*
 dataset open /home/pdp/pdp/sim/baseline.wlf vsim
 compare start vsim sim
 compare options -track
+compare add -wave -tolL {0 ns} -tolT {0 ns} vsim:/sim_tb_top/u1_plasma_top/u1_plasma/cpu_data_r
 compare add -wave -tolL {0 ns} -tolT {0 ns} vsim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache
 compare add -wave -tolL {0 ns} -tolT {0 ns} vsim:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u3_control/is_syscall2
 compare run
