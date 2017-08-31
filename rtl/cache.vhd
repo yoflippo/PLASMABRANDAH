@@ -243,10 +243,10 @@ begin
             if address_next(30 downto 21) = "0010000000" then  --first 2MB of DDR, MS: first and only 1 is for activating DDR
                 cache_access <= '1';
                 if byte_we_next = "0000" then     --read cycle
-                    if (address_next(12 downto 2) = cpu_address(12 downto 2)) then
-                        tag_read_enable <= '0';
-                    else       
+                    if (address_next(12 downto 2) /= cpu_address(12 downto 2)) then
                         tag_read_enable <= '1';
+                    else       
+                        tag_read_enable <= '0';
                     end if;                    
                     state_next <= STATE_CHECKING;  --need to check if match
                 else
@@ -281,9 +281,9 @@ begin
             cache_ram_data_r <= cache_ram_data_r0;
         elsif rising_edge(clk) then
             state_reg <= state_next;
-            cache_ram_enable_reg <= cache_ram_enable; --TvE: WAS THIS THE PROBLEM?!?!?!?
+            cache_ram_enable_reg <= cache_ram_enable; 
             cache_ram_address_reg <= cache_ram_address;
-            cache_ram_data_w_reg <= cache_ram_data_w;   --TvE:  --TvE: when a write occurs the data must be latched because we have to wait to see in which set it must be placed
+            cache_ram_data_w_reg <= cache_ram_data_w;   --TvE: when a write occurs the data must be latched because we have to wait to see in which set it must be placed
             cache_ram_byte_we_reg <= cache_ram_byte_we;
             miss_state_prev_reg <= miss_state_prev;
             if state = STATE_IDLE and state_reg /= STATE_MISSED then
@@ -296,8 +296,8 @@ begin
 
     cache_tag1: RAMB16_S9_S9  --Xilinx specific
         generic map (
-            INIT_A => X"FFF", -- Initial values on A output port
-            INIT_B => X"FFF", -- Initial values on B output port
+            INIT_A => X"FF", -- Initial values on A output port
+            INIT_B => X"FF", -- Initial values on B output port
             SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
             SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
             WRITE_MODE_A => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
@@ -388,15 +388,6 @@ begin
             INITP_07 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
         )
         port map (
-            --DO   => cache_tag_out(0)(7 downto 0),                --TvE: changed cache_tag_out to cache_tag_out
-            --DOP  => open,
-            --ADDR => cache_address,             --registered
-            --CLK  => clk,
-            --DI   => cache_tag_reg(7 downto 0),  --registered
-            --DIP  => ZERO(0 downto 0),
-            --EN   => '1',        --TvE: Changed from '1'
-            --SSR  => ZERO(0),
-            --WE   => cache_we(0)
             -- Port A is "read" port-----------------------------------------------------------------
             DOA => cache_tag_r_out(0)(7 downto 0), -- 8-bit A port Data Output  TvE: the read output port
             DOPA => open, -- 1-bit A port Parity Output                     TvE: Parity unused
@@ -422,8 +413,8 @@ begin
 
         cache_tag2: RAMB16_S9_S9  --Xilinx specific
         generic map (
-            INIT_A => X"FFF", -- Initial values on A output port
-            INIT_B => X"FFF", -- Initial values on B output port
+            INIT_A => X"FF", -- Initial values on A output port
+            INIT_B => X"FF", -- Initial values on B output port
             SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
             SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
             WRITE_MODE_A => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
@@ -513,16 +504,6 @@ begin
             INITP_07 => X"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
         )
         port map (
-            --DO   => cache_tag_out(1)(7 downto 0),
-            --DOP  => open,
-            --ADDR => cache_address,             --registered
-            --CLK  => clk,
-            --DI   => cache_tag_reg(7 downto 0),  --registered
-            --DIP  => ZERO(0 downto 0),
-            --EN   => '1', --TvE: Changed from '1'
-            --SSR  => ZERO(0),
-            --WE   => cache_we(1)
-
             -- Port A is "read" port-----------------------------------------------------------------
             DOA => cache_tag_r_out(1)(7 downto 0), -- 8-bit A port Data Output  TvE: the read output port
             DOPA => open, -- 1-bit A port Parity Output                     TvE: Parity unused
@@ -548,8 +529,8 @@ begin
 
         cache_LRU: RAMB16_S9_S9  --Xilinx specific
         generic map (
-            INIT_A => X"FFF", -- Initial values on A output port
-            INIT_B => X"FFF", -- Initial values on B output port
+            INIT_A => X"FF", -- Initial values on A output port
+            INIT_B => X"FF", -- Initial values on B output port
             SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
             SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
             WRITE_MODE_A => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
@@ -663,7 +644,6 @@ begin
             WEB => LRU_we -- 1-bit B port Write Enable Input  TvE: "Write" port enable based on byte_enable
         );
 
-
     cache_data: cache_ram     -- cache data storage
         port map (
             clk               => clk,
@@ -676,6 +656,5 @@ begin
             data_read0        => cache_ram_data_r0,
             data_read1        => cache_ram_data_r1
         );
-
 end; --logic
 
