@@ -146,6 +146,17 @@ begin
       end if;
     end process;
 
+    tag_read_enable_proc: process (cpu_address, state) IS 
+    begin
+            if ((address_next(12 downto 2) /= cpu_address(12 downto 2)) and (state = STATE_IDLE) 
+            and (byte_we_next = "0000")) then
+                tag_read_enable <= '1';
+            else       
+                tag_read_enable <= '0';
+            end if;
+    end process;
+
+
     cache_proc: process(clk, reset, mem_busy, cache_address, LRU_out, cache_ram_data_r0, cache_ram_data_r1,
         state_reg, state, state_next,
         address_next, byte_we_next, cache_tag_in, --Stage1
@@ -243,19 +254,12 @@ begin
             if address_next(30 downto 21) = "0010000000" then  --first 2MB of DDR, MS: first and only 1 is for activating DDR
                 cache_access <= '1';
                 if byte_we_next = "0000" then     --read cycle
-                    if (address_next(12 downto 2) /= cpu_address(12 downto 2)) then
-                        tag_read_enable <= '1';
-                    else       
-                        tag_read_enable <= '0';
-                    end if;                    
                     state_next <= STATE_CHECKING;  --need to check if match
                 else
-                    tag_read_enable <= '0';
                     write_toggle <= '0';
                     state_next <= STATE_WAITING;
                 end if;
             else
-                tag_read_enable <= '0';
                 LRU_we <= '0';
                 cache_access <= '0';
                 cache_we <= "00";
