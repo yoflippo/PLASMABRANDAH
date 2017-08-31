@@ -92,7 +92,8 @@ architecture logic of cache is
     signal read_enable                  : std_logic:='1';
     signal cache_ram_enable_reg         : std_logic;
     signal tag_write_addr               : std_logic_vector(10 downto 0);
-    signal tag_read_enable              : std_logic:='0';
+    signal tag_read_enable              : std_logic;
+    signal tag_read_enable_reg          : std_logic;
 
 
     -------------------------------------------------------
@@ -135,9 +136,18 @@ begin
         end if;         
     end process;
 
-    tag_rw_proc: process (cache_tag_r_out, cache_tag_w_out, tag_read_enable) IS --TvE: Process that tracks is a tag has to be written or only read.
+    proc_tag_read_enable_reg: process (tag_read_enable, clk) is
+    variable vtag_read_enable : std_logic;
     begin
-      if (tag_read_enable = '1') then
+      if rising_edge(clk) then
+        tag_read_enable_reg <= vtag_read_enable;
+      end if;
+      vtag_read_enable := tag_read_enable;
+    end process;
+
+    tag_rw_proc: process (cache_tag_r_out, cache_tag_w_out) IS --TvE: Process that tracks is a tag has to be written or only read.
+    begin
+      if (tag_read_enable_reg = '1') then
         cache_tag_out(0) <= cache_tag_r_out(0);
         cache_tag_out(1) <= cache_tag_r_out(1);
       else
@@ -146,7 +156,7 @@ begin
       end if;
     end process;
 
-    tag_read_enable_proc: process (cpu_address, state) IS 
+    tag_read_enable_proc: process (cpu_address, state, state_reg, state_next) IS 
     begin
             if ((address_next(12 downto 2) /= cpu_address(12 downto 2)) and (state = STATE_IDLE) 
             and (byte_we_next = "0000")) then
@@ -300,8 +310,8 @@ begin
 
     cache_tag1: RAMB16_S9_S9  --Xilinx specific
         generic map (
-            INIT_A => X"FF", -- Initial values on A output port
-            INIT_B => X"FF", -- Initial values on B output port
+            INIT_A => "111111111", -- Initial values on A output port
+            INIT_B => "111111111", -- Initial values on B output port
             SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
             SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
             WRITE_MODE_A => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
@@ -417,8 +427,8 @@ begin
 
         cache_tag2: RAMB16_S9_S9  --Xilinx specific
         generic map (
-            INIT_A => X"FF", -- Initial values on A output port
-            INIT_B => X"FF", -- Initial values on B output port
+            INIT_A => "111111111", -- Initial values on A output port
+            INIT_B => "111111111", -- Initial values on B output port
             SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
             SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
             WRITE_MODE_A => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
@@ -533,8 +543,8 @@ begin
 
         cache_LRU: RAMB16_S9_S9  --Xilinx specific
         generic map (
-            INIT_A => X"FF", -- Initial values on A output port
-            INIT_B => X"FF", -- Initial values on B output port
+            INIT_A => "111111111", -- Initial values on A output port
+            INIT_B => "111111111", -- Initial values on B output port
             SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
             SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
             WRITE_MODE_A => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
