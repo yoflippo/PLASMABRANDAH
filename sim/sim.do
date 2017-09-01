@@ -7,12 +7,20 @@ vcom -quiet  -93  -work grlib  ../simlib/grlib/stdlib/stdlib.vhd
 vcom -quiet  -93  -work grlib  ../simlib/grlib/stdlib/stdio.vhd
 vcom -quiet  -93  -work work   ../simlib/micron/ddr_sdram/mti_pkg.vhd
 vcom -quiet  -93  -work work   ../simlib/micron/ddr_sdram/mt46v16m16.vhd
+--vcom -quiet  -93  -work work   ../rtl/mlite_pack.vhd
 vcom -quiet  -93  -work work   ../rtl/mlite_pack.vhd
+vcom -quiet  -93  -work work   ../rtl/adder.vhd
+vcom -quiet  -93  -work work   ../rtl/csa_adder.vhd
+vcom -quiet  -93  -work work   ../rtl/mult_csa.vhd
 vcom -quiet  -93  -work work   ../rtl/alu.vhd
 vcom -quiet  -93  -work work   ../rtl/bus_mux.vhd
 vcom -quiet  -93  -work work   ../rtl/control.vhd
 vcom -quiet  -93  -work work   ../rtl/mem_ctrl.vhd
+
+vcom -quiet  -93  -work work   ../rtl/multiplier_tree_radix16.vhd
+--vcom -quiet  -93  -work work   ../rtl/mult.vhd
 vcom -quiet  -93  -work work   ../rtl/mult.vhd
+
 vcom -quiet  -93  -work work   ../rtl/pc_next.vhd
 vcom -quiet  -93  -work work   ../rtl/reg_bank.vhd
 vcom -quiet  -93  -work work   ../rtl/pipeline.vhd
@@ -38,13 +46,21 @@ onerror {resume}
 log -r /*
 #View sim_tb_top signals in waveform#
 #add wave -group sim_top sim:/sim_tb_top/*
-#add wave -group plasma_top sim:/sim_tb_top/u1_plasma_top/*
-add wave -group ddr sim:/sim_tb_top/u1_plasma_top/u2_ddr/*
-add wave -group Cache sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/*
-add wave -group Mem sim:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u2_mem_ctrl/*
-add wave -group Control sim:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u3_control/*
-add wave -group RegBankie sim:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u4_reg_bank/*
-add wave -group PcNexxie sim:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u1_pc_next/*
+
+--add wave -group plasma_top sim:/sim_tb_top/u1_plasma_top/*
+--add wave -group ddr sim:/sim_tb_top/u1_plasma_top/u2_ddr/*
+
+--add wave -group cache sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/*
+--add wave -group cache sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_data/block0/ram_byte3/*
+--add wave -group cache sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/cache_tag/*
+
+--add wave -group multiplier -position insertpoint sim:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u8_mult/*
+--add wave -group multiplier -divider variables -position insertpoint sim:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u8_mult/mult_proc/*
+
+do wave.do
+
+
+config wave -signalnamewidth 3
 
 #compare add -wave -tolL {0 ns} -tolT {0 ns} _base:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/pause_non_ctrl
 #compare add -wave -tolL {0 ns} -tolT {0 ns} _base:/sim_tb_top/u1_plasma_top/u1_plasma/u1_cpu/u3_control
@@ -60,5 +76,6 @@ radix hex
 #In order to suppress these warnings, we use following two commands#
 set NumericStdNoWarnings 1
 set StdArithNoWarnings 1
-run 1000us
+
+run 5ms
 stop

@@ -8,6 +8,9 @@
 --    Software 'as is' without warranty.  Author liable for nothing.
 -- DESCRIPTION:
 --    Data types, constants, and add functions needed for the Plasma CPU.
+
+-- MS: version 0.2 : added some functions with regards to 2 complement
+-- conversion
 ---------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -99,14 +102,42 @@ package mlite_pack is
     constant MEM_READ8S  : mem_source_type := "1110";
     constant MEM_WRITE8  : mem_source_type := "1101";
 
-    function bv_adder(a     : in std_logic_vector;
-                     b     : in std_logic_vector;
-                     do_add: in std_logic) return std_logic_vector;
-    function bv_negate(a : in std_logic_vector) return std_logic_vector;
-    function bv_increment(a : in std_logic_vector(31 downto 2)
-                         ) return std_logic_vector;
-    function bv_inc(a : in std_logic_vector
-                  ) return std_logic_vector;
+    function bv_adder(  a     : in std_logic_vector;
+                        b     : in std_logic_vector;
+                        do_add: in std_logic) 
+    return std_logic_vector;
+
+    function bv_real_adder( a       : in std_logic_vector;
+                            b       : in std_logic_vector;
+                            do_add  : in std_logic;
+                            ci      : in std_logic)
+    return std_logic_vector;
+
+    function bv_negate(     a : in std_logic_vector) return std_logic_vector;
+    
+    function bv_increment(  a : in std_logic_vector(31 downto 2))
+    return std_logic_vector;
+
+    function bv_negate_carries(a : in std_logic_vector;
+                               ci: in std_logic) 
+    return std_logic_vector;
+    
+    function bv_inc(a : in std_logic_vector) 
+    return std_logic_vector;
+
+function bv_twos_complement(lo : in std_logic_vector;
+                            hi : in std_logic_vector) 
+        return std_logic_vector;
+
+-- MS: in order for custom component to be used they have to be
+--     added to the package
+COMPONENT adder 
+    Port (
+        a, b   : In std_logic_vector(31 Downto 0);
+        do_add : In std_logic;
+        c      : Out std_logic_vector(32 Downto 0)
+    );
+End COMPONENT; --entity adder
 
     -- For Altera
     COMPONENT lpm_ram_dp
@@ -329,6 +360,14 @@ package mlite_pack is
         );
     end component;
 
+    component rand_gen is --MS: added random generator
+       port(
+           clk       : in std_logic;
+           reset_in  : in std_logic;
+           rand_num  : out integer
+       );
+    end component;
+
     component pipeline
         port(
             clk            : in  std_logic;
@@ -406,7 +445,7 @@ package mlite_pack is
 
     component cache_ram
         generic(
-            block_count : integer := 1
+            block_count : integer := 2
         );
         port(
             clk               : in std_logic;
@@ -518,9 +557,11 @@ package body mlite_pack is
 function bv_adder(a     : in std_logic_vector;
                   b     : in std_logic_vector;
                   do_add: in std_logic) return std_logic_vector is
+
     variable carry_in : std_logic;
     variable bb       : std_logic_vector(a'length-1 downto 0);
     variable result   : std_logic_vector(a'length downto 0);
+    
 begin
     if do_add = '1' then
         bb := b;
@@ -531,10 +572,37 @@ begin
     end if;
     for index in 0 to a'length-1 loop
         result(index) := a(index) xor bb(index) xor carry_in;
-        carry_in := (carry_in and (a(index) or bb(index))) or
-                  (a(index) and bb(index));
+        carry_in := (carry_in and (a(index) or  bb(index))) or
+                  				  (a(index) and bb(index));
     end loop;
     result(a'length) := carry_in xnor do_add;
+    return result;
+end; --function
+
+
+    function bv_real_adder( a       : in std_logic_vector;
+                            b       : in std_logic_vector;
+                            do_add  : in std_logic;
+                            ci      : in std_logic)
+    return std_logic_vector is
+
+    variable carry_in : std_logic;
+    variable bb       : std_logic_vector(a'length-1 downto 0);
+    variable result   : std_logic_vector(a'length downto 0);
+    
+begin
+    bb := b;
+    carry_in := ci;
+    for index in 0 to a'length-1 loop
+        result(index) := a(index) xor bb(index) xor carry_in;
+        carry_in := (carry_in and (a(index) or  bb(index))) or
+                                  (a(index) and bb(index));
+    end loop;
+    if do_add = '1' then
+        result(a'length) := carry_in xnor do_add;
+    else
+        result(a'length) := carry_in;
+    end if;     
     return result;
 end; --function
 
@@ -550,6 +618,58 @@ begin
         result(index) := not_a(index) xor carry_in;
         carry_in := carry_in and not_a(index);
     end loop;
+    return result;
+end; --function
+
+-- MS: a negation 2's complement function but with functionality to get/specify 
+-- the carry. Please note, that the carry out is concatenated with the output
+function bv_negate_carries(a : in std_logic_vector;
+                           ci: in std_logic) return std_logic_vector is
+
+    variable carry_in : std_logic;
+    variable not_a    : std_logic_vector(a'length-1 downto 0);
+    variable result   : std_logic_vector(a'length-1 downto 0);
+begin
+    not_a := not a;
+    carry_in := ci;
+    -- MS: TvE noticed a possible speed up
+    for index in a'reverse_range loop
+        result(index) := not_a(index) xor carry_in;
+        carry_in      := carry_in and not_a(index);
+    end loop;
+    return carry_in & result;
+end; --function
+
+--MS : this function calculates the two complement of a large vector that consists
+-- of a High/Low register. It is basically a complement-select function
+function bv_twos_complement(lo : in std_logic_vector;
+                            hi : in std_logic_vector) 
+        return std_logic_vector is
+
+    variable res_low     : std_logic_vector(lo'length downto 0);
+    variable res_hi1    : std_logic_vector(hi'length downto 0);
+    variable res_hi0    : std_logic_vector(hi'length downto 0);
+    variable res_part_l  : std_logic_vector(lo'range);
+    variable res_part_h  : std_logic_vector(hi'range);
+    variable result      : std_logic_vector((lo'length*2)-1 downto 0);
+begin
+    -- MS: calculate 2 complement
+    res_low  := bv_negate_carries(lo,'1');
+    -- MS: calculate 2 complement of hi reg with ci = 1 & 0
+    res_hi0 := bv_negate_carries(hi,'0');
+    res_hi1 := bv_negate_carries(hi,'1');
+
+    res_part_l := res_low(res_part_l'range); -- Ms: select everything but MSB
+    -- MS: if the carry_out of the low reg is '1' then select that
+    -- result
+    if res_low(res_low'high) = '1' then
+        res_part_h := res_hi1(res_part_h'range);
+    else
+        res_part_h := res_hi0(res_part_h'range);
+    end if;
+    
+    result := res_part_h & res_part_l;
+
     return result;
 end; --function
 
@@ -581,4 +701,61 @@ begin
     return result;
 end; --function
 
+-- a record for simulating the internals of mul
+type MULTBUS_OUT is
+record
+	-- MS: ports
+	a, b     :  std_logic_vector(31 downto 0);
+	mult_func :  mult_function_type;
+	c_mult    :  std_logic_vector(31 downto 0);
+	pause_out :  std_logic;
+
+
+	MODE_MULT : std_logic ; -- MS: originally a constant set at 1
+	MODE_DIV  : std_logic ; -- MS: originally a constant set at 0
+
+    -- MS: signals of multiplier
+	mode_reg    : std_logic;
+	negate_reg  : std_logic;
+	sign_reg    : std_logic;
+	sign2_reg   : std_logic;
+	count_reg   : std_logic_vector(5 downto 0);
+	aa_reg      : std_logic_vector(31 downto 0);
+	bb_reg      : std_logic_vector(31 downto 0);
+	upper_reg   : std_logic_vector(31 downto 0);
+	lower_reg   : std_logic_vector(31 downto 0);
+	a_neg       : std_logic_vector(31 downto 0);
+	b_neg       : std_logic_vector(31 downto 0);
+	sum         : std_logic_vector(32 downto 0);
+end record;
+
+type MULTBUS_IN is
+record
+	-- MS: ports
+	a, b     :  std_logic_vector(31 downto 0);
+	mult_func :  mult_function_type;
+	c_mult    :  std_logic_vector(31 downto 0);
+	pause_out :  std_logic;
+
+
+	MODE_MULT : std_logic ; -- MS: originally a constant set at 1
+	MODE_DIV  : std_logic ; -- MS: originally a constant set at 0
+
+    -- MS: signals of multiplier
+	mode_reg    : std_logic;
+	negate_reg  : std_logic;
+	sign_reg    : std_logic;
+	sign2_reg   : std_logic;
+	count_reg   : std_logic_vector(5 downto 0);
+	aa_reg      : std_logic_vector(31 downto 0);
+	bb_reg      : std_logic_vector(31 downto 0);
+	upper_reg   : std_logic_vector(31 downto 0);
+	lower_reg   : std_logic_vector(31 downto 0);
+	a_neg       : std_logic_vector(31 downto 0);
+	b_neg       : std_logic_vector(31 downto 0);
+	sum  		: std_logic_vector(32 downto 0);
+end record;
+
 end; --package body
+
+

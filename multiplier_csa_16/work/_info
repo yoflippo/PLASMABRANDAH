@@ -1,0 +1,328 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/pdp/APLASMA/GIT/PLASMABRANDAH/multiplier_csa_16
+T_opt
+!s110 1497011641
+VL7P<dZI1@^2GmJDf5Rg@d1
+04 13 3 work multiplier_tb sim 1
+=1-000ae431a4f1-593a95b9-9b100-3cb7
+o-quiet -auto_acc_if_foreign -work work +acc
+tCvgOpt 0
+n@_opt
+OL;O;10.5c_4;63
+R0
+Ecarry_sel_adder
+Z1 w1497011629
+Z2 DPx4 work 10 mlite_pack 0 22 K[cY7l7e6PhnKRRlJfC<92
+Z3 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z4 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z5 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z6 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z7 8adder.vhd
+Z8 Fadder.vhd
+l0
+L9
+VL[^;;Kj>kHWKoeJTCZJHJ0
+!s100 =>cB5F<eM66HSV:5[zgcE3
+Z9 OL;C;10.5c_4;63
+31
+Z10 !s110 1497012665
+!i10b 1
+Z11 !s108 1497012665.000000
+Z12 !s90 -reportprogress|300|-quiet|-93|-work|work|adder.vhd|
+Z13 !s107 adder.vhd|
+!i113 0
+Z14 o-quiet -93 -work work
+Z15 tExplicit 1 CvgOpt 0
+Alogic
+R2
+R3
+R4
+R5
+R6
+DEx4 work 15 carry_sel_adder 0 22 L[^;;Kj>kHWKoeJTCZJHJ0
+l47
+L17
+V35f`i<6ChV6lO^moTKRSX0
+!s100 hGQESnhl8FZ?BVl7BhVQc2
+R9
+31
+R10
+!i10b 1
+R11
+R12
+R13
+!i113 0
+R14
+R15
+Ecsa_adder
+Z16 w1497012658
+R2
+R3
+R4
+R5
+R6
+R0
+Z17 8csa_adder.vhd
+Z18 Fcsa_adder.vhd
+l0
+L11
+V2hf@?8KlECzU>=;7DKlao3
+!s100 k0fdYCI23>X[>`n^ZJc251
+R9
+31
+Z19 !s110 1497022244
+!i10b 1
+Z20 !s108 1497022243.000000
+Z21 !s90 -reportprogress|300|-quiet|-93|-work|work|csa_adder.vhd|
+Z22 !s107 csa_adder.vhd|
+!i113 0
+R14
+R15
+Alogic
+R2
+R3
+R4
+R5
+R6
+DEx4 work 9 csa_adder 0 22 2hf@?8KlECzU>=;7DKlao3
+l21
+L18
+V[>d`KDD?Gf_@EI_^GI4U_2
+!s100 @00TkQ7Y3WPO^RCCBm0C`0
+R9
+31
+R19
+!i10b 1
+R20
+R21
+R22
+!i113 0
+R14
+R15
+Pmlite_pack
+R5
+R6
+Z23 w1496660975
+R0
+Z24 8mlite_pack.vhd
+Z25 Fmlite_pack.vhd
+l0
+L15
+VK[cY7l7e6PhnKRRlJfC<92
+!s100 TT=T^E9MXgoUZO5S;E86K0
+R9
+31
+b1
+Z26 !s110 1497022243
+!i10b 1
+R20
+Z27 !s90 -reportprogress|300|-quiet|-93|-work|work|mlite_pack.vhd|
+Z28 !s107 mlite_pack.vhd|
+!i113 0
+R14
+R15
+Bbody
+R2
+R5
+R6
+l0
+L531
+VOaWOV`R]WoYnK@RIjJaa=3
+!s100 nJlU3<JnSi??4DJ7^O[TM1
+R9
+31
+R26
+!i10b 1
+R20
+R27
+R28
+!i113 0
+R14
+R15
+Emult
+Z29 w1497011637
+R2
+R3
+R4
+R5
+R6
+R0
+Z30 8mult.vhd
+Z31 Fmult.vhd
+l0
+L41
+VX;>?k?n:GYJR7oCVVT?O>0
+!s100 oW<aD8;A<J9^2aBj`;QF93
+R9
+31
+R26
+!i10b 1
+R20
+Z32 !s90 -reportprogress|300|-quiet|-93|-work|work|mult.vhd|
+Z33 !s107 mult.vhd|
+!i113 0
+R14
+R15
+Alogic
+R2
+R3
+R4
+R5
+R6
+Z34 DEx4 work 4 mult 0 22 X;>?k?n:GYJR7oCVVT?O>0
+l83
+L55
+VO^n4zPiKS?XgmTaYZDAF>1
+!s100 IQ?6TlG^]2;c4k0QZ8V>K1
+R9
+31
+R26
+!i10b 1
+R20
+R32
+R33
+!i113 0
+R14
+R15
+Emult_csa
+Z35 w1497022229
+R2
+Z36 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+R5
+R6
+R0
+Z37 8mult_csa_16.vhd
+Z38 Fmult_csa_16.vhd
+l0
+L8
+VePfX6VHk80@[2^faW3kS42
+!s100 POO43a_ViOf>l[Df<9oA22
+R9
+31
+R19
+!i10b 1
+Z39 !s108 1497022244.000000
+Z40 !s90 -reportprogress|300|-quiet|-93|-work|work|mult_csa_16.vhd|
+Z41 !s107 mult_csa_16.vhd|
+!i113 0
+R14
+R15
+Alogic
+R2
+R36
+R5
+R6
+Z42 DEx4 work 8 mult_csa 0 22 ePfX6VHk80@[2^faW3kS42
+l49
+L19
+Vz7l6Y`9Q_[A10PP_^Gd4k0
+!s100 W1jD3cgLRQ89Y=VeHmeiA2
+R9
+31
+R19
+!i10b 1
+R39
+R40
+R41
+!i113 0
+R14
+R15
+Emultiplier_tb
+Z43 w1496693563
+R2
+Z44 DPx4 work 11 txtutil_pkg 0 22 N[@9VmJb?PKWbb5Fb[FN^1
+R36
+R5
+R6
+R0
+Z45 8tb_multiplier.vhd
+Z46 Ftb_multiplier.vhd
+l0
+L21
+Vn=NcE?m7H5E6m?<h=52Pg3
+!s100 ;BnSPo8jaRNa`mJ?a:YOC1
+R9
+31
+R26
+!i10b 1
+R20
+Z47 !s90 -reportprogress|300|-quiet|-93|-work|work|tb_multiplier.vhd|
+Z48 !s107 tb_multiplier.vhd|
+!i113 0
+R14
+R15
+Asim
+R3
+R4
+R34
+R2
+R44
+R36
+R5
+R6
+DEx4 work 13 multiplier_tb 0 22 n=NcE?m7H5E6m?<h=52Pg3
+l65
+L24
+V@loCLaQind6<KWA_V>E>`0
+!s100 ]4hz0^?ek5Z^;0JKA1c551
+R9
+31
+R26
+!i10b 1
+R20
+R47
+R48
+!i113 0
+R14
+R15
+Ptxtutil_pkg
+R36
+R5
+R6
+Z49 w1496408616
+R0
+Z50 8TxtUtil_pkg.vhd
+Z51 FTxtUtil_pkg.vhd
+l0
+L16
+VN[@9VmJb?PKWbb5Fb[FN^1
+!s100 ELbjK]M90M7B>Men_DO;^3
+R9
+31
+b1
+R26
+!i10b 1
+R20
+Z52 !s90 -reportprogress|300|-quiet|-93|-work|work|TxtUtil_pkg.vhd|
+Z53 !s107 TxtUtil_pkg.vhd|
+!i113 0
+R14
+R15
+Bbody
+R44
+R36
+R5
+R6
+l0
+L56
+VI1gdVKTWFj<mkYJXYNOk00
+!s100 e7^G?FP83;]c6XzPga4^k2
+R9
+31
+R26
+!i10b 1
+R20
+R52
+R53
+!i113 0
+R14
+R15

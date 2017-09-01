@@ -1,4 +1,5 @@
 vhdl work "../rtl/mlite_pack.vhd"
+vhdl work "../rtl/adder.vhd"
 vhdl work "../rtl/shifter.vhd"
 vhdl work "../rtl/reg_bank.vhd"
 vhdl work "../rtl/pipeline.vhd"

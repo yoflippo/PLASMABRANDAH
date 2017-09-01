@@ -1,0 +1,260 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/pdp
+T_opt
+!s110 1496694235
+VF^coCSNbfkPMoUPBJRaMP2
+Z1 04 13 3 work multiplier_tb sim 1
+=1-000ae431a4f1-5935bddb-1e92e-20aa
+Z2 o-quiet -auto_acc_if_foreign -work work +acc
+Z3 tCvgOpt 0
+n@_opt
+Z4 OL;O;10.5c_4;63
+T_opt1
+!s110 1496660615
+V=9N<@9h?YR9XnB=aodI`C3
+04 5 5 work adder logic 1
+=1-000ae431a4f1-59353a87-8490a-174b
+R2
+R3
+n@_opt1
+R4
+R0
+T_opt2
+!s110 1496347825
+VP89N:lK;6SE_a`YQTnmKG3
+04 4 5 work mult logic 1
+R1
+=1-000ae431a4f1-593074b1-5689e-e9c
+R2
+R3
+n@_opt2
+R4
+R0
+Eadder
+Z5 w1496594478
+Z6 DPx4 work 10 mlite_pack 0 22 K[cY7l7e6PhnKRRlJfC<92
+Z7 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z8 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z9 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z10 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z11 d/home/pdp/APLASMA/GIT/PLASMABRANDAH/multiplier_sim
+Z12 8adder.vhd
+Z13 Fadder.vhd
+l0
+L9
+V=5nMogJE9Imc_em`bLVc_0
+!s100 dbZJFY0S`19m2I67::Uhe2
+Z14 OL;C;10.5c_4;63
+31
+Z15 !s110 1496694233
+!i10b 1
+Z16 !s108 1496694233.000000
+Z17 !s90 -reportprogress|300|-quiet|-93|-work|work|adder.vhd|
+Z18 !s107 adder.vhd|
+!i113 0
+Z19 o-quiet -93 -work work
+Z20 tExplicit 1 CvgOpt 0
+Alogic
+R6
+R7
+R8
+R9
+R10
+DEx4 work 5 adder 0 22 =5nMogJE9Imc_em`bLVc_0
+l47
+L17
+VUjKfed;_C<D7z^LWoHdDU0
+!s100 GNMljd@D]2hIPD0m>iBFl0
+R14
+31
+R15
+!i10b 1
+R16
+R17
+R18
+!i113 0
+R19
+R20
+Pmlite_pack
+R9
+R10
+Z21 w1496660975
+R11
+Z22 8mlite_pack.vhd
+Z23 Fmlite_pack.vhd
+l0
+L15
+VK[cY7l7e6PhnKRRlJfC<92
+!s100 TT=T^E9MXgoUZO5S;E86K0
+R14
+31
+b1
+R15
+!i10b 1
+R16
+Z24 !s90 -reportprogress|300|-quiet|-93|-work|work|mlite_pack.vhd|
+Z25 !s107 mlite_pack.vhd|
+!i113 0
+R19
+R20
+Bbody
+R6
+R9
+R10
+l0
+L531
+VOaWOV`R]WoYnK@RIjJaa=3
+!s100 nJlU3<JnSi??4DJ7^O[TM1
+R14
+31
+R15
+!i10b 1
+R16
+R24
+R25
+!i113 0
+R19
+R20
+Emult
+Z26 w1496694224
+R6
+R7
+R8
+R9
+R10
+R11
+Z27 8mult.vhd
+Z28 Fmult.vhd
+l0
+L41
+VX;>?k?n:GYJR7oCVVT?O>0
+!s100 oW<aD8;A<J9^2aBj`;QF93
+R14
+31
+R15
+!i10b 1
+R16
+Z29 !s90 -reportprogress|300|-quiet|-93|-work|work|mult.vhd|
+Z30 !s107 mult.vhd|
+!i113 0
+R19
+R20
+Alogic
+R6
+R7
+R8
+R9
+R10
+Z31 DEx4 work 4 mult 0 22 X;>?k?n:GYJR7oCVVT?O>0
+l83
+L55
+VbMWQ>f:o0HN>oRdL`jAj]3
+!s100 Uokk:7alCNbH5BZaPgDP43
+R14
+31
+R15
+!i10b 1
+R16
+R29
+R30
+!i113 0
+R19
+R20
+Emultiplier_tb
+Z32 w1496693563
+R6
+Z33 DPx4 work 11 txtutil_pkg 0 22 N[@9VmJb?PKWbb5Fb[FN^1
+Z34 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+R9
+R10
+R11
+Z35 8tb_multiplier.vhd
+Z36 Ftb_multiplier.vhd
+l0
+L21
+Vn=NcE?m7H5E6m?<h=52Pg3
+!s100 ;BnSPo8jaRNa`mJ?a:YOC1
+R14
+31
+R15
+!i10b 1
+R16
+Z37 !s90 -reportprogress|300|-quiet|-93|-work|work|tb_multiplier.vhd|
+Z38 !s107 tb_multiplier.vhd|
+!i113 0
+R19
+R20
+Asim
+R7
+R8
+R31
+R6
+R33
+R34
+R9
+R10
+DEx4 work 13 multiplier_tb 0 22 n=NcE?m7H5E6m?<h=52Pg3
+l65
+L24
+V@loCLaQind6<KWA_V>E>`0
+!s100 ]4hz0^?ek5Z^;0JKA1c551
+R14
+31
+R15
+!i10b 1
+R16
+R37
+R38
+!i113 0
+R19
+R20
+Ptxtutil_pkg
+R34
+R9
+R10
+Z39 w1496408616
+R11
+Z40 8TxtUtil_pkg.vhd
+Z41 FTxtUtil_pkg.vhd
+l0
+L16
+VN[@9VmJb?PKWbb5Fb[FN^1
+!s100 ELbjK]M90M7B>Men_DO;^3
+R14
+31
+b1
+R15
+!i10b 1
+R16
+Z42 !s90 -reportprogress|300|-quiet|-93|-work|work|TxtUtil_pkg.vhd|
+Z43 !s107 TxtUtil_pkg.vhd|
+!i113 0
+R19
+R20
+Bbody
+R33
+R34
+R9
+R10
+l0
+L56
+VI1gdVKTWFj<mkYJXYNOk00
+!s100 e7^G?FP83;]c6XzPga4^k2
+R14
+31
+R15
+!i10b 1
+R16
+R42
+R43
+!i113 0
+R19
+R20
