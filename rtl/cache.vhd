@@ -104,8 +104,18 @@ begin
     cache_ram_write_address_temp(12 downto 2) <= cache_ram_address_reg(12 downto 2);
 
     LRU_write_addr(10 downto 0) <= cpu_address(12 downto 2); -- TvE: To make sure the LRU is updated in the right line.
-    tag_write_addr(10 downto 0) <= cpu_address(12 downto 2); -- TvE: To make sure the tag is updated in the right line.
+    --tag_write_addr(10 downto 0) <= cpu_address(12 downto 2); -- TvE: To make sure the tag is updated in the right line.
     cache_address <= address_next(12 downto 2);              -- TvE: When cache read occurs the tag must be available next clockcycle!
+
+
+    write_addr_proc: process(address_next, cpu_address)       
+    begin                                                   
+        if (address_next(12 downto 2) /= cpu_address(12 downto 2)) and (byte_we_next = "0000") then
+            tag_write_addr(10 downto 0) <= address_next(12 downto 2);
+        else       
+            tag_write_addr(10 downto 0) <= cpu_address(12 downto 2);
+        end if;
+    end process;
 
     read_ram_proc: process(address_next, cpu_address)       --TvE: process that tracks the current and previous accessed address.
     begin                                                   -- When they match the read port of both LRU and cache_ram must be disabled
@@ -205,9 +215,11 @@ begin
 
                         if cache_tag_out(0) = cache_tag_reg then
                             cache_ram_data_r <= cache_ram_data_r0;      --TvE: tag of set 0 was correct so data in set 0 is routed to output
+                            cache_ram_write_address_temp(14 downto 13) <= "01";    --TvE: Enables data set 1 to write to /NOT REALLY NEEDED SINCE ITS A READ
                             LRU_in(0) <= '1';                            --TvE: Data in set 1 was Least Recently Used
                         elsif cache_tag_out(1) = cache_tag_reg then
                             cache_ram_data_r <= cache_ram_data_r1;      --TvE: tag of set 1 was correct so data in set 1 is routed to output
+                            cache_ram_write_address_temp(14 downto 13) <= "00";    --TvE: Enables data set 1 to write to /NOT REALLY NEEDED SINCE ITS A READ
                             LRU_in(0) <= '0';                              --TvE: Data in set 0 was Least Recently Used
                         else        -- TvE: Do nothing
 
@@ -292,7 +304,7 @@ begin
             cache_ram_address_reg <= ZERO(31 downto 2);
             cache_ram_data_w_reg <= "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
             cache_ram_byte_we_reg <= "0000";
-            cache_ram_data_r <= cache_ram_data_r0;
+            cache_ram_data_r <= X"00000000";
         elsif rising_edge(clk) then
             state_reg <= state_next;
             cache_ram_enable_reg <= cache_ram_enable; 
