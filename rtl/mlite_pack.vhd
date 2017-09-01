@@ -440,7 +440,7 @@ End COMPONENT; --entity adder
 
     component cache_ram
         generic(
-            block_count : integer := 1
+            block_count : integer := 2
         );
         port(
             clk               : in std_logic;
