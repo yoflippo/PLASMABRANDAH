@@ -1,10 +1,14 @@
 Release 14.7 Drc P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Fri Sep  1 17:01:43 2017
+Sun Sep  3 21:22:50 2017
 
 drc -z top_ml410.ncd top_ml410.pcf
 
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   u1_plasma_top/u1_plasma/opt_cache2.u_cache/cache_we_and0000 is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_we_not0001 is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
@@ -12,10 +16,6 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    u1_plasma_top/u1_plasma/opt_cache2.u_cache/miss_state_prev_not0001 is sourced
    by a combinatorial pin. This is not good design practice. Use the CE pin to
-   control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   u1_plasma_top/u1_plasma/opt_cache2.u_cache/LRU_in_0_not0001 is sourced by a
-   combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    DCM_AUTOCALIBRATION_u1_plasma_top/u0_clk/DCM_BASE0/u1_plasma_top/u0_clk/DCM_B

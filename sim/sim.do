@@ -43,10 +43,10 @@ add wave -group ddr sim:/sim_tb_top/u1_plasma_top/u2_ddr/*
 
 add wave sim:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache/*
 compare end
-dataset open /home/pdp/pdp/sim/baseline_multiply.wlf baseline_mult
-compare start baseline_mult sim
+dataset open /home/pdp/pdp/sim/baseline_opcodes.wlf baseline_op
+compare start baseline_op sim
 compare options -track
-compare add -wave -tolL {0 ns} -tolT {0 ns} baseline_mult:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache
+compare add -wave -tolL {0 ns} -tolT {0 ns} baseline_op:/sim_tb_top/u1_plasma_top/u1_plasma/opt_cache2/u_cache
 compare run
 
 

@@ -415,20 +415,6 @@ package mlite_pack is
 			data_read1        : out std_logic_vector(31 downto 0) --TvE: added output so both data in the sets can be put on output in parallel
         );
     end component; --ram_2port
-
-    component cache_ram_bb
-        generic(
-            block_count : integer := 1
-        );
-        port(
-            clk               : in std_logic;
-            enable            : in std_logic;
-            write_byte_enable : in std_logic_vector(3 downto 0);
-            address           : in std_logic_vector(31 downto 2);
-            data_write        : in std_logic_vector(31 downto 0);
-            data_read         : out std_logic_vector(31 downto 0)
-        );
-    end component; --ram_bb
 	
     component boot_ram
         generic(

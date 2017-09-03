@@ -1,0 +1,3 @@
+Checking DDR.......OK!
+Jumping at address 10000000
+GNU MP: Cannot allocate memory (size=2500)

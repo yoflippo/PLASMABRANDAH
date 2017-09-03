@@ -4,7 +4,7 @@ Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
 Project Information
 --------------------
 ProjectID=A546A411199681BB803884615D432683
-ProjectIteration=1
+ProjectIteration=2
 
 WebTalk Summary
 ----------------
@@ -15,4 +15,4 @@ INFO:WebTalk:6 - WebTalk User setting is ON.
 
 WARNING:WebTalk:1 - WebTalk could not create a temp directory to store user setting.
 
-INFO:WebTalk:5 - /home/pdp/PLASMABRANDAH/PDP_ISE_NEW/usage_statistics_webtalk.html WebTalk report has not been sent to Xilinx.  Please check your network and proxy settings.  For additional details about this file, please refer to the WebTalk help file at /opt/Xilinx/14.7/ISE_DS/ISE/data/reports/webtalk_introduction.html
+INFO:WebTalk:5 - /home/pdp/Repository/PLASMABRANDAH/PDP_ISE_NEW/usage_statistics_webtalk.html WebTalk report has not been sent to Xilinx.  Please check your network and proxy settings.  For additional details about this file, please refer to the WebTalk help file at /opt/Xilinx/14.7/ISE_DS/ISE/data/reports/webtalk_introduction.html
