@@ -250,7 +250,11 @@ package mlite_pack is
             c_source_out : out c_source_type;
             pc_source_out: out pc_source_type;
             mem_source_out:out mem_source_type;
-            exception_out: out std_logic
+            exception_out: out std_logic;
+
+            --MV: 2 new outputs for regbanky
+            rs_index_bank : out std_logic_vector(5 downto 0);
+            rt_index_bank : out std_logic_vector(5 downto 0)
         );
     end component;
 

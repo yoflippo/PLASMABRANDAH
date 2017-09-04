@@ -79,6 +79,10 @@ architecture logic of mlite_cpu is
    signal opcode_pc      : std_logic_vector(31 downto 0);
    signal rs_index       : std_logic_vector(5 downto 0);
    signal rt_index       : std_logic_vector(5 downto 0);
+   --MV: 2 signal for splitting regbanky from pipe
+   signal rs_index_bank  : std_logic_vector(5 downto 0);
+   signal rt_index_bank  : std_logic_vector(5 downto 0);
+
    signal rd_index       : std_logic_vector(5 downto 0);
    signal rd_indexD      : std_logic_vector(5 downto 0);
    signal reg_source     : std_logic_vector(31 downto 0);
@@ -218,7 +222,9 @@ begin  --architecture
             c_source_out => c_source,
             pc_source_out=> pc_source,
             mem_source_out=> mem_source,
-            exception_out=> exception_sig
+            exception_out=> exception_sig,
+            rs_index_bank=> rs_index_bank,
+            rt_index_bank=> rt_index_bank
         );
 
     u4_reg_bank: reg_bank
@@ -226,8 +232,8 @@ begin  --architecture
             clk            => clk,
             reset_in       => reset,
             pause          => pause_bank,
-            rs_index       => rs_index,
-            rt_index       => rt_index,
+            rs_index       => rs_index_bank,
+            rt_index       => rt_index_bank,
             rd_index       => rd_indexD,
             reg_source_out => reg_source,
             reg_target_out => reg_target,

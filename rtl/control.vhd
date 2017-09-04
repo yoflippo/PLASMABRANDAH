@@ -42,7 +42,10 @@ entity control is
         c_source_out  : out c_source_type;
         pc_source_out : out pc_source_type;
         mem_source_out: out mem_source_type;
-        exception_out : out std_logic
+        exception_out : out std_logic;
+
+        rs_index_bank : out std_logic_vector(5 downto 0);
+        rt_index_bank : out std_logic_vector(5 downto 0)
     );
 end; --entity control
 
@@ -527,7 +530,7 @@ begin
         	if pause_in = '0' then
 	        	rs_index_reg      	<= rs;
 				rt_index_reg 	 	<= rt;
-				rd_index_reg      	<= rd;
+				--rd_index_reg      	<= rd;
 				imm_out_reg     	<= imm; 
 				alu_func_reg      	<= alu_function;
 				shift_func_reg 	 	<= shift_function;
@@ -544,7 +547,13 @@ begin
 
         rs_index 		<= rs_index_reg      ;
         rt_index 		<= rt_index_reg 	 ;
-        rd_index 		<= rd_index_reg      ;
+
+        --MV: Cancelled the rd_index and splitted the rs and rt. Buffered ones still go to pipe
+        rs_index_bank   <= rs;
+        rt_index_bank   <= rt;
+        --rd_index 		<= rd_index_reg      ;
+        rd_index        <= rd;
+
         imm_out 		<= imm_out_reg     	 ;
         alu_func 		<= alu_func_reg      ;
         shift_func 		<= shift_func_reg 	 ;
