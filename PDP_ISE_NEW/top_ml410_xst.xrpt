@@ -5,7 +5,7 @@
     The structure and the elements are likely to change over the next few releases.
     This means code written to parse this file will need to be revisited each subsequent release.-->
 
-  <application stringID="Xst" timeStamp="Sun Sep  3 21:18:07 2017">
+  <application stringID="Xst" timeStamp="Tue Sep  5 15:46:45 2017">
     <section stringID="User_Env">
       <table stringID="User_EnvVar">
         <column stringID="variable"/>
@@ -52,12 +52,8 @@
         <column stringID="arch"/>
         <column stringID="speed"/>
         <row stringID="row" value="0">
-          <item stringID="arch" value="Intel(R) Core(TM) i7 CPU         920  @ 2.67GHz"/>
-          <item stringID="speed" value="2673.302 MHz"/>
-        </row>
-        <row stringID="row" value="1">
-          <item stringID="arch" value="Intel(R) Core(TM) i7 CPU         920  @ 2.67GHz"/>
-          <item stringID="speed" value="2673.302 MHz"/>
+          <item stringID="arch" value="Intel(R) Core(TM) i5-2467M CPU @ 1.60GHz"/>
+          <item stringID="speed" value="1596.372 MHz"/>
         </row>
       </table>
     </section>
@@ -232,11 +228,11 @@
         </item>
         <item dataType="int" stringID="XST_FLIPFLOPSLATCHES" value="863">
           <item dataType="int" stringID="XST_FD" value="5"/>
-          <item dataType="int" stringID="XST_FDC" value="293"/>
+          <item dataType="int" stringID="XST_FDC" value="297"/>
           <item dataType="int" stringID="XST_FDC1" value="39"/>
           <item dataType="int" stringID="XST_FDCE" value="365"/>
           <item dataType="int" stringID="XST_FDCE1" value="18"/>
-          <item dataType="int" stringID="XST_FDE" value="94"/>
+          <item dataType="int" stringID="XST_FDE" value="90"/>
           <item dataType="int" stringID="XST_FDP" value="2"/>
           <item dataType="int" stringID="XST_FDPE" value="9"/>
         </item>
@@ -271,7 +267,7 @@
     </section>
     <section stringID="XST_ERRORS_STATISTICS">
       <item dataType="int" filtered="0" stringID="XST_NUMBER_OF_ERRORS" value="0"/>
-      <item dataType="int" filtered="0" stringID="XST_NUMBER_OF_WARNINGS" value="116"/>
+      <item dataType="int" filtered="0" stringID="XST_NUMBER_OF_WARNINGS" value="71"/>
       <item dataType="int" filtered="0" stringID="XST_NUMBER_OF_INFOS" value="32"/>
     </section>
   </application>

@@ -5,152 +5,16 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/top_ml410</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/top_ml410.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/top_ml410.vhd</arg>&quot;.
+<msg type="info" file="Xst" num="1561" delta="old" >&quot;<arg fmt="%s" index="1">/home/pdp/REP/PLASMABRANDAH/rtl/bus_mux.vhd</arg>&quot; line <arg fmt="%d" index="2">84</arg>: Mux is complete : default of case is discarded
 </msg>
 
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/top_ml410/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/top_ml410.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/top_ml410.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/plasma_top</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/plasma_top.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/plasma_top.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/plasma_top/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/plasma_top.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/plasma_top.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/clk_gen</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/clk_gen.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/clk_gen.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/clk_gen/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/clk_gen.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/clk_gen.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/ddr_ctrl_top</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/ddr_ctrl_top/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl_top.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/plasma</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/plasma.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/plasma.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/plasma/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/plasma.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/plasma.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/boot_ram</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/boot_ram.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/boot_ram.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/boot_ram/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/boot_ram.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/boot_ram.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/cache</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/cache.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/cache/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/cache.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/ddr_ctrl</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/ddr_ctrl.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/ddr_ctrl/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/ddr_ctrl.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/ddr_init</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/ddr_init.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_init.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/ddr_init/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/ddr_init.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_init.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/mlite_cpu</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/mlite_cpu.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/mlite_cpu/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/mlite_cpu.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_cpu.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/uart</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/uart.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/uart.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/uart/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/uart.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/uart.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/alu</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/alu.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/alu.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/alu/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/alu.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/alu.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/bus_mux</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/bus_mux.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/bus_mux/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/bus_mux.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/cache_ram</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/cache_ram.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/cache_ram/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/cache_ram.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/cache_ram.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/control</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/control.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/control/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/control.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/control.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/mem_ctrl</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/mem_ctrl.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/mem_ctrl/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/mem_ctrl.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/mem_ctrl.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/mult</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/mult.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/mult.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/mult/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/mult.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/mult.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/pc_next</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/pc_next.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/pc_next/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/pc_next.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/pc_next.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/pipeline</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/pipeline.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/pipeline.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/pipeline/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/pipeline.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/pipeline.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/reg_bank</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/reg_bank.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/reg_bank/ram_block</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/reg_bank.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/reg_bank.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/shifter</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/shifter.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/shifter.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/shifter/logic</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/shifter.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/shifter.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/mlite_pack</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/mlite_pack.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_pack.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/mlite_pack</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/pdp/PLASMABRANDAH/rtl/mlite_pack.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/pdp/Repository/PLASMABRANDAH/rtl/mlite_pack.vhd</arg>&quot;.
-</msg>
-
-<msg type="info" file="Xst" num="1561" delta="new" >&quot;<arg fmt="%s" index="1">/home/pdp/Repository/PLASMABRANDAH/rtl/bus_mux.vhd</arg>&quot; line <arg fmt="%d" index="2">84</arg>: Mux is complete : default of case is discarded
-</msg>
-
-<msg type="info" file="Xst" num="1561" delta="new" >&quot;<arg fmt="%s" index="1">/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd</arg>&quot; line <arg fmt="%d" index="2">312</arg>: Mux is complete : default of case is discarded
-</msg>
-
-<msg type="warning" file="Xst" num="819" delta="new" >&quot;<arg fmt="%s" index="1">/home/pdp/Repository/PLASMABRANDAH/rtl/cache.vhd</arg>&quot; line <arg fmt="%d" index="2">215</arg>: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
-<arg fmt="%s" index="3">&lt;write_toggle_reg&gt;</arg>
+<msg type="info" file="Xst" num="1561" delta="old" >&quot;<arg fmt="%s" index="1">/home/pdp/REP/PLASMABRANDAH/rtl/cache.vhd</arg>&quot; line <arg fmt="%d" index="2">312</arg>: Mux is complete : default of case is discarded
 </msg>
 
 <msg type="info" file="Xst" num="2679" delta="old" >Register &lt;<arg fmt="%s" index="1">cache_ram_write_address_temp&lt;14&gt;</arg>&gt; in unit &lt;<arg fmt="%s" index="2">cache</arg>&gt; has a constant value of <arg fmt="%s" index="3">0</arg> during circuit operation. The register is replaced by logic.
 </msg>
 
-<msg type="warning" file="Xst" num="795" delta="new" >&quot;<arg fmt="%s" index="1">/home/pdp/Repository/PLASMABRANDAH/rtl/ddr_ctrl.vhd</arg>&quot; line <arg fmt="%d" index="2">328</arg>: Size of operands are different : result is &lt;false&gt;.
+<msg type="warning" file="Xst" num="795" delta="old" >&quot;<arg fmt="%s" index="1">/home/pdp/REP/PLASMABRANDAH/rtl/ddr_ctrl.vhd</arg>&quot; line <arg fmt="%d" index="2">328</arg>: Size of operands are different : result is &lt;false&gt;.
 </msg>
 
 <msg type="warning" file="Xst" num="646" delta="old" >Signal &lt;<arg fmt="%s" index="1">op2</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.

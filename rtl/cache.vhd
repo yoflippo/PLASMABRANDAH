@@ -213,7 +213,7 @@ begin
 
 
     cache_proc: process(clk, reset, mem_busy, cache_address, LRU_out, cache_ram_data_r0, cache_ram_data_r1, cache_ram_data_w_reg, miss_state_prev_reg,
-        state_reg, state, state_next,
+        state_reg, state, state_next, write_toggle_reg,
         address_next, byte_we_next, cache_tag_in, --Stage1
         cache_tag_reg, cache_tag_out,            --Stage2
         cpu_address) --Stage3
@@ -377,7 +377,7 @@ begin
             INIT_B => "111111111", -- Initial values on B output port
             SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
             SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
-            WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+            WRITE_MODE_A => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
             WRITE_MODE_B => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
             --In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
             --In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
@@ -494,7 +494,7 @@ begin
             INIT_B => "111111111", -- Initial values on B output port
             SRVAL_A => X"000", -- Port A ouput value upon SSR assertion
             SRVAL_B => X"000", -- Port B ouput value upon SSR assertion
-            WRITE_MODE_A => "READ_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
+            WRITE_MODE_A => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
             WRITE_MODE_B => "WRITE_FIRST", -- "WRITE_FIRST", "READ_FIRST" or "NO_CHANGE"
             --In WRITE_FIRST mode, the input data is simultaneously written into memory and stored in the data output (transparent write)
             --In READ_FIRST mode, data previously stored at the write address appears on the output latches, while the input data is being stored in memory (read before write)
