@@ -305,3 +305,4 @@ begin  --architecture
         gpio0_out(28 downto 24) <= ZERO(28 downto 24);
 
 end; --architecture logic
+
