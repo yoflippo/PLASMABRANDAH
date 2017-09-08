@@ -1,3 +1,4 @@
+
 ---------------------------------------------------------------------
 -- TITLE: Random Access Memory for Xilinx
 -- AUTHOR: Steve Rhoads (rhoadss@yahoo.com)
@@ -31,7 +32,7 @@ use UNISIM.vcomponents.all;
 
 entity cache_ram is
     generic(
-        block_count : integer := 1    --TvE changed from 1 generates 2 blocks of 8 kB each (16 kB total)
+        block_count : integer := 2    --TvE changed from 1 generates 2 blocks of 8 kB each (16 kB total)
     );
     port(
         clk               : in std_logic;
